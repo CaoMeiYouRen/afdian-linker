@@ -1,0 +1,109 @@
+{
+  "name": "afdian-linker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint:css": "stylelint src/**/*.{html,css,scss,sass,vue} --fix --custom-syntax postcss-html",
+    "lint": "cross-env NODE_ENV=production eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
+    "release": "semantic-release",
+    "build": "nuxt build",
+    "dev": "nuxt dev -o",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "commit": "cz",
+    "prepare": "husky install",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@vueuse/core": "^13.0.0",
+    "animate.css": "^4.1.1",
+    "await-to-js": "^3.0.0",
+    "dayjs": "^1.11.13",
+    "fs-extra": "^11.3.0",
+    "isomorphic-unfetch": "^4.0.2",
+    "lodash-es": "^4.17.21",
+    "normalize.css": "^8.0.1",
+    "nuxt": "^3.16.0",
+    "p-queue": "^8.1.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
+    "vuetify": "^3.7.16"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.6.1",
+    "@commitlint/config-conventional": "^18.6.3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@types/fs-extra": "^11.0.4",
+    "@types/lodash-es": "^4.17.12",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "commitizen": "^4.2.3",
+    "conventional-changelog-cmyr-config": "^2.1.2",
+    "cross-env": "^7.0.3",
+    "cz-conventional-changelog-cmyr": "^1.1.1",
+    "eslint": "^8.57.1",
+    "eslint-config-cmyr": "^1.1.33",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-vue": "^9.33.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "postcss-html": "^1.5.0",
+    "sass": "^1.85.1",
+    "semantic-release": "21.0.1",
+    "stylelint": "^14.16.1",
+    "stylelint-config-cmyr": "^0.2.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^29.0.0",
+    "stylelint-order": "^6.0.1",
+    "stylelint-scss": "^4.3.0",
+    "typescript": "^5.8.2",
+    "vite": "^6.0.1",
+    "vitest": "^2.1.6"
+  },
+  "author": "CaoMeiYouRen",
+  "description": "爱发电 API 集成，提供统一订单管理和外部查询能力",
+  "keywords": [
+    "afdian",
+    "webhooks",
+    "api",
+    "vue",
+    "vue3",
+    "nuxt"
+  ],
+  "license": "AGPL-3.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/CaoMeiYouRen/afdian-linker#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaoMeiYouRen/afdian-linker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CaoMeiYouRen/afdian-linker/issues"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog-cmyr"
+    }
+  },
+  "changelog": {
+    "language": "zh"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "npm run lint",
+      "git add"
+    ]
+  }
+}

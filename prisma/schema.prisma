@@ -5,40 +5,81 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+    provider = "mysql"
+    url      = env("DATABASE_URL")
 }
 
 model Order {
-  id               String    @id @default(uuid())
-  payment_channel  String    @default("afdian")
-  channel_order_id String?   @unique
-  custom_order_id  String    @unique
-  status           OrderStatus @default(PENDING)
-  amount           Decimal
-  currency         String    @default("CNY")
-  raw_data         Json?
-  metadata         Json?
-  created_at       DateTime @default(now())
-  updated_at       DateTime @updatedAt
+    id               String      @id @default(uuid())
+    payment_channel  String      @default("afdian")
+    channel_order_id String?     @unique
+    custom_order_id  String      @unique
+    status           OrderStatus @default(PENDING)
+    amount           Decimal
+    currency         String      @default("CNY")
+    raw_data         Json?
+    metadata         Json?
+    created_at       DateTime    @default(now())
+    updated_at       DateTime    @updatedAt
+    user             User?       @relation(fields: [user_id], references: [id])
+    user_id          String?     @db.VarChar(255)
 
-  // 添加表名映射
-  @@map("order")
+    // 添加字段名映射（可选）
+    @@index([payment_channel], map: "idx_payment_channel")
+    @@index([channel_order_id], map: "idx_channel_order_id")
+    @@index([custom_order_id], map: "idx_custom_order_id")
+    // 添加表名映射
+    @@map("order")
+}
 
-  // 添加字段名映射（可选）
-  @@index([payment_channel], map: "idx_payment_channel")
-  @@index([channel_order_id], map: "idx_channel_order_id")
-  @@index([custom_order_id], map: "idx_custom_order_id")
+model WebhookLog {
+    id         String   @id @default(uuid())
+    payload    Json
+    created_at DateTime @default(now())
 
+    // 添加表名映射
+    @@map("webhook_log")
+}
+
+model Sync {
+    id         String   @id @default(uuid())
+    created_at DateTime @default(now())
+    start_time Int
+    end_time   Int
+    count      Int
+
+    // 添加表名映射
+    @@map("sync")
 }
 
 enum OrderStatus {
-  PENDING
-  PAID
-  FAILED
-  EXPIRED
+    PENDING
+    PAID
+    FAILED
+    EXPIRED
+}
+
+model User {
+    id            String   @id @default(uuid())
+    username      String   @unique @db.VarChar(255)
+    nickname      String   @db.VarChar(100)
+    email         String   @unique @db.VarChar(255)
+    password_hash String   @db.VarChar(255)
+    role          UserRole @default(USER)
+    created_at    DateTime @default(now())
+    updated_at    DateTime @updatedAt
+    orders        Order[]
+
+    @@index([username], map: "idx_username")
+    @@index([email], map: "idx_email")
+    @@map("user")
+}
+
+enum UserRole {
+    USER
+    ADMIN
 }

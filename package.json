@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@cao-mei-you-ren/afdian": "^1.0.3",
+    "@mdi/font": "^7.4.47",
     "@prisma/client": "6.5.0",
     "@vueuse/core": "^13.0.0",
     "animate.css": "^4.1.1",

@@ -66,15 +66,16 @@ enum OrderStatus {
 }
 
 model User {
-    id            String   @id @default(uuid())
-    username      String   @unique @db.VarChar(255)
-    nickname      String   @db.VarChar(100)
-    email         String   @unique @db.VarChar(255)
-    password_hash String   @db.VarChar(255)
-    role          UserRole @default(USER)
-    created_at    DateTime @default(now())
-    updated_at    DateTime @updatedAt
-    orders        Order[]
+    id               String   @id @default(uuid())
+    username         String   @unique @db.VarChar(255)
+    nickname         String   @db.VarChar(100)
+    email            String   @unique @db.VarChar(255)
+    password_hash    String   @db.VarChar(255)
+    role             UserRole @default(USER)
+    initial_password Boolean  @default(true) // 添加初始密码标记
+    created_at       DateTime @default(now())
+    updated_at       DateTime @updatedAt
+    orders           Order[]
 
     @@index([username], map: "idx_username")
     @@index([email], map: "idx_email")

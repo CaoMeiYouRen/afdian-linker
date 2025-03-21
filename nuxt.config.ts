@@ -15,11 +15,20 @@ export default defineNuxtConfig({
                 config.plugins?.push(vuetify({ autoImport: true }))
             })
         },
+        '@prisma/nuxt',
     ],
+    experimental: {
+        componentIslands: true,
+    },
     vite: {
         vue: {
             template: {
                 transformAssetUrls,
+            },
+        },
+        resolve: {
+            alias: {
+                '.prisma/client/index-browser': './node_modules/.prisma/client/index-browser.js',
             },
         },
     },
@@ -35,7 +44,11 @@ export default defineNuxtConfig({
     },
     nitro: {
         preset: 'node',
-        storage: {
+        // storage: {
+        //     orders: { driver: 'fs', base: './data' },
+        // },
+        externals: {
+            inline: ['@prisma/client'],
         },
     },
 })

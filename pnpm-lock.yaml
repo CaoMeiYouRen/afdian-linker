@@ -15,8 +15,11 @@ importers:
         specifier: ^7.4.47
         version: 7.4.47
       '@prisma/client':
-        specifier: 6.5.0
+        specifier: ^6.5.0
         version: 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
+      '@prisma/nuxt':
+        specifier: ^0.3.0
+        version: 0.3.0(magicast@0.3.5)(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))
       '@vueuse/core':
         specifier: ^13.0.0
         version: 13.0.0(vue@3.5.13(typescript@5.8.2))
@@ -837,6 +840,11 @@ packages:
   '@nuxt/devalue@2.0.2':
     resolution: {integrity: sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==}
 
+  '@nuxt/devtools-kit@1.7.0':
+    resolution: {integrity: sha512-+NgZ2uP5BuneqvQbe7EdOEaFEDy8762c99pLABtn7/Ur0ExEsQJMP7pYjjoTfKubhBqecr5Vo9yHkPBj1eHulQ==}
+    peerDependencies:
+      vite: '*'
+
   '@nuxt/devtools-kit@2.3.0':
     resolution: {integrity: sha512-XKf5czeVLVDi1v602+NliVg80Ma9FyxXc9UmRz2mll/WsXTHZrPzCg94HXJPECv3S5vexTHmmBTyIrMIsqKFmw==}
     peerDependencies:
@@ -1144,6 +1152,9 @@ packages:
 
   '@prisma/get-platform@6.5.0':
     resolution: {integrity: sha512-xYcvyJwNMg2eDptBYFqFLUCfgi+wZLcj6HDMsj0Qw0irvauG4IKmkbywnqwok0B+k+W+p+jThM2DKTSmoPCkzw==}
+
+  '@prisma/nuxt@0.3.0':
+    resolution: {integrity: sha512-1lAlzK9IPGHz+6GjhSHVP1EqqCTO0jtJGBwX/LBWVA2bE6J7aeT5aaSg+9SRTFLelEsfopH17fJI7bdTSlNwfA==}
 
   '@redocly/ajv@8.11.2':
     resolution: {integrity: sha512-io1JpnwtIcvojV7QKDUSIuMN/ikdOUd1ReEnUnMKGfDVridQZ31J0MmIuqwuRjWDZfmvr+Q0MqCcfHM2gTivOg==}
@@ -8218,6 +8229,15 @@ snapshots:
 
   '@nuxt/devalue@2.0.2': {}
 
+  '@nuxt/devtools-kit@1.7.0(magicast@0.3.5)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))':
+    dependencies:
+      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@nuxt/schema': 3.16.0
+      execa: 7.2.0
+      vite: 6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0)
+    transitivePeerDependencies:
+      - magicast
+
   '@nuxt/devtools-kit@2.3.0(magicast@0.3.5)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))':
     dependencies:
       '@nuxt/kit': 3.16.0(magicast@0.3.5)
@@ -8626,6 +8646,22 @@ snapshots:
   '@prisma/get-platform@6.5.0':
     dependencies:
       '@prisma/debug': 6.5.0
+
+  '@prisma/nuxt@0.3.0(magicast@0.3.5)(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))':
+    dependencies:
+      '@nuxt/devtools-kit': 1.7.0(magicast@0.3.5)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))
+      '@nuxt/kit': 3.16.0(magicast@0.3.5)
+      '@prisma/client': 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
+      consola: 3.4.0
+      defu: 6.1.4
+      pathe: 1.1.2
+      tinyexec: 0.3.2
+      tinyrainbow: 1.2.0
+    transitivePeerDependencies:
+      - magicast
+      - prisma
+      - typescript
+      - vite
 
   '@redocly/ajv@8.11.2':
     dependencies:

@@ -1,22 +1,28 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+
 export default defineNuxtConfig({
     compatibilityDate: '2025-03-15',
     devtools: { enabled: true },
-
-    // 新增Vuetify配置
     css: [
-        'vuetify/lib/styles/main.sass',
-        '@mdi/font/css/materialdesignicons.min.css',
     ],
     build: {
         transpile: ['vuetify'],
     },
+    modules: [
+        (_options, nuxt) => {
+            nuxt.hooks.hook('vite:extendConfig', (config) => {
+                config.plugins?.push(vuetify({ autoImport: true }))
+            })
+        },
+    ],
     vite: {
-        define: {
-            // 'process.env.DEBUG': false,
+        vue: {
+            template: {
+                transformAssetUrls,
+            },
         },
     },
-
     runtimeConfig: {
         afdianUserId: process.env.AFDIAN_USER_ID,
         afdianToken: process.env.AFDIAN_TOKEN,
@@ -24,11 +30,12 @@ export default defineNuxtConfig({
             afdianPlanId: process.env.AFDIAN_PLAN_ID,
         },
     },
-
+    devServer: {
+        port: 3000,
+    },
     nitro: {
-        preset: 'vercel',
+        preset: 'node',
         storage: {
-            orders: { driver: 'fs' },
         },
     },
 })

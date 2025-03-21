@@ -70,7 +70,7 @@ importers:
         version: 4.5.0(vue@3.5.13(typescript@5.8.2))
       vuetify:
         specifier: ^3.7.16
-        version: 3.7.16(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
+        version: 3.7.16(typescript@5.8.2)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.8.2))
     devDependencies:
       '@commitlint/cli':
         specifier: ^18.6.1
@@ -171,6 +171,9 @@ importers:
       vite:
         specifier: ^6.0.1
         version: 6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0)
+      vite-plugin-vuetify:
+        specifier: ^2.1.0
+        version: 2.1.0(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))(vuetify@3.7.16)
       vitest:
         specifier: ^2.1.6
         version: 2.1.9(@types/node@22.13.10)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)
@@ -1751,6 +1754,12 @@ packages:
 
   '@vue/shared@3.5.13':
     resolution: {integrity: sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==}
+
+  '@vuetify/loader-shared@2.1.0':
+    resolution: {integrity: sha512-dNE6Ceym9ijFsmJKB7YGW0cxs7xbYV8+1LjU6jd4P14xOt/ji4Igtgzt0rJFbxu+ZhAzqz853lhB0z8V9Dy9cQ==}
+    peerDependencies:
+      vue: ^3.0.0
+      vuetify: ^3.0.0
 
   '@vueuse/core@13.0.0':
     resolution: {integrity: sha512-rkgb4a8/0b234lMGCT29WkCjPfsX0oxrIRR7FDndRoW3FsaC9NBzefXg/9TLhAgwM11f49XnutshM4LzJBrQ5g==}
@@ -7025,6 +7034,10 @@ packages:
   unwasm@0.3.9:
     resolution: {integrity: sha512-LDxTx/2DkFURUd+BU1vUsF/moj0JsoTvl+2tcg2AUOiEzVturhGGx17/IMgGvKUYdZwr33EJHtChCJuhu9Ouvg==}
 
+  upath@2.0.1:
+    resolution: {integrity: sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==}
+    engines: {node: '>=4'}
+
   update-browserslist-db@1.1.3:
     resolution: {integrity: sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw==}
     hasBin: true
@@ -7167,6 +7180,14 @@ packages:
     peerDependencies:
       vite: ^6.0.0
       vue: ^3.5.0
+
+  vite-plugin-vuetify@2.1.0:
+    resolution: {integrity: sha512-4wEAQtZaigPpwbFcZbrKpYwutOsWwWdeXn22B9XHzDPQNxVsKT+K9lKcXZnI5JESO1Iaql48S9rOk8RZZEt+Mw==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      vite: '>=5'
+      vue: ^3.0.0
+      vuetify: ^3.0.0
 
   vite@5.4.14:
     resolution: {integrity: sha512-EK5cY7Q1D8JNhSaPKVK4pwBFvaTmZxEnoKXLG/U9gmdDcihQGNzFlgIvaxezFR4glP1LsuiedwMBqCXH3wZccA==}
@@ -9339,6 +9360,12 @@ snapshots:
       vue: 3.5.13(typescript@5.8.2)
 
   '@vue/shared@3.5.13': {}
+
+  '@vuetify/loader-shared@2.1.0(vue@3.5.13(typescript@5.8.2))(vuetify@3.7.16)':
+    dependencies:
+      upath: 2.0.1
+      vue: 3.5.13(typescript@5.8.2)
+      vuetify: 3.7.16(typescript@5.8.2)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.8.2))
 
   '@vueuse/core@13.0.0(vue@3.5.13(typescript@5.8.2))':
     dependencies:
@@ -15350,6 +15377,8 @@ snapshots:
       pkg-types: 1.3.1
       unplugin: 1.16.1
 
+  upath@2.0.1: {}
+
   update-browserslist-db@1.1.3(browserslist@4.24.4):
     dependencies:
       browserslist: 4.24.4
@@ -15519,6 +15548,17 @@ snapshots:
       vite: 6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0)
       vue: 3.5.13(typescript@5.8.2)
 
+  vite-plugin-vuetify@2.1.0(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))(vuetify@3.7.16):
+    dependencies:
+      '@vuetify/loader-shared': 2.1.0(vue@3.5.13(typescript@5.8.2))(vuetify@3.7.16)
+      debug: 4.4.0(supports-color@9.4.0)
+      upath: 2.0.1
+      vite: 6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0)
+      vue: 3.5.13(typescript@5.8.2)
+      vuetify: 3.7.16(typescript@5.8.2)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.8.2))
+    transitivePeerDependencies:
+      - supports-color
+
   vite@5.4.14(@types/node@22.13.10)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0):
     dependencies:
       esbuild: 0.21.5
@@ -15616,11 +15656,12 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.2
 
-  vuetify@3.7.16(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)):
+  vuetify@3.7.16(typescript@5.8.2)(vite-plugin-vuetify@2.1.0)(vue@3.5.13(typescript@5.8.2)):
     dependencies:
       vue: 3.5.13(typescript@5.8.2)
     optionalDependencies:
       typescript: 5.8.2
+      vite-plugin-vuetify: 2.1.0(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))(vue@3.5.13(typescript@5.8.2))(vuetify@3.7.16)
 
   wcwidth@1.0.1:
     dependencies:

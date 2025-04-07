@@ -10,41 +10,43 @@ export enum OrderStatus {
 
 @Entity('order')
 export class Order {
+
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @Column({ default: 'afdian' })
+    @Column({ type: 'varchar', length: 50, default: 'afdian' })
     payment_channel: string
 
-    @Column({ nullable: true, unique: true })
+    @Column({ type: 'varchar', length: 255, nullable: true, unique: true })
     channel_order_id: string
 
-    @Column({ unique: true })
+    @Column({ type: 'varchar', length: 255, unique: true })
     custom_order_id: string
 
     @Column({
         type: 'enum',
         enum: OrderStatus,
+        enumName: 'order_status_enum',
         default: OrderStatus.PENDING,
     })
     status: OrderStatus
 
-    @Column('decimal')
+    @Column({ type: 'decimal', precision: 10, scale: 2 })
     amount: number
 
-    @Column({ default: 'CNY' })
+    @Column({ type: 'varchar', length: 8, default: 'CNY' })
     currency: string
 
-    @Column('jsonb', { nullable: true })
+    @Column({ type: 'jsonb', nullable: true })
     raw_data: any
 
-    @Column('jsonb', { nullable: true })
+    @Column({ type: 'jsonb', nullable: true })
     metadata: any
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: 'timestamp with time zone' })
     created_at: Date
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ type: 'timestamp with time zone' })
     updated_at: Date
 
     @ManyToOne(() => User, (user) => user.orders)

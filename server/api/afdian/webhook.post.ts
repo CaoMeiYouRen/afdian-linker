@@ -20,23 +20,23 @@ export default defineEventHandler(async (event) => {
         await dataSource.transaction(async (manager) => {
             // 保存订单
             const existingOrder = await manager.findOne(Order, {
-                where: { custom_order_id: orderData.custom_order_id },
+                where: { customOrderId: orderData.custom_order_id },
             })
 
             if (existingOrder) {
-                existingOrder.channel_order_id = orderData.out_trade_no
+                existingOrder.channelOrderId = orderData.out_trade_no
                 existingOrder.status = orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED
-                existingOrder.raw_data = orderData
+                existingOrder.rawData = orderData
                 await manager.save(existingOrder)
             } else {
                 const newOrder = manager.create(Order, {
-                    payment_channel: 'afdian',
-                    custom_order_id: orderData.custom_order_id,
-                    channel_order_id: orderData.out_trade_no,
+                    paymentChannel: 'afdian',
+                    customOrderId: orderData.custom_order_id,
+                    channelOrderId: orderData.out_trade_no,
                     status: OrderStatus.PAID,
                     amount: orderData.total_amount,
                     currency: 'CNY',
-                    raw_data: orderData,
+                    rawData: orderData,
                 })
                 await manager.save(newOrder)
             }

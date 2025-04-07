@@ -1,7 +1,10 @@
+import { hash } from 'bcrypt'
 import {
     Entity,
     Column,
     OneToMany,
+    BeforeInsert,
+    BeforeUpdate,
 } from 'typeorm'
 import { Order } from './Order'
 import { BaseEntity } from './BaseEntity'
@@ -25,8 +28,16 @@ export class User extends BaseEntity {
     @Column({ type: 'varchar', unique: true, length: 255 })
     email: string
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 255, select: false })
     password: string
+
+    @BeforeInsert()
+    @BeforeUpdate()
+    private async hashPassword() {
+        if (this.password) {
+            this.password = await hash(this.password, 10)
+        }
+    }
 
     @Column({
         type: 'enum',

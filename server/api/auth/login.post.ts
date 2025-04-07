@@ -23,10 +23,12 @@ export default defineEventHandler(async (event) => {
         const dataSource = await getDataSource()
         const userRepo = dataSource.getRepository(User)
 
-        const user = await userRepo.findOne({
-            where: { username: body.username },
-
-        })
+        const user = await userRepo.createQueryBuilder('user')
+            .where({
+                username: body.username,
+            })
+            .addSelect('user.password') // 手动选择密码字段，否则没有该字段
+            .getOne()
 
         // 验证用户存在性
         if (!user) {
@@ -72,7 +74,7 @@ export default defineEventHandler(async (event) => {
 
         return {
             success: true,
-            requirePasswordChange: user.initial_password,
+            requirePasswordChange: user.initialPassword,
             token,
         }
     } catch (error) {

@@ -28,13 +28,13 @@ export default defineEventHandler(async (event) => {
 
             // 批量更新逻辑
             const transactions = result.data.list.map((orderData) => orderRepository.save({
-                custom_order_id: orderData.custom_order_id,
-                payment_channel: 'afdian',
-                channel_order_id: orderData.out_trade_no,
+                customOrderId: orderData.custom_order_id,
+                paymentChannel: 'afdian',
+                channelOrderId: orderData.out_trade_no,
                 status: orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED,
                 amount: orderData.total_amount ? parseFloat(orderData.total_amount) : 0,
                 currency: 'CNY',
-                raw_data: orderData,
+                rawData: orderData,
             }),
             )
 

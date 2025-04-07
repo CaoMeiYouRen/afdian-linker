@@ -32,6 +32,7 @@ export const initializeDB = async () => {
             await AppDataSource.initialize()
             isInitialized = true
             console.log('数据库连接已初始化')
+            await initAdmin()
         } catch (error) {
             console.error('数据库初始化失败:', error)
             throw error
@@ -51,14 +52,14 @@ export const initAdmin = async () => {
             username: 'admin',
             nickname: '管理员',
             password: process.env.ADMIN_PASSWORD || '123456', // 初始密码
-            initial_password: !process.env.ADMIN_PASSWORD, // 是否需要修改初始密码
+            initialPassword: !process.env.ADMIN_PASSWORD, // 是否需要修改初始密码
             role: UserRole.ADMIN,
         })
         await userRepository.save(newAdminUser)
-        console.log('管理员用户已创建:', newAdminUser)
+        console.log('管理员用户已创建:', newAdminUser.id)
         return newAdminUser
     }
-    console.log('管理员用户已存在:', adminUser)
+    console.log('管理员用户已存在:', adminUser.id)
     return adminUser
 }
 

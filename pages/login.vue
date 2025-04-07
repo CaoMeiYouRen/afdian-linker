@@ -1,7 +1,11 @@
 <template>
-    <v-card class="mx-auto my-12" max-width="500">
+    <v-card
+        class="mx-auto my-12"
+        max-width="800"
+        min-width="500"
+    >
         <v-card-title class="pa-6 text-center text-h5">
-            管理员登录
+            登录
         </v-card-title>
 
         <v-form @submit.prevent="handleSubmit">

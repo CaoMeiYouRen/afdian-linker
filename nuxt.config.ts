@@ -43,7 +43,7 @@ export default defineNuxtConfig({
     nitro: {
         preset: 'node',
         externals: {
-            inline: ['typeorm', 'reflect-metadata'],
+            // inline: ['typeorm', 'reflect-metadata'],
         },
         esbuild: {
             options: {

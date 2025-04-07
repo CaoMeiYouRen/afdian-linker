@@ -1,8 +1,9 @@
 import type { EventHandler } from 'h3'
 import { z } from 'zod'
-import bcrypt from 'bcrypt'
+import { compare } from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { rateLimit } from '~/server/utils/rate-limit'
+import { SESSION_KEY, setSession } from '@/server/utils/session'
+import { rateLimit } from '@/server/utils/rate-limit'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/User'
 
@@ -34,12 +35,10 @@ export default defineEventHandler(async (event) => {
         if (!user) {
             throw createError({
                 statusCode: 401,
-                message: '用户不存在',
             })
         }
-
         // 验证密码
-        const passwordValid = await bcrypt.compare(body.password, user.password)
+        const passwordValid = await compare(body.password, user.password)
         if (!passwordValid) {
             throw createError({
                 statusCode: 401,
@@ -65,7 +64,7 @@ export default defineEventHandler(async (event) => {
             { expiresIn: '24h' },
         )
 
-        setCookie(event, 'auth_token', token, {
+        setCookie(event, SESSION_KEY, token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',

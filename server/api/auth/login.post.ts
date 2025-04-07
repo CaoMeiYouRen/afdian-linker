@@ -75,6 +75,7 @@ export default defineEventHandler(async (event) => {
         return {
             success: true,
             requirePasswordChange: user.initialPassword,
+            requireEmailChange: user.initialEmail,
             token,
         }
     } catch (error) {

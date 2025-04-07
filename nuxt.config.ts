@@ -36,6 +36,7 @@ export default defineNuxtConfig({
         public: {
             afdianPlanId: process.env.AFDIAN_PLAN_ID,
         },
+        jwtSecret: process.env.JWT_SECRET,
     },
     devServer: {
         port: 3000,

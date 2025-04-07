@@ -52,7 +52,9 @@ export const initAdmin = async () => {
             username: 'admin',
             nickname: '管理员',
             password: process.env.ADMIN_PASSWORD || '123456', // 初始密码
+            email: process.env.ADMIN_EMAIL || 'admin@example.com', // 初始邮箱
             initialPassword: !process.env.ADMIN_PASSWORD, // 是否需要修改初始密码
+            initialEmail: !process.env.ADMIN_EMAIL, // 是否需要修改初始邮箱
             role: UserRole.ADMIN,
         })
         await userRepository.save(newAdminUser)

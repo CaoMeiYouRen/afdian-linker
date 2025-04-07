@@ -69,6 +69,7 @@ async function handleSubmit() {
     })
 
     if (data.value?.success) {
+      $toast.success('登录成功')
       if (data.value.requirePasswordChange) {
         router.push('/change-password')
       } else {

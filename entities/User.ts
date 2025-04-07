@@ -22,7 +22,7 @@ export class User extends BaseEntity {
     @Column({ type: 'varchar', unique: true, length: 255 })
     username: string
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 255, nullable: true })
     nickname: string
 
     @Column({ type: 'varchar', unique: true, length: 255 })
@@ -49,6 +49,9 @@ export class User extends BaseEntity {
 
     @Column({ type: 'boolean', default: true })
     initialPassword: boolean
+
+    @Column({ type: 'boolean', default: true })
+    initialEmail: boolean
 
     @OneToMany(() => Order, (order) => order.user, {
         cascade: true,

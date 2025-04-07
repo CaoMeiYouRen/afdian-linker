@@ -1,3 +1,4 @@
+import type { EventHandler } from 'h3'
 import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/entities/Order'
 import { WebhookLog } from '@/entities/WebhookLog'

@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    OneToMany,
+} from 'typeorm'
 import { Order } from './Order'
 
 export enum UserRole {
@@ -30,15 +37,17 @@ export class User {
     })
     role: UserRole
 
-    @Column({ default: true })
+    @Column({ type: 'boolean', default: true })
     initial_password: boolean
 
-    @CreateDateColumn()
+    @CreateDateColumn({ type: 'timestamp' })
     created_at: Date
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ type: 'timestamp' })
     updated_at: Date
 
-    @OneToMany(() => Order, (order) => order.user)
+    @OneToMany(() => Order, (order) => order.user, {
+        cascade: true,
+    })
     orders: Order[]
 }

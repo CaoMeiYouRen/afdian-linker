@@ -1,7 +1,8 @@
+import type { EventHandler } from 'h3'
 import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { rateLimit } from '../../utils/rateLimit'
+import { rateLimit } from '@/server/utils/rateLimit'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/User'
 

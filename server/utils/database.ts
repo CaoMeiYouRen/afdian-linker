@@ -1,11 +1,12 @@
 import { DataSource } from 'typeorm'
 import { Order } from '@/entities/Order'
 import { User } from '@/entities/User'
+import { WebhookLog } from '@/entities/WebhookLog'
 
 const AppDataSource = new DataSource({
     type: 'postgres',
     url: process.env.DATABASE_URL,
-    entities: [Order, User],
+    entities: [Order, User, WebhookLog],
     synchronize: process.env.NODE_ENV !== 'production',
     logging: process.env.NODE_ENV === 'development',
 })

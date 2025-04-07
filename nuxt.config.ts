@@ -42,10 +42,18 @@ export default defineNuxtConfig({
     },
     nitro: {
         preset: 'node',
-        // storage: {
-        //     orders: { driver: 'fs', base: './data' },
-        // },
         externals: {
+            inline: ['typeorm', 'reflect-metadata'],
+        },
+        esbuild: {
+            options: {
+                target: 'esnext',
+                tsconfigRaw: {
+                    compilerOptions: {
+                        experimentalDecorators: true,
+                    },
+                },
+            },
         },
     },
 })

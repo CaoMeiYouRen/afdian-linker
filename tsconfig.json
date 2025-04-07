@@ -6,10 +6,12 @@
         "strictPropertyInitialization": false,
         "target": "ESNext",
         "module": "ESNext",
-        "moduleResolution": "Bundler",
+        "moduleResolution": "Node", // 修改为 Node 而不是 Bundler
         "skipLibCheck": true,
         "resolveJsonModule": true,
         "noImplicitAny": false,
-        // "skipDefaultLibCheck": true
+        "useDefineForClassFields": false, // 添加此配置
+        "allowSyntheticDefaultImports": true, // 添加此配置
+        "esModuleInterop": true // 添加此配置
     }
 }

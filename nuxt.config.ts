@@ -15,7 +15,6 @@ export default defineNuxtConfig({
                 config.plugins?.push(vuetify({ autoImport: true }))
             })
         },
-        '@prisma/nuxt',
     ],
     experimental: {
         componentIslands: true,
@@ -28,9 +27,6 @@ export default defineNuxtConfig({
         },
         resolve: {
             alias: {
-                '.prisma/client/index-browser': 'node_modules/.prisma/client/index-browser.js',
-                '.prisma/client/default': 'node_modules/.prisma/client/default.js',
-
             },
         },
     },
@@ -50,7 +46,6 @@ export default defineNuxtConfig({
         //     orders: { driver: 'fs', base: './data' },
         // },
         externals: {
-            inline: ['@prisma/client'],
         },
     },
 })

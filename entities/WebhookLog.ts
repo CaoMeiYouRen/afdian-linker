@@ -1,17 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, Column } from 'typeorm'
+import { BaseEntity } from './BaseEntity'
 
 @Entity('webhook_log')
-export class WebhookLog {
-
-    @PrimaryGeneratedColumn('uuid')
-    id: string
-
+export class WebhookLog extends BaseEntity {
     @Column({ type: 'jsonb', nullable: false })
     payload: any
-
-    @CreateDateColumn({ type: 'timestamp with time zone' })
-    created_at: Date
-
-    @UpdateDateColumn({ type: 'timestamp with time zone' })
-    updated_at: Date
 }

@@ -1,12 +1,10 @@
 import {
     Entity,
-    PrimaryGeneratedColumn,
     Column,
-    CreateDateColumn,
-    UpdateDateColumn,
     OneToMany,
 } from 'typeorm'
 import { Order } from './Order'
+import { BaseEntity } from './BaseEntity'
 
 // 用户角色枚举
 export enum UserRole {
@@ -16,10 +14,7 @@ export enum UserRole {
 
 // 用户实体
 @Entity('user')
-export class User {
-
-    @PrimaryGeneratedColumn('uuid')
-    id: string
+export class User extends BaseEntity {
 
     @Column({ type: 'varchar', unique: true, length: 255 })
     username: string
@@ -42,13 +37,7 @@ export class User {
     role: UserRole
 
     @Column({ type: 'boolean', default: true })
-    initial_password: boolean
-
-    @CreateDateColumn({ type: 'timestamp with time zone' })
-    created_at: Date
-
-    @UpdateDateColumn({ type: 'timestamp with time zone' })
-    updated_at: Date
+    initialPassword: boolean
 
     @OneToMany(() => Order, (order) => order.user, {
         cascade: true,

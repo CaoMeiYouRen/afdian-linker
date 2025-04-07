@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm'
 import { Order } from '@/entities/Order'
-import { User } from '@/entities/User'
+import { User, UserRole } from '@/entities/User'
 import { WebhookLog } from '@/entities/WebhookLog'
 
 let AppDataSource: DataSource = null as any
@@ -33,6 +33,29 @@ export const initializeDB = async () => {
         }
     }
     return AppDataSource
+}
+
+export const initAdmin = async () => {
+    if (!isInitialized) {
+        await initializeDB()
+    }
+    const userRepository = AppDataSource.getRepository(User)
+    const adminUser = await userRepository.findOneBy({ username: 'admin' })
+    if (!adminUser) {
+        const newAdminUser = userRepository.create({
+            username: 'admin',
+            nickname: '管理员',
+            password: 'admin',
+            role: UserRole.ADMIN,
+            created_at: new Date(),
+            updated_at: new Date(),
+        })
+        await userRepository.save(newAdminUser)
+        console.log('管理员用户已创建:', newAdminUser)
+        return newAdminUser
+    }
+    console.log('管理员用户已存在:', adminUser)
+    return adminUser
 }
 
 export const getDataSource = async () => {

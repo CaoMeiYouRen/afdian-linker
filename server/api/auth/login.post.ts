@@ -2,7 +2,7 @@ import type { EventHandler } from 'h3'
 import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { rateLimit } from '@/server/utils/rateLimit'
+import { rateLimit } from '~/server/utils/rate-limit'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/User'
 
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
 
         const user = await userRepo.findOne({
             where: { username: body.username },
-            select: ['id', 'password_hash', 'role', 'initial_password'],
+
         })
 
         // 验证用户存在性
@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
         }
 
         // 验证密码
-        const passwordValid = await bcrypt.compare(body.password, user.password_hash)
+        const passwordValid = await bcrypt.compare(body.password, user.password)
         if (!passwordValid) {
             throw createError({
                 statusCode: 401,

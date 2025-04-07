@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm'
+import { SnakeCaseNamingStrategy } from './naming-strategy'
 import { Order } from '@/entities/Order'
 import { User, UserRole } from '@/entities/User'
 import { WebhookLog } from '@/entities/WebhookLog'
@@ -23,6 +24,10 @@ export const initializeDB = async () => {
                     connectionTimeoutMillis: 60000,
                 },
                 cache: false,
+                // 所有表（或集合）加的前缀
+                entityPrefix: process.env.ENTITY_PREFIX || 'afdian_',
+                // 表、字段命名策略，改为 snake_case
+                namingStrategy: new SnakeCaseNamingStrategy(),
             })
             await AppDataSource.initialize()
             isInitialized = true

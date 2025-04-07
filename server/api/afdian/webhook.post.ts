@@ -1,11 +1,12 @@
-import prisma from '@/server/utils/prisma'
+import { getDataSource } from '@/server/utils/database'
+import { Order, OrderStatus } from '@/entities/Order'
+import { WebhookLog } from '@/entities/WebhookLog'
 
 export default defineEventHandler(async (event) => {
     try {
-        await prisma.$connect()
+        const dataSource = getDataSource()
         const body = await readBody(event)
 
-        // 验证必要字段
         if (!body?.data?.order?.custom_order_id) {
             throw createError({
                 statusCode: 400,
@@ -15,31 +16,36 @@ export default defineEventHandler(async (event) => {
 
         const orderData = body.data.order
 
-        // 使用事务处理数据库操作
-        await prisma.$transaction([
-            prisma.order.upsert({
+        await dataSource.transaction(async (manager) => {
+            // 保存订单
+            const existingOrder = await manager.findOne(Order, {
                 where: { custom_order_id: orderData.custom_order_id },
-                update: {
-                    channel_order_id: orderData.out_trade_no,
-                    status: orderData.status === 2 ? 'PAID' : 'FAILED',
-                    raw_data: orderData,
-                },
-                create: {
+            })
+
+            if (existingOrder) {
+                existingOrder.channel_order_id = orderData.out_trade_no
+                existingOrder.status = orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED
+                existingOrder.raw_data = orderData
+                await manager.save(existingOrder)
+            } else {
+                const newOrder = manager.create(Order, {
                     payment_channel: 'afdian',
                     custom_order_id: orderData.custom_order_id,
                     channel_order_id: orderData.out_trade_no,
-                    status: 'PAID',
+                    status: OrderStatus.PAID,
                     amount: orderData.total_amount,
                     currency: 'CNY',
                     raw_data: orderData,
-                },
-            }),
-            prisma.webhookLog.create({
-                data: {
-                    payload: body,
-                },
-            }),
-        ])
+                })
+                await manager.save(newOrder)
+            }
+
+            // 记录 webhook 日志
+            const webhookLog = manager.create(WebhookLog, {
+                payload: body,
+            })
+            await manager.save(webhookLog)
+        })
 
         return {
             ec: 200,
@@ -59,7 +65,5 @@ export default defineEventHandler(async (event) => {
                 error: error?.message,
             },
         }
-    } finally {
-        await prisma.$disconnect()
     }
 })

@@ -50,10 +50,9 @@ export const initAdmin = async () => {
         const newAdminUser = userRepository.create({
             username: 'admin',
             nickname: '管理员',
-            password: 'admin',
+            password: process.env.ADMIN_PASSWORD || '123456', // 初始密码
+            initial_password: !process.env.ADMIN_PASSWORD, // 是否需要修改初始密码
             role: UserRole.ADMIN,
-            created_at: new Date(),
-            updated_at: new Date(),
         })
         await userRepository.save(newAdminUser)
         console.log('管理员用户已创建:', newAdminUser)

@@ -3,18 +3,20 @@ import { Order } from '@/entities/Order'
 import { User } from '@/entities/User'
 import { WebhookLog } from '@/entities/WebhookLog'
 
-const AppDataSource = new DataSource({
-    type: 'postgres',
-    url: process.env.DATABASE_URL,
-    entities: [Order, User, WebhookLog],
-    synchronize: process.env.NODE_ENV !== 'production',
-    logging: process.env.NODE_ENV === 'development',
-})
+let AppDataSource: DataSource = null as any
 
+// 连接状态
 let isInitialized = false
 
 export const initializeDB = async () => {
     if (!isInitialized) {
+        AppDataSource = new DataSource({
+            type: 'postgres',
+            url: process.env.DATABASE_URL,
+            entities: [Order, User, WebhookLog],
+            synchronize: process.env.NODE_ENV !== 'production',
+            logging: process.env.NODE_ENV === 'development',
+        })
         await AppDataSource.initialize()
         isInitialized = true
         console.log('数据库连接已初始化')
@@ -22,9 +24,10 @@ export const initializeDB = async () => {
     return AppDataSource
 }
 
-export const getDataSource = () => {
+export const getDataSource = async () => {
     if (!isInitialized) {
-        throw new Error('数据库尚未初始化')
+        // throw new Error('数据库尚未初始化')
+        await initializeDB()
     }
     return AppDataSource
 }

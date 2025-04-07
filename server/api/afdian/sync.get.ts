@@ -18,7 +18,7 @@ const querySchema = z.object({
 export default defineEventHandler(async (event) => {
     try {
         const params = await getValidatedQuery(event, querySchema)
-        const dataSource = getDataSource()
+        const dataSource = await getDataSource()
 
         return await dataSource.transaction(async (manager) => {
             const { client } = useAfdian()

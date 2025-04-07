@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
         })
 
         const body = await readValidatedBody(event, loginSchema.parse)
-        const dataSource = getDataSource()
+        const dataSource = await getDataSource()
         const userRepo = dataSource.getRepository(User)
 
         const user = await userRepo.findOne({

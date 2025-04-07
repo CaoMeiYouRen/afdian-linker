@@ -55,5 +55,14 @@ export default defineNuxtConfig({
                 },
             },
         },
+        typescript: {
+            tsConfig: {
+                compilerOptions: {
+                    emitDecoratorMetadata: true,
+                    experimentalDecorators: true,
+                    strictPropertyInitialization: false,
+                },
+            },
+        },
     },
 })

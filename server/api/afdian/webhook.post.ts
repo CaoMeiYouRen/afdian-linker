@@ -5,7 +5,7 @@ import { WebhookLog } from '@/entities/WebhookLog'
 
 export default defineEventHandler(async (event) => {
     try {
-        const dataSource = getDataSource()
+        const dataSource = await getDataSource()
         const body = await readBody(event)
 
         if (!body?.data?.order?.custom_order_id) {

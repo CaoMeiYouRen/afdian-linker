@@ -53,15 +53,25 @@ class LRUStore implements RateLimitStore {
     }
 }
 
-const store: RateLimitStore = process.env.REDIS_URL
-    ? new RedisStore(process.env.REDIS_URL)
-    : new LRUStore()
+let store: RateLimitStore = null as any
+
+export function getStore() {
+    if (store) {
+        return store
+    }
+    if (process.env.REDIS_URL) {
+        store = new RedisStore(process.env.REDIS_URL)
+        return store
+    }
+    store = new LRUStore()
+    return store
+}
 
 export async function rateLimit(event: H3Event, options: RateLimitOptions) {
     const ip = getRequestIP(event, { xForwardedFor: true }) || 'unknown'
     const key = `ratelimit:${ip}:${event.path}`
-
-    const count = await store.increment(key, options.window)
+    const $store = getStore()
+    const count = await $store.increment(key, options.window)
 
     if (count > options.max) {
         throw createError({

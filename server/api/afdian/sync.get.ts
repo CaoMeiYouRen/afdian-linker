@@ -1,5 +1,6 @@
 import type { EventHandler, H3Event } from 'h3'
 import { z } from 'zod'
+import { In } from 'typeorm'
 import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/entities/Order'
 import { useAfdian } from '@/composables/useAfdian'
@@ -27,17 +28,44 @@ export default defineEventHandler(async (event) => {
 
             const result = await client.queryOrder(params)
 
-            // 批量更新逻辑
-            const transactions = result.data.list.map((orderData) => orderRepository.save({
-                customOrderId: orderData.custom_order_id,
-                paymentChannel: 'afdian',
-                channelOrderId: orderData.out_trade_no,
-                status: orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED,
-                amount: orderData.total_amount ? parseFloat(orderData.total_amount) : 0,
-                currency: 'CNY',
-                rawData: orderData,
-            }),
+            // 获取现有订单
+            const existingOrders = await orderRepository.find({
+                where: {
+                    channelOrderId: In(result.data.list.map((order) => order.out_trade_no)),
+                },
+            })
+
+            const existingOrdersMap = new Map(
+                existingOrders.map((order) => [order.channelOrderId, order]),
             )
+
+            // 批量更新逻辑
+            const transactions = result.data.list.map(async (orderData) => {
+                const existingOrder = existingOrdersMap.get(orderData.out_trade_no)
+                const orderToUpdate = {
+                    ...existingOrder || {},
+                    customOrderId: orderData.custom_order_id,
+                    paymentChannel: 'afdian',
+                    channelOrderId: orderData.out_trade_no,
+                    status: orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED,
+                    amount: orderData.total_amount ? parseFloat(orderData.total_amount) : 0,
+                    currency: 'CNY',
+                    rawData: orderData,
+                }
+
+                if (existingOrder) {
+                    // 如果订单存在且状态没变，跳过更新
+                    if (existingOrder.status === orderToUpdate.status) {
+                        console.log(`订单 ${orderData.out_trade_no} 状态未变化，跳过更新`)
+                        return existingOrder
+                    }
+                    // 更新现有订单
+                    return orderRepository.save(orderToUpdate)
+                }
+
+                // 创建新订单
+                return orderRepository.save(orderToUpdate)
+            })
 
             const orders = await Promise.all(transactions)
 

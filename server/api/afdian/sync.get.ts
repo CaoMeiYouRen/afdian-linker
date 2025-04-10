@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/entities/Order'
 import { useAfdian } from '@/composables/useAfdian'
+import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 // 添加参数验证工具函数
 async function getValidatedQuery<T extends z.ZodType>(event: H3Event, schema: T): Promise<z.infer<T>> {
@@ -40,14 +41,11 @@ export default defineEventHandler(async (event) => {
 
             const orders = await Promise.all(transactions)
 
-            return {
-                code: 200,
-                data: {
-                    orders: orders.map((o) => ({ id: o.id, status: o.status })),
-                    count: orders.length,
-                    success: true,
-                },
-            }
+            return createApiResponse({
+                orders: orders.map((o) => ({ id: o.id, status: o.status })),
+                count: orders.length,
+                success: true,
+            })
         })
     } catch (error: any) {
         if (error instanceof z.ZodError) {

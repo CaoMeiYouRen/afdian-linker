@@ -6,6 +6,7 @@ import { SESSION_KEY, setSession } from '@/server/utils/session'
 import { rateLimit } from '@/server/utils/rate-limit'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/User'
+import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 const loginSchema = z.object({
     username: z.string().min(1),
@@ -71,12 +72,12 @@ export default defineEventHandler(async (event) => {
             maxAge: 86400,
         })
 
-        return {
+        return createApiResponse({
             success: true,
             requirePasswordChange: user.initialPassword,
             requireEmailChange: user.initialEmail,
             token,
-        }
+        })
     } catch (error) {
         if (error instanceof z.ZodError) {
             throw createError({

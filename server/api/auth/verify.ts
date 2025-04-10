@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/User'
 import { SESSION_KEY } from '@/server/utils/session'
+import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler(async (event) => {
     try {
@@ -27,20 +28,17 @@ export default defineEventHandler(async (event) => {
             })
         }
 
-        return {
-            success: true,
-            data: {
-                username: user.username,
-                nickname: user.nickname,
-                email: user.email,
-                role: user.role,
-                initialPassword: user.initialPassword,
-                initialEmail: user.initialEmail,
-                createdAt: user.createdAt,
-                updatedAt: user.updatedAt,
-                id: user.id,
-            },
-        }
+        return createApiResponse({
+            username: user.username,
+            nickname: user.nickname,
+            email: user.email,
+            role: user.role,
+            initialPassword: user.initialPassword,
+            initialEmail: user.initialEmail,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+            id: user.id,
+        })
     } catch (error) {
         throw createError({
             statusCode: 401,

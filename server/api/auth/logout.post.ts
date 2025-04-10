@@ -1,4 +1,5 @@
 import { SESSION_KEY } from '@/server/utils/session'
+import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler((event) => {
     deleteCookie(event, SESSION_KEY, {
@@ -7,7 +8,7 @@ export default defineEventHandler((event) => {
         sameSite: 'strict',
     })
 
-    return {
+    return createApiResponse({
         success: true,
-    }
+    })
 })

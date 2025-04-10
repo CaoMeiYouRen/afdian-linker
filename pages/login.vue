@@ -83,7 +83,7 @@ async function handleSubmit() {
             severity: 'error',
             summary: '登录失败',
             detail: error.message || '请检查用户名和密码',
-            life: 3000,
+            life: 5000, // 错误提示延长到5秒
         })
     } finally {
         loading.value = false

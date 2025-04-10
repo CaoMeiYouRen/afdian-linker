@@ -83,10 +83,10 @@ const passwordRules = [
 async function handleSubmit() {
     if (form.newPassword !== form.confirmPassword) {
         toast.add({
-            severity: 'error',
-            summary: '错误',
+            severity: 'warn',
+            summary: '警告',
             detail: '两次输入的密码不一致',
-            life: 3000,
+            life: 5000,
         })
         return
     }
@@ -115,7 +115,7 @@ async function handleSubmit() {
             severity: 'error',
             summary: '错误',
             detail: error.message || '修改密码失败',
-            life: 3000,
+            life: 5000,
         })
     } finally {
         loading.value = false

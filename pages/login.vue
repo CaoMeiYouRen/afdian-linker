@@ -48,12 +48,6 @@
 <script setup lang="ts">
 import { useToast } from 'primevue/usetoast'
 
-interface LoginResponse {
-    success: boolean
-    requirePasswordChange?: boolean
-    error?: string
-}
-
 const form = reactive({
     username: '',
     password: '',
@@ -65,25 +59,34 @@ const toast = useToast()
 async function handleSubmit() {
     loading.value = true
     try {
-        const { data } = await useFetch<LoginResponse>('/api/auth/login', {
+        const { data } = await useFetch('/api/auth/login', {
             method: 'POST',
             body: form,
         })
-        if (data.value?.success) {
+
+        if (data.value?.statusCode === 200) {
             toast.add({
                 severity: 'success',
-                summary: '登录成功',
+                summary: '成功',
+                detail: '登录成功',
                 life: 3000,
             })
             await router.push('/admin')
+            return
         }
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: data.value?.message || '登录失败',
+            life: 5000,
+        })
     } catch (error: any) {
         console.error(error)
         toast.add({
             severity: 'error',
-            summary: '登录失败',
-            detail: error.message || '请检查用户名和密码',
-            life: 5000, // 错误提示延长到5秒
+            summary: '错误',
+            detail: error.message || '登录失败',
+            life: 5000,
         })
     } finally {
         loading.value = false

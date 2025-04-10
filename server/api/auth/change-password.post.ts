@@ -1,7 +1,8 @@
 import { z } from 'zod'
 import bcrypt from 'bcrypt'
-import { getDataSource } from '~/server/utils/database'
+import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/User'
+import { createApiResponse } from '@/server/types/api'
 
 const schema = z.object({
     oldPassword: z.string().min(1),
@@ -33,7 +34,7 @@ export default defineEventHandler(async (event) => {
             initialPassword: false,
         })
 
-        return { success: true }
+        return createApiResponse({ success: true })
     } catch (error) {
         if (error instanceof z.ZodError) {
             throw createError({
@@ -45,3 +46,4 @@ export default defineEventHandler(async (event) => {
         throw error
     }
 })
+

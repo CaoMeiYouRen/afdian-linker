@@ -44,7 +44,6 @@ export default defineEventHandler(async (event) => {
             return createApiResponse({
                 orders: orders.map((o) => ({ id: o.id, status: o.status })),
                 count: orders.length,
-                success: true,
             })
         })
     } catch (error: any) {

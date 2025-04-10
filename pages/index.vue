@@ -33,9 +33,11 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue'
+import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
+const toast = useToast()
 
 const handleLogin = () => {
     navigateTo('/login')
@@ -44,9 +46,22 @@ const handleLogin = () => {
 const handleLogout = async () => {
     await useFetch('/api/auth/logout', { method: 'POST' })
     userStore.clearUserInfo()
+    toast.add({
+        severity: 'success',
+        summary: '成功',
+        detail: '登出成功',
+        life: 3000,
+    })
 }
 
 onMounted(async () => {
-    await userStore.verifyLogin()
+    try {
+        const { data } = await useFetch('/api/auth/verify')
+        if (data.value?.statusCode === 200) {
+            userStore.setUserInfo(data.value.data as any)
+        }
+    } catch (error) {
+        console.error('验证登录状态失败:', error)
+    }
 })
 </script>

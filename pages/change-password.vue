@@ -101,7 +101,7 @@ async function handleSubmit() {
             },
         })
 
-        if (data.value?.success) {
+        if (data.value?.statusCode === 200) {
             toast.add({
                 severity: 'success',
                 summary: '成功',
@@ -109,7 +109,14 @@ async function handleSubmit() {
                 life: 3000,
             })
             router.push('/admin')
+            return
         }
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: data.value?.message || '登录失败',
+            life: 5000,
+        })
     } catch (error: any) {
         toast.add({
             severity: 'error',

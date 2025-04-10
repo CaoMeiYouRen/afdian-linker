@@ -3,7 +3,7 @@ import { createError } from 'h3'
 import { getDataSource } from '@/server/utils/database'
 import { Order } from '@/entities/Order'
 import { generateOrderId } from '@/server/utils/order'
-import { paymentChannels } from '@/utils/payment/channels'
+import { paymentChannels } from '@/server/utils/channels'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 // 创建订单参数验证

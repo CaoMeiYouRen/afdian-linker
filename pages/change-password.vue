@@ -69,7 +69,6 @@ const form = reactive({
 })
 
 const loading = ref(false)
-const router = useRouter()
 const toast = useToast()
 
 const passwordRules = [
@@ -108,7 +107,7 @@ async function handleSubmit() {
                 detail: '密码修改成功',
                 life: 3000,
             })
-            router.push('/admin')
+            navigateTo('/admin')
             return
         }
         toast.add({

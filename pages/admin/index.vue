@@ -5,7 +5,7 @@
                 <v-card class="mb-4">
                     <v-card-title>管理后台</v-card-title>
                     <v-card-text>
-                        <p>欢迎使用爱发电订单管理系统</p>
+                        <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
                     </v-card-text>
                 </v-card>
                 <v-card>
@@ -27,6 +27,9 @@
 definePageMeta({
     // middleware: 'auth',
 })
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
 
 const loading = ref(false)
 const orders = ref([])

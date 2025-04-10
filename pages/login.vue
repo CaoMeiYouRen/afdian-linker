@@ -53,7 +53,6 @@ const form = reactive({
     password: '',
 })
 const loading = ref(false)
-const router = useRouter()
 const toast = useToast()
 
 async function handleSubmit() {
@@ -71,7 +70,7 @@ async function handleSubmit() {
                 detail: '登录成功',
                 life: 3000,
             })
-            await router.push('/admin')
+            navigateTo('/admin')
             return
         }
         toast.add({

@@ -13,6 +13,11 @@
                 <div v-if="userStore.isLoggedIn" class="mb-4">
                     欢迎回来，{{ userStore.userInfo?.nickname || '用户' }}！
                     <div class="mt-4">
+                        <v-btn color="info" @click="handleAdminPage">
+                            前往管理页面
+                        </v-btn>
+                    </div>
+                    <div class="mt-4">
                         <v-btn color="error" @click="handleLogout">
                             退出登录
                         </v-btn>
@@ -41,6 +46,9 @@ const toast = useToast()
 
 const handleLogin = () => {
     navigateTo('/login')
+}
+const handleAdminPage = () => {
+    navigateTo('/admin')
 }
 
 const handleLogout = async () => {

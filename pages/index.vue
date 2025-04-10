@@ -13,7 +13,7 @@
                 <div v-if="userStore.isLoggedIn" class="mb-4">
                     欢迎回来，{{ userStore.userInfo?.nickname || '用户' }}！
                     <div class="mt-4">
-                        <v-btn color="info" @click="handleAdminPage">
+                        <v-btn color="primary" @click="handleAdminPage">
                             前往管理页面
                         </v-btn>
                     </div>

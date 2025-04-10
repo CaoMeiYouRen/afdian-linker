@@ -7,6 +7,15 @@
                     <v-card-text>
                         <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
                     </v-card-text>
+                    <v-card-actions>
+                        <v-btn
+                            variant="elevated"
+                            color="primary"
+                            @click="handleBack"
+                        >
+                            返回首页
+                        </v-btn>
+                    </v-card-actions>
                 </v-card>
                 <v-card>
                     <v-card-title>最近订单</v-card-title>
@@ -39,6 +48,10 @@ const headers = [
     { title: '状态', key: 'status' },
     { title: '创建时间', key: 'created_at' },
 ]
+
+const handleBack = () => {
+    navigateTo('/')
+}
 
 // TODO: 获取订单列表
 </script>

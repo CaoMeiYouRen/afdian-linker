@@ -39,6 +39,7 @@ export default defineNuxtConfig({
             afdianPlanId: process.env.AFDIAN_PLAN_ID,
         },
         jwtSecret: process.env.JWT_SECRET,
+        apiKeys: process.env.AUTH_API_KEYS,
     },
     devServer: {
         port: 3000,

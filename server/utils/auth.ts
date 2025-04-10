@@ -27,3 +27,19 @@ export function generateToken(payload: any, expiresIn = '24h') {
     const config = useRuntimeConfig()
     return jwt.sign(payload, config.jwtSecret, { expiresIn: expiresIn as any })
 }
+
+/**
+ * 验证 API Key 是否有效
+ * @param apiKey 待验证的API Key
+ * @returns 验证结果
+ */
+export async function verifyApiKey(apiKey: string | null): Promise<boolean> {
+    if (!apiKey) {
+        return false
+    }
+
+    const config = useRuntimeConfig()
+    const validKeys = (config.apiKeys as string || '').split(',')
+
+    return validKeys.some((key) => key.trim() === apiKey)
+}

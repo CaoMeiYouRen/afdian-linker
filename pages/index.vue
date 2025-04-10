@@ -10,8 +10,8 @@
                 <h1 class="mb-4 text-h4">
                     欢迎使用爱发电助手
                 </h1>
-                <div v-if="isLoggedIn" class="mb-4">
-                    欢迎回来，{{ nickname }}！
+                <div v-if="userStore.isLoggedIn" class="mb-4">
+                    欢迎回来，{{ userStore.userInfo?.nickname || '用户' }}！
                     <div class="mt-4">
                         <v-btn color="error" @click="handleLogout">
                             退出登录
@@ -32,32 +32,21 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { useCookie } from '#app'
+import { onMounted } from 'vue'
+import { useUserStore } from '@/stores/user'
 
-const isLoggedIn = ref(false)
-const nickname = ref('')
+const userStore = useUserStore()
 
 const handleLogin = () => {
-    // TODO: 实现登录逻辑，需要跳转到登录页面
     navigateTo('/login')
 }
 
 const handleLogout = async () => {
-    const { data } = await useFetch('/api/auth/logout', { method: 'POST' })
-    isLoggedIn.value = false
-    nickname.value = ''
+    await useFetch('/api/auth/logout', { method: 'POST' })
+    userStore.clearUserInfo()
 }
 
 onMounted(async () => {
-    try {
-        const response = await $fetch('/api/auth/verify')
-        if (response?.success) {
-            isLoggedIn.value = true
-            nickname.value = response.data.nickname || '用户'
-        }
-    } catch (error) {
-        console.error('验证登录状态失败:', error)
-    }
+    await userStore.verifyLogin()
 })
 </script>

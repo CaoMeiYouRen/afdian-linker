@@ -16,6 +16,7 @@ export default defineNuxtConfig({
             })
         },
         '@primevue/nuxt-module',
+        '@pinia/nuxt',
     ],
     experimental: {
         componentIslands: true,

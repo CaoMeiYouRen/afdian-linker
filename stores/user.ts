@@ -37,10 +37,10 @@ export const useUserStore = defineStore('user', {
 
         async verifyLogin() {
             try {
-                const { data: response } = await useFetch('/api/auth/verify')
-                if (response.value?.success) {
+                const response = await $fetch('/api/auth/verify')
+                if (response.statusCode === 200) {
                     this.isLoggedIn = true
-                    this.userInfo = response.value.data
+                    this.userInfo = response.data || null
                     return true
                 }
                 return false

@@ -55,13 +55,6 @@ const handleLogout = async () => {
 }
 
 onMounted(async () => {
-    try {
-        const { data } = await useFetch('/api/auth/verify')
-        if (data.value?.statusCode === 200) {
-            userStore.setUserInfo(data.value.data as any)
-        }
-    } catch (error) {
-        console.error('验证登录状态失败:', error)
-    }
+    await userStore.verifyLogin()
 })
 </script>

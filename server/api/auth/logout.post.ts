@@ -10,5 +10,5 @@ export default defineEventHandler((event) => {
 
     return createApiResponse({
         success: true,
-    })
+    }, 200, '登出成功')
 })

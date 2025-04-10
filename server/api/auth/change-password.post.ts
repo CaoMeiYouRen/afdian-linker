@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
             initialPassword: false,
         })
 
-        return createApiResponse({ success: true })
+        return createApiResponse({ success: true }, 200, '密码修改成功')
     } catch (error) {
         if (error instanceof z.ZodError) {
             throw createError({

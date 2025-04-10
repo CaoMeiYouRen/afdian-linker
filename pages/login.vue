@@ -46,6 +46,8 @@
 </template>
 
 <script setup lang="ts">
+import { useToast } from 'primevue/usetoast'
+
 interface LoginResponse {
     success: boolean
     requirePasswordChange?: boolean
@@ -58,7 +60,7 @@ const form = reactive({
 })
 const loading = ref(false)
 const router = useRouter()
-const { $toast } = useNuxtApp()
+const toast = useToast()
 
 async function handleSubmit() {
     loading.value = true
@@ -67,20 +69,22 @@ async function handleSubmit() {
             method: 'POST',
             body: form,
         })
-        console.log($toast)
         if (data.value?.success) {
+            toast.add({
+                severity: 'success',
+                summary: '登录成功',
+                life: 3000,
+            })
             await router.push('/admin')
-            //   if (data.value.requirePasswordChange) {
-            //     router.push('/change-password')
-            //   } else {
-            //     router.push('/admin')
-            //   }
-
         }
-
     } catch (error: any) {
         console.error(error)
-
+        toast.add({
+            severity: 'error',
+            summary: '登录失败',
+            detail: error.message || '请检查用户名和密码',
+            life: 3000,
+        })
     } finally {
         loading.value = false
     }

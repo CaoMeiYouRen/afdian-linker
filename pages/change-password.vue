@@ -60,6 +60,8 @@
 </template>
 
 <script setup lang="ts">
+import { useToast } from 'primevue/usetoast'
+
 const form = reactive({
     oldPassword: '',
     newPassword: '',
@@ -68,7 +70,7 @@ const form = reactive({
 
 const loading = ref(false)
 const router = useRouter()
-const { $toast } = useNuxtApp()
+const toast = useToast()
 
 const passwordRules = [
     (v: string) => !!v || '新密码不能为空',
@@ -80,7 +82,12 @@ const passwordRules = [
 
 async function handleSubmit() {
     if (form.newPassword !== form.confirmPassword) {
-        $toast.error('两次输入的密码不一致')
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: '两次输入的密码不一致',
+            life: 3000,
+        })
         return
     }
 
@@ -95,11 +102,21 @@ async function handleSubmit() {
         })
 
         if (data.value?.success) {
-            $toast.success('密码修改成功')
+            toast.add({
+                severity: 'success',
+                summary: '成功',
+                detail: '密码修改成功',
+                life: 3000,
+            })
             router.push('/admin')
         }
     } catch (error: any) {
-        $toast.error(error.message || '修改密码失败')
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error.message || '修改密码失败',
+            life: 3000,
+        })
     } finally {
         loading.value = false
     }

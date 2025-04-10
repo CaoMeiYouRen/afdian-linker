@@ -15,6 +15,7 @@ export default defineNuxtConfig({
                 config.plugins?.push(vuetify({ autoImport: true }))
             })
         },
+        '@primevue/nuxt-module',
     ],
     experimental: {
         componentIslands: true,
@@ -66,4 +67,5 @@ export default defineNuxtConfig({
             },
         },
     },
+    // primevue: {},
 })

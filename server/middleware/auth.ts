@@ -6,6 +6,8 @@ export default defineEventHandler(async (event) => {
     const publicPaths = [
         '/api/auth/login',
         '/api/public',
+        '/',
+        '/login',
     ]
     if (publicPaths.some((path) => event.path.startsWith(path))) {
         return

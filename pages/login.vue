@@ -47,45 +47,48 @@
 
 <script setup lang="ts">
 interface LoginResponse {
-  success: boolean
-  requirePasswordChange?: boolean
-  error?: string
+    success: boolean
+    requirePasswordChange?: boolean
+    error?: string
 }
 
 const form = reactive({
-  username: '',
-  password: '',
+    username: '',
+    password: '',
 })
 const loading = ref(false)
 const router = useRouter()
 const { $toast } = useNuxtApp()
 
 async function handleSubmit() {
-  loading.value = true
-  try {
-    const { data } = await useFetch<LoginResponse>('/api/auth/login', {
-      method: 'POST',
-      body: form,
-    })
+    loading.value = true
+    try {
+        const { data } = await useFetch<LoginResponse>('/api/auth/login', {
+            method: 'POST',
+            body: form,
+        })
+        console.log($toast)
+        if (data.value?.success) {
+            await router.push('/admin')
+            //   if (data.value.requirePasswordChange) {
+            //     router.push('/change-password')
+            //   } else {
+            //     router.push('/admin')
+            //   }
 
-    if (data.value?.success) {
-      $toast.success('登录成功')
-      if (data.value.requirePasswordChange) {
-        router.push('/change-password')
-      } else {
-        router.push('/admin')
-      }
+        }
+
+    } catch (error: any) {
+        console.error(error)
+
+    } finally {
+        loading.value = false
     }
-  } catch (error: any) {
-    $toast.error(error.message || '登录失败')
-  } finally {
-    loading.value = false
-  }
 }
 </script>
 
 <style>
 html {
-  background: #f5f5f5;
+    background: #f5f5f5;
 }
 </style>

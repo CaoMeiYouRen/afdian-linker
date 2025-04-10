@@ -12,6 +12,6 @@
         "noImplicitAny": false,
         "useDefineForClassFields": false, // 添加此配置
         "allowSyntheticDefaultImports": true, // 添加此配置
-        "esModuleInterop": true // 添加此配置
+        "esModuleInterop": true, // 添加此配置
     }
 }

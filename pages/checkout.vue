@@ -20,15 +20,18 @@
                                 sm="4"
                             >
                                 <v-card
-                                    :color="selectedPlan === plan ? 'primary' : ''"
-                                    :variant="selectedPlan === plan ? 'elevated' : 'outlined'"
-                                    class="h-100"
+                                    :color="selectedPlan?.id === plan.id ? 'primary' : ''"
+                                    :variant="selectedPlan?.id === plan.id ? 'elevated' : 'outlined'"
+                                    :class="[
+                                        'h-100',
+                                        {'selected-plan': selectedPlan?.id === plan.id}
+                                    ]"
                                     @click="selectedPlan = plan"
                                 >
                                     <v-card-title class="text-center">
                                         {{ plan.title }}
                                     </v-card-title>
-                                    <v-card-text class="text-center">
+                                    <v-card-text :class="{'text-white': selectedPlan?.id === plan.id}" class="text-center">
                                         <div class="mb-2 text-h4">
                                             <span v-if="plan.originalAmount" class="mr-2 text-body-1 text-decoration-line-through text-grey">
                                                 ¥{{ plan.originalAmount }}
@@ -122,6 +125,7 @@
 import { useToast } from 'primevue/usetoast'
 
 interface Plan {
+    id: string // 新增 id 字段
     title: string
     amount: number
     months: number
@@ -133,12 +137,14 @@ interface Plan {
 // 商品配置
 const plans: Plan[] = [
     {
+        id: 'monthly',
         title: '月度支持',
         amount: 30,
         months: 1,
         description: '基础支持，获得爱发电徽章',
     },
     {
+        id: 'quarterly',
         title: '季度支持',
         amount: 80,
         originalAmount: 90,
@@ -147,6 +153,7 @@ const plans: Plan[] = [
         description: '节省10元，获得专属徽章',
     },
     {
+        id: 'yearly',
         title: '年度支持',
         amount: 298,
         originalAmount: 360,
@@ -220,5 +227,17 @@ const handleSubmit = async () => {
 .v-card:hover {
     transform: translateY(-2px);
     transition: transform 0.2s ease;
+}
+
+.selected-plan {
+    border: 2px solid rgb(var(--v-theme-primary));
+}
+
+.selected-plan :deep(.v-card-title) {
+    color: white;
+}
+
+.selected-plan .text-grey {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 </style>

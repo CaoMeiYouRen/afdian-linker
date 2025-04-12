@@ -43,7 +43,7 @@
                             variant="outlined"
                             block
                             :loading="refreshing"
-                            @click="refresh"
+                            @click="handleRefresh"
                         >
                             刷新状态
                         </v-btn>
@@ -91,21 +91,32 @@ const { data: order, refresh } = await useAsyncData<Order>(
         }),
 )
 
+const pollCount = ref(0)
+const MAX_POLL_COUNT = 60 // 最多轮询 60 次
+
 // 自动轮询更新状态
 const { pause, resume } = useIntervalFn(async () => {
     if (!order.value) {
         return
     }
+
+    if (pollCount.value >= MAX_POLL_COUNT) {
+        error.value = '订单状态查询超时，请刷新页面重试'
+        pause()
+        return
+    }
+
     refreshing.value = true
     try {
         await refresh()
+        pollCount.value++
     } catch (err: any) {
         error.value = err.message || '刷新订单状态失败'
         pause()
     } finally {
         refreshing.value = false
     }
-}, 5000)
+}, 8000)
 
 // 组件挂载时开始轮询
 onMounted(() => {
@@ -129,6 +140,12 @@ watch(() => order.value?.status, (newStatus: OrderStatus | undefined) => {
         resume()
     }
 })
+
+// 手动刷新时重置计数器
+const handleRefresh = async () => {
+    pollCount.value = 0
+    await refresh()
+}
 </script>
 
 <style scoped>

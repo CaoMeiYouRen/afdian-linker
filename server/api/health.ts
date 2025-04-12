@@ -1,7 +1,7 @@
 import { checkDBHealth } from '@/server/utils/database'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
-export default defineEventHandler(async (event): Promise<ApiResponse> => {
+export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const checks: Record<string, string> = {
         server: 'healthy',

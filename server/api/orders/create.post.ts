@@ -16,7 +16,7 @@ const orderSchema = z.object({
     remark: z.string().max(200).optional(),
 })
 
-export default defineEventHandler(async (event): Promise<ApiResponse> => {
+export default defineEventHandler(async (event) => {
     try {
         const body = await readBody(event)
         const data = await orderSchema.parseAsync(body)

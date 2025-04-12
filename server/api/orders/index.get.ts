@@ -1,20 +1,11 @@
-import { z } from 'zod'
 import { createError } from 'h3'
+import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { Order } from '@/entities/Order'
-import { verifyApiKey } from '@/server/utils/auth'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { orderQuerySchema, queryOrders } from '@/server/utils/query/order'
 
 export default defineEventHandler(async (event) => {
-    const apiKey = getHeader(event, 'X-Api-Key') || ''
-    if (!await verifyApiKey(apiKey)) {
-        throw createError({
-            statusCode: 401,
-            message: '无效的API Key',
-        })
-    }
-
     try {
         const query = await orderQuerySchema.parseAsync(getQuery(event))
         const dataSource = await getDataSource()

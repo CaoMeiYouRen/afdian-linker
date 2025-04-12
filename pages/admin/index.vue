@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-slot -->
 <template>
     <v-container>
         <v-row>
@@ -24,7 +25,31 @@
                             :headers="headers"
                             :items="orders"
                             :loading="loading"
-                        />
+                            hover
+                        >
+                            <template #item.amount="{item}">
+                                {{ item.currency }} {{ item.amount }}
+                            </template>
+                            <template #item.status="{item}">
+                                <v-chip
+                                    :color="getStatusColor(item.status)"
+                                    text-color="white"
+                                >
+                                    {{ getStatusText(item.status) }}
+                                </v-chip>
+                            </template>
+                            <template #item.createdAt="{item}">
+                                {{ formatDate(item.createdAt) }}
+                            </template>
+                            <template #item.actions="{item}">
+                                <v-btn
+                                    icon="mdi-eye"
+                                    size="small"
+                                    variant="text"
+                                    @click="handleOrderClick(item.id)"
+                                />
+                            </template>
+                        </v-data-table>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -36,22 +61,89 @@
 definePageMeta({
     // middleware: 'auth',
 })
+import dayjs from 'dayjs'
 import { useUserStore } from '@/stores/user'
+import type { Order, OrderStatus } from '@/entities/Order'
 
 const userStore = useUserStore()
-
 const loading = ref(false)
-const orders = ref([])
-const headers = [
-    { title: '订单号', key: 'id' },
-    { title: '金额', key: 'amount' },
-    { title: '状态', key: 'status' },
-    { title: '创建时间', key: 'created_at' },
+const orders = ref<Order[]>([])
+
+// 表头定义
+interface DataTableHeader {
+    title: string
+    key: string
+    width?: string
+    sortable?: boolean
+}
+
+const headers: DataTableHeader[] = [
+    { title: '订单号', key: 'customOrderId', width: '200px' },
+    { title: '支付渠道', key: 'paymentChannel' },
+    { title: '金额', key: 'amount', width: '120px' },
+    { title: '状态', key: 'status', width: '100px' },
+    { title: '创建时间', key: 'createdAt', width: '180px' },
+    { title: '操作', key: 'actions', width: '80px', sortable: false },
 ]
+
+// 状态文本映射
+const statusMap: Record<OrderStatus, string> = {
+    PENDING: '待支付',
+    PAID: '支付成功',
+    FAILED: '支付失败',
+    EXPIRED: '已过期',
+}
+
+// 状态颜色映射
+const statusColors: Record<OrderStatus, string> = {
+    PENDING: 'warning',
+    PAID: 'success',
+    FAILED: 'error',
+    EXPIRED: 'grey',
+}
+
+// 格式化时间
+const formatDate = (date: string | Date) => dayjs(date).format('YYYY-MM-DD HH:mm:ss')
+
+const getStatusText = (status: keyof typeof statusMap) => statusMap[status] || status
+const getStatusColor = (status: keyof typeof statusColors) => statusColors[status] || 'default'
 
 const handleBack = () => {
     navigateTo('/')
 }
 
-// TODO: 获取订单列表
+const handleOrderClick = (orderId: string) => {
+    navigateTo(`/orders/${orderId}`)
+}
+
+// 获取订单列表
+const fetchOrders = async () => {
+    loading.value = true
+    try {
+        const { data: responseData } = await useFetch('/api/orders', {
+            query: {
+                page: 1,
+                perPage: 10,
+                sort: 'createdAt',
+                order: 'DESC',
+            },
+        })
+
+        if (responseData.value?.statusCode === 200) {
+            // 处理成功的响应数据
+            orders.value = responseData.value?.data?.orders as any || []
+            return
+        }
+        console.error('获取订单列表失败:', responseData.value?.message)
+    } catch (error: any) {
+        console.error('获取订单列表失败:', error)
+    } finally {
+        loading.value = false
+    }
+}
+
+// 页面加载时获取订单列表
+onMounted(() => {
+    fetchOrders()
+})
 </script>

@@ -5,7 +5,7 @@ import { Order } from '@/entities/Order'
 import { verifyApiKey } from '~/server/utils/auth'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
-export default defineEventHandler(async (event): Promise<ApiResponse> => {
+export default defineEventHandler(async (event) => {
     const apiKey = getHeader(event, 'X-Api-Key') || ''
     if (!await verifyApiKey(apiKey)) {
         throw createError({

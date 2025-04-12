@@ -6,6 +6,14 @@ import { WebhookLog } from '@/entities/WebhookLog'
 
 export default defineEventHandler(async (event) => {
     try {
+        const webhookToken = useRuntimeConfig().webhookToken
+        const query = getQuery(event)
+        if (webhookToken !== query.webhookToken) {
+            throw createError({
+                statusCode: 401,
+                message: 'Webhook Token 错误',
+            })
+        }
         const dataSource = await getDataSource()
         const body = await readBody(event) as AfdianWebhookResponse
 

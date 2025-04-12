@@ -40,6 +40,7 @@ export default defineNuxtConfig({
         },
         jwtSecret: process.env.JWT_SECRET,
         apiKeys: process.env.AUTH_API_KEYS,
+        webhookToken: process.env.WEBHOOK_TOKEN,
     },
     devServer: {
         port: 3000,

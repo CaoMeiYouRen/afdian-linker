@@ -16,6 +16,31 @@
                         >
                             返回首页
                         </v-btn>
+                        <v-spacer />
+                        <v-btn
+                            variant="text"
+                            color="primary"
+                            :active="route.path === '/admin'"
+                            @click="router.push('/admin')"
+                        >
+                            订单管理
+                        </v-btn>
+                        <v-btn
+                            variant="text"
+                            color="primary"
+                            :active="route.path === '/admin/users'"
+                            @click="router.push('/admin/users')"
+                        >
+                            用户管理
+                        </v-btn>
+                        <v-btn
+                            variant="text"
+                            color="primary"
+                            :active="route.path === '/admin/webhooks'"
+                            @click="router.push('/admin/webhooks')"
+                        >
+                            Webhook日志
+                        </v-btn>
                     </v-card-actions>
                 </v-card>
                 <v-card>
@@ -93,6 +118,9 @@ const headers: DataTableHeader[] = [
     { title: '更新时间', key: 'updatedAt', width: '180px' },
     { title: '操作', key: 'actions', width: '80px', sortable: false },
 ]
+
+const route = useRoute()
+const router = useRouter()
 
 const handleBack = () => {
     navigateTo('/')

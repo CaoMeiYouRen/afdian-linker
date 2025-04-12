@@ -30,10 +30,21 @@
                                     </v-card-title>
                                     <v-card-text class="text-center">
                                         <div class="mb-2 text-h4">
+                                            <span v-if="plan.originalAmount" class="mr-2 text-body-1 text-decoration-line-through text-grey">
+                                                ¥{{ plan.originalAmount }}
+                                            </span>
                                             ¥{{ plan.amount }}
                                         </div>
                                         <div class="text-body-2">
                                             {{ plan.months }} 个月
+                                            <v-chip
+                                                v-if="plan.discount"
+                                                color="success"
+                                                size="small"
+                                                class="ml-2"
+                                            >
+                                                {{ plan.discount }}折
+                                            </v-chip>
                                         </div>
                                         <div class="text-caption text-grey">
                                             {{ plan.description }}
@@ -42,6 +53,20 @@
                                 </v-card>
                             </v-col>
                         </v-row>
+
+                        <v-expansion-panels class="mb-4">
+                            <v-expansion-panel>
+                                <v-expansion-panel-title>支付说明</v-expansion-panel-title>
+                                <v-expansion-panel-text>
+                                    <ol class="pl-4">
+                                        <li>选择您想要的支持方案</li>
+                                        <li>填写留言（可选）</li>
+                                        <li>点击支付按钮将跳转至爱发电付款页面</li>
+                                        <li>完成付款后将自动返回本站</li>
+                                    </ol>
+                                </v-expansion-panel-text>
+                            </v-expansion-panel>
+                        </v-expansion-panels>
 
                         <v-form
                             ref="form"
@@ -65,6 +90,15 @@
                             >
                                 {{ error }}
                             </v-alert>
+
+                            <div class="align-center d-flex justify-space-between mb-4">
+                                <div class="text-body-1">
+                                    支付金额
+                                </div>
+                                <div class="text-h5">
+                                    ¥{{ selectedPlan?.amount || 0 }}
+                                </div>
+                            </div>
 
                             <v-btn
                                 type="submit"
@@ -92,6 +126,8 @@ interface Plan {
     amount: number
     months: number
     description: string
+    originalAmount?: number
+    discount?: number
 }
 
 // 商品配置
@@ -105,13 +141,17 @@ const plans: Plan[] = [
     {
         title: '季度支持',
         amount: 80,
+        originalAmount: 90,
         months: 3,
+        discount: 8.9,
         description: '节省10元，获得专属徽章',
     },
     {
         title: '年度支持',
         amount: 298,
+        originalAmount: 360,
         months: 12,
+        discount: 8.3,
         description: '最优惠，获得所有特权',
     },
 ]
@@ -122,6 +162,18 @@ const error = ref('')
 const isValid = ref(false)
 const selectedPlan = ref<Plan | null>(null)
 const remark = ref('')
+
+// 成功创建订单后跳转
+const handleOrderCreated = (orderId: string, paymentUrl: string) => {
+    // 存储订单信息到 localStorage，用于支付后查询
+    localStorage.setItem('pendingOrderId', orderId)
+
+    // 在新窗口打开支付链接
+    window.open(paymentUrl, '_blank')
+
+    // 跳转到订单详情页
+    navigateTo(`/orders/${orderId}`)
+}
 
 // 提交订单
 const handleSubmit = async () => {
@@ -144,11 +196,9 @@ const handleSubmit = async () => {
             },
         })
 
-        if (data.value?.statusCode === 200) {
-            // 跳转到爱发电支付页面
-            if (data.value.data?.paymentUrl) {
-                window.open(data.value.data.paymentUrl, '_blank')
-            }
+        if (data.value?.statusCode === 200 && data.value.data) {
+            const { orderId, paymentUrl } = data.value.data
+            handleOrderCreated(orderId, paymentUrl)
             return
         }
         error.value = data.value?.message || '创建订单失败'
@@ -165,3 +215,10 @@ const handleSubmit = async () => {
     }
 }
 </script>
+
+<style scoped>
+.v-card:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+</style>

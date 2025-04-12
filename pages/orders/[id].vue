@@ -17,7 +17,7 @@
                             <dd>{{ order.id }}</dd>
 
                             <dt>金额</dt>
-                            <dd>{{ order.currency }} {{ order.amount }}</dd>
+                            <dd>{{ formatCurrency(order.amount, order.currency) }}</dd>
 
                             <dt>支付状态</dt>
                             <dd>
@@ -72,67 +72,24 @@
 
 <script setup lang="ts">
 import { useIntervalFn } from '@vueuse/core'
-
-// 订单状态类型
-type OrderStatus = 'PENDING' | 'PAID' | 'FAILED' | 'EXPIRED'
-
-interface Order {
-    id: string
-    status: OrderStatus
-    amount: number
-    currency: string
-    createdAt: string
-    updatedAt: string
-}
+import { type Order, getStatusText, getStatusColor, type OrderStatus } from '@/types/order'
+import { formatDate, formatCurrency } from '@/utils/format'
+import type { ApiResponse } from '@/server/types/api'
 
 const route = useRoute()
 const refreshing = ref(false)
 const error = ref('')
 
 // 订单数据
-const { data: order, refresh } = await useAsyncData<Order | null>(
+const { data: order, refresh } = await useAsyncData<Order>(
     'order',
-    () => $fetch<Order>(`/api/orders/${route.params.id}`).catch((err) => {
-        error.value = err.message || '获取订单失败'
-        return null
-    }),
+    () => $fetch<ApiResponse<{ order: Order }>>(`/api/orders/${route.params.id}`)
+        .then((response) => response.data?.order || {} as any)
+        .catch((err: any) => {
+            error.value = err.message || '获取订单失败'
+            throw err
+        }),
 )
-
-// 状态文本映射
-const statusMap: Record<OrderStatus, string> = {
-    PENDING: '待支付',
-    PAID: '支付成功',
-    FAILED: '支付失败',
-    EXPIRED: '已过期',
-}
-
-// 状态颜色映射
-const statusColorMap: Record<OrderStatus, string> = {
-    PENDING: 'warning',
-    PAID: 'success',
-    FAILED: 'error',
-    EXPIRED: 'grey',
-}
-
-// 格式化时间
-const formatDate = (date: string) => {
-    if (!date) {
-        return '-'
-    }
-    return new Intl.DateTimeFormat('zh-CN', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-    }).format(new Date(date))
-}
-
-const getStatusText = (status: keyof typeof statusMap) => statusMap[status] || status
-
-const getStatusColor = (status: keyof typeof statusColorMap) => statusColorMap[status] || 'default'
 
 // 自动轮询更新状态
 const { pause, resume } = useIntervalFn(async () => {
@@ -149,6 +106,15 @@ const { pause, resume } = useIntervalFn(async () => {
         refreshing.value = false
     }
 }, 5000)
+
+// 组件挂载时开始轮询
+onMounted(() => {
+    if (order.value && ['PAID', 'FAILED', 'EXPIRED'].includes(order.value.status)) {
+        pause()
+    } else {
+        resume()
+    }
+})
 
 // 组件卸载时停止轮询
 onUnmounted(() => {

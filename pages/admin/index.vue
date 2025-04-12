@@ -64,10 +64,11 @@
 definePageMeta({
     // middleware: 'auth',
 })
-import dayjs from 'dayjs'
+
 import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
-import type { Order, OrderStatus } from '@/entities/Order'
+import { type Order, getStatusText, getStatusColor } from '@/types/order'
+import { formatDate, formatCurrency } from '@/utils/format'
 
 const toast = useToast()
 const userStore = useUserStore()
@@ -93,36 +94,6 @@ const headers: DataTableHeader[] = [
     { title: '操作', key: 'actions', width: '80px', sortable: false },
 ]
 
-// 状态文本映射
-const statusMap: Record<OrderStatus, string> = {
-    PENDING: '待支付',
-    PAID: '支付成功',
-    FAILED: '支付失败',
-    EXPIRED: '已过期',
-}
-
-// 状态颜色映射
-const statusColors: Record<OrderStatus, string> = {
-    PENDING: 'warning',
-    PAID: 'success',
-    FAILED: 'error',
-    EXPIRED: 'grey',
-}
-
-// 格式化时间
-const formatDate = (date: string | Date) => dayjs(date).format('YYYY-MM-DD HH:mm:ss')
-
-// 格式化货币
-const formatCurrency = (amount: number | string, currency: string) => new Intl.NumberFormat('zh-CN', {
-        style: 'currency',
-        currency: currency || 'CNY',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    }).format(Number(amount))
-
-const getStatusText = (status: keyof typeof statusMap) => statusMap[status] || status
-const getStatusColor = (status: keyof typeof statusColors) => statusColors[status] || 'default'
-
 const handleBack = () => {
     navigateTo('/')
 }
@@ -135,7 +106,11 @@ const handleOrderClick = (orderId: string) => {
 const fetchOrders = async () => {
     loading.value = true
     try {
-        const { data: responseData } = await useFetch('/api/orders', {
+        const { data } = await useFetch<{
+            statusCode: number
+            data: { orders: Order[] }
+            message?: string
+        }>('/api/orders', {
             query: {
                 page: 1,
                 perPage: 10,
@@ -144,18 +119,11 @@ const fetchOrders = async () => {
             },
         })
 
-        if (responseData.value?.statusCode === 200) {
-            // 处理成功的响应数据
-            orders.value = responseData.value?.data?.orders as any || []
+        if (data.value?.statusCode === 200) {
+            orders.value = data.value.data.orders
             return
         }
-        console.error('获取订单列表失败:', responseData.value?.message)
-        toast.add({
-            severity: 'error',
-            summary: '错误',
-            detail: responseData.value?.message || '获取订单列表失败',
-            life: 5000,
-        })
+        throw new Error(data.value?.message || '获取订单列表失败')
     } catch (error: any) {
         console.error('获取订单列表失败:', error)
         toast.add({

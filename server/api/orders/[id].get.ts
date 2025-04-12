@@ -6,13 +6,6 @@ import { verifyApiKey } from '@/server/utils/auth'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler(async (event) => {
-    const apiKey = getHeader(event, 'X-Api-Key') || ''
-    if (!await verifyApiKey(apiKey)) {
-        throw createError({
-            statusCode: 401,
-            message: '无效的API Key',
-        })
-    }
 
     const orderId = getRouterParam(event, 'id')
     if (!orderId) {
@@ -39,7 +32,6 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    // 返回过滤后的订单信息
     return createApiResponse({
         order: {
             id: order.id,

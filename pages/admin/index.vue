@@ -28,7 +28,7 @@
                             hover
                         >
                             <template #item.amount="{item}">
-                                {{ item.currency }} {{ item.amount }}
+                                {{ formatCurrency(item.amount, item.currency) }}
                             </template>
                             <template #item.status="{item}">
                                 <v-chip
@@ -40,6 +40,9 @@
                             </template>
                             <template #item.createdAt="{item}">
                                 {{ formatDate(item.createdAt) }}
+                            </template>
+                            <template #item.updatedAt="{item}">
+                                {{ formatDate(item.updatedAt) }}
                             </template>
                             <template #item.actions="{item}">
                                 <v-btn
@@ -62,9 +65,11 @@ definePageMeta({
     // middleware: 'auth',
 })
 import dayjs from 'dayjs'
+import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
 import type { Order, OrderStatus } from '@/entities/Order'
 
+const toast = useToast()
 const userStore = useUserStore()
 const loading = ref(false)
 const orders = ref<Order[]>([])
@@ -78,11 +83,13 @@ interface DataTableHeader {
 }
 
 const headers: DataTableHeader[] = [
+    { title: 'ID', key: 'id', width: '200px' },
     { title: '订单号', key: 'customOrderId', width: '200px' },
-    { title: '支付渠道', key: 'paymentChannel' },
+    { title: '支付渠道', key: 'paymentChannel', width: '150px' },
     { title: '金额', key: 'amount', width: '120px' },
     { title: '状态', key: 'status', width: '100px' },
     { title: '创建时间', key: 'createdAt', width: '180px' },
+    { title: '更新时间', key: 'updatedAt', width: '180px' },
     { title: '操作', key: 'actions', width: '80px', sortable: false },
 ]
 
@@ -104,6 +111,14 @@ const statusColors: Record<OrderStatus, string> = {
 
 // 格式化时间
 const formatDate = (date: string | Date) => dayjs(date).format('YYYY-MM-DD HH:mm:ss')
+
+// 格式化货币
+const formatCurrency = (amount: number | string, currency: string) => new Intl.NumberFormat('zh-CN', {
+        style: 'currency',
+        currency: currency || 'CNY',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(Number(amount))
 
 const getStatusText = (status: keyof typeof statusMap) => statusMap[status] || status
 const getStatusColor = (status: keyof typeof statusColors) => statusColors[status] || 'default'
@@ -135,8 +150,20 @@ const fetchOrders = async () => {
             return
         }
         console.error('获取订单列表失败:', responseData.value?.message)
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: responseData.value?.message || '获取订单列表失败',
+            life: 5000,
+        })
     } catch (error: any) {
         console.error('获取订单列表失败:', error)
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error.message || '获取订单列表失败',
+            life: 5000,
+        })
     } finally {
         loading.value = false
     }

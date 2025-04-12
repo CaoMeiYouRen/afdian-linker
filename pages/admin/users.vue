@@ -23,6 +23,9 @@
                             <template #item.createdAt="{item}">
                                 {{ formatDate(item.createdAt) }}
                             </template>
+                            <template #item.updatedAt="{item}">
+                                {{ formatDate(item.updatedAt) }}
+                            </template>
                             <template #item.actions="{item}">
                                 <v-btn
                                     icon="mdi-refresh"
@@ -47,7 +50,7 @@ definePageMeta({
 
 import { useToast } from 'primevue/usetoast'
 import { formatDate } from '@/utils/format'
-import type { User } from '@/entities/User'
+import type { User } from '@/types/user'
 
 const toast = useToast()
 const loading = ref(false)
@@ -86,7 +89,7 @@ const fetchUsers = async () => {
 }
 
 // 重置用户密码
-const handleResetPassword = async (user: any) => {
+const handleResetPassword = async (user: User) => {
 
 }
 

@@ -59,7 +59,7 @@ definePageMeta({
 
 import { useToast } from 'primevue/usetoast'
 import { formatDate } from '@/utils/format'
-import type { WebhookLog } from '@/entities/WebhookLog'
+import type { WebhookLog } from '@/types/webhook-log'
 
 const toast = useToast()
 const loading = ref(false)

@@ -10,8 +10,3 @@ export interface User {
     initialEmail: boolean
 }
 
-export interface WebhookLog {
-    id: string
-    payload: any
-    createdAt: string
-}

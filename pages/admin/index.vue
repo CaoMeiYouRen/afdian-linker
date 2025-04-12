@@ -109,8 +109,8 @@ interface DataTableHeader {
 }
 
 const headers: DataTableHeader[] = [
-    { title: 'ID', key: 'id', width: '200px' },
-    { title: '订单号', key: 'customOrderId', width: '200px' },
+    { title: '订单号', key: 'id', width: '200px' },
+    { title: '自定义订单号', key: 'customOrderId', width: '200px' },
     { title: '支付渠道', key: 'paymentChannel', width: '150px' },
     { title: '金额', key: 'amount', width: '120px' },
     { title: '状态', key: 'status', width: '100px' },

@@ -1,4 +1,4 @@
-import { randomBytes } from 'crypto'
+import { randomBytes, randomUUID } from 'crypto'
 
 /**
  * 生成订单ID
@@ -6,7 +6,6 @@ import { randomBytes } from 'crypto'
  * @returns 唯一订单ID
  */
 export function generateOrderId(prefix: string = ''): string {
-    const timestamp = Date.now().toString()
-    const random = randomBytes(3).toString('hex')
-    return `${prefix.toLowerCase()}_${timestamp}_${random}`
+    const uuid = randomUUID({})
+    return `${prefix.toLowerCase()}-${uuid}`
 }

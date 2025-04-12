@@ -18,10 +18,16 @@ export default defineEventHandler(async (event) => {
 
     const token = getCookie(event, SESSION_KEY)
     if (!token) {
-        throw createError({
-            statusCode: 401,
-            message: '请先登录',
-        })
+        // 区分 API 请求和页面请求
+        if (event.path.startsWith('/api/')) {
+            throw createError({
+                statusCode: 401,
+                message: '请先登录',
+            })
+        } else {
+            // 页面请求重定向到登录页
+            return sendRedirect(event, '/login', 302)
+        }
     }
 
     try {
@@ -38,9 +44,15 @@ export default defineEventHandler(async (event) => {
 
         event.context.auth = decoded
     } catch (error) {
-        throw createError({
-            statusCode: 401,
-            message: '登录已过期',
-        })
+        // 区分 API 请求和页面请求
+        if (event.path.startsWith('/api/')) {
+            throw createError({
+                statusCode: 401,
+                message: '登录已过期',
+            })
+        } else {
+            // 页面请求重定向到登录页
+            return sendRedirect(event, '/login', 302)
+        }
     }
 })

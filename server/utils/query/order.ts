@@ -1,8 +1,7 @@
 import { z } from 'zod'
-import type { DataSource, Repository } from 'typeorm'
+import { Repository } from 'typeorm'
 import { Order } from '@/entities/Order'
 
-// 查询参数验证
 export const orderQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),
     perPage: z.coerce.number().min(1).max(100).default(20),
@@ -10,7 +9,7 @@ export const orderQuerySchema = z.object({
     paymentChannel: z.string().optional(),
     startDate: z.coerce.date().optional(),
     endDate: z.coerce.date().optional(),
-    sort: z.enum(['createdAt', 'amount']).optional(),
+    sort: z.enum(['createdAt', 'updatedAt', 'amount']).optional(),
     order: z.enum(['ASC', 'DESC']).default('DESC'),
 })
 
@@ -18,12 +17,15 @@ export type OrderQueryParams = z.infer<typeof orderQuerySchema>
 
 export async function queryOrders(repository: Repository<Order>, params: OrderQueryParams) {
     const where: any = {}
+
     if (params.status) {
         where.status = params.status
     }
+
     if (params.paymentChannel) {
         where.paymentChannel = params.paymentChannel
     }
+
     if (params.startDate || params.endDate) {
         where.createdAt = {}
         if (params.startDate) {
@@ -47,6 +49,7 @@ export async function queryOrders(repository: Repository<Order>, params: OrderQu
         orders: orders.map((order) => ({
             id: order.id,
             customOrderId: order.customOrderId,
+            channelOrderId: order.channelOrderId,
             status: order.status,
             amount: Number(order.amount),
             currency: order.currency,

@@ -127,11 +127,11 @@ import { useToast } from 'primevue/usetoast'
 interface Plan {
     id: string // 新增 id 字段
     title: string
-    amount: number
+    amount: number | string
     months: number
     description: string
-    originalAmount?: number
-    discount?: number
+    originalAmount?: number | string
+    discount?: number | string
 }
 
 // 商品配置
@@ -143,25 +143,39 @@ const plans: Plan[] = [
         months: 1,
         description: '基础支持，获得爱发电徽章',
     },
+    // {
+    //     id: 'quarterly',
+    //     title: '季度支持',
+    //     amount: 90,
+    //     // originalAmount: 90,
+    //     months: 3,
+    //     // discount: 8.9,
+    //     description: '专属支持，获得专属徽章',
+    // },
     {
-        id: 'quarterly',
-        title: '季度支持',
-        amount: 80,
-        originalAmount: 90,
-        months: 3,
-        discount: 8.9,
-        description: '节省10元，获得专属徽章',
+        id: 'semiannually',
+        title: '半年支持',
+        amount: 169,
+        originalAmount: 180,
+        months: 6,
+        // discount: (169.2 / 180 * 10).toFixed(1),
+        description: '最受欢迎，获得所有特权',
     },
     {
         id: 'yearly',
         title: '年度支持',
-        amount: 298,
+        amount: 324,
         originalAmount: 360,
         months: 12,
-        discount: 8.3,
+        // discount: (324 / 360 * 10).toFixed(1),
         description: '最优惠，获得所有特权',
     },
-]
+].map((plan) => ({
+    ...plan,
+    amount: Number(plan.amount),
+    originalAmount: plan.originalAmount ? Number(plan.originalAmount) : undefined,
+    discount: plan.originalAmount ? (Number(plan.amount) / Number(plan.originalAmount) * 10).toFixed(1) : undefined,
+}))
 
 const toast = useToast()
 const loading = ref(false)

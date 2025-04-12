@@ -3,6 +3,8 @@ import { User } from './User'
 import { BaseEntity } from './BaseEntity'
 import { OrderStatus } from '@/types/shared'
 
+export { OrderStatus }
+
 @Entity('order')
 export class Order extends BaseEntity {
     @Column({ type: 'varchar', length: 50, default: 'afdian' })

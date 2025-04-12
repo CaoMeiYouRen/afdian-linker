@@ -49,7 +49,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
 
@@ -78,7 +77,4 @@ const handleLogout = async () => {
     })
 }
 
-onMounted(async () => {
-    await userStore.verifyLogin()
-})
 </script>

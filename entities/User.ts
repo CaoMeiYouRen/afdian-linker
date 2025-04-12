@@ -10,6 +10,8 @@ import { Order } from './Order'
 import { BaseEntity } from './BaseEntity'
 import { UserRole } from '@/types/shared'
 
+export { UserRole }
+
 // 用户实体
 @Entity('user')
 export class User extends BaseEntity {

@@ -90,4 +90,7 @@ const handleLogout = async () => {
   })
   navigateTo('/login')
 }
+onMounted(async () => {
+    await userStore.verifyLogin()
+})
 </script>

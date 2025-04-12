@@ -1,4 +1,4 @@
-import { type Order, OrderStatus, orderStatusMap, orderStatusColorMap } from './entity'
+import { type Order, type OrderStatus, orderStatusMap, orderStatusColorMap } from './entity'
 
 export type { Order, OrderStatus }
 export { orderStatusMap, orderStatusColorMap }

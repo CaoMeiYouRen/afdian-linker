@@ -1,14 +1,12 @@
 import type { DateToString } from './base'
-import type { Order as OrderEntity } from '@/entities/Order'
-import type { User as UserEntity } from '@/entities/User'
+import type { BaseOrder, BaseUser, OrderStatus, UserRole } from './shared'
 
-// 从实体类型生成前端使用的类型
-export type Order = DateToString<OrderEntity>
-export type User = DateToString<UserEntity>
+// 导出基础类型
+export type Order = BaseOrder
+export type User = BaseUser
 
-// 枚举类型重新导出
-export { OrderStatus } from '@/entities/Order'
-export { UserRole } from '@/entities/User'
+// 导出枚举
+export type { OrderStatus, UserRole }
 
 // 状态映射类型
 export const orderStatusMap = {

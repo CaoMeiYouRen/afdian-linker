@@ -21,6 +21,10 @@ export const useUserStore = defineStore('user', {
         userInfo: null,
     }),
 
+    getters: {
+        isAdmin: (state) => state.userInfo?.role === 'ADMIN',
+    },
+
     actions: {
         setLoginState(status: boolean) {
             this.isLoggedIn = status

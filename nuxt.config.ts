@@ -31,6 +31,9 @@ export default defineNuxtConfig({
             alias: {
             },
         },
+        optimizeDeps: {
+            exclude: [],
+        },
     },
     runtimeConfig: {
         afdianUserId: process.env.AFDIAN_USER_ID,
@@ -48,6 +51,7 @@ export default defineNuxtConfig({
         preset: 'node',
         externals: {
             // inline: ['typeorm', 'reflect-metadata'],
+            inline: [],
         },
         esbuild: {
             options: {

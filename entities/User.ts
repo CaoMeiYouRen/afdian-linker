@@ -8,12 +8,7 @@ import {
 } from 'typeorm'
 import { Order } from './Order'
 import { BaseEntity } from './BaseEntity'
-
-// 用户角色枚举
-export enum UserRole {
-    USER = 'USER',
-    ADMIN = 'ADMIN',
-}
+import { UserRole } from '@/types/shared'
 
 // 用户实体
 @Entity('user')

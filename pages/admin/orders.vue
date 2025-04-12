@@ -8,40 +8,6 @@
                     <v-card-text>
                         <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
                     </v-card-text>
-                    <v-card-actions>
-                        <v-btn
-                            variant="elevated"
-                            color="primary"
-                            @click="handleBack"
-                        >
-                            返回首页
-                        </v-btn>
-                        <v-spacer />
-                        <v-btn
-                            variant="text"
-                            color="primary"
-                            :active="route.path === '/admin'"
-                            @click="router.push('/admin')"
-                        >
-                            订单管理
-                        </v-btn>
-                        <v-btn
-                            variant="text"
-                            color="primary"
-                            :active="route.path === '/admin/users'"
-                            @click="router.push('/admin/users')"
-                        >
-                            用户管理
-                        </v-btn>
-                        <v-btn
-                            variant="text"
-                            color="primary"
-                            :active="route.path === '/admin/webhooks'"
-                            @click="router.push('/admin/webhooks')"
-                        >
-                            Webhook日志
-                        </v-btn>
-                    </v-card-actions>
                 </v-card>
                 <v-card>
                     <v-card-title>最近订单</v-card-title>
@@ -86,8 +52,9 @@
 </template>
 
 <script setup lang="ts">
+// 添加中间件配置
 definePageMeta({
-    // middleware: 'auth',
+//   middleware: ['admin'],
 })
 
 import { useToast } from 'primevue/usetoast'

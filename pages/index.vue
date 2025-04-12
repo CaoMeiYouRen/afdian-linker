@@ -12,7 +12,7 @@
                 </h1>
                 <div v-if="userStore.isLoggedIn" class="mb-4">
                     欢迎回来，{{ userStore.userInfo?.nickname || '用户' }}！
-                    <div v-if="userStore.userInfo?.role === 'ADMIN'" class="mt-4">
+                    <div v-if="userStore.isAdmin" class="mt-4">
                         <p>
                             你是管理员，可以访问管理页面。
                         </p>
@@ -60,7 +60,7 @@ const handleLogin = () => {
     navigateTo('/login')
 }
 const handleAdminPage = () => {
-    navigateTo('/admin')
+    navigateTo('/admin/orders')
 }
 
 const handleCheckoutPage = () => {

@@ -1,13 +1,7 @@
 import { Entity, Column, ManyToOne } from 'typeorm'
 import { User } from './User'
 import { BaseEntity } from './BaseEntity'
-
-export enum OrderStatus {
-    PENDING = 'PENDING',
-    PAID = 'PAID',
-    FAILED = 'FAILED',
-    EXPIRED = 'EXPIRED',
-}
+import { OrderStatus } from '@/types/shared'
 
 @Entity('order')
 export class Order extends BaseEntity {

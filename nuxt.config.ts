@@ -35,9 +35,8 @@ export default defineNuxtConfig({
     runtimeConfig: {
         afdianUserId: process.env.AFDIAN_USER_ID,
         afdianToken: process.env.AFDIAN_TOKEN,
-        public: {
-            afdianPlanId: process.env.AFDIAN_PLAN_ID,
-        },
+        afdianPlanId: process.env.AFDIAN_PLAN_ID,
+        afdianProductType: process.env.AFDIAN_PRODUCT_TYPE,
         jwtSecret: process.env.JWT_SECRET,
         apiKeys: process.env.AUTH_API_KEYS,
         webhookToken: process.env.WEBHOOK_TOKEN,

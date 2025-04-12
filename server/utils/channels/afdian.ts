@@ -6,6 +6,7 @@ interface AfdianConfig {
     afdianPlanId: string
     afdianUserId: string
     afdianToken: string
+    afdianProductType?: string
 }
 
 export class AfdianChannel implements PaymentChannel {
@@ -37,11 +38,10 @@ export class AfdianChannel implements PaymentChannel {
         const config = this.getConfig()
         const params = new URLSearchParams({
             plan_id: config.afdianPlanId,
-            user_id: config.afdianUserId,
-            custom_order_id: order.id,
-            product_type: '0',
-            month: order.metadata?.months?.toString() || '1',
-            remark: encodeURIComponent(order.metadata?.remark || ''),
+            custom_order_id: order.customOrderId,
+            product_type: config.afdianProductType || '0', // product_type 0表示常规方案 1表示售卖方案
+            month: order.metaData?.months?.toString() || '1',
+            remark: encodeURIComponent(order.metaData?.remark || ''),
         })
         return `https://afdian.com/order/create?${params}`
     }

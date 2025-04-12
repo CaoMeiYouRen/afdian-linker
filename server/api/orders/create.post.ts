@@ -12,7 +12,7 @@ const orderSchema = z.object({
     channel: z.string().default('afdian'),
     customId: z.string().optional(),
     metadata: z.record(z.unknown()).optional(),
-    months: z.number().int().min(1).max(120).default(1),
+    months: z.number().int().min(1).max(36).default(1),
     remark: z.string().max(200).optional(),
 })
 
@@ -32,6 +32,10 @@ export default defineEventHandler(async (event) => {
             amount: data.amount.toFixed(2),
             status: OrderStatus.PENDING,
             currency: 'CNY',
+            metaData: {
+                months: data.months,
+                remark: data.remark,
+            },
         })
 
         // 保存订单
@@ -54,7 +58,7 @@ export default defineEventHandler(async (event) => {
             paymentUrl,
         })
 
-    } catch (error) {
+    } catch (error: any) {
         if (error instanceof z.ZodError) {
             throw createError({
                 statusCode: 400,
@@ -62,6 +66,9 @@ export default defineEventHandler(async (event) => {
                 data: error.issues,
             })
         }
-        throw error
+        throw createError({
+            statusCode: 500,
+            message: error?.message || '服务器内部错误',
+        })
     }
 })

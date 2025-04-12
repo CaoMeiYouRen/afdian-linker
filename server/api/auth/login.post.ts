@@ -56,20 +56,9 @@ export default defineEventHandler(async (event) => {
         }
 
         // JWT 令牌生成
-        const token = jwt.sign(
-            {
-                id: user.id,
-                role: user.role,
-            },
-            useRuntimeConfig().jwtSecret,
-            { expiresIn: '24h' },
-        )
-
-        setCookie(event, SESSION_KEY, token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
-            maxAge: 86400,
+        const token = setSession(event, {
+            id: user.id,
+            role: user.role,
         })
 
         return createApiResponse({

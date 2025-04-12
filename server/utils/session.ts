@@ -1,38 +1,46 @@
 import { H3Event } from 'h3'
+import jwt from 'jsonwebtoken'
 
 export const SESSION_KEY = 'auth_session'
 
-interface Session {
-    userId: string
-    requirePasswordChange?: boolean
+export interface Session {
+    id: string
+    role: string
 }
 
-export async function setSession(event: H3Event, session: Session) {
-    const signed = await sign(session)
-    setCookie(event, SESSION_KEY, signed, {
+export function setSession(event: H3Event, session: Session) {
+    const token = sign(session)
+    setCookie(event, SESSION_KEY, token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 day
+        sameSite: 'strict',
+        maxAge: 86400, // 1 day
     })
+    return token
 }
 
-export async function getSession(event: H3Event): Promise<Session | null> {
-    const signed = getCookie(event, SESSION_KEY)
-    if (!signed) {
+export function getSession(event: H3Event): Session | null {
+    const token = getCookie(event, SESSION_KEY)
+    if (!token) {
         return null
     }
-    return verify(signed)
+    return verify(token)
 }
 
 export async function clearSession(event: H3Event) {
     deleteCookie(event, SESSION_KEY)
 }
 
-async function sign(data: any): Promise<string> {
-    return JSON.stringify(data)
+function sign(data: any) {
+    const token = jwt.sign(
+        data,
+        useRuntimeConfig().jwtSecret,
+        { expiresIn: 86400 }, // 1 day
+    )
+    return token
 }
 
-async function verify(signed: string): Promise<any> {
-    return JSON.parse(signed)
+function verify(token: string) {
+    const decoded = jwt.verify(token, useRuntimeConfig().jwtSecret) as Session
+    return decoded
 }

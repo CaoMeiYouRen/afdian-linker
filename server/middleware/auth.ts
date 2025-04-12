@@ -16,8 +16,8 @@ export default defineEventHandler(async (event) => {
         return
     }
 
-    const token = getCookie(event, SESSION_KEY)
-    if (!token) {
+    const session = getSession(event)
+    if (!session) {
         // 区分 API 请求和页面请求
         if (event.path.startsWith('/api/')) {
             throw createError({
@@ -31,18 +31,16 @@ export default defineEventHandler(async (event) => {
     }
 
     try {
-        const config = useRuntimeConfig()
-        const decoded = jwt.verify(token, config.jwtSecret) as { id: string, role: string }
 
         // 管理员路由权限验证
-        if ((event.path.startsWith('/api/admin') || event.path.startsWith('/admin')) && decoded.role !== 'ADMIN') {
+        if ((event.path.startsWith('/api/admin') || event.path.startsWith('/admin')) && session.role !== 'ADMIN') {
             throw createError({
                 statusCode: 403,
                 message: '需要管理员权限',
             })
         }
 
-        event.context.auth = decoded
+        event.context.auth = session
     } catch (error) {
         // 区分 API 请求和页面请求
         if (event.path.startsWith('/api/')) {

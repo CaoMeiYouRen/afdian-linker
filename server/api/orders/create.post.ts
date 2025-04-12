@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { createError } from 'h3'
 import { getDataSource } from '@/server/utils/database'
-import { Order } from '@/entities/Order'
+import { Order, OrderStatus } from '@/entities/Order'
 import { generateOrderId } from '@/server/utils/order'
 import { paymentChannels } from '@/server/utils/channels'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
@@ -12,7 +12,7 @@ const orderSchema = z.object({
     channel: z.string().default('afdian'),
     customId: z.string().optional(),
     metadata: z.record(z.unknown()).optional(),
-    months: z.number().int().min(1).max(12).default(1),
+    months: z.number().int().min(1).max(120).default(1),
     remark: z.string().max(200).optional(),
 })
 
@@ -26,16 +26,12 @@ export default defineEventHandler(async (event): Promise<ApiResponse> => {
 
         // 生成订单
         const order = orderRepository.create({
-            id: generateOrderId(data.channel),
+            // id: generateOrderId(data.channel),
             paymentChannel: data.channel,
-            customOrderId: data.customId || generateOrderId('CUSTOM'),
-            amount: data.amount,
+            customOrderId: data.customId || generateOrderId(data.channel),
+            amount: data.amount.toFixed(2),
+            status: OrderStatus.PENDING,
             currency: 'CNY',
-            metadata: {
-                months: data.months,
-                remark: data.remark,
-                ...data.metadata,
-            },
         })
 
         // 保存订单

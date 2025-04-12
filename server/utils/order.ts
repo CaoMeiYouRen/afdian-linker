@@ -8,5 +8,5 @@ import { randomBytes } from 'crypto'
 export function generateOrderId(prefix: string = ''): string {
     const timestamp = Date.now().toString()
     const random = randomBytes(3).toString('hex')
-    return `${prefix.toUpperCase()}_${timestamp}_${random}`
+    return `${prefix.toLowerCase()}_${timestamp}_${random}`
 }

@@ -27,7 +27,13 @@ export default defineEventHandler(async (event) => {
             const orderRepository = manager.getRepository(Order)
 
             const result = await client.queryOrder(params)
-
+            if (result.ec !== 200) {
+                throw createError({
+                    statusCode: 500,
+                    message: result.em || '订单同步失败',
+                })
+            }
+            // 处理返回的订单数据
             // 获取现有订单
             const existingOrders = await orderRepository.find({
                 where: {
@@ -48,7 +54,7 @@ export default defineEventHandler(async (event) => {
                     paymentChannel: 'afdian',
                     channelOrderId: orderData.out_trade_no,
                     status: orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED,
-                    amount: orderData.total_amount ? parseFloat(orderData.total_amount) : 0,
+                    amount: orderData.total_amount,
                     currency: 'CNY',
                     rawData: orderData,
                 }

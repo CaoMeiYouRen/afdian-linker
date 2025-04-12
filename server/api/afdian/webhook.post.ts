@@ -1,4 +1,5 @@
 import type { EventHandler } from 'h3'
+import { AfdianWebhookResponse } from '@cao-mei-you-ren/afdian'
 import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/entities/Order'
 import { WebhookLog } from '@/entities/WebhookLog'
@@ -6,7 +7,7 @@ import { WebhookLog } from '@/entities/WebhookLog'
 export default defineEventHandler(async (event) => {
     try {
         const dataSource = await getDataSource()
-        const body = await readBody(event)
+        const body = await readBody(event) as AfdianWebhookResponse
 
         if (!body?.data?.order?.custom_order_id) {
             throw createError({
@@ -33,7 +34,7 @@ export default defineEventHandler(async (event) => {
                     paymentChannel: 'afdian',
                     customOrderId: orderData.custom_order_id,
                     channelOrderId: orderData.out_trade_no,
-                    status: OrderStatus.PAID,
+                    status: orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED,
                     amount: orderData.total_amount,
                     currency: 'CNY',
                     rawData: orderData,
@@ -51,10 +52,10 @@ export default defineEventHandler(async (event) => {
         return {
             ec: 200,
             em: '处理成功',
-            data: {
-                order_id: orderData.custom_order_id,
-                status: orderData.status === 2 ? 'PAID' : 'FAILED',
-            },
+            // data: {
+            //     customOrderId: orderData.custom_order_id,
+            //     status: orderData.status === 2 ? 'PAID' : 'FAILED',
+            // },
         }
 
     } catch (error: any) {

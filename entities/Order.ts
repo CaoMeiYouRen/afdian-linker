@@ -29,7 +29,7 @@ export class Order extends BaseEntity {
     status: OrderStatus
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
-    amount: number
+    amount: string
 
     @Column({ type: 'varchar', length: 8, default: 'CNY' })
     currency: string
@@ -38,7 +38,7 @@ export class Order extends BaseEntity {
     rawData: any
 
     @Column({ type: 'jsonb', nullable: true })
-    metadata: any
+    metaData: any
 
     @ManyToOne(() => User, (user) => user.orders)
     user: User

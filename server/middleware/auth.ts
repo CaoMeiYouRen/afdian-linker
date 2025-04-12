@@ -6,9 +6,12 @@ export default defineEventHandler(async (event) => {
     const publicPaths = [
         '/api/auth/login',
         '/api/public',
-        '/',
+        '/api/afdian/webhook',
         '/login',
     ]
+    if (event.path === '/') {
+        return
+    }
     if (publicPaths.some((path) => event.path.startsWith(path))) {
         return
     }

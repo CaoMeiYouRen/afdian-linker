@@ -24,7 +24,7 @@
                                     :variant="selectedPlan?.id === plan.id ? 'elevated' : 'outlined'"
                                     :class="[
                                         'h-100',
-                                        {'selected-plan': selectedPlan?.id === plan.id}
+                                        'plan-card'
                                     ]"
                                     @click="selectedPlan = plan"
                                 >
@@ -237,21 +237,30 @@ const handleSubmit = async () => {
 }
 </script>
 
-<style scoped>
-.v-card:hover {
+<style lang="scss" scoped>
+.v-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+}
+
+.plan-card {
+    transition: all 0.2s ease;
+}
+.plan-card:hover {
     transform: translateY(-2px);
-    transition: transform 0.2s ease;
 }
 
-.selected-plan {
-    border: 2px solid rgb(var(--v-theme-primary));
+.v-card-title {
+    flex: 0 0 auto;
 }
 
-.selected-plan :deep(.v-card-title) {
-    color: white;
+.v-card-text {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.selected-plan .text-grey {
-    color: rgba(255, 255, 255, 0.7) !important;
-}
 </style>

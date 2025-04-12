@@ -12,9 +12,21 @@
                 </h1>
                 <div v-if="userStore.isLoggedIn" class="mb-4">
                     欢迎回来，{{ userStore.userInfo?.nickname || '用户' }}！
-                    <div class="mt-4">
+                    <div v-if="userStore.userInfo?.role === 'ADMIN'" class="mt-4">
+                        <p>
+                            你是管理员，可以访问管理页面。
+                        </p>
+
                         <v-btn color="primary" @click="handleAdminPage">
                             前往管理页面
+                        </v-btn>
+                    </div>
+                    <div class="mt-4">
+                        <p>
+                            访问赞助页面。
+                        </p>
+                        <v-btn color="primary" @click="handleCheckoutPage">
+                            前往赞助页面
                         </v-btn>
                     </div>
                     <div class="mt-4">
@@ -49,6 +61,10 @@ const handleLogin = () => {
 }
 const handleAdminPage = () => {
     navigateTo('/admin')
+}
+
+const handleCheckoutPage = () => {
+    navigateTo('/checkout')
 }
 
 const handleLogout = async () => {

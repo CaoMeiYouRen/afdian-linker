@@ -75,13 +75,11 @@ export default defineNuxtConfig({
     },
     primevue: {
         components: {
-            include: ['Toast', 'Button', 'InputText', 'Password'],
-        },
-        directives: {
-            include: ['ripple', 'tooltip'],
+            include: ['Toast'],
         },
         options: {
             ripple: true,
+            // toast: { position: 'top-center' },
         },
     },
 })

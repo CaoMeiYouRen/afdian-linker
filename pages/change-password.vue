@@ -73,10 +73,10 @@ const toast = useToast()
 
 const passwordRules = [
     (v: string) => !!v || '新密码不能为空',
-    (v: string) => v.length >= 8 || '密码长度至少为8位',
-    (v: string) => /[A-Z]/.test(v) || '密码需包含大写字母',
-    (v: string) => /[a-z]/.test(v) || '密码需包含小写字母',
-    (v: string) => /[0-9]/.test(v) || '密码需包含数字',
+    (v: string) => v.length >= 6 || '密码长度至少为6位',
+    // (v: string) => /[A-Z]/.test(v) || '密码需包含大写字母',
+    // (v: string) => /[a-z]/.test(v) || '密码需包含小写字母',
+    // (v: string) => /[0-9]/.test(v) || '密码需包含数字',
 ]
 
 async function handleSubmit() {
@@ -107,7 +107,7 @@ async function handleSubmit() {
                 detail: '密码修改成功',
                 life: 3000,
             })
-            navigateTo('/admin')
+            navigateTo('/')
             return
         }
         toast.add({

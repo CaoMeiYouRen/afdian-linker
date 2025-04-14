@@ -6,7 +6,7 @@ import { createApiResponse } from '@/server/types/api'
 
 const schema = z.object({
     oldPassword: z.string().min(1),
-    newPassword: z.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
+    newPassword: z.string().min(6), // .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/),
 })
 
 export default defineEventHandler(async (event) => {

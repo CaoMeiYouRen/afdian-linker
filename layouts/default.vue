@@ -8,6 +8,12 @@
             <template v-if="userStore.isLoggedIn">
                 <v-btn
                     text
+                    @click="handleChangePassword"
+                >
+                    修改密码
+                </v-btn>
+                <v-btn
+                    text
                     @click="handleLogout"
                 >
                     退出登录
@@ -90,6 +96,11 @@ const handleLogout = async () => {
   })
   navigateTo('/login')
 }
+
+const handleChangePassword = () => {
+    navigateTo('/change-password')
+}
+
 onMounted(async () => {
     await userStore.verifyLogin()
 })

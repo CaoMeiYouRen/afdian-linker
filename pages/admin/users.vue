@@ -9,8 +9,12 @@
                         <v-data-table
                             :headers="headers"
                             :items="users"
+                            :items-per-page="pagination.perPage"
+                            :page="pagination.currentPage"
+                            :server-items-length="pagination.totalItems"
                             :loading="loading"
                             hover
+                            @update:options="handleTableUpdate"
                         >
                             <template #item.role="{item}">
                                 <v-chip
@@ -51,11 +55,18 @@ definePageMeta({
 import { useToast } from 'primevue/usetoast'
 import { formatDate } from '@/utils/format'
 import type { User } from '@/types/user'
+import type { Pagination } from '@/types/pagination'
 
 const toast = useToast()
 const loading = ref(false)
 const users = ref<User[]>([])
 const resettingId = ref('')
+const pagination = ref<Pagination>({
+    currentPage: 1,
+    perPage: 20,
+    totalPages: 0,
+    totalItems: 0,
+})
 
 const headers = [
     { title: 'ID', key: 'id', width: '200px' },
@@ -69,13 +80,23 @@ const headers = [
 ]
 
 // 获取用户列表
-const fetchUsers = async () => {
+const fetchUsers = async (params = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/admin/users')
+        const { data } = await useFetch('/api/admin/users', {
+            query: {
+                page: pagination.value.currentPage,
+                perPage: pagination.value.perPage,
+                ...params,
+            },
+        })
+
         if (data.value?.statusCode === 200) {
-            users.value = data.value.data?.users || [] as any[]
+            users.value = data.value.data.items
+            pagination.value = data.value.data.pagination
+            return
         }
+        throw new Error(data.value?.message || '获取用户列表失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -86,6 +107,15 @@ const fetchUsers = async () => {
     } finally {
         loading.value = false
     }
+}
+
+const handleTableUpdate = (options: any) => {
+    pagination.value.currentPage = options.page
+    pagination.value.perPage = options.itemsPerPage
+    fetchUsers({
+        sort: options.sortBy[0]?.key,
+        order: options.sortBy[0]?.order?.toUpperCase(),
+    })
 }
 
 // 重置用户密码

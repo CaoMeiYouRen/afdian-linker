@@ -27,7 +27,7 @@ export interface BaseUser {
 export interface BaseOrder {
     id: string
     customOrderId: string
-    amount: number
+    amount: string
     currency: string
     status: OrderStatus
     paymentChannel: string

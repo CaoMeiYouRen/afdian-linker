@@ -56,7 +56,7 @@
                         prepend-icon="mdi-account-group"
                     />
                     <v-list-item
-                        to="/admin/webhooks"
+                        to="/admin/webhook-logs"
                         :title="'Webhook日志'"
                         prepend-icon="mdi-webhook"
                     />

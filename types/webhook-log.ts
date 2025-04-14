@@ -1,5 +1,5 @@
 export interface WebhookLog {
     id: string
-    payload: any
+    payload?: any
     createdAt: string
 }

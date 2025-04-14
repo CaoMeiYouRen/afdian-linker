@@ -15,8 +15,12 @@
                         <v-data-table
                             :headers="headers"
                             :items="orders"
+                            :items-per-page="pagination.perPage"
+                            :page="pagination.currentPage"
+                            :server-items-length="pagination.totalItems"
                             :loading="loading"
                             hover
+                            @update:options="handleTableUpdate"
                         >
                             <template #item.amount="{item}">
                                 {{ formatCurrency(item.amount, item.currency) }}
@@ -61,11 +65,18 @@ import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
 import { type Order, getStatusText, getStatusColor } from '@/types/order'
 import { formatDate, formatCurrency } from '@/utils/format'
+import type { Pagination } from '@/types/pagination'
 
 const toast = useToast()
 const userStore = useUserStore()
 const loading = ref(false)
 const orders = ref<Order[]>([])
+const pagination = ref<Pagination>({
+    currentPage: 1,
+    perPage: 20,
+    totalPages: 0,
+    totalItems: 0,
+})
 
 // 表头定义
 interface DataTableHeader {
@@ -98,24 +109,20 @@ const handleOrderClick = (orderId: string) => {
 }
 
 // 获取订单列表
-const fetchOrders = async () => {
+const fetchOrders = async (params = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch<{
-            statusCode: number
-            data: { orders: Order[] }
-            message?: string
-        }>('/api/orders', {
+        const { data } = await useFetch('/api/admin/orders', {
             query: {
-                page: 1,
-                perPage: 10,
-                sort: 'createdAt',
-                order: 'DESC',
+                page: pagination.value.currentPage,
+                perPage: pagination.value.perPage,
+                ...params,
             },
         })
 
         if (data.value?.statusCode === 200) {
-            orders.value = data.value.data.orders
+            orders.value = data.value.data.items
+            pagination.value = data.value.data.pagination
             return
         }
         throw new Error(data.value?.message || '获取订单列表失败')
@@ -130,6 +137,15 @@ const fetchOrders = async () => {
     } finally {
         loading.value = false
     }
+}
+
+const handleTableUpdate = (options: any) => {
+    pagination.value.currentPage = options.page
+    pagination.value.perPage = options.itemsPerPage
+    fetchOrders({
+        sort: options.sortBy[0]?.key,
+        order: options.sortBy[0]?.order?.toUpperCase(),
+    })
 }
 
 // 页面加载时获取订单列表

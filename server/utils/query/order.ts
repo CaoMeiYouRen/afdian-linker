@@ -12,6 +12,7 @@ export const orderQuerySchema = z.object({
     endDate: z.coerce.date().optional(),
     sort: z.enum(['createdAt', 'updatedAt', 'amount']).optional(),
     order: z.enum(['ASC', 'DESC']).default('DESC'),
+    userId: z.string().optional(),
 })
 
 export type OrderQueryParams = z.infer<typeof orderQuerySchema>
@@ -35,6 +36,10 @@ export async function queryOrders(repository: Repository<Order>, params: OrderQu
         if (params.endDate) {
             where.createdAt.lte = params.endDate
         }
+    }
+
+    if (params.userId) {
+        where.userId = params.userId
     }
 
     const [orders, total] = await repository.findAndCount({

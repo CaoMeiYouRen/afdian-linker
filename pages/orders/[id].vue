@@ -72,10 +72,12 @@
 
 <script setup lang="ts">
 import { useIntervalFn } from '@vueuse/core'
+import { useToast } from 'primevue/usetoast'
 import { type Order, getStatusText, getStatusColor, type OrderStatus } from '@/types/order'
 import { formatDate, formatCurrency } from '@/utils/format'
 import type { ApiResponse } from '@/server/types/api'
 
+const toast = useToast()
 const route = useRoute()
 const refreshing = ref(false)
 const error = ref('')
@@ -83,12 +85,18 @@ const error = ref('')
 // 订单数据
 const { data: order, refresh } = await useAsyncData<Order>(
     'order',
-    () => $fetch<ApiResponse<{ order: Order }>>(`/api/orders/${route.params.id}`)
-        .then((response) => response.data?.order || {} as any)
-        .catch((err: any) => {
+    async () => {
+        try {
+            refreshing.value = true
+            const response = await $fetch<ApiResponse<{ order: Order } >>(`/api/orders/${route.params.id}`)
+            return response.data?.order || {} as any
+        } catch (err: any) {
             error.value = err.message || '获取订单失败'
             throw err
-        }),
+        } finally {
+            refreshing.value = false
+        }
+    },
 )
 
 const pollCount = ref(0)
@@ -96,35 +104,36 @@ const MAX_POLL_COUNT = 60 // 最多轮询 60 次
 
 // 自动轮询更新状态
 const { pause, resume } = useIntervalFn(async () => {
-    if (!order.value) {
-        return
-    }
+    // if (!order.value) {
+    //     return
+    // }
 
-    if (pollCount.value >= MAX_POLL_COUNT) {
-        error.value = '订单状态查询超时，请刷新页面重试'
-        pause()
-        return
-    }
+    // if (pollCount.value >= MAX_POLL_COUNT) {
+    //     error.value = '订单状态查询超时，请刷新页面重试'
+    //     pause()
+    //     return
+    // }
 
-    refreshing.value = true
-    try {
-        await refresh()
-        pollCount.value++
-    } catch (err: any) {
-        error.value = err.message || '刷新订单状态失败'
-        pause()
-    } finally {
-        refreshing.value = false
-    }
+    // refreshing.value = true
+    // try {
+    //     await refresh()
+    //     pollCount.value++
+    // } catch (err: any) {
+    //     error.value = err.message || '刷新订单状态失败'
+    //     pause()
+    // } finally {
+    //     refreshing.value = false
+    // }
 }, 8000)
 
 // 组件挂载时开始轮询
 onMounted(() => {
-    if (order.value && ['PAID', 'FAILED', 'EXPIRED'].includes(order.value.status)) {
-        pause()
-    } else {
-        resume()
-    }
+    refresh()
+    // if (order.value && ['PAID', 'FAILED', 'EXPIRED'].includes(order.value.status)) {
+    //     pause()
+    // } else {
+    //     resume()
+    // }
 })
 
 // 组件卸载时停止轮询

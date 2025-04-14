@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { Repository } from 'typeorm'
 import { User } from '@/entities/User'
 import { UserRole } from '@/types/shared'
+import { PaginatedData } from '@/server/types/pagination'
 
 export const userQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),
@@ -15,7 +16,7 @@ export const userQuerySchema = z.object({
 
 export type UserQueryParams = z.infer<typeof userQuerySchema>
 
-export async function queryUsers(repository: Repository<User>, params: UserQueryParams) {
+export async function queryUsers(repository: Repository<User>, params: UserQueryParams): Promise<PaginatedData<User>> {
     const where: any = {}
 
     if (params.role) {
@@ -49,7 +50,7 @@ export async function queryUsers(repository: Repository<User>, params: UserQuery
     })
 
     return {
-        users,
+        items: users,
         pagination: {
             currentPage: params.page,
             perPage: params.perPage,

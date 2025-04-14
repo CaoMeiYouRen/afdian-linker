@@ -4,6 +4,7 @@ import { getDataSource } from '@/server/utils/database'
 import { Order } from '@/entities/Order'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { orderQuerySchema, queryOrders } from '@/server/utils/query/order'
+import { createPaginatedResponse } from '@/server/types/pagination'
 
 export default defineEventHandler(async (event) => {
     try {
@@ -12,7 +13,7 @@ export default defineEventHandler(async (event) => {
         const orderRepository = dataSource.getRepository(Order)
 
         const result = await queryOrders(orderRepository, query)
-        return createApiResponse(result)
+        return createPaginatedResponse(result.items, result.pagination)
     } catch (error) {
         if (error instanceof z.ZodError) {
             throw createError({

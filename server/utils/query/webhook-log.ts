@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
 import { WebhookLog } from '@/entities/WebhookLog'
+import { PaginatedData } from '@/server/types/pagination'
 
 export const webhookLogQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),
@@ -13,7 +14,7 @@ export const webhookLogQuerySchema = z.object({
 
 export type WebhookLogQueryParams = z.infer<typeof webhookLogQuerySchema>
 
-export async function queryWebhookLogs(repository: Repository<WebhookLog>, params: WebhookLogQueryParams) {
+export async function queryWebhookLogs(repository: Repository<WebhookLog>, params: WebhookLogQueryParams): Promise<PaginatedData<WebhookLog>> {
     const where: any = {}
 
     if (params.startDate || params.endDate) {
@@ -36,7 +37,7 @@ export async function queryWebhookLogs(repository: Repository<WebhookLog>, param
     })
 
     return {
-        logs,
+        items: logs,
         pagination: {
             currentPage: params.page,
             perPage: params.perPage,

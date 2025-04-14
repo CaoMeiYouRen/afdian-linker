@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
 import { Order } from '@/entities/Order'
+import { PaginatedData } from '@/server/types/pagination'
 
 export const orderQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),
@@ -15,7 +16,7 @@ export const orderQuerySchema = z.object({
 
 export type OrderQueryParams = z.infer<typeof orderQuerySchema>
 
-export async function queryOrders(repository: Repository<Order>, params: OrderQueryParams) {
+export async function queryOrders(repository: Repository<Order>, params: OrderQueryParams): Promise<PaginatedData<Order>> {
     const where: any = {}
 
     if (params.status) {
@@ -46,17 +47,7 @@ export async function queryOrders(repository: Repository<Order>, params: OrderQu
     })
 
     return {
-        orders: orders.map((order) => ({
-            id: order.id,
-            customOrderId: order.customOrderId,
-            channelOrderId: order.channelOrderId,
-            status: order.status,
-            amount: Number(order.amount),
-            currency: order.currency,
-            paymentChannel: order.paymentChannel,
-            createdAt: order.createdAt,
-            updatedAt: order.updatedAt,
-        })),
+        items: orders,
         pagination: {
             currentPage: params.page,
             perPage: params.perPage,

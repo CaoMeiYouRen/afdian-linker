@@ -4,6 +4,7 @@ import { getDataSource } from '@/server/utils/database'
 import { WebhookLog } from '@/entities/WebhookLog'
 import { createApiResponse } from '@/server/types/api'
 import { webhookLogQuerySchema, queryWebhookLogs } from '@/server/utils/query/webhook-log'
+import { createPaginatedResponse } from '@/server/types/pagination'
 
 export default defineEventHandler(async (event) => {
     try {
@@ -12,7 +13,7 @@ export default defineEventHandler(async (event) => {
         const logRepo = dataSource.getRepository(WebhookLog)
 
         const result = await queryWebhookLogs(logRepo, query)
-        return createApiResponse(result)
+        return createPaginatedResponse(result.items, result.pagination)
     } catch (error) {
         if (error instanceof z.ZodError) {
             throw createError({

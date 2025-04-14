@@ -38,4 +38,7 @@ export class Order extends BaseEntity {
 
     @ManyToOne(() => User, (user) => user.orders)
     user: User
+
+    @Column({ type: 'uuid', nullable: true })
+    userId: string
 }

@@ -36,13 +36,15 @@ export default defineEventHandler(async (event) => {
             // 处理返回的订单数据
             // 获取现有订单
             const existingOrders = await orderRepository.find({
-                where: {
+                where: [{
                     channelOrderId: In(result.data.list.map((order) => order.out_trade_no)),
-                },
+                }, {
+                    customOrderId: In(result.data.list.map((order) => order.custom_order_id)),
+                }],
             })
 
             const existingOrdersMap = new Map(
-                existingOrders.map((order) => [order.channelOrderId, order]),
+                existingOrders.map((order) => [order.customOrderId, order]),
             )
 
             // 批量更新逻辑

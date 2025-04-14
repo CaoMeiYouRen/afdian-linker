@@ -26,7 +26,7 @@
         <!-- 侧边导航栏 -->
         <v-navigation-drawer
             v-model="drawer"
-            temporary
+            permanent
         >
             <v-list>
                 <v-list-item

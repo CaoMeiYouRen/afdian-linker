@@ -70,7 +70,7 @@ async function handleSubmit() {
                 detail: '登录成功',
                 life: 3000,
             })
-            navigateTo('/admin')
+            navigateTo('/')
             return
         }
         toast.add({

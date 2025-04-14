@@ -5,6 +5,7 @@ import { Order, OrderStatus } from '@/entities/Order'
 import { generateOrderId } from '@/server/utils/order'
 import { paymentChannels } from '@/server/utils/channels'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { Session } from '@/server/utils/session'
 
 // 创建订单参数验证
 const orderSchema = z.object({
@@ -18,6 +19,7 @@ const orderSchema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
+        const auth = event.context.auth as Session
         const body = await readBody(event)
         const data = await orderSchema.parseAsync(body)
 
@@ -36,6 +38,7 @@ export default defineEventHandler(async (event) => {
                 months: data.months,
                 remark: data.remark,
             },
+            userId: auth.id,
         })
 
         // 保存订单

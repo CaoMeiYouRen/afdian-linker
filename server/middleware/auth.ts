@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
             return sendRedirect(event, '/login', 302)
         }
     }
-
+    event.context.auth = session
     try {
 
         // 管理员路由权限验证
@@ -39,8 +39,6 @@ export default defineEventHandler(async (event) => {
                 message: '需要管理员权限',
             })
         }
-
-        event.context.auth = session
     } catch (error) {
         // 区分 API 请求和页面请求
         if (event.path.startsWith('/api/')) {

@@ -4,8 +4,11 @@ import { getDataSource } from '@/server/utils/database'
 import { Order } from '@/entities/Order'
 import { verifyApiKey } from '@/server/utils/auth'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { Session } from '@/server/utils/session'
+import { UserRole } from '@/types/shared'
 
 export default defineEventHandler(async (event) => {
+    const auth = event.context.auth as Session
 
     const orderId = getRouterParam(event, 'id')
     if (!orderId) {
@@ -18,11 +21,14 @@ export default defineEventHandler(async (event) => {
     const dataSource = await getDataSource()
     const orderRepository = dataSource.getRepository(Order)
 
+    const whereCondition: any = { id: orderId }
+    // 非管理员只能查询自己的订单
+    if (auth.role !== UserRole.ADMIN) {
+        whereCondition.userId = auth.id
+    }
+
     const order = await orderRepository.findOne({
-        where: [
-            { id: orderId },
-            { customOrderId: orderId },
-        ],
+        where: whereCondition,
     })
 
     if (!order) {
@@ -37,7 +43,7 @@ export default defineEventHandler(async (event) => {
             id: order.id,
             customOrderId: order.customOrderId,
             status: order.status,
-            amount: Number(order.amount),
+            amount: order.amount,
             currency: order.currency,
             paymentChannel: order.paymentChannel,
             createdAt: order.createdAt,

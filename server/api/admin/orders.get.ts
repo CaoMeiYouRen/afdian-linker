@@ -1,17 +1,17 @@
 import { createError } from 'h3'
 import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
-import { WebhookLog } from '@/entities/WebhookLog'
-import { createApiResponse } from '@/server/types/api'
-import { webhookLogQuerySchema, queryWebhookLogs } from '@/server/utils/query/webhook-log'
+import { Order } from '@/entities/Order'
+import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { orderQuerySchema, queryOrders } from '@/server/utils/query/order'
 
 export default defineEventHandler(async (event) => {
     try {
-        const query = await webhookLogQuerySchema.parseAsync(getQuery(event))
+        const query = await orderQuerySchema.parseAsync(getQuery(event))
         const dataSource = await getDataSource()
-        const logRepo = dataSource.getRepository(WebhookLog)
+        const orderRepository = dataSource.getRepository(Order)
 
-        const result = await queryWebhookLogs(logRepo, query)
+        const result = await queryOrders(orderRepository, query)
         return createApiResponse(result)
     } catch (error) {
         if (error instanceof z.ZodError) {

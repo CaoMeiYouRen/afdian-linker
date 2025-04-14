@@ -1,29 +1,26 @@
+import { createError } from 'h3'
+import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/User'
 import { createApiResponse } from '@/server/types/api'
+import { userQuerySchema, queryUsers } from '@/server/utils/query/user'
 
 export default defineEventHandler(async (event) => {
-    const dataSource = await getDataSource()
-    const userRepo = dataSource.getRepository(User)
+    try {
+        const query = await userQuerySchema.parseAsync(getQuery(event))
+        const dataSource = await getDataSource()
+        const userRepo = dataSource.getRepository(User)
 
-    const users = await userRepo.find({
-        select: [
-            'id',
-            'username',
-            'nickname',
-            'email',
-            'role',
-            'createdAt',
-            'updatedAt',
-            'initialPassword',
-            'initialEmail',
-        ],
-        order: {
-            createdAt: 'DESC',
-        },
-    })
-
-    return createApiResponse({
-        users,
-    })
+        const result = await queryUsers(userRepo, query)
+        return createApiResponse(result)
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            throw createError({
+                statusCode: 400,
+                message: '参数验证失败',
+                data: error.issues,
+            })
+        }
+        throw error
+    }
 })

@@ -48,9 +48,11 @@
                 <v-btn
                     type="submit"
                     color="primary"
+                    variant="elevated"
                     block
                     large
                     :loading="loading"
+                    elevation="2"
                 >
                     确认修改
                 </v-btn>

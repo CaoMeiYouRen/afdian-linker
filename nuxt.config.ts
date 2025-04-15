@@ -48,11 +48,7 @@ export default defineNuxtConfig({
         port: 3000,
     },
     nitro: {
-        preset: 'node',
-        externals: {
-            // inline: ['typeorm', 'reflect-metadata'],
-            inline: [],
-        },
+        preset: 'node-server',
         esbuild: {
             options: {
                 target: 'esnext',

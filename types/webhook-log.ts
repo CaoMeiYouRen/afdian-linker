@@ -1,5 +1,9 @@
-export interface WebhookLog {
-    id: string
+import type { BaseFields, PartialFields } from './base'
+
+export interface BaseWebhookLog extends BaseFields {
     payload?: any
-    createdAt: string
 }
+
+export type WebhookLog = BaseWebhookLog
+// export type CreateWebhookLogDto = PartialFields<WebhookLog, 'id' | 'createdAt' | 'updatedAt'>
+// export type UpdateWebhookLogDto = Partial<WebhookLog>

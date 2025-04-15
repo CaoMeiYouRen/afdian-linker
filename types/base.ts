@@ -1,7 +1,7 @@
 export interface BaseFields {
     id: string
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
 }
 
 // 将 Date 转换为 string 的工具类型

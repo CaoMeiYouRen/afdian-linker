@@ -5,7 +5,7 @@ import { Order } from '@/entities/Order'
 import { verifyApiKey } from '@/server/utils/auth'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { Session } from '@/server/utils/session'
-import { UserRole } from '@/types/shared'
+import { UserRole } from '@/types/user'
 
 export default defineEventHandler(async (event) => {
     const auth = event.context.auth as Session

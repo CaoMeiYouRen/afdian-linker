@@ -5,11 +5,7 @@ export interface Pagination {
     totalItems: number
 }
 
-export interface PaginatedResponse<T> {
-    statusCode: number
-    message?: string
-    data: {
-        items: T[]
-        pagination: Pagination
-    }
+export interface PaginatedData<T> {
+    items: T[]
+    pagination: Pagination
 }

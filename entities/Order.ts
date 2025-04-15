@@ -1,12 +1,12 @@
 import { Entity, Column, ManyToOne } from 'typeorm'
 import { User } from './User'
 import { BaseEntity } from './BaseEntity'
-import { OrderStatus } from '@/types/shared'
+import { OrderStatus, type BaseOrder } from '@/types/order'
 
 export { OrderStatus }
 
 @Entity('order')
-export class Order extends BaseEntity {
+export class Order extends BaseEntity implements BaseOrder {
     @Column({ type: 'varchar', length: 50, default: 'afdian' })
     paymentChannel: string
 

@@ -1,16 +1,7 @@
 import { getStatusMessage } from './api'
+import type { PaginatedData, Pagination } from '@/types/pagination'
 
-export interface Pagination {
-    currentPage: number
-    perPage: number
-    totalPages: number
-    totalItems: number
-}
-
-export interface PaginatedData<T> {
-    items: T[]
-    pagination: Pagination
-}
+export type { PaginatedData, Pagination }
 
 export interface PaginatedResponse<T> {
     statusCode: number
@@ -23,6 +14,7 @@ export function createPaginatedResponse<T>(items: T[], pagination: Pagination, s
     return {
         statusCode,
         statusMessage: getStatusMessage(statusCode),
+        message,
         data: {
             items,
             pagination,

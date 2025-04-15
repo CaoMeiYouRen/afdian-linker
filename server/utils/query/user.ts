@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
 import { User } from '@/entities/User'
-import { UserRole } from '@/types/shared'
+import { UserRole } from '@/types/user'
 import { PaginatedData } from '@/server/types/pagination'
 
 export const userQuerySchema = z.object({

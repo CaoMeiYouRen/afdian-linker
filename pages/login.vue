@@ -1,6 +1,6 @@
 <template>
     <v-card
-        class="mx-auto my-12"
+        class="mx-auto my-auto"
         max-width="800"
         min-width="500"
     >
@@ -46,6 +46,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+    layout: 'blank',
+})
+
 import { useToast } from 'primevue/usetoast'
 
 const form = reactive({

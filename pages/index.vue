@@ -22,7 +22,7 @@
                         <v-card
                             v-if="userStore.isAdmin"
                             class="action-card mb-4"
-                            elevation="3"
+                            elevation="2"
                         >
                             <v-card-text>
                                 <p class="mb-4 text-body-1">
@@ -44,7 +44,7 @@
                         </v-card>
                         <v-card
                             class="action-card"
-                            elevation="3"
+                            elevation="2"
                         >
                             <v-card-text>
                                 <p class="mb-4 text-body-1">
@@ -110,8 +110,8 @@ const handleCheckoutPage = () => {
 
 <style lang="scss" scoped>
 .min-vh-100 {
-    min-height: calc(100vh - 64px); // 减去顶部导航栏高度
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    // min-height: calc(100vh); // 减去顶部导航栏高度
+    // background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
 }
 
 .welcome-section {

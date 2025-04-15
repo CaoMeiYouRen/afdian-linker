@@ -44,13 +44,14 @@
                     <v-btn
                         type="submit"
                         color="primary"
+                        variant="elevated"
                         block
                         large
                         :loading="loading"
                         class="login-btn text-h6"
                         elevation="2"
                     >
-                        登录
+                        <span class="text-white">登录</span>
                     </v-btn>
                 </v-card-actions>
             </v-form>
@@ -130,7 +131,7 @@ async function handleSubmit() {
     letter-spacing: 2px;
     text-transform: none;
     border-radius: 8px;
-    height: 52px;
+    height: 52px !important;
 }
 
 .v-text-field {

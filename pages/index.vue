@@ -111,7 +111,7 @@ const handleCheckoutPage = () => {
 <style lang="scss" scoped>
 .min-vh-100 {
     min-height: calc(100vh - 64px); // 减去顶部导航栏高度
-
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
 }
 
 .welcome-section {
@@ -119,15 +119,19 @@ const handleCheckoutPage = () => {
 }
 
 .welcome-title {
-    // color: linear-gradient(45deg, #1976D2  0%, #764ba2 100%);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #1976D2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.08);
+    position: relative;
+    letter-spacing: 1px;
+
 }
 
 .action-card {
     border-radius: 12px;
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
     &:hover {
         transform: translateY(-2px);

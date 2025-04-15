@@ -2,6 +2,7 @@
   "name": "afdian-linker",
   "private": true,
   "type": "module",
+  "version": "0.1.0",
   "scripts": {
     "lint:css": "stylelint src/**/*.{html,css,scss,sass,vue} --fix --custom-syntax postcss-html",
     "lint": "cross-env NODE_ENV=production eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",

@@ -1,29 +1,50 @@
 <template>
     <v-app>
         <!-- 顶部导航栏 -->
-        <v-app-bar>
-            <v-app-bar-nav-icon @click="drawer = !drawer" />
-            <v-app-bar-title>爱发电助手</v-app-bar-title>
+        <v-app-bar
+            elevation="2"
+            color="primary"
+            class="px-4"
+        >
+            <v-app-bar-nav-icon color="white" @click="drawer = !drawer" />
+            <v-app-bar-title class="font-weight-medium white--text">
+                爱发电助手
+            </v-app-bar-title>
             <v-spacer />
             <template v-if="userStore.isLoggedIn">
                 <v-btn
                     text
+                    class="mx-2"
+                    color="white"
                     @click="handleChangePassword"
                 >
+                    <v-icon left>
+                        mdi-key
+                    </v-icon>
                     修改密码
                 </v-btn>
                 <v-btn
                     text
+                    class="error--text mx-2"
+                    color="white"
                     @click="handleLogout"
                 >
+                    <v-icon left>
+                        mdi-logout
+                    </v-icon>
                     退出登录
                 </v-btn>
             </template>
             <template v-else>
                 <v-btn
                     text
+                    class="mx-2"
+                    color="white"
                     to="/login"
                 >
+                    <v-icon left>
+                        mdi-login
+                    </v-icon>
                     登录
                 </v-btn>
             </template>
@@ -105,3 +126,19 @@ onMounted(async () => {
     await userStore.verifyLogin()
 })
 </script>
+
+<style scoped>
+.v-app-bar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.v-app-bar-title {
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.v-btn {
+    text-transform: none;
+    font-weight: 500;
+}
+</style>

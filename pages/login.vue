@@ -1,48 +1,61 @@
 <template>
-    <v-card
-        class="mx-auto my-auto"
-        max-width="800"
-        min-width="500"
-    >
-        <v-card-title class="pa-6 text-center text-h5">
-            登录
-        </v-card-title>
-
-        <v-form @submit.prevent="handleSubmit">
-            <v-card-text>
-                <v-text-field
-                    v-model="form.username"
-                    label="用户名"
-                    required
-                    outlined
-                    prepend-inner-icon="mdi-account"
-                    :rules="[v => !!v || '用户名不能为空']"
-                />
-
-                <v-text-field
-                    v-model="form.password"
-                    label="密码"
-                    type="password"
-                    required
-                    outlined
-                    prepend-inner-icon="mdi-lock"
-                    :rules="[v => !!v || '密码不能为空']"
-                />
-            </v-card-text>
-
-            <v-card-actions class="pb-6 px-6">
-                <v-btn
-                    type="submit"
+    <div class="login-container">
+        <v-card
+            class="login-card mx-auto my-auto"
+            max-width="800"
+            min-width="500"
+            elevation="8"
+        >
+            <v-card-title class="font-weight-bold pa-6 text-center text-h4">
+                <v-icon
+                    size="36"
                     color="primary"
-                    block
-                    large
-                    :loading="loading"
+                    class="mr-2"
                 >
-                    登录
-                </v-btn>
-            </v-card-actions>
-        </v-form>
-    </v-card>
+                    mdi-link-variant
+                </v-icon>
+                登录
+            </v-card-title>
+
+            <v-form @submit.prevent="handleSubmit">
+                <v-card-text class="pa-6">
+                    <v-text-field
+                        v-model="form.username"
+                        label="用户名"
+                        required
+                        outlined
+                        prepend-inner-icon="mdi-account"
+                        :rules="[v => !!v || '用户名不能为空']"
+                        class="mb-4"
+                    />
+
+                    <v-text-field
+                        v-model="form.password"
+                        label="密码"
+                        type="password"
+                        required
+                        outlined
+                        prepend-inner-icon="mdi-lock"
+                        :rules="[v => !!v || '密码不能为空']"
+                    />
+                </v-card-text>
+
+                <v-card-actions class="pb-8 px-6">
+                    <v-btn
+                        type="submit"
+                        color="primary"
+                        block
+                        large
+                        :loading="loading"
+                        class="login-btn text-h6"
+                        elevation="2"
+                    >
+                        登录
+                    </v-btn>
+                </v-card-actions>
+            </v-form>
+        </v-card>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -97,8 +110,30 @@ async function handleSubmit() {
 }
 </script>
 
-<style>
-html {
-    background: #f5f5f5;
+<style lang="scss" scoped>
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1976D2  0%, #764ba2 100%); //
+    padding: 20px;
+}
+
+.login-card {
+    border-radius: 16px !important;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.login-btn {
+    letter-spacing: 2px;
+    text-transform: none;
+    border-radius: 8px;
+    height: 52px;
+}
+
+.v-text-field {
+    border-radius: 8px;
 }
 </style>

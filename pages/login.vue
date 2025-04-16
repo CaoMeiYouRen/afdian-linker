@@ -65,6 +65,9 @@ definePageMeta({
 })
 
 import { useToast } from 'primevue/usetoast'
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
 
 const form = reactive({
     username: '',
@@ -88,6 +91,7 @@ async function handleSubmit() {
                 detail: '登录成功',
                 life: 3000,
             })
+            userStore.verifyLogin()
             navigateTo('/')
             return
         }

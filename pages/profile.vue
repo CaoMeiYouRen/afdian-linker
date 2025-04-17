@@ -164,11 +164,11 @@ const handleUpdateNickname = async () => {
         })
         await userStore.fetchUserInfo()
         toast.add({
-                severity: 'success',
-                summary: '成功',
-                detail: '修改成功',
-                life: 3000,
-            })
+            severity: 'success',
+            summary: '成功',
+            detail: '修改成功',
+            life: 3000,
+        })
         showNicknameDialog.value = false
     } catch (error: any) {
         toast.add({

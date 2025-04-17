@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import Aura from '@primevue/themes/aura'
 
 export default defineNuxtConfig({
     compatibilityDate: '2025-03-15',
@@ -74,8 +75,9 @@ export default defineNuxtConfig({
             include: ['Toast'],
         },
         options: {
-            ripple: true,
-            // toast: { position: 'top-center' },
+            theme: {
+                preset: Aura,
+            },
         },
     },
 })

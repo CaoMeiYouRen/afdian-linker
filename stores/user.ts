@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 import type { BaseUser } from '@/types/user'
+import type { DateToString } from '@/types/base'
 
 interface UserState {
     isLoggedIn: boolean
-    userInfo: BaseUser | null
+    userInfo: DateToString<BaseUser> | null
 }
 
 export const useUserStore = defineStore('user', {
@@ -32,7 +33,7 @@ export const useUserStore = defineStore('user', {
 
         async verifyLogin() {
             try {
-                const response = await $fetch('/api/auth/verify')
+                const response = await $fetch('/api/auth/verify', { method: 'POST' })
                 if (response.statusCode === 200) {
                     this.isLoggedIn = true
                     this.userInfo = response.data || null

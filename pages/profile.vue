@@ -231,7 +231,7 @@ const handleUpdateNickname = async () => {
     loading.value = true
     try {
         await $fetch('/api/user/nickname', {
-            method: 'PATCH',
+            method: 'POST',
             body: { nickname: newNickname.value },
         })
         await userStore.fetchUserInfo()
@@ -261,7 +261,7 @@ return
     emailLoading.value = true
     try {
         await $fetch('/api/user/email', {
-            method: 'PATCH',
+            method: 'POST',
             body: { email: newEmail.value },
         })
         await userStore.fetchUserInfo()

@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import { getDataSource } from '@/server/utils/database'
-import { User } from '@/entities/User'
+import { User } from '@/entities/user'
 import { createApiResponse } from '@/server/types/api'
 
 const schema = z.object({

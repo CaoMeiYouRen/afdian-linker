@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
-import { WebhookLog } from '@/entities/WebhookLog'
+import { WebhookLog } from '@/entities/webhook-log'
 import { PaginatedData } from '@/server/types/pagination'
 
 export const webhookLogQuerySchema = z.object({

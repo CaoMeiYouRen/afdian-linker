@@ -1,4 +1,4 @@
-import { Order } from '@/entities/Order'
+import { Order } from '@/entities/order'
 
 export interface OrderUpdate {
     status: string

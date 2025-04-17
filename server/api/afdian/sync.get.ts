@@ -2,7 +2,7 @@ import type { EventHandler, H3Event } from 'h3'
 import { z } from 'zod'
 import { In } from 'typeorm'
 import { getDataSource } from '@/server/utils/database'
-import { Order, OrderStatus } from '@/entities/Order'
+import { Order, OrderStatus } from '@/entities/order'
 import { useAfdian } from '@/composables/useAfdian'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 

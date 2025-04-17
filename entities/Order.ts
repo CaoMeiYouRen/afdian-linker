@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne } from 'typeorm'
-import { User } from './User'
-import { BaseEntity } from './BaseEntity'
+import { User } from './user'
+import { BaseEntity } from './base-entity'
 import { OrderStatus, type BaseOrder } from '@/types/order'
 
 export { OrderStatus }

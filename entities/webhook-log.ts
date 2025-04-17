@@ -1,5 +1,5 @@
 import { Entity, Column } from 'typeorm'
-import { BaseEntity } from './BaseEntity'
+import { BaseEntity } from './base-entity'
 import type { BaseWebhookLog } from '@/types/webhook-log'
 
 @Entity('webhook_log')

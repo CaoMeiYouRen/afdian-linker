@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { getDataSource } from '@/server/utils/database'
-import { User } from '@/entities/User'
+import { User } from '@/entities/user'
 import { SESSION_KEY } from '@/server/utils/session'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 

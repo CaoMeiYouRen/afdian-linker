@@ -6,8 +6,8 @@ import {
     BeforeInsert,
     BeforeUpdate,
 } from 'typeorm'
-import { Order } from './Order'
-import { BaseEntity } from './BaseEntity'
+import { Order } from './order'
+import { BaseEntity } from './base-entity'
 import { UserRole, type BaseUser } from '@/types/user'
 
 export { UserRole }

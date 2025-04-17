@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
-import { Order } from '@/entities/Order'
+import { Order } from '@/entities/order'
 import { PaginatedData } from '@/server/types/pagination'
 
 export const orderQuerySchema = z.object({

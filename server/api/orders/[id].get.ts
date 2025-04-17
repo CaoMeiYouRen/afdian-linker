@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { createError } from 'h3'
 import { getDataSource } from '@/server/utils/database'
-import { Order } from '@/entities/Order'
+import { Order } from '@/entities/order'
 import { verifyApiKey } from '@/server/utils/auth'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { Session } from '@/server/utils/session'

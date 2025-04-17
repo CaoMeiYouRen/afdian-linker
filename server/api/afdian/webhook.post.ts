@@ -1,8 +1,8 @@
 import type { EventHandler } from 'h3'
 import { AfdianWebhookResponse } from '@cao-mei-you-ren/afdian'
 import { getDataSource } from '@/server/utils/database'
-import { Order, OrderStatus } from '@/entities/Order'
-import { WebhookLog } from '@/entities/WebhookLog'
+import { Order, OrderStatus } from '@/entities/order'
+import { WebhookLog } from '@/entities/webhook-log'
 
 export default defineEventHandler(async (event) => {
     try {

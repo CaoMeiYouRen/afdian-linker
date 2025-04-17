@@ -6,7 +6,20 @@
                 sm="8"
                 md="6"
             >
-                <v-card class="mb-4">
+                <!-- 加载动画 -->
+                <div
+                    v-if="!userStore.isLoggedIn"
+                    class="align-center d-flex justify-center"
+                    style="min-height: 400px;"
+                >
+                    <v-progress-circular
+                        indeterminate
+                        color="primary"
+                        size="64"
+                    />
+                </div>
+                <!-- 个人信息卡片 -->
+                <v-card v-else class="mb-4">
                     <v-card-title class="font-weight-bold text-h5">
                         个人资料
                     </v-card-title>
@@ -83,6 +96,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { formatDate } from '@/utils/format'
 
@@ -96,10 +110,4 @@ const handleChangePassword = () => {
     navigateTo('/change-password')
 }
 
-// 页面加载时确保用户信息已加载
-onMounted(async () => {
-    if (!userStore.userInfo) {
-        // await userStore.verifyLogin()
-    }
-})
 </script>

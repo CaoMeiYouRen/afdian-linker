@@ -42,7 +42,16 @@
                                     </v-icon>
                                 </template>
                                 <v-list-item-title>昵称</v-list-item-title>
-                                <v-list-item-subtitle>{{ userStore.userInfo?.nickname }}</v-list-item-subtitle>
+                                <v-list-item-subtitle class="align-center d-flex">
+                                    {{ userStore.userInfo?.nickname }}
+                                    <v-btn
+                                        icon="mdi-pencil"
+                                        size="small"
+                                        variant="text"
+                                        class="ml-2"
+                                        @click="openNicknameDialog"
+                                    />
+                                </v-list-item-subtitle>
                             </v-list-item>
 
                             <v-list-item>
@@ -90,6 +99,32 @@
                         </v-btn>
                     </v-card-actions>
                 </v-card>
+                <!-- 修改昵称对话框 -->
+                <v-dialog v-model="showNicknameDialog" max-width="400">
+                    <v-card>
+                        <v-card-title>修改昵称</v-card-title>
+                        <v-card-text>
+                            <v-text-field
+                                v-model="newNickname"
+                                label="新昵称"
+                                :rules="[v => !!v || '昵称不能为空']"
+                            />
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer />
+                            <v-btn variant="text" @click="showNicknameDialog = false">
+                                取消
+                            </v-btn>
+                            <v-btn
+                                color="primary"
+                                :loading="loading"
+                                @click="handleUpdateNickname"
+                            >
+                                确认
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
             </v-col>
         </v-row>
     </v-container>
@@ -97,6 +132,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
 import { formatDate } from '@/utils/format'
 
@@ -104,7 +140,47 @@ definePageMeta({
     // middleware: ['auth'],
 })
 
+const toast = useToast()
 const userStore = useUserStore()
+
+const showNicknameDialog = ref(false)
+const newNickname = ref('')
+const loading = ref(false)
+
+const openNicknameDialog = () => {
+    newNickname.value = userStore.userInfo?.nickname || ''
+    showNicknameDialog.value = true
+}
+
+const handleUpdateNickname = async () => {
+    if (!newNickname.value) {
+        return
+    }
+    loading.value = true
+    try {
+        await $fetch('/api/user/nickname', {
+            method: 'PATCH',
+            body: { nickname: newNickname.value },
+        })
+        await userStore.fetchUserInfo()
+        toast.add({
+                severity: 'success',
+                summary: '成功',
+                detail: '修改成功',
+                life: 3000,
+            })
+        showNicknameDialog.value = false
+    } catch (error: any) {
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error?.message || '修改失败',
+            life: 5000,
+        })
+    } finally {
+        loading.value = false
+    }
+}
 
 const handleChangePassword = () => {
     navigateTo('/change-password')

@@ -68,13 +68,13 @@ import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
+const toast = useToast()
 
 const form = reactive({
     username: '',
     password: '',
 })
 const loading = ref(false)
-const toast = useToast()
 
 async function handleSubmit() {
     loading.value = true

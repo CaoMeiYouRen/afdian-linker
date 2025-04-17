@@ -53,5 +53,19 @@ export const useUserStore = defineStore('user', {
                 return false
             }
         },
+        async fetchUserInfo() {
+            try {
+                const response = await $fetch('/api/user/info')
+                if (response.statusCode === 200) {
+                    this.isLoggedIn = true
+                    this.userInfo = response.data || null
+                    return true
+                }
+                return false
+            } catch (error) {
+                console.error('获取用户信息失败:', error)
+                return false
+            }
+        },
     },
 })

@@ -1,22 +1,21 @@
 import { defineEventHandler, readBody } from 'h3'
+import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
+
+const schema = z.object({
+    email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空'),
+}).strict()
 
 export default defineEventHandler(async (event) => {
     const auth = event.context.auth as Session
     if (!auth) {
         return { statusCode: 401, message: '未登录' }
     }
-    const body = await readBody(event)
+    const body = await readValidatedBody(event, schema.parse)
     const email = body?.email?.trim()
-    if (!email) {
-        return { statusCode: 400, message: '邮箱不能为空' }
-    }
-    // 邮箱格式校验
-    if (!/.+@.+\..+/.test(email)) {
-        return { statusCode: 400, message: '邮箱格式不正确' }
-    }
+
     const dataSource = await getDataSource()
     const repo = dataSource.getRepository(User)
     // 检查邮箱是否已被占用

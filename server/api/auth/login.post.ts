@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import { SESSION_KEY, setSession } from '@/server/utils/session'
 import { rateLimit } from '@/server/utils/rate-limit'
 import { getDataSource } from '@/server/utils/database'
-import { User } from '@/entities/user'
+import { User } from '@/server/entities/user'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 const loginSchema = z.object({

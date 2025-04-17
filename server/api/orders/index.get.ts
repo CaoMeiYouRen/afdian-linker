@@ -1,7 +1,7 @@
 import { createError } from 'h3'
 import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
-import { Order } from '@/entities/order'
+import { Order } from '@/server/entities/order'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { orderQuerySchema, queryOrders } from '@/server/utils/query/order'
 import { Session } from '@/server/utils/session'

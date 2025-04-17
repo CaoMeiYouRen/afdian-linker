@@ -61,7 +61,43 @@
                                     </v-icon>
                                 </template>
                                 <v-list-item-title>邮箱</v-list-item-title>
-                                <v-list-item-subtitle>{{ userStore.userInfo?.email }}</v-list-item-subtitle>
+                                <v-list-item-subtitle class="align-center d-flex">
+                                    {{ userStore.userInfo?.email }}
+                                    <v-chip
+                                        v-if="userStore.userInfo?.emailVerified"
+                                        color="success"
+                                        size="small"
+                                        class="ml-2"
+                                    >
+                                        已验证
+                                    </v-chip>
+                                    <v-chip
+                                        v-else
+                                        color="warning"
+                                        size="small"
+                                        class="ml-2"
+                                    >
+                                        未验证
+                                    </v-chip>
+                                    <v-btn
+                                        icon="mdi-pencil"
+                                        size="small"
+                                        variant="text"
+                                        class="ml-2"
+                                        @click="openEmailDialog"
+                                    />
+                                    <v-btn
+                                        v-if="!userStore.userInfo?.emailVerified"
+                                        icon="mdi-email-send"
+                                        size="small"
+                                        variant="text"
+                                        class="ml-2"
+                                        :loading="emailVerifyLoading"
+                                        @click="handleSendVerifyEmail"
+                                    >
+                                        <v-icon>mdi-email-send</v-icon>
+                                    </v-btn>
+                                </v-list-item-subtitle>
                             </v-list-item>
 
                             <v-list-item>
@@ -125,6 +161,32 @@
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
+                <!-- 修改邮箱对话框 -->
+                <v-dialog v-model="showEmailDialog" max-width="400">
+                    <v-card>
+                        <v-card-title>修改邮箱</v-card-title>
+                        <v-card-text>
+                            <v-text-field
+                                v-model="newEmail"
+                                label="新邮箱"
+                                :rules="[v => !!v || '邮箱不能为空', v => /.+@.+\..+/.test(v) || '邮箱格式不正确']"
+                            />
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-spacer />
+                            <v-btn variant="text" @click="showEmailDialog = false">
+                                取消
+                            </v-btn>
+                            <v-btn
+                                color="primary"
+                                :loading="emailLoading"
+                                @click="handleUpdateEmail"
+                            >
+                                确认
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
             </v-col>
         </v-row>
     </v-container>
@@ -147,9 +209,19 @@ const showNicknameDialog = ref(false)
 const newNickname = ref('')
 const loading = ref(false)
 
+const showEmailDialog = ref(false)
+const newEmail = ref('')
+const emailLoading = ref(false)
+const emailVerifyLoading = ref(false)
+
 const openNicknameDialog = () => {
     newNickname.value = userStore.userInfo?.nickname || ''
     showNicknameDialog.value = true
+}
+
+const openEmailDialog = () => {
+    newEmail.value = userStore.userInfo?.email || ''
+    showEmailDialog.value = true
 }
 
 const handleUpdateNickname = async () => {
@@ -179,6 +251,58 @@ const handleUpdateNickname = async () => {
         })
     } finally {
         loading.value = false
+    }
+}
+
+const handleUpdateEmail = async () => {
+    if (!newEmail.value) {
+return
+}
+    emailLoading.value = true
+    try {
+        await $fetch('/api/user/email', {
+            method: 'PATCH',
+            body: { email: newEmail.value },
+        })
+        await userStore.fetchUserInfo()
+        toast.add({
+            severity: 'success',
+            summary: '成功',
+            detail: '邮箱修改成功，请查收验证邮件',
+            life: 3000,
+        })
+        showEmailDialog.value = false
+    } catch (error: any) {
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error?.message || '邮箱修改失败',
+            life: 5000,
+        })
+    } finally {
+        emailLoading.value = false
+    }
+}
+
+const handleSendVerifyEmail = async () => {
+    emailVerifyLoading.value = true
+    try {
+        await $fetch('/api/user/email/verify', { method: 'POST' })
+        toast.add({
+            severity: 'success',
+            summary: '成功',
+            detail: '验证邮件已发送，请查收',
+            life: 3000,
+        })
+    } catch (error: any) {
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error?.message || '发送失败',
+            life: 5000,
+        })
+    } finally {
+        emailVerifyLoading.value = false
     }
 }
 

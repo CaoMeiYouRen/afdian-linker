@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm'
 import { SnakeCaseNamingStrategy } from './naming-strategy'
-import { Order } from '@/entities/order'
-import { User, UserRole } from '@/entities/user'
-import { WebhookLog } from '@/entities/webhook-log'
+import { Order } from '@/server/entities/order'
+import { User, UserRole } from '@/server/entities/user'
+import { WebhookLog } from '@/server/entities/webhook-log'
 
 let AppDataSource: DataSource = null as any
 

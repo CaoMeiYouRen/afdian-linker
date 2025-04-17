@@ -12,6 +12,9 @@ export interface BaseUser extends BaseFields {
     nickname: string
     email: string
     role: UserRole
+    initialPassword: boolean
+    initialEmail: boolean
+    emailVerified: boolean
 }
 
 export type User = BaseUser

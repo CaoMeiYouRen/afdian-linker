@@ -1,18 +1,9 @@
 import { defineStore } from 'pinia'
+import type { BaseUser } from '@/types/user'
 
 interface UserState {
     isLoggedIn: boolean
-    userInfo: {
-        nickname: string
-        username: string
-        email: string
-        role: string
-        id: string
-        initialPassword: boolean
-        initialEmail: boolean
-        createdAt: string
-        updatedAt: string
-    } | null
+    userInfo: BaseUser | null
 }
 
 export const useUserStore = defineStore('user', {

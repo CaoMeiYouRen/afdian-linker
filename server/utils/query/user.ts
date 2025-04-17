@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
-import { User } from '@/entities/user'
+import { User } from '@/server/entities/user'
 import { UserRole } from '@/types/user'
 import { PaginatedData } from '@/server/types/pagination'
 

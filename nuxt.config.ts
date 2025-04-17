@@ -44,6 +44,13 @@ export default defineNuxtConfig({
         jwtSecret: process.env.JWT_SECRET,
         apiKeys: process.env.AUTH_API_KEYS,
         webhookToken: process.env.WEBHOOK_TOKEN,
+        smtpHost: process.env.SMTP_HOST,
+        smtpPort: process.env.SMTP_PORT,
+        smtpUser: process.env.SMTP_USER,
+        smtpPass: process.env.SMTP_PASS,
+        smtpFrom: process.env.SMTP_FROM,
+        smtpSecure: process.env.SMTP_SECURE === 'true',
+        baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     },
     devServer: {
         port: 3000,

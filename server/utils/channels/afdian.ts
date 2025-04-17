@@ -1,6 +1,6 @@
 import { createHash } from 'crypto'
 import type { PaymentChannel, OrderUpdate } from './types'
-import type { Order } from '@/entities/order'
+import type { Order } from '@/server/entities/order'
 
 interface AfdianConfig {
     afdianPlanId: string

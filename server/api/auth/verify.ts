@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { omit } from 'lodash-es'
 import { getDataSource } from '@/server/utils/database'
-import { User } from '@/entities/user'
+import { User } from '@/server/entities/user'
 import { SESSION_KEY } from '@/server/utils/session'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 

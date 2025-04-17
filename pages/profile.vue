@@ -99,7 +99,7 @@ const handleChangePassword = () => {
 // 页面加载时确保用户信息已加载
 onMounted(async () => {
     if (!userStore.userInfo) {
-        await userStore.verifyLogin()
+        // await userStore.verifyLogin()
     }
 })
 </script>

@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import { omit } from 'lodash-es'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/entities/user'
 import { SESSION_KEY } from '@/server/utils/session'
@@ -28,17 +29,7 @@ export default defineEventHandler(async (event) => {
             })
         }
 
-        return createApiResponse({
-            username: user.username,
-            nickname: user.nickname,
-            email: user.email,
-            role: user.role,
-            initialPassword: user.initialPassword,
-            initialEmail: user.initialEmail,
-            createdAt: user.createdAt,
-            updatedAt: user.updatedAt,
-            id: user.id,
-        })
+        return createApiResponse(omit(user, ['password']), 200, '登录成功')
     } catch (error) {
         throw createError({
             statusCode: 401,

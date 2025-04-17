@@ -1,4 +1,14 @@
 export default defineNuxtRouteMiddleware((to, from) => {
+    // 白名单路径
+    const publicPaths = [
+        '/login',
+        '/about',
+        '/register',
+    ]
+    if (publicPaths.some((path) => to.path.startsWith(path))) {
+        return true
+    }
+
     const userStore = useUserStore()
 
     // 检查用户是否登录

@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
         '/api/auth/login',
         '/api/public',
         '/api/afdian/webhook',
-        '/login',
     ]
     if (event.path === '/') {
         return

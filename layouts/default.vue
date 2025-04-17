@@ -12,7 +12,7 @@
             </v-app-bar-title>
             <v-spacer />
             <template v-if="userStore.isLoggedIn">
-                <v-btn
+                <!-- <v-btn
                     text
                     class="mx-2"
                     color="white"
@@ -22,8 +22,8 @@
                         mdi-key
                     </v-icon>
                     修改密码
-                </v-btn>
-                <v-btn
+                </v-btn> -->
+                <!-- <v-btn
                     text
                     class="error--text mx-2"
                     color="white"
@@ -33,7 +33,7 @@
                         mdi-logout
                     </v-icon>
                     退出登录
-                </v-btn>
+                </v-btn> -->
             </template>
             <template v-else>
                 <v-btn
@@ -67,6 +67,14 @@
                     :title="'赞助'"
                     prepend-icon="mdi-cash"
                 />
+
+                <template v-if="userStore.isLoggedIn">
+                    <v-list-item
+                        to="/profile"
+                        :title="'个人中心'"
+                        prepend-icon="mdi-account-circle"
+                    />
+                </template>
 
                 <!-- 管理员菜单项 -->
                 <template v-if="userStore.isAdmin">

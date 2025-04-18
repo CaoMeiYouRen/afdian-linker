@@ -248,7 +248,7 @@ const handleUpdateNickname = async () => {
     }
     loading.value = true
     try {
-        await $fetch('/api/user/nickname', {
+        await useFetch('/api/user/nickname', {
             method: 'POST',
             body: { nickname: newNickname.value },
         })
@@ -278,7 +278,7 @@ const handleUpdateEmail = async () => {
     }
     emailLoading.value = true
     try {
-        await $fetch('/api/user/email', {
+        await useFetch('/api/user/email', {
             method: 'POST',
             body: { email: newEmail.value },
         })
@@ -305,7 +305,7 @@ const handleUpdateEmail = async () => {
 const handleSendVerifyEmail = async () => {
     emailVerifyLoading.value = true
     try {
-        await $fetch('/api/user/email-verify', { method: 'POST' })
+        await useFetch('/api/user/email-verify', { method: 'POST' })
         toast.add({
             severity: 'success',
             summary: '成功',

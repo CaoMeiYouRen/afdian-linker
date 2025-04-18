@@ -17,14 +17,14 @@
                 />
                 <template v-if="userStore.isLoggedIn">
                     <v-list-item
-                        to="/profile"
-                        :title="'个人中心'"
-                        prepend-icon="mdi-account-circle"
-                    />
-                    <v-list-item
                         to="/orders"
                         :title="'我的订单'"
                         prepend-icon="mdi-clipboard-text"
+                    />
+                    <v-list-item
+                        to="/profile"
+                        :title="'个人中心'"
+                        prepend-icon="mdi-account-circle"
                     />
                 </template>
                 <!-- 管理员菜单项 -->

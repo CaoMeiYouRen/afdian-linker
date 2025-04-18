@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
+import { createApiResponse } from '@/server/types/api'
 
 const schema = z.object({
     email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空'),
@@ -11,7 +12,7 @@ const schema = z.object({
 export default defineEventHandler(async (event) => {
     const auth = event.context.auth as Session
     if (!auth) {
-        return { statusCode: 401, message: '未登录' }
+        throw createError({ statusCode: 401, message: '未登录' })
     }
     const body = await readValidatedBody(event, schema.parse)
     const email = body?.email?.trim()
@@ -21,10 +22,10 @@ export default defineEventHandler(async (event) => {
     // 检查邮箱是否已被占用
     const exist = await repo.findOneBy({ email })
     if (exist && exist.id !== auth.id) {
-        return { statusCode: 400, message: '该邮箱已被占用' }
+        throw createError({ statusCode: 400, message: '邮箱已被占用' })
     }
     await repo.update({ id: auth.id }, { email, emailVerified: false })
     // 发送验证邮件
     await sendVerifyEmail(auth.id, email)
-    return { statusCode: 200, message: '邮箱修改成功，请查收验证邮件' }
+    return createApiResponse(null, 200, '邮箱修改成功，请查收验证邮件')
 })

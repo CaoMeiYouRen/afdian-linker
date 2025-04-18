@@ -305,7 +305,7 @@ const handleUpdateEmail = async () => {
 const handleSendVerifyEmail = async () => {
     emailVerifyLoading.value = true
     try {
-        await $fetch('/api/user/email/verify', { method: 'POST' })
+        await $fetch('/api/user/email-verify', { method: 'POST' })
         toast.add({
             severity: 'success',
             summary: '成功',

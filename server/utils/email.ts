@@ -5,7 +5,7 @@ import { useRuntimeConfig } from '#imports'
 export async function sendVerifyEmail(userId: string, email: string) {
     const config = useRuntimeConfig()
     const token = jwt.sign({ id: userId, email }, config.jwtSecret, { expiresIn: '1d' })
-    const verifyUrl = `${config.public.baseUrl}/api/user/email-verify-callback?token=${token}`
+    const verifyUrl = `${config.baseUrl}/api/user/email-verify-callback?token=${token}`
 
     const transporter = nodemailer.createTransport({
         host: config.smtpHost,
@@ -16,6 +16,13 @@ export async function sendVerifyEmail(userId: string, email: string) {
             pass: config.smtpPass,
         },
     })
+
+    if (!await transporter.verify()) {
+        throw createError({
+            statusCode: 500,
+            message: 'SMTP配置错误',
+        })
+    }
 
     await transporter.sendMail({
         from: config.smtpFrom,

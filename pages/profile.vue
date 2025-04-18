@@ -8,7 +8,7 @@
             >
                 <!-- 加载动画 -->
                 <div
-                    v-if="!userStore.isLoggedIn"
+                    v-if="loading"
                     class="align-center d-flex justify-center"
                     style="min-height: 400px;"
                 >
@@ -327,5 +327,28 @@ const handleSendVerifyEmail = async () => {
 const handleChangePassword = () => {
     navigateTo('/change-password')
 }
+
+onMounted(async () => {
+    // if (!userStore.isLoggedIn) {
+    //     navigateTo('/login')
+    //     return
+    // }
+    if (userStore.userInfo) {
+        return
+    }
+    loading.value = true
+    userStore.fetchUserInfo()
+    .catch((error) => {
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error?.message || '获取用户信息失败',
+            life: 5000,
+        })
+        navigateTo('/login')
+    }).finally(() => {
+        loading.value = false
+    })
+})
 
 </script>

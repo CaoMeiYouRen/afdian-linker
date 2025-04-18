@@ -22,7 +22,8 @@ export default defineEventHandler(async (event) => {
             throw createError({ statusCode: 400, message: '邮箱已变更，请重新验证' })
         }
         await repo.update({ id: user.id }, { emailVerified: true })
-        return createApiResponse(null, 200, '邮箱验证成功')
+        // 跳转到邮箱验证成功的中间页
+        sendRedirect(event, '/email-verify-success', 302)
     } catch (e) {
         console.error(e)
         throw createError({ statusCode: 400, message: '验证链接已失效或无效' })

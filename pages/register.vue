@@ -89,6 +89,15 @@
                         <span class="text-white">注册</span>
                     </v-btn>
                 </v-card-actions>
+                <div class="pb-6 text-center">
+                    <v-btn
+                        variant="text"
+                        color="primary"
+                        @click="goToLogin"
+                    >
+                        已有账号？去登录
+                    </v-btn>
+                </div>
             </v-form>
         </v-card>
     </div>
@@ -158,6 +167,10 @@ async function handleSubmit() {
     } finally {
         loading.value = false
     }
+}
+
+function goToLogin() {
+    navigateTo('/login')
 }
 </script>
 

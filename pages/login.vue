@@ -54,6 +54,15 @@
                         <span class="text-white">登录</span>
                     </v-btn>
                 </v-card-actions>
+                <div class="pb-6 text-center">
+                    <v-btn
+                        variant="text"
+                        color="primary"
+                        @click="goToRegister"
+                    >
+                        没有账号？去注册
+                    </v-btn>
+                </div>
             </v-form>
         </v-card>
     </div>
@@ -112,6 +121,10 @@ async function handleSubmit() {
     } finally {
         loading.value = false
     }
+}
+
+function goToRegister() {
+    navigateTo('/register')
 }
 </script>
 

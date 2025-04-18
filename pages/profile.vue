@@ -44,13 +44,18 @@
                                 <v-list-item-title>昵称</v-list-item-title>
                                 <v-list-item-subtitle class="align-center d-flex">
                                     {{ userStore.userInfo?.nickname }}
-                                    <v-btn
-                                        icon="mdi-pencil"
-                                        size="small"
-                                        variant="text"
-                                        class="ml-2"
-                                        @click="openNicknameDialog"
-                                    />
+                                    <v-tooltip text="修改昵称" location="top">
+                                        <template #activator="{props}">
+                                            <v-btn
+                                                icon="mdi-pencil"
+                                                size="small"
+                                                variant="text"
+                                                class="ml-2"
+                                                v-bind="props"
+                                                @click="openNicknameDialog"
+                                            />
+                                        </template>
+                                    </v-tooltip>
                                 </v-list-item-subtitle>
                             </v-list-item>
 
@@ -79,24 +84,37 @@
                                     >
                                         未验证
                                     </v-chip>
-                                    <v-btn
-                                        icon="mdi-pencil"
-                                        size="small"
-                                        variant="text"
-                                        class="ml-2"
-                                        @click="openEmailDialog"
-                                    />
-                                    <v-btn
+                                    <v-tooltip text="修改邮箱" location="top">
+                                        <template #activator="{props}">
+                                            <v-btn
+                                                icon="mdi-pencil"
+                                                size="small"
+                                                variant="text"
+                                                class="ml-2"
+                                                v-bind="props"
+                                                @click="openEmailDialog"
+                                            />
+                                        </template>
+                                    </v-tooltip>
+                                    <v-tooltip
                                         v-if="!userStore.userInfo?.emailVerified"
-                                        icon="mdi-email-send"
-                                        size="small"
-                                        variant="text"
-                                        class="ml-2"
-                                        :loading="emailVerifyLoading"
-                                        @click="handleSendVerifyEmail"
+                                        text="发送验证邮件"
+                                        location="top"
                                     >
-                                        <v-icon>mdi-email-send</v-icon>
-                                    </v-btn>
+                                        <template #activator="{props}">
+                                            <v-btn
+                                                icon="mdi-email-arrow-right"
+                                                size="small"
+                                                variant="text"
+                                                class="ml-2"
+                                                :loading="emailVerifyLoading"
+                                                v-bind="props"
+                                                @click="handleSendVerifyEmail"
+                                            >
+                                                <v-icon>mdi-email-arrow-right</v-icon>
+                                            </v-btn>
+                                        </template>
+                                    </v-tooltip>
                                 </v-list-item-subtitle>
                             </v-list-item>
 
@@ -256,8 +274,8 @@ const handleUpdateNickname = async () => {
 
 const handleUpdateEmail = async () => {
     if (!newEmail.value) {
-return
-}
+        return
+    }
     emailLoading.value = true
     try {
         await $fetch('/api/user/email', {

@@ -1,4 +1,4 @@
-import type { BaseFields, PartialFields } from './base'
+import type { BaseFields, DateToString, PartialFields } from './base'
 
 // 用户角色枚举
 export enum UserRole {
@@ -7,7 +7,7 @@ export enum UserRole {
 }
 
 // 基础用户接口
-export interface BaseUser extends BaseFields {
+export interface BaseUser {
     username: string
     nickname: string
     email: string
@@ -17,7 +17,7 @@ export interface BaseUser extends BaseFields {
     emailVerified: boolean
 }
 
-export type User = BaseUser
+export interface User extends BaseUser, DateToString<BaseFields> { }
 
 // 用于创建/更新用户的类型
 export type CreateUserDto = PartialFields<User, 'id' | 'createdAt' | 'updatedAt'>

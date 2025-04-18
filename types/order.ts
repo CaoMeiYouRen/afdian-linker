@@ -1,4 +1,4 @@
-import type { BaseFields } from './base'
+import type { BaseFields, DateToString } from './base'
 
 // 订单状态枚举
 export enum OrderStatus {
@@ -9,7 +9,7 @@ export enum OrderStatus {
 }
 
 // 基础订单接口
-export interface BaseOrder extends BaseFields {
+export interface BaseOrder {
     customOrderId: string
     amount: string
     currency: string
@@ -17,6 +17,10 @@ export interface BaseOrder extends BaseFields {
     paymentChannel: string
     channelOrderId?: string
     userId?: string
+}
+
+export interface Order extends BaseOrder, DateToString<BaseFields> {
+
 }
 
 // 状态映射类型

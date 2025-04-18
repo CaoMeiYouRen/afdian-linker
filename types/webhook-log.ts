@@ -1,9 +1,9 @@
-import type { BaseFields, PartialFields } from './base'
+import type { BaseFields, DateToString } from './base'
 
-export interface BaseWebhookLog extends BaseFields {
+export interface BaseWebhookLog {
     payload?: any
 }
 
-export type WebhookLog = BaseWebhookLog
+export interface WebhookLog extends BaseWebhookLog, DateToString<BaseFields> { }
 // export type CreateWebhookLogDto = PartialFields<WebhookLog, 'id' | 'createdAt' | 'updatedAt'>
 // export type UpdateWebhookLogDto = Partial<WebhookLog>

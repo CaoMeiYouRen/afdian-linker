@@ -100,7 +100,7 @@ async function handleSubmit() {
                 detail: '登录成功',
                 life: 3000,
             })
-            userStore.verifyLogin()
+            await userStore.verifyLogin()
             navigateTo('/')
             return
         }

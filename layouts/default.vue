@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-layout class="border rounded rounded-md">
         <!-- 侧边导航栏 -->
         <v-navigation-drawer
             v-model="drawer"
@@ -10,13 +10,11 @@
                     :title="'首页'"
                     prepend-icon="mdi-home"
                 />
-
                 <v-list-item
                     to="/checkout"
                     :title="'赞助'"
                     prepend-icon="mdi-cash"
                 />
-
                 <template v-if="userStore.isLoggedIn">
                     <v-list-item
                         to="/profile"
@@ -24,7 +22,6 @@
                         prepend-icon="mdi-account-circle"
                     />
                 </template>
-
                 <!-- 管理员菜单项 -->
                 <template v-if="userStore.isAdmin">
                     <v-divider />
@@ -73,12 +70,11 @@
                 </v-btn>
             </template>
         </v-app-bar>
-
         <!-- 页面主体内容 -->
-        <v-main>
+        <v-main class="align-center d-flex justify-center">
             <slot />
         </v-main>
-    </v-app>
+    </v-layout>
 </template>
 
 <script setup lang="ts">

@@ -132,8 +132,11 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer />
-                    <v-btn color="primary" @click="orderDetailDialog = false">
+                    <v-btn @click="orderDetailDialog = false">
                         关闭
+                    </v-btn>
+                    <v-btn color="primary" @click="handleOrderClick(selectedOrder?.id || '')">
+                        查看订单
                     </v-btn>
                 </v-card-actions>
             </v-card>

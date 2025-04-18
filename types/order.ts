@@ -1,4 +1,5 @@
-import type { BaseFields, DateToString } from './base'
+import type { BaseFields, DateToString, PartialFields } from './base'
+import type { BaseUser, User } from './user'
 
 // 订单状态枚举
 export enum OrderStatus {
@@ -20,7 +21,7 @@ export interface BaseOrder {
 }
 
 export interface Order extends BaseOrder, DateToString<BaseFields> {
-
+    user?: Partial<User | null>
 }
 
 // 状态映射类型

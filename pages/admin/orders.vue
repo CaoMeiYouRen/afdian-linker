@@ -39,6 +39,12 @@
                             <template #item.updatedAt="{item}">
                                 {{ formatDate(item.updatedAt) }}
                             </template>
+                            <template #item.user="{item}">
+                                <span v-if="item.user">
+                                    {{ item.user.nickname || item.user.email || item.user.id }}
+                                </span>
+                                <span v-else>-</span>
+                            </template>
                             <template #item.actions="{item}">
                                 <v-tooltip text="查看订单详情" location="top">
                                     <template #activator="{props}">
@@ -127,6 +133,13 @@
                             variant="outlined"
                             density="compact"
                         />
+                        <v-text-field
+                            label="所属用户"
+                            :model-value="(selectedOrder?.user?.nickname || selectedOrder?.user?.username || selectedOrder?.user?.id) || '-'"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
                         <!-- 如有更多字段可继续添加 -->
                     </v-form>
                 </v-card-text>
@@ -181,6 +194,7 @@ const headers: DataTableHeader[] = [
     { title: '支付渠道', key: 'paymentChannel', width: '150px' },
     { title: '金额', key: 'amount', width: '120px' },
     { title: '状态', key: 'status', width: '100px' },
+    { title: '用户', key: 'user', width: '160px' }, // 新增用户列
     { title: '创建时间', key: 'createdAt', width: '180px' },
     { title: '更新时间', key: 'updatedAt', width: '180px' },
     { title: '操作', key: 'actions', width: '80px', sortable: false },

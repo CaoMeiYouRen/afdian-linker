@@ -21,6 +21,11 @@
                         :title="'个人中心'"
                         prepend-icon="mdi-account-circle"
                     />
+                    <v-list-item
+                        to="/orders"
+                        :title="'我的订单'"
+                        prepend-icon="mdi-clipboard-text"
+                    />
                 </template>
                 <!-- 管理员菜单项 -->
                 <template v-if="userStore.isAdmin">

@@ -15,5 +15,6 @@ module.exports = {
         '@typescript-eslint/ban-types': [1],
         'vue/multi-word-component-names': [0],
         'no-console': [__WARN__],
+        'vue/valid-v-slot': [0],
     },
 }

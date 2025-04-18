@@ -3,13 +3,7 @@
         <v-row>
             <v-col>
                 <v-card class="mb-4">
-                    <v-card-title>管理后台</v-card-title>
-                    <v-card-text>
-                        <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
-                    </v-card-text>
-                </v-card>
-                <v-card>
-                    <v-card-title>最近订单</v-card-title>
+                    <v-card-title>我的订单</v-card-title>
                     <v-card-text>
                         <v-data-table
                             :headers="headers"
@@ -37,12 +31,6 @@
                             </template>
                             <template #item.updatedAt="{item}">
                                 {{ formatDate(item.updatedAt) }}
-                            </template>
-                            <template #item.user="{item}">
-                                <span v-if="item.user">
-                                    {{ item.user.nickname || item.user.email || item.user.id }}
-                                </span>
-                                <span v-else>-</span>
                             </template>
                             <template #item.actions="{item}">
                                 <v-tooltip text="查看订单详情" location="top">
@@ -78,13 +66,13 @@
                             variant="outlined"
                             density="compact"
                         />
-                        <v-text-field
+                        <!-- <v-text-field
                             label="自定义订单号"
                             :model-value="selectedOrder.customOrderId"
                             readonly
                             variant="outlined"
                             density="compact"
-                        />
+                        /> -->
                         <v-text-field
                             label="支付渠道"
                             :model-value="selectedOrder.paymentChannel"
@@ -132,14 +120,7 @@
                             variant="outlined"
                             density="compact"
                         />
-                        <v-text-field
-                            label="所属用户"
-                            :model-value="(selectedOrder?.user?.nickname || selectedOrder?.user?.username || selectedOrder?.user?.id) || '-'"
-                            readonly
-                            variant="outlined"
-                            density="compact"
-                        />
-                        <!-- 如有更多字段可继续添加 -->
+                        <!-- 可根据需要添加更多字段 -->
                     </v-form>
                 </v-card-text>
                 <v-card-actions>
@@ -157,19 +138,12 @@
 </template>
 
 <script setup lang="ts">
-// 添加中间件配置
-definePageMeta({
-//   middleware: ['admin'],
-})
-
 import { useToast } from 'primevue/usetoast'
-import { useUserStore } from '@/stores/user'
 import { type Order, getStatusText, getStatusColor } from '@/types/order'
 import { formatDate, formatCurrency } from '@/utils/format'
 import type { Pagination } from '@/types/pagination'
 
 const toast = useToast()
-const userStore = useUserStore()
 const loading = ref(false)
 const orders = ref<Order[]>([])
 const pagination = ref<Pagination>({
@@ -179,7 +153,7 @@ const pagination = ref<Pagination>({
     totalItems: 0,
 })
 
-// 表头定义
+// 表头定义（无用户列）
 interface DataTableHeader {
     title: string
     key: string
@@ -189,11 +163,10 @@ interface DataTableHeader {
 
 const headers: DataTableHeader[] = [
     { title: '订单号', key: 'id', width: '200px' },
-    { title: '自定义订单号', key: 'customOrderId', width: '200px' },
+    // { title: '自定义订单号', key: 'customOrderId', width: '200px' },
     { title: '支付渠道', key: 'paymentChannel', width: '150px' },
     { title: '金额', key: 'amount', width: '120px' },
     { title: '状态', key: 'status', width: '100px' },
-    { title: '用户', key: 'user', width: '160px' }, // 新增用户列
     { title: '创建时间', key: 'createdAt', width: '180px' },
     { title: '更新时间', key: 'updatedAt', width: '180px' },
     { title: '操作', key: 'actions', width: '80px', sortable: false },
@@ -207,7 +180,7 @@ const handleOrderClick = (orderId: string) => {
 const fetchOrders = async (params = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/admin/orders', {
+        const { data } = await useFetch('/api/orders', {
             query: {
                 page: pagination.value.currentPage,
                 perPage: pagination.value.perPage,
@@ -215,7 +188,7 @@ const fetchOrders = async (params = {}) => {
             },
         })
 
-        if (data.value?.statusCode === 200) {
+        if (data.value?.statusCode === 200 && data.value.data) {
             orders.value = data.value.data.items
             pagination.value = data.value.data.pagination
             return
@@ -237,10 +210,13 @@ const fetchOrders = async (params = {}) => {
 const handleTableUpdate = (options: any) => {
     pagination.value.currentPage = options.page
     pagination.value.perPage = options.itemsPerPage
-    fetchOrders({
-        sort: options.sortBy[0]?.key,
-        order: options.sortBy[0]?.order?.toUpperCase(),
-    })
+    console.log('options.sortBy', options.sortBy)
+    if (options.sortBy[0]?.key) {
+        fetchOrders({
+            sort: options.sortBy[0]?.key,
+            order: options.sortBy[0]?.order?.toUpperCase(),
+        })
+    }
 }
 
 // 页面加载时获取订单列表

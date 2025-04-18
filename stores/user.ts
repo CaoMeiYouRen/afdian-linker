@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import type { BaseUser } from '@/types/user'
+import type { User } from '@/types/user'
 import type { DateToString } from '@/types/base'
 
 export interface UserState {
-    userInfo: DateToString<BaseUser> | null
+    userInfo: DateToString<User> | null
 }
 
 export const useUserStore = defineStore('user', {
@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', {
         },
         async fetchUserInfo() {
             try {
-                const response = await $fetch('/api/user/info')
+                const response = await $fetch('/api/user/info') as any
                 if (response.statusCode === 200) {
                     this.userInfo = response.data || null
                     return true

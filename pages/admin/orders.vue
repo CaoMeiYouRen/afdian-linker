@@ -40,18 +40,104 @@
                                 {{ formatDate(item.updatedAt) }}
                             </template>
                             <template #item.actions="{item}">
-                                <v-btn
-                                    icon="mdi-eye"
-                                    size="small"
-                                    variant="text"
-                                    @click="handleOrderClick(item.id)"
-                                />
+                                <v-tooltip text="查看订单详情" location="top">
+                                    <template #activator="{props}">
+                                        <v-btn
+                                            icon="mdi-eye"
+                                            size="small"
+                                            variant="text"
+                                            v-bind="props"
+                                            @click="handleOrderDetailClick(item)"
+                                        />
+                                    </template>
+                                </v-tooltip>
                             </template>
                         </v-data-table>
                     </v-card-text>
                 </v-card>
             </v-col>
         </v-row>
+        <!-- 订单详情弹窗 -->
+        <v-dialog v-model="orderDetailDialog" max-width="600px">
+            <v-card>
+                <v-card-title>
+                    订单详情
+                    <v-spacer />
+                </v-card-title>
+                <v-card-text v-if="selectedOrder">
+                    <v-form>
+                        <v-text-field
+                            label="订单号"
+                            :model-value="selectedOrder.id"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
+                        <v-text-field
+                            label="自定义订单号"
+                            :model-value="selectedOrder.customOrderId"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
+                        <v-text-field
+                            label="支付渠道"
+                            :model-value="selectedOrder.paymentChannel"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
+                        <v-text-field
+                            label="金额"
+                            :model-value="formatCurrency(selectedOrder.amount, selectedOrder.currency)"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
+                        <v-text-field
+                            label="状态"
+                            :model-value="getStatusText(selectedOrder.status)"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                            :append-inner-icon="getStatusColor(selectedOrder.status)"
+                            class="order-status-field"
+                        >
+                            <template #append-inner>
+                                <v-chip
+                                    :color="getStatusColor(selectedOrder.status)"
+                                    text-color="white"
+                                    size="small"
+                                >
+                                    {{ getStatusText(selectedOrder.status) }}
+                                </v-chip>
+                            </template>
+                        </v-text-field>
+                        <v-text-field
+                            label="创建时间"
+                            :model-value="formatDate(selectedOrder.createdAt)"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
+                        <v-text-field
+                            label="更新时间"
+                            :model-value="formatDate(selectedOrder.updatedAt)"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
+                        <!-- 如有更多字段可继续添加 -->
+                    </v-form>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer />
+                    <v-btn color="primary" @click="orderDetailDialog = false">
+                        关闭
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
@@ -96,13 +182,6 @@ const headers: DataTableHeader[] = [
     { title: '更新时间', key: 'updatedAt', width: '180px' },
     { title: '操作', key: 'actions', width: '80px', sortable: false },
 ]
-
-const route = useRoute()
-const router = useRouter()
-
-const handleBack = () => {
-    navigateTo('/')
-}
 
 const handleOrderClick = (orderId: string) => {
     navigateTo(`/orders/${orderId}`)
@@ -152,4 +231,12 @@ const handleTableUpdate = (options: any) => {
 onMounted(() => {
     fetchOrders()
 })
+
+const orderDetailDialog = ref(false)
+const selectedOrder = ref<Order | null>(null)
+
+const handleOrderDetailClick = (order: Order) => {
+    selectedOrder.value = order
+    orderDetailDialog.value = true
+}
 </script>

@@ -1,16 +1,35 @@
 import { createError } from 'h3'
+import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { Plan } from '@/server/entities/plan'
 import { Session } from '@/server/utils/session'
 import { createPaginatedResponse } from '@/server/types/pagination'
+import { planQuerySchema, queryPlans } from '@/server/utils/query/plan'
 
 export default defineEventHandler(async (event) => {
-    const auth = event.context.auth as Session
-    if (!auth || auth.role !== 'ADMIN') {
-        throw createError({ statusCode: 403, message: '无权限' })
+    try {
+        const auth = event.context.auth as Session
+        if (!auth || auth.role !== 'ADMIN') {
+            throw createError({ statusCode: 403, message: '无权限' })
+        }
+
+        const query = await planQuerySchema.parseAsync(getQuery(event))
+        const dataSource = await getDataSource()
+        const planRepository = dataSource.getRepository(Plan)
+
+        const result = await queryPlans(planRepository, query)
+        return createPaginatedResponse(result.items, result.pagination)
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            throw createError({
+                statusCode: 400,
+                message: '参数验证失败',
+                data: error.issues,
+            })
+        }
+        throw createError({
+            statusCode: 500,
+            message: error instanceof Error ? error.message : '服务器内部错误',
+        })
     }
-    const dataSource = await getDataSource()
-    const planRepository = dataSource.getRepository(Plan)
-    const plans = await planRepository.find({ order: { createdAt: 'DESC' } })
-    return { code: 200, data: plans }
 })

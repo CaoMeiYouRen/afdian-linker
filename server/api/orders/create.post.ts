@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
             status: OrderStatus.PENDING,
             currency: 'CNY',
             metaData: {
-                months: data.months,
+                month: data.months,
                 remark: data.remark,
             },
             userId: auth.id,

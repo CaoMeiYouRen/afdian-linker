@@ -1,4 +1,5 @@
 import type { BaseFields, DateToString, PartialFields } from './base'
+import type { PaymentChannelType } from './channel'
 import type { BaseUser, User } from './user'
 
 // 订单状态枚举
@@ -9,13 +10,40 @@ export enum OrderStatus {
     EXPIRED = 'EXPIRED',
 }
 
+export interface MetaData {
+    // 商品/套餐ID
+    plan_id: string
+    // 商品/套餐名称
+    plan_title: string
+    // 用户ID。这里指爱发电用户的ID
+    user_id: string
+    // 用户昵称。这里指爱发电用户的昵称
+    user_name: string
+    // 0表示常规方案 1表示售卖方案
+    product_type: number
+    // 备注
+    remark: string
+    // 兑换码ID
+    redeem_id: string
+    // 用户私有ID
+    user_private_id: string
+    // 月数
+    month: number
+}
+
 // 基础订单接口
 export interface BaseOrder {
+    // 自定义订单ID。用于关联本系统和爱发电订单
     customOrderId: string
+    // 实际支付金额
     amount: string
+    // 货币类型
     currency: string
+    // 订单状态
     status: OrderStatus
-    paymentChannel: string
+    // 订单渠道
+    paymentChannel: PaymentChannelType
+    // 订单渠道ID
     channelOrderId?: string
     userId?: string
 }

@@ -40,7 +40,7 @@ export class AfdianChannel implements PaymentChannel {
             plan_id: config.afdianPlanId,
             custom_order_id: order.customOrderId,
             product_type: config.afdianProductType || '0', // product_type 0表示常规方案 1表示售卖方案
-            month: order.metaData?.months?.toString() || '1',
+            month: order.metaData?.month?.toString() || '1',
             remark: encodeURIComponent(order.metaData?.remark || ''),
         })
         return `https://afdian.com/order/create?${params}`

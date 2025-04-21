@@ -5,6 +5,7 @@ import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/server/entities/order'
 import { useAfdian } from '@/server/utils/afdian'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { getOrderMetaData } from '@/server/utils/order'
 
 // 添加参数验证工具函数
 async function getValidatedQuery<T extends z.ZodType>(event: H3Event, schema: T): Promise<z.infer<T>> {
@@ -14,7 +15,7 @@ async function getValidatedQuery<T extends z.ZodType>(event: H3Event, schema: T)
 
 const querySchema = z.object({
     page: z.coerce.number().min(1).default(1),
-    per_page: z.coerce.number().min(1).max(1000).default(10),
+    per_page: z.coerce.number().min(1).max(100).default(50),
 })
 
 export default defineEventHandler(async (event) => {
@@ -59,6 +60,10 @@ export default defineEventHandler(async (event) => {
                     amount: orderData.total_amount,
                     currency: 'CNY',
                     rawData: orderData,
+                    metaData: {
+                        ...existingOrder?.metaData,
+                        ...getOrderMetaData(orderData),
+                    },
                 }
 
                 if (existingOrder) {

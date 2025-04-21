@@ -3,6 +3,7 @@ import { AfdianWebhookResponse } from '@cao-mei-you-ren/afdian'
 import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/server/entities/order'
 import { WebhookLog } from '@/server/entities/webhook-log'
+import { getOrderMetaData } from '@/server/utils/order'
 
 export default defineEventHandler(async (event) => {
     try {
@@ -36,6 +37,10 @@ export default defineEventHandler(async (event) => {
                 existingOrder.channelOrderId = orderData.out_trade_no
                 existingOrder.status = orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED
                 existingOrder.rawData = orderData
+                existingOrder.metaData = {
+                    ...existingOrder.metaData,
+                    ...getOrderMetaData(orderData),
+                }
                 await manager.save(existingOrder)
             } else {
                 const newOrder = manager.create(Order, {
@@ -46,6 +51,7 @@ export default defineEventHandler(async (event) => {
                     amount: orderData.total_amount,
                     currency: 'CNY',
                     rawData: orderData,
+                    metaData: getOrderMetaData(orderData),
                 })
                 await manager.save(newOrder)
             }

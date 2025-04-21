@@ -17,7 +17,7 @@
                         >
                             <template #item.paymentChannel="{item}">
                                 <v-chip
-                                    color="#946ce6"
+                                    :color="getChannelColor(item.paymentChannel)"
                                     text-color="white"
                                 >
                                     {{ formatChannel(item.paymentChannel) }}
@@ -150,6 +150,7 @@ import { useToast } from 'primevue/usetoast'
 import { type Order, getStatusText, getStatusColor } from '@/types/order'
 import { formatDate, formatCurrency, formatChannel } from '@/utils/format'
 import type { Pagination } from '@/types/pagination'
+import { getChannelColor } from '@/utils/color'
 
 const toast = useToast()
 const loading = ref(false)

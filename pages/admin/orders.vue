@@ -33,6 +33,14 @@
                             hover
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.paymentChannel="{item}">
+                                <v-chip
+                                    color="#946ce6"
+                                    text-color="white"
+                                >
+                                    {{ formatChannel(item.paymentChannel) }}
+                                </v-chip>
+                            </template>
                             <template #item.amount="{item}">
                                 {{ formatCurrency(item.amount, item.currency) }}
                             </template>
@@ -184,7 +192,7 @@ definePageMeta({
 import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
 import { type Order, getStatusText, getStatusColor } from '@/types/order'
-import { formatDate, formatCurrency } from '@/utils/format'
+import { formatDate, formatCurrency, formatChannel } from '@/utils/format'
 import type { Pagination } from '@/types/pagination'
 
 const toast = useToast()

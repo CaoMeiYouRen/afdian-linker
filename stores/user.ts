@@ -24,6 +24,9 @@ export const useUserStore = defineStore('user', {
         clearUserInfo() {
             this.userInfo = null
         },
+        /**
+         * @deprecated 改用 fetchUserInfo
+         */
         async verifyLogin() {
             try {
                 const response = await $fetch('/api/auth/verify', { method: 'POST' })
@@ -39,9 +42,13 @@ export const useUserStore = defineStore('user', {
         },
         async fetchUserInfo() {
             try {
-                const response = await $fetch('/api/user/info') as any
-                if (response.statusCode === 200) {
-                    this.userInfo = response.data || null
+                // 只在客户端执行，避免SSR重复请求
+                if (import.meta.server) {
+                    return false
+                }
+                const { data } = await useFetch('/api/user/info') as any
+                if (data.value?.statusCode === 200) {
+                    this.userInfo = data.value.data || null
                     return true
                 }
                 return false

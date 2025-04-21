@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware((to, from) => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
     // 白名单路径
     const publicPaths = [
         '/login',
@@ -9,11 +9,19 @@ export default defineNuxtRouteMiddleware((to, from) => {
         return true
     }
 
+    // 只在客户端执行，避免SSR重复请求
+    if (import.meta.server) {
+        return true
+    }
+
     const userStore = useUserStore()
 
     // 检查用户是否登录
     if (!userStore.isLoggedIn) {
-        // 如果没有登录，重定向到登录页面
+        await userStore.fetchUserInfo()
+    }
+    // 重定向到登录页面
+    if (!userStore.isLoggedIn && from.path !== '/login') {
         return navigateTo('/login')
     }
     // 如果访问管理界面，检查用户是否为管理员

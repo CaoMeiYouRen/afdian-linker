@@ -106,9 +106,9 @@ const handleChangePassword = () => {
     navigateTo('/change-password')
 }
 
-onMounted(async () => {
-    await userStore.verifyLogin()
-})
+// onMounted(async () => {
+//     await userStore.verifyLogin()
+// })
 </script>
 
 <style scoped>

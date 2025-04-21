@@ -64,6 +64,7 @@ export default defineEventHandler(async (event) => {
         return createApiResponse({
             requirePasswordChange: user.initialPassword,
             requireEmailChange: user.initialEmail,
+            requireEmailVerification: user.emailVerified,
             token,
         })
     } catch (error) {

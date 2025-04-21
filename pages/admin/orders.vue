@@ -6,6 +6,18 @@
                     <v-card-title>管理后台</v-card-title>
                     <v-card-text>
                         <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
+                        <!-- 新增同步按钮 -->
+                        <v-btn
+                            color="primary"
+                            class="mt-2"
+                            :loading="syncLoading"
+                            @click="handleSync"
+                        >
+                            <v-icon left>
+                                mdi-sync
+                            </v-icon>
+                            同步爱发电订单
+                        </v-btn>
                     </v-card-text>
                 </v-card>
                 <v-card>
@@ -179,6 +191,8 @@ const pagination = ref<Pagination>({
     totalItems: 0,
 })
 
+const syncLoading = ref(false)
+
 // 表头定义
 interface DataTableHeader {
     title: string
@@ -241,6 +255,34 @@ const handleTableUpdate = (options: any) => {
         sort: options.sortBy[0]?.key,
         order: options.sortBy[0]?.order?.toUpperCase(),
     })
+}
+
+// 同步爱发电订单
+const handleSync = async () => {
+    syncLoading.value = true
+    try {
+        const { data } = await useFetch('/api/afdian/sync')
+        if (data.value?.statusCode === 200) {
+            toast.add({
+                severity: 'success',
+                summary: '同步成功',
+                detail: `同步完成，更新了 ${data.value.data?.count || 0} 条订单`,
+                life: 3000,
+            })
+          await fetchOrders()
+          return
+        }
+        throw new Error(data.value?.message || '同步失败')
+    } catch (error: any) {
+        toast.add({
+            severity: 'error',
+            summary: '同步失败',
+            detail: error.message || '同步失败',
+            life: 5000,
+        })
+    } finally {
+        syncLoading.value = false
+    }
 }
 
 // 页面加载时获取订单列表

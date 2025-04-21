@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@cao-mei-you-ren/afdian':
-        specifier: ^1.0.3
-        version: 1.0.3
+        specifier: ^1.0.4
+        version: 1.0.4
       '@mdi/font':
         specifier: ^7.4.47
         version: 7.4.47
@@ -336,8 +336,8 @@ packages:
     resolution: {integrity: sha512-emqcG3vHrpxUKTrxcblR36dcrcoRDvKmnL/dCL6ZsHaShW80qxCAcNhzQZrpeM765VzEos+xOi4s+r4IXzTwdQ==}
     engines: {node: '>=6.9.0'}
 
-  '@cao-mei-you-ren/afdian@1.0.3':
-    resolution: {integrity: sha512-ljTvoOurLcb03I4u2EcsB5iXfjoeSNQB5hSXxi/HAlMG1Eduhh2BuOs45AgD6cYAp/TZjhsRuPZkl0GZ265rvA==}
+  '@cao-mei-you-ren/afdian@1.0.4':
+    resolution: {integrity: sha512-YQZ1wnxWaRVDwuIn+GPxQmk/A0X46nU+cz14XzDBqqVM1nagdx7XZnrjTEr314HhIB6+2FYLHgf8tqywGbXugA==}
 
   '@cloudflare/kv-asset-handler@0.3.4':
     resolution: {integrity: sha512-YLPHc8yASwjNkmcDMQMY35yiWjoKAKnhUbPRszBRS0YgH+IXtsMp61j+yTcnCE3oO2DgP0U3iejLC8FTtKDC8Q==}
@@ -8062,7 +8062,7 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@cao-mei-you-ren/afdian@1.0.3':
+  '@cao-mei-you-ren/afdian@1.0.4':
     dependencies:
       crypto-js: 4.2.0
       isomorphic-unfetch: 3.1.0

@@ -1,4 +1,4 @@
-import Afdian from '@cao-mei-you-ren/afdian'
+import { Afdian } from '@cao-mei-you-ren/afdian'
 
 export const useAfdian = () => {
     const config = useRuntimeConfig()

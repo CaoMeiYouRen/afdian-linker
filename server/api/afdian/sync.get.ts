@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { In } from 'typeorm'
 import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/server/entities/order'
-import { useAfdian } from '@/composables/useAfdian'
+import { useAfdian } from '@/server/utils/afdian'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 // 添加参数验证工具函数

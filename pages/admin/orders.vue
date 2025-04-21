@@ -18,6 +18,18 @@
                             </v-icon>
                             同步爱发电订单
                         </v-btn>
+                        <!-- 新增处理超时订单按钮 -->
+                        <v-btn
+                            color="error"
+                            class="ml-2 mt-2"
+                            :loading="expireLoading"
+                            @click="handleExpire"
+                        >
+                            <v-icon left>
+                                mdi-timer-off
+                            </v-icon>
+                            处理超时订单
+                        </v-btn>
                     </v-card-text>
                 </v-card>
                 <v-card>
@@ -208,6 +220,8 @@ const pagination = ref<Pagination>({
 })
 
 const syncLoading = ref(false)
+// 新增处理超时订单的 loading 状态
+const expireLoading = ref(false)
 
 // 表头定义
 interface DataTableHeader {
@@ -299,6 +313,34 @@ const handleSync = async () => {
         })
     } finally {
         syncLoading.value = false
+    }
+}
+
+// 处理超时订单
+const handleExpire = async () => {
+    expireLoading.value = true
+    try {
+        const { data } = await useFetch('/api/admin/orders/expire', { method: 'POST' })
+        if (data.value?.data?.count) {
+            toast.add({
+                severity: 'success',
+                summary: '处理完成',
+                detail: `已处理 ${data.value.data.count} 条超时订单`,
+                life: 3000,
+            })
+            await fetchOrders()
+            return
+        }
+        throw new Error(data.value?.message || '处理超时订单失败')
+    } catch (error: any) {
+        toast.add({
+            severity: 'error',
+            summary: '处理失败',
+            detail: error.message || '处理超时订单失败',
+            life: 5000,
+        })
+    } finally {
+        expireLoading.value = false
     }
 }
 

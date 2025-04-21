@@ -6,7 +6,6 @@
                     <v-card-title>管理后台</v-card-title>
                     <v-card-text>
                         <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
-                        <!-- 新增同步按钮 -->
                         <v-btn
                             color="primary"
                             class="mt-2"
@@ -18,7 +17,6 @@
                             </v-icon>
                             同步爱发电订单
                         </v-btn>
-                        <!-- 新增处理超时订单按钮 -->
                         <v-btn
                             color="error"
                             class="ml-2 mt-2"
@@ -29,6 +27,17 @@
                                 mdi-timer-off
                             </v-icon>
                             处理超时订单
+                        </v-btn>
+                        <v-btn
+                            color="secondary"
+                            class="ml-2 mt-2"
+                            :loading="loading"
+                            @click="fetchOrders()"
+                        >
+                            <v-icon left>
+                                mdi-refresh
+                            </v-icon>
+                            刷新列表
                         </v-btn>
                     </v-card-text>
                 </v-card>
@@ -178,7 +187,6 @@
                             variant="outlined"
                             density="compact"
                         />
-                        <!-- 如有更多字段可继续添加 -->
                     </v-form>
                 </v-card-text>
                 <v-card-actions>

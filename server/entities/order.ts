@@ -13,7 +13,7 @@ export class Order extends BaseEntity implements BaseOrder {
     @Column({ type: 'varchar', length: 255, nullable: true, unique: true })
     channelOrderId: string
 
-    @Column({ type: 'varchar', length: 255, unique: true })
+    @Column({ type: 'varchar', length: 255, nullable: true, unique: true })
     customOrderId: string
 
     @Column({

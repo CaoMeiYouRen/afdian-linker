@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
             })
 
             const existingOrdersMap = new Map(
-                existingOrders.map((order) => [order.customOrderId, order]),
+                existingOrders.map((order) => [order.channelOrderId, order]),
             )
 
             // 批量更新逻辑

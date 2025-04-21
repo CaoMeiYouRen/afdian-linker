@@ -5,40 +5,47 @@
                 <v-card class="mb-4">
                     <v-card-title>管理后台</v-card-title>
                     <v-card-text>
-                        <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
-                        <v-btn
-                            color="primary"
-                            class="mt-2"
-                            :loading="syncLoading"
-                            @click="handleSync"
-                        >
-                            <v-icon left>
-                                mdi-sync
-                            </v-icon>
-                            同步爱发电订单
-                        </v-btn>
-                        <v-btn
-                            color="error"
-                            class="ml-2 mt-2"
-                            :loading="expireLoading"
-                            @click="handleExpire"
-                        >
-                            <v-icon left>
-                                mdi-timer-off
-                            </v-icon>
-                            处理超时订单
-                        </v-btn>
-                        <v-btn
-                            color="secondary"
-                            class="ml-2 mt-2"
-                            :loading="loading"
-                            @click="fetchOrders()"
-                        >
-                            <v-icon left>
-                                mdi-refresh
-                            </v-icon>
-                            刷新列表
-                        </v-btn>
+                        <v-row align="center">
+                            <div>
+                                <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用爱发电订单管理系统</p>
+                            </div>
+                            <v-spacer />
+                            <div class="button-group">
+                                <v-btn
+                                    color="primary"
+                                    class="mt-2"
+                                    :loading="syncLoading"
+                                    @click="handleSync"
+                                >
+                                    <v-icon left>
+                                        mdi-sync
+                                    </v-icon>
+                                    同步爱发电订单
+                                </v-btn>
+                                <v-btn
+                                    color="error"
+                                    class="ml-2 mt-2"
+                                    :loading="expireLoading"
+                                    @click="handleExpire"
+                                >
+                                    <v-icon left>
+                                        mdi-timer-off
+                                    </v-icon>
+                                    处理超时订单
+                                </v-btn>
+                                <v-btn
+                                    color="secondary"
+                                    class="ml-2 mt-2"
+                                    :loading="loading"
+                                    @click="fetchOrders()"
+                                >
+                                    <v-icon left>
+                                        mdi-refresh
+                                    </v-icon>
+                                    刷新列表
+                                </v-btn>
+                            </div>
+                        </v-row>
                     </v-card-text>
                 </v-card>
                 <v-card>

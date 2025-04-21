@@ -1,0 +1,38 @@
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { BaseEntity } from './base-entity'
+
+/**
+ * productType: 0=常规方案, 1=售卖方案
+ * skuDetail: 仅售卖方案，数组，包含skuId/skuName/quantity等
+ */
+@Entity('plan')
+export class Plan extends BaseEntity {
+
+    @Column({ type: 'varchar', length: 64 })
+    title: string
+
+    @Column({ type: 'decimal', precision: 10, scale: 2 })
+    amount: number
+
+    @Column({ type: 'int', default: 0 })
+    productType: number
+
+    @Column({ type: 'int', nullable: true })
+    month?: number
+
+    @Column({ type: 'json', nullable: true })
+    skuDetail?: any[]
+
+    @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
+    showAmount?: number
+
+    @Column({ type: 'decimal', precision: 4, scale: 2, nullable: true })
+    discount?: number
+
+    @Column({ type: 'text', nullable: true })
+    description?: string
+
+    @Column({ type: 'boolean', default: true })
+    enabled: boolean
+
+}

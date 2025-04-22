@@ -130,6 +130,13 @@
                             density="compact"
                         />
                         <v-text-field
+                            label="商品名称"
+                            :model-value="selectedOrder.plan?.title"
+                            readonly
+                            variant="outlined"
+                            density="compact"
+                        />
+                        <v-text-field
                             label="自定义订单号"
                             :model-value="selectedOrder.customOrderId"
                             readonly

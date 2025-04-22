@@ -29,6 +29,7 @@ export default defineEventHandler(async (event) => {
 
     const order = await orderRepository.findOne({
         where: whereCondition,
+        relations: ['plan'],
     })
 
     if (!order) {
@@ -48,6 +49,7 @@ export default defineEventHandler(async (event) => {
             paymentChannel: order.paymentChannel,
             createdAt: order.createdAt,
             updatedAt: order.updatedAt,
+            plan: order.plan,
         },
     })
 })

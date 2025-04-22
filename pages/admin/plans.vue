@@ -258,7 +258,7 @@ const headers = [
     { title: '月数', key: 'month', width: '80px' },
     { title: '展示金额', key: 'showAmount', width: '100px' },
     { title: '折扣', key: 'discount', width: '80px' },
-    { title: '描述', key: 'description', width: '200px' },
+    // { title: '描述', key: 'description', width: '200px' },
     { title: '启用', key: 'enabled', width: '80px' },
     { title: '创建时间', key: 'createdAt', width: '160px' },
     { title: '更新时间', key: 'updatedAt', width: '160px' },

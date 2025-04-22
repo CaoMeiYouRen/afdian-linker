@@ -16,6 +16,12 @@
                             <dt>订单号</dt>
                             <dd>{{ order.id }}</dd>
 
+                            <dt>商品名称</dt>
+                            <dd>{{ order.plan?.title }}</dd>
+
+                            <dt>商品描述</dt>
+                            <dd>{{ order.plan?.description }}</dd>
+
                             <dt>金额</dt>
                             <dd>{{ formatCurrency(order.amount, order.currency) }}</dd>
 

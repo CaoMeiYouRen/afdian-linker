@@ -15,6 +15,9 @@
                             hover
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.plan="{item}">
+                                {{ item.plan?.title }}
+                            </template>
                             <template #item.paymentChannel="{item}">
                                 <v-chip
                                     :color="getChannelColor(item.paymentChannel)"
@@ -74,13 +77,13 @@
                             variant="outlined"
                             density="compact"
                         />
-                        <!-- <v-text-field
-                            label="自定义订单号"
-                            :model-value="selectedOrder.customOrderId"
+                        <v-text-field
+                            label="商品名称"
+                            :model-value="selectedOrder.plan?.title"
                             readonly
                             variant="outlined"
                             density="compact"
-                        /> -->
+                        />
                         <v-text-field
                             label="支付渠道"
                             :model-value="selectedOrder.paymentChannel"
@@ -172,6 +175,7 @@ interface DataTableHeader {
 
 const headers: DataTableHeader[] = [
     { title: '订单号', key: 'id', width: '200px' },
+    { title: '商品名称', key: 'plan', width: '160px' },
     // { title: '自定义订单号', key: 'customOrderId', width: '200px' },
     { title: '支付渠道', key: 'paymentChannel', width: '150px' },
     { title: '金额', key: 'amount', width: '120px' },

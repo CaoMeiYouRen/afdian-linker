@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
         // 确保只能查询自己的订单
         query.userId = auth.id
 
-        const result = await queryOrders(orderRepository, query)
+        const result = await queryOrders(orderRepository, query, ['plan'])
         const itemsWithUser = result.items.map((order) => {
             const { user, ...orderData } = order
             return {

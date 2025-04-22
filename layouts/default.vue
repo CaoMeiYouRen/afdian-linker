@@ -66,6 +66,19 @@
                 爱发电助手
             </v-app-bar-title>
             <v-spacer />
+            <template v-if="userStore.isLoggedIn">
+                <v-btn
+                    text
+                    class="error--text mx-2"
+                    color="white"
+                    @click="handleLogout"
+                >
+                    <v-icon left>
+                        mdi-logout
+                    </v-icon>
+                    退出登录
+                </v-btn>
+            </template>
             <template v-if="!userStore.isLoggedIn">
                 <v-btn
                     text

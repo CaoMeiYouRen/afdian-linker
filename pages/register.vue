@@ -132,7 +132,7 @@ async function handleSubmit() {
     }
     loading.value = true
     try {
-        const { data } = await useFetch('/api/auth/register', {
+        const { data, error } = await useFetch('/api/auth/register', {
             method: 'POST',
             body: {
                 username: form.username,
@@ -151,13 +151,9 @@ async function handleSubmit() {
             navigateTo('/login')
             return
         }
-        toast.add({
-            severity: 'error',
-            summary: '错误',
-            detail: data.value?.message || '注册失败',
-            life: 5000,
-        })
+        throw new Error(error.value?.data?.message || error.value?.message || '注册失败')
     } catch (error: any) {
+        console.error('注册失败', error)
         toast.add({
             severity: 'error',
             summary: '错误',

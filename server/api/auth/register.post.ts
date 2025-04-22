@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody } from 'h3'
-import { z } from 'zod'
+import { z, ZodError } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { User, UserRole } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
@@ -13,31 +13,47 @@ const schema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-    const { username, nickname, email, password } = await readValidatedBody(event, schema.parse)
+    try {
+        const body = await readBody(event)
+        const { username, nickname, email, password } = schema.parse(body)
 
-    const dataSource = await getDataSource()
-    const repo = dataSource.getRepository(User)
+        const dataSource = await getDataSource()
+        const repo = dataSource.getRepository(User)
 
-    // 检查用户名和邮箱唯一性
-    const existUser = await repo.findOneBy([{ username }, { email }])
-    if (existUser) {
-        throw createError({ statusCode: 400, message: '用户名或邮箱已被占用' })
+        // 检查用户名和邮箱唯一性
+        const existUser = await repo.findOneBy([{ username }, { email }])
+        if (existUser) {
+            throw createError({ statusCode: 400, message: '用户名或邮箱已被占用' })
+        }
+
+        const user = repo.create({
+            username,
+            nickname,
+            email,
+            password,
+            role: UserRole.USER,
+            initialPassword: false,
+            initialEmail: false,
+            emailVerified: false,
+        })
+        await repo.save(user)
+
+        // 发送邮箱验证邮件
+        await sendVerifyEmail(user.id, user.email)
+
+        return createApiResponse(null, 200, '注册成功，请查收验证邮件')
+    } catch (error: any) {
+        if (error instanceof ZodError) {
+            throw createError({
+                statusCode: 400,
+                message: error.issues.map((e) => e.message).join(', '),
+                data: error.issues.map((e) => ({
+                    path: e.path,
+                    message: e.message,
+                    code: e.code,
+                })),
+            })
+        }
+        throw error
     }
-
-    const user = repo.create({
-        username,
-        nickname,
-        email,
-        password,
-        role: UserRole.USER,
-        initialPassword: false,
-        initialEmail: false,
-        emailVerified: false,
-    })
-    await repo.save(user)
-
-    // 发送邮箱验证邮件
-    await sendVerifyEmail(user.id, user.email)
-
-    return createApiResponse(null, 200, '注册成功，请查收验证邮件')
 })

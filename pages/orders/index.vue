@@ -193,7 +193,7 @@ const handleOrderClick = (orderId: string) => {
 const fetchOrders = async (params = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/orders', {
+        const { data, error } = await useFetch('/api/orders', {
             query: {
                 page: pagination.value.currentPage,
                 perPage: pagination.value.perPage,
@@ -206,7 +206,7 @@ const fetchOrders = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(data.value?.message || '获取订单列表失败')
+        throw new Error(error.value?.message || '获取订单列表失败')
     } catch (error: any) {
         console.error('获取订单列表失败:', error)
         toast.add({

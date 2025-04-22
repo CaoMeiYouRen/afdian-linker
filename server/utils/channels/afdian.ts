@@ -12,7 +12,7 @@ interface AfdianConfig {
 export class AfdianChannel implements PaymentChannel {
     private getConfig(): AfdianConfig {
         const config = useRuntimeConfig()
-        const required = ['afdianPlanId', 'afdianUserId', 'afdianToken']
+        const required = ['afdianUserId', 'afdianToken']
         const missing = required.filter((key) => !config[key])
 
         if (missing.length > 0) {
@@ -37,7 +37,7 @@ export class AfdianChannel implements PaymentChannel {
     async generatePayUrl(order: Order): Promise<string> {
         const config = this.getConfig()
         const params = new URLSearchParams({
-            plan_id: order.metaData?.plan_id || config.afdianPlanId,
+            plan_id: order.metaData?.plan_id,
             custom_order_id: order.customOrderId,
             product_type: order.metaData.product_type.toString() || '0', // product_type 0表示常规方案 1表示售卖方案
             month: order.metaData?.month?.toString() || '1',

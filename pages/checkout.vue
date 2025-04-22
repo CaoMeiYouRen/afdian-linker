@@ -158,7 +158,12 @@ const fetchPlans = async () => {
     plansLoading.value = true
     plansError.value = ''
     try {
-        const { data, error: fetchError } = await useFetch('/api/plans')
+        const { data, error: fetchError } = await useFetch('/api/plans', {
+           query: {
+            sort: 'showAmount',
+            order: 'ASC',
+           },
+        })
         if (fetchError.value) {
             plansError.value = fetchError.value.message || '获取支持方案失败'
             return

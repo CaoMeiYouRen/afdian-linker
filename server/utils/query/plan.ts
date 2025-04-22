@@ -8,7 +8,7 @@ export const planQuerySchema = z.object({
     perPage: z.coerce.number().min(1).max(100).default(20),
     enabled: z.boolean().optional(),
     productType: z.number().int().optional(),
-    sort: z.enum(['createdAt']).optional(),
+    sort: z.enum(['createdAt', 'amount', 'showAmount']).optional(),
     order: z.enum(['ASC', 'DESC']).default('DESC'),
 })
 

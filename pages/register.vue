@@ -153,7 +153,7 @@ async function handleSubmit() {
         }
         throw new Error(error.value?.data?.message || error.value?.message || '注册失败')
     } catch (error: any) {
-        console.error('注册失败', error)
+        console.error(error)
         toast.add({
             severity: 'error',
             summary: '错误',

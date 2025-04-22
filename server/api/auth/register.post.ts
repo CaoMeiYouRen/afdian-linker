@@ -47,11 +47,7 @@ export default defineEventHandler(async (event) => {
             throw createError({
                 statusCode: 400,
                 message: error.issues.map((e) => e.message).join(', '),
-                data: error.issues.map((e) => ({
-                    path: e.path,
-                    message: e.message,
-                    code: e.code,
-                })),
+                data: error.issues,
             })
         }
         throw error

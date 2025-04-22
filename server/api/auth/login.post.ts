@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
             max: 5,
         })
 
-        const body = await readValidatedBody(event, loginSchema.parse)
+        const body = loginSchema.parse(await readBody(event))
         const dataSource = await getDataSource()
         const userRepo = dataSource.getRepository(User)
 
@@ -71,7 +71,7 @@ export default defineEventHandler(async (event) => {
         if (error instanceof z.ZodError) {
             throw createError({
                 statusCode: 400,
-                message: '输入格式验证失败',
+                message: error.issues.map((e) => e.message).join(', '),
                 data: error.issues,
             })
         }

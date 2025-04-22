@@ -125,7 +125,7 @@
                                     </v-icon>
                                 </template>
                                 <v-list-item-title>角色</v-list-item-title>
-                                <v-list-item-subtitle>{{ userStore.userInfo?.role === 'ADMIN' ? '管理员' : '普通用户' }}</v-list-item-subtitle>
+                                <v-list-item-subtitle>{{ userStore.isAdmin ? '管理员' : '普通用户' }}</v-list-item-subtitle>
                             </v-list-item>
 
                             <v-list-item>

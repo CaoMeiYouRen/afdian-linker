@@ -17,10 +17,10 @@
                         >
                             <template #item.role="{item}">
                                 <v-chip
-                                    :color="item.role === 'ADMIN' ? 'error' : 'primary'"
+                                    :color="item.role === UserRole.ADMIN ? 'error' : 'primary'"
                                     text-color="white"
                                 >
-                                    {{ item.role === 'ADMIN' ? '管理员' : '普通用户' }}
+                                    {{ item.role === UserRole.ADMIN ? '管理员' : '普通用户' }}
                                 </v-chip>
                             </template>
                             <template #item.createdAt="{item}">
@@ -53,7 +53,7 @@ definePageMeta({
 
 import { useToast } from 'primevue/usetoast'
 import { formatDate } from '@/utils/format'
-import type { User } from '@/types/user'
+import { UserRole, type User } from '@/types/user'
 import type { Pagination } from '@/types/pagination'
 
 const toast = useToast()

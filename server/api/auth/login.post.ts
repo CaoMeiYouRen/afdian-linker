@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import { SESSION_KEY, setSession } from '@/server/utils/session'
 import { rateLimit } from '@/server/utils/rate-limit'
 import { getDataSource } from '@/server/utils/database'
-import { User } from '@/server/entities/user'
+import { User, UserRole } from '@/server/entities/user'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 const loginSchema = z.object({
@@ -48,12 +48,12 @@ export default defineEventHandler(async (event) => {
         }
 
         // 验证管理员权限
-        if (user.role !== 'ADMIN') {
-            throw createError({
-                statusCode: 403,
-                message: '仅限管理员登录',
-            })
-        }
+        // if (user.role !== UserRole.ADMIN) {
+        //     throw createError({
+        //         statusCode: 403,
+        //         message: '仅限管理员登录',
+        //     })
+        // }
 
         // JWT 令牌生成
         const token = setSession(event, {

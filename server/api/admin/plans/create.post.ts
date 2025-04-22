@@ -21,10 +21,6 @@ const planSchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-    const auth = event.context.auth as Session
-    if (!auth || auth.role !== 'ADMIN') {
-        throw createError({ statusCode: 403, message: '无权限' })
-    }
     const body = await readBody(event)
     const data = await planSchema.parseAsync(body)
     const dataSource = await getDataSource()

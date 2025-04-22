@@ -5,10 +5,6 @@ import { Session } from '@/server/utils/session'
 import { createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler(async (event) => {
-    const auth = event.context.auth as Session
-    if (!auth || auth.role !== 'ADMIN') {
-        throw createError({ statusCode: 403, message: '无权限' })
-    }
     const planId = getRouterParam(event, 'id')
     const dataSource = await getDataSource()
     const planRepository = dataSource.getRepository(Plan)

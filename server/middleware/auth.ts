@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { getSession, SESSION_KEY } from '@/server/utils/session'
+import { UserRole } from '@/types/user'
 
 export default defineEventHandler(async (event) => {
     // 白名单路径
@@ -32,7 +33,7 @@ export default defineEventHandler(async (event) => {
     try {
 
         // 管理员路由权限验证
-        if ((event.path.startsWith('/api/admin') || event.path.startsWith('/admin')) && session.role !== 'ADMIN') {
+        if ((event.path.startsWith('/api/admin') || event.path.startsWith('/admin')) && session?.role !== UserRole.ADMIN) {
             throw createError({
                 statusCode: 403,
                 message: '需要管理员权限',

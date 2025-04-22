@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import type { User } from '@/types/user'
 import type { DateToString } from '@/types/base'
+import { UserRole, type User } from '@/types/user'
 
 export interface UserState {
     userInfo: DateToString<User> | null
@@ -12,7 +12,7 @@ export const useUserStore = defineStore('user', {
     }),
 
     getters: {
-        isAdmin: (state) => state.userInfo?.role === 'ADMIN',
+        isAdmin: (state) => state.userInfo?.role === UserRole.ADMIN,
         isLoggedIn: (state) => !!state.userInfo?.id,
     },
 

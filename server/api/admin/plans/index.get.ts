@@ -8,11 +8,6 @@ import { planQuerySchema, queryPlans } from '@/server/utils/query/plan'
 
 export default defineEventHandler(async (event) => {
     try {
-        const auth = event.context.auth as Session
-        if (!auth || auth.role !== 'ADMIN') {
-            throw createError({ statusCode: 403, message: '无权限' })
-        }
-
         const query = await planQuerySchema.parseAsync(getQuery(event))
         const dataSource = await getDataSource()
         const planRepository = dataSource.getRepository(Plan)

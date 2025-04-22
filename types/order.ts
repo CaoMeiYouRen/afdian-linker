@@ -1,5 +1,6 @@
 import type { BaseFields, DateToString, PartialFields } from './base'
 import type { PaymentChannelType } from './channel'
+import type { Plan } from './plan'
 import type { BaseUser, User } from './user'
 
 // 订单状态枚举
@@ -52,6 +53,7 @@ export interface BaseOrder {
 
 export interface Order extends BaseOrder, DateToString<BaseFields> {
     user?: Partial<User | null>
+    plan?: Partial<Plan | null>
 }
 
 // 状态映射类型

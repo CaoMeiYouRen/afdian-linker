@@ -1,6 +1,7 @@
 import { Entity, Column, ManyToOne } from 'typeorm'
 import { User } from './user'
 import { BaseEntity } from './base-entity'
+import { Plan } from './plan'
 import { OrderStatus, type BaseOrder, type MetaData } from '@/types/order'
 
 export { OrderStatus }
@@ -41,4 +42,10 @@ export class Order extends BaseEntity implements BaseOrder {
 
     @Column({ type: 'uuid', nullable: true })
     userId: string
+
+    @ManyToOne(() => Plan, (plan) => plan.orders)
+    plan: Plan
+
+    @Column({ type: 'uuid', nullable: true })
+    planId: string
 }

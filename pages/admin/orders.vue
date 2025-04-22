@@ -61,6 +61,9 @@
                             hover
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.plan="{item}">
+                                {{ item.plan?.title }}
+                            </template>
                             <template #item.paymentChannel="{item}">
                                 <v-chip
                                     :color="getChannelColor(item.paymentChannel)"
@@ -248,6 +251,7 @@ interface DataTableHeader {
 
 const headers: DataTableHeader[] = [
     { title: '订单号', key: 'id', width: '200px' },
+    { title: '商品名称', key: 'plan', width: '160px' },
     { title: '自定义订单号', key: 'customOrderId', width: '200px' },
     { title: '渠道订单号', key: 'channelOrderId', width: '150px' },
     { title: '支付渠道', key: 'paymentChannel', width: '150px' },

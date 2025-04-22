@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
 import { BaseEntity } from './base-entity'
+import { Order } from './order'
 import { BasePlan } from '@/types/plan'
 
 /**
@@ -44,5 +45,10 @@ export class Plan extends BaseEntity implements BasePlan {
 
     @Column({ type: 'boolean', default: true })
     enabled: boolean
+
+    @OneToMany(() => Order, (order) => order.user, {
+        cascade: true,
+    })
+    orders: Order[]
 
 }

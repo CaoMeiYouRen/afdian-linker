@@ -17,7 +17,7 @@ export const orderQuerySchema = z.object({
 
 export type OrderQueryParams = z.infer<typeof orderQuerySchema>
 
-export async function queryOrders(repository: Repository<Order>, params: OrderQueryParams, withUser?: boolean): Promise<PaginatedData<Order>> {
+export async function queryOrders(repository: Repository<Order>, params: OrderQueryParams, relations?: string[]): Promise<PaginatedData<Order>> {
     const where: any = {}
 
     if (params.status) {
@@ -49,7 +49,7 @@ export async function queryOrders(repository: Repository<Order>, params: OrderQu
         },
         skip: (params.page - 1) * params.perPage,
         take: params.perPage,
-        relations: withUser ? ['user'] : undefined, // 查询 user 关联
+        relations, // 查询 user 关联
     })
 
     return {

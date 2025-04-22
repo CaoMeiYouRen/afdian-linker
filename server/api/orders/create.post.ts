@@ -11,12 +11,12 @@ import { Session } from '@/server/utils/session'
 const orderSchema = z.object({
     amount: z.number().positive(),
     channel: z.string().default('afdian'),
-    customId: z.string().optional(),
     metaData: z.record(z.unknown()).optional(),
-    months: z.number().int().min(1).max(36).default(1),
+    month: z.number().int().min(1).max(36).default(1),
     remark: z.string().max(200).optional(),
     planId: z.string(),
-    productType: z.enum(['0', '1']).default('0'),
+    channelPlanId: z.string(),
+    productType: z.number().int().refine((v) => v === 0 || v === 1).default(0),
 })
 
 export default defineEventHandler(async (event) => {
@@ -36,12 +36,13 @@ export default defineEventHandler(async (event) => {
             status: OrderStatus.PENDING,
             currency: 'CNY',
             metaData: {
-                month: data.months,
+                month: data.month,
                 remark: data.remark,
-                plan_id: data.planId,
+                plan_id: data.channelPlanId,
                 product_type: Number(data.productType),
             },
             userId: auth.id,
+            planId: data.planId,
         })
 
         // 保存订单

@@ -11,7 +11,7 @@ const planSchema = z.object({
     title: z.string().min(1),
     amount: z.number().positive(),
     currency: z.string().min(1).max(10).default('CNY').optional(),
-    productType: z.number().int().refine((v) => v === 0 || v === 1),
+    productType: z.number().int().refine((v) => v === 0 || v === 1).default(0),
     month: z.number().int().min(1).max(36).optional(),
     skuDetail: z.array(z.unknown()).optional(),
     showAmount: z.number().positive().optional(),

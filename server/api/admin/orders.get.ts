@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
         const dataSource = await getDataSource()
         const orderRepository = dataSource.getRepository(Order)
 
-        const result = await queryOrders(orderRepository, query, true) // 查询 user 关联
+        const result = await queryOrders(orderRepository, query, ['user', 'plan']) // 查询 user 关联
 
         // 优化：只返回用户部分字段
         const itemsWithUser = result.items.map((order) => {

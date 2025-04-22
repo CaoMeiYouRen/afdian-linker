@@ -1,4 +1,5 @@
 import type { BaseFields, DateToString, PartialFields } from './base'
+import type { User } from './user'
 
 export interface BasePlan {
     // 支付渠道
@@ -29,4 +30,6 @@ export interface BasePlan {
 
 export interface Plan extends BasePlan, DateToString<BaseFields> {
     _enabling?: boolean
+    user?: Partial<User | null>
+
 }

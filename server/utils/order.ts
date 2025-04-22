@@ -12,7 +12,7 @@ export function generateOrderId(prefix: string = ''): string {
 }
 
 export function getOrderMetaData(data: any) {
-    return pick(data, [
+    const _data = pick(data, [
         'plan_id',
         'plan_title',
         'user_id',
@@ -23,4 +23,6 @@ export function getOrderMetaData(data: any) {
         'user_private_id',
         'month',
     ]) as MetaData
+    _data.product_type = Number(_data.product_type)
+    return _data
 }

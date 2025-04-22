@@ -216,11 +216,12 @@ const handleSubmit = async () => {
         const { data } = await useFetch('/api/orders/create', {
             method: 'POST',
             body: {
+                planId: selectedPlan.value.id,
                 amount: selectedPlan.value.amount,
-                months: selectedPlan.value.month,
+                month: selectedPlan.value.month,
                 remark: remark.value,
                 channel: selectedPlan.value.paymentChannel,
-                planId: selectedPlan.value.channelPlanId,
+                channelPlanId: selectedPlan.value.channelPlanId,
                 productType: selectedPlan.value.productType,
             },
         })

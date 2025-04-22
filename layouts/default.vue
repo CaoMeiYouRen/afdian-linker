@@ -37,6 +37,11 @@
                         prepend-icon="mdi-clipboard-text"
                     />
                     <v-list-item
+                        to="/admin/plans"
+                        :title="'商品管理'"
+                        prepend-icon="mdi-package-variant"
+                    />
+                    <v-list-item
                         to="/admin/users"
                         :title="'用户管理'"
                         prepend-icon="mdi-account-group"

@@ -120,6 +120,12 @@
                             label="标题"
                             required
                         />
+                        <v-select
+                            v-model="planForm.currency"
+                            :items="currencies"
+                            label="币种"
+                            required
+                        />
                         <v-text-field
                             v-model.number="planForm.amount"
                             label="金额"
@@ -201,7 +207,7 @@ const planForm = reactive<Plan>({
     discount: 0,
     description: '',
     enabled: true,
-    currency: '',
+    currency: 'CNY',
     id: '',
     createdAt: '',
     updatedAt: '',
@@ -209,6 +215,12 @@ const planForm = reactive<Plan>({
 })
 const editingPlan = ref<Plan | null>(null)
 const submitLoading = ref(false)
+
+const currencies = [
+    { title: '人民币', value: 'CNY' },
+    // { title: '美元', value: 'USD' },
+    // { title: '欧元', value: 'EUR' },
+]
 
 const productTypeOptions = [
     { title: '常规方案', value: 0 },
@@ -277,7 +289,7 @@ const openCreateDialog = () => {
         discount: 0,
         description: '',
         enabled: true,
-        currency: '',
+        currency: 'CNY',
         id: '',
         createdAt: '',
         updatedAt: '',
@@ -323,19 +335,26 @@ const handleSubmit = async () => {
         if (payload.month !== null && payload.month !== undefined) {
             payload.month = Number(payload.month)
         }
-        let resp
+        if (payload.currency) {
+            payload.currency = payload.currency.toUpperCase()
+        } else {
+            payload.currency = 'CNY'
+        }
+        let respData
         if (editingPlan.value && editingPlan.value.id) {
-            resp = await $fetch(`/api/admin/plans/${editingPlan.value.id}`, {
+            const { data } = await useFetch(`/api/admin/plans/${editingPlan.value.id}`, {
                 method: 'PUT',
                 body: payload,
-            })
+            }) as any
+            respData = data.value
         } else {
-            resp = await $fetch('/api/admin/plans', {
+            const { data } = await useFetch('/api/admin/plans/create', {
                 method: 'POST',
                 body: payload,
-            })
+            }) as any
+            respData = data.value
         }
-        if (resp.statusCode === 200) {
+        if (respData?.statusCode === 200) {
             toast.add({
                 severity: 'success',
                 summary: '成功',
@@ -346,7 +365,7 @@ const handleSubmit = async () => {
             await fetchPlans()
             return
         }
-        throw new Error(resp.message || '操作失败')
+        throw new Error(respData?.message || '操作失败')
 
     } catch (error: any) {
         toast.add({
@@ -365,8 +384,9 @@ const handleDelete = async (plan: Plan) => {
         return
     }
     try {
-        const resp = await $fetch(`/api/admin/plans/${plan.id}`, { method: 'DELETE' })
-        if (resp.statusCode === 200) {
+        const { data } = await useFetch(`/api/admin/plans/${plan.id}`, { method: 'DELETE' }) as any
+        const respData = data.value
+        if (respData?.statusCode === 200) {
             toast.add({
                 severity: 'success',
                 summary: '删除成功',
@@ -376,7 +396,7 @@ const handleDelete = async (plan: Plan) => {
             await fetchPlans()
             return
         }
-        throw new Error(resp.message || '删除失败')
+        throw new Error(respData?.message || '删除失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -390,12 +410,13 @@ const handleDelete = async (plan: Plan) => {
 const toggleEnabled = async (plan: Plan) => {
     plan._enabling = true
     try {
-        const resp = await $fetch(`/api/admin/plans/${plan.id}`, {
+        const { data } = await useFetch(`/api/admin/plans/${plan.id}`, {
             method: 'PUT',
             body: { enabled: plan.enabled },
-        })
-        if (resp.statusCode !== 200) {
-            throw new Error(resp.message || '操作失败')
+        }) as any
+        const respData = data.value
+        if (respData?.statusCode !== 200) {
+            throw new Error(respData?.message || '操作失败')
         }
         toast.add({
             severity: 'success',

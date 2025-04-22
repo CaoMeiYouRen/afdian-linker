@@ -3,6 +3,7 @@ import { SnakeCaseNamingStrategy } from './naming-strategy'
 import { Order } from '@/server/entities/order'
 import { User, UserRole } from '@/server/entities/user'
 import { WebhookLog } from '@/server/entities/webhook-log'
+import { Plan } from '@/server/entities/plan'
 
 let AppDataSource: DataSource = null as any
 
@@ -15,7 +16,7 @@ export const initializeDB = async () => {
             AppDataSource = new DataSource({
                 type: 'postgres',
                 url: process.env.DATABASE_URL,
-                entities: [Order, User, WebhookLog],
+                entities: [Order, User, WebhookLog, Plan],
                 synchronize: process.env.NODE_ENV !== 'production',
                 logging: process.env.NODE_ENV === 'development',
                 ssl: false,

@@ -10,10 +10,12 @@ export enum OrderStatus {
     EXPIRED = 'EXPIRED',
 }
 
+// 订单元数据，用于存储一些额外的信息
+// 这里的元数据是指爱发电的商品信息
 export interface MetaData {
-    // 商品/套餐ID
+    // 商品/套餐ID。这里指爱发电的商品ID
     plan_id: string
-    // 商品/套餐名称
+    // 商品/套餐名称。这里指爱发电的商品名称
     plan_title: string
     // 用户ID。这里指爱发电用户的ID
     user_id: string
@@ -25,7 +27,7 @@ export interface MetaData {
     remark: string
     // 兑换码ID
     redeem_id: string
-    // 用户私有ID
+    // 用户私有ID。这里指爱发电用户的私有ID
     user_private_id: string
     // 月数
     month: number

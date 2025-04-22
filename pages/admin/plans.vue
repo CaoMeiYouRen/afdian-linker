@@ -121,6 +121,17 @@
                             required
                         />
                         <v-select
+                            v-model="planForm.paymentChannel"
+                            :items="paymentChannels"
+                            label="支付渠道"
+                            required
+                        />
+                        <v-text-field
+                            v-model="planForm.channelPlanId"
+                            label="渠道方案ID"
+                            required
+                        />
+                        <v-select
                             v-model="planForm.currency"
                             :items="currencies"
                             label="币种"
@@ -212,9 +223,19 @@ const planForm = reactive<Plan>({
     createdAt: '',
     updatedAt: '',
     _enabling: false,
+    paymentChannel: 'afdian',
+    channelPlanId: '',
 })
 const editingPlan = ref<Plan | null>(null)
 const submitLoading = ref(false)
+
+const paymentChannels = [
+    // { title: '支付宝', value: 'alipay' },
+    // { title: '微信支付', value: 'wechatpay' },
+    // { title: '银联支付', value: 'unionpay' },
+    // { title: 'PayPal', value: 'paypal' },
+    { title: '爱发电', value: 'afdian' },
+]
 
 const currencies = [
     { title: '人民币', value: 'CNY' },
@@ -229,6 +250,9 @@ const productTypeOptions = [
 
 const headers = [
     { title: '标题', key: 'title', width: '160px' },
+    { title: '支付渠道', key: 'paymentChannel', width: '120px' },
+    { title: '渠道方案ID', key: 'channelPlanId', width: '160px' },
+    { title: '币种', key: 'currency', width: '80px' },
     { title: '金额', key: 'amount', width: '100px' },
     { title: '类型', key: 'productType', width: '100px' },
     { title: '月数', key: 'month', width: '80px' },
@@ -293,6 +317,8 @@ const openCreateDialog = () => {
         id: '',
         createdAt: '',
         updatedAt: '',
+        channelPlanId: '',
+        paymentChannel: 'afdian',
     })
     planDialog.value = true
 }

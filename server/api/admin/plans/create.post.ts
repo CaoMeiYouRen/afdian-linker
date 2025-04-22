@@ -6,6 +6,8 @@ import { Session } from '@/server/utils/session'
 import { createApiResponse } from '@/server/types/api'
 
 const planSchema = z.object({
+    paymentChannel: z.string().default('afdian').optional(),
+    channelPlanId: z.string(),
     title: z.string().min(1),
     amount: z.number().positive(),
     currency: z.string().min(1).max(10).default('CNY').optional(),

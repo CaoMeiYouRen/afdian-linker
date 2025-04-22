@@ -54,8 +54,8 @@
                                     v-model="item.enabled"
                                     color="primary"
                                     hide-details
-                                    :loading="enabling"
-                                    :disabled="enabling"
+                                    :loading="item._enabling"
+                                    :disabled="item._enabling"
                                     @change="toggleEnabled(item)"
                                 />
                             </template>
@@ -205,10 +205,10 @@ const planForm = reactive<Plan>({
     id: '',
     createdAt: '',
     updatedAt: '',
+    _enabling: false,
 })
 const editingPlan = ref<Plan | null>(null)
 const submitLoading = ref(false)
-const enabling = ref(false)
 
 const productTypeOptions = [
     { title: '常规方案', value: 0 },
@@ -388,7 +388,7 @@ const handleDelete = async (plan: Plan) => {
 }
 
 const toggleEnabled = async (plan: Plan) => {
-    enabling.value = true
+    plan._enabling = true
     try {
         const resp = await $fetch(`/api/admin/plans/${plan.id}`, {
             method: 'PUT',
@@ -401,7 +401,7 @@ const toggleEnabled = async (plan: Plan) => {
             severity: 'success',
             summary: '操作成功',
             detail: `方案已${plan.enabled ? '启用' : '禁用'}`,
-            life: 2000,
+            life: 3000,
         })
     } catch (error: any) {
         plan.enabled = !plan.enabled // revert
@@ -409,10 +409,10 @@ const toggleEnabled = async (plan: Plan) => {
             severity: 'error',
             summary: '错误',
             detail: error.message || '操作失败',
-            life: 4000,
+            life: 5000,
         })
     } finally {
-        enabling.value = false
+        plan._enabling = false
     }
 }
 

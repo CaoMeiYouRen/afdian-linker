@@ -22,4 +22,5 @@ export interface BasePlan {
 }
 
 export interface Plan extends BasePlan, DateToString<BaseFields> {
+    _enabling?: boolean
 }

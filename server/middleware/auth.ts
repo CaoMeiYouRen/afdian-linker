@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
     // 白名单路径
     const publicPaths = [
         '/api/auth/login',
+        '/api/auth/register',
         '/api/public',
         '/api/afdian/webhook',
     ]

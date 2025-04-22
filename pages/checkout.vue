@@ -221,6 +221,7 @@ const handleSubmit = async () => {
                 remark: remark.value,
                 channel: selectedPlan.value.paymentChannel,
                 planId: selectedPlan.value.channelPlanId,
+                productType: selectedPlan.value.productType,
             },
         })
 

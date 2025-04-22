@@ -101,6 +101,16 @@ async function handleSubmit() {
                 life: 3000,
             })
             await userStore.fetchUserInfo()
+            if (userStore.userInfo?.initialPassword) {
+                toast.add({
+                    severity: 'warn',
+                    summary: '警告',
+                    detail: '为了您的账户安全，请修改初始密码',
+                    life: 5000,
+                })
+                navigateTo('/change-password')
+                return
+            }
             navigateTo('/')
             return
         }

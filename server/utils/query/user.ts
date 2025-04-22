@@ -31,17 +31,6 @@ export async function queryUsers(repository: Repository<User>, params: UserQuery
 
     const [users, total] = await repository.findAndCount({
         where,
-        select: [
-            'id',
-            'username',
-            'nickname',
-            'email',
-            'role',
-            'createdAt',
-            'updatedAt',
-            'initialPassword',
-            'initialEmail',
-        ],
         order: {
             [params.sort || 'createdAt']: params.order,
         },

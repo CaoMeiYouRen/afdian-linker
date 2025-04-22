@@ -19,10 +19,10 @@ export default defineEventHandler(async (event) => {
         const body = await readBody(event) as AfdianWebhookResponse
 
         if (!body?.data?.order?.custom_order_id) {
-            throw createError({
-                statusCode: 400,
-                message: '无效的Webhook数据',
-            })
+            return {
+                ec: 200,
+                em: '处理成功',
+            }
         }
 
         const orderData = body.data.order
@@ -66,20 +66,13 @@ export default defineEventHandler(async (event) => {
         return {
             ec: 200,
             em: '处理成功',
-            // data: {
-            //     customOrderId: orderData.custom_order_id,
-            //     status: orderData.status === 2 ? 'PAID' : 'FAILED',
-            // },
         }
 
     } catch (error: any) {
         console.error('Webhook处理失败:', error)
         return {
             ec: 500,
-            em: '服务器内部错误',
-            data: {
-                error: error?.message,
-            },
+            em: error?.message || '服务器内部错误',
         }
     }
 })

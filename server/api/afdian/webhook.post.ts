@@ -17,7 +17,11 @@ export default defineEventHandler(async (event) => {
         }
         const dataSource = await getDataSource()
         const body = await readBody(event) as AfdianWebhookResponse
-
+        // 记录 webhook 日志
+        const logRepo = dataSource.getRepository(WebhookLog)
+        await logRepo.save({
+            payload: body,
+        })
         if (!body?.data?.order?.custom_order_id) {
             return {
                 ec: 200,
@@ -56,11 +60,6 @@ export default defineEventHandler(async (event) => {
                 await manager.save(newOrder)
             }
 
-            // 记录 webhook 日志
-            const webhookLog = manager.create(WebhookLog, {
-                payload: body,
-            })
-            await manager.save(webhookLog)
         })
 
         return {

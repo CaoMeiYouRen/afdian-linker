@@ -44,7 +44,7 @@ export interface BaseOrder {
     // 订单渠道
     paymentChannel: PaymentChannelType
     // 订单渠道ID
-    channelOrderId?: string
+    channelOrderId: string
     userId?: string
 }
 

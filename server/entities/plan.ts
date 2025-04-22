@@ -1,18 +1,22 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
 import { BaseEntity } from './base-entity'
+import { BasePlan } from '@/types/plan'
 
 /**
  * productType: 0=常规方案, 1=售卖方案
  * skuDetail: 仅售卖方案，数组，包含skuId/skuName/quantity等
  */
 @Entity('plan')
-export class Plan extends BaseEntity {
+export class Plan extends BaseEntity implements BasePlan {
 
     @Column({ type: 'varchar', length: 64 })
     title: string
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     amount: number
+
+    @Column({ type: 'varchar', length: 8, default: 'CNY' })
+    currency: string
 
     @Column({ type: 'int', default: 0 })
     productType: number

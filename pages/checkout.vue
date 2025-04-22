@@ -14,47 +14,63 @@
                     <v-card-text>
                         <v-row class="mb-4">
                             <v-col
-                                v-for="plan in plans"
-                                :key="plan.months"
+                                v-if="plansLoading"
                                 cols="12"
-                                sm="4"
                             >
-                                <v-card
-                                    :color="selectedPlan?.id === plan.id ? 'primary' : ''"
-                                    :variant="selectedPlan?.id === plan.id ? 'elevated' : 'outlined'"
-                                    :class="[
-                                        'h-100',
-                                        'plan-card'
-                                    ]"
-                                    @click="selectedPlan = plan"
-                                >
-                                    <v-card-title class="text-center">
-                                        {{ plan.title }}
-                                    </v-card-title>
-                                    <v-card-text :class="{'text-white': selectedPlan?.id === plan.id}" class="text-center">
-                                        <div class="mb-2 text-h4">
-                                            <span v-if="plan.originalAmount" class="mr-2 text-body-1 text-decoration-line-through text-grey">
-                                                ¥{{ plan.originalAmount }}
-                                            </span>
-                                            ¥{{ plan.amount }}
-                                        </div>
-                                        <div class="text-body-2">
-                                            {{ plan.months }} 个月
-                                            <v-chip
-                                                v-if="plan.discount"
-                                                color="success"
-                                                size="small"
-                                                class="ml-2"
-                                            >
-                                                {{ plan.discount }}折
-                                            </v-chip>
-                                        </div>
-                                        <div class="text-caption text-grey">
-                                            {{ plan.description }}
-                                        </div>
-                                    </v-card-text>
-                                </v-card>
+                                <v-skeleton-loader type="card" />
                             </v-col>
+                            <v-col
+                                v-else-if="plansError"
+                                cols="12"
+                            >
+                                <v-alert type="error" dense>
+                                    {{ plansError }}
+                                </v-alert>
+                            </v-col>
+                            <template v-else>
+                                <v-col
+                                    v-for="plan in plans"
+                                    :key="plan.id"
+                                    cols="12"
+                                    sm="4"
+                                >
+                                    <v-card
+                                        :color="selectedPlan?.id === plan.id ? 'primary' : ''"
+                                        :variant="selectedPlan?.id === plan.id ? 'elevated' : 'outlined'"
+                                        :class="[
+                                            'h-100',
+                                            'plan-card'
+                                        ]"
+                                        @click="selectedPlan = plan"
+                                    >
+                                        <v-card-title class="text-center">
+                                            {{ plan.title }}
+                                        </v-card-title>
+                                        <v-card-text :class="{'text-white': selectedPlan?.id === plan.id}" class="text-center">
+                                            <div class="mb-2 text-h4">
+                                                <span v-if="plan.showAmount" class="mr-2 text-body-1 text-decoration-line-through text-grey">
+                                                    ¥{{ plan.showAmount }}
+                                                </span>
+                                                ¥{{ plan.amount }}
+                                            </div>
+                                            <div class="text-body-2">
+                                                {{ plan.month }} 个月
+                                                <v-chip
+                                                    v-if="plan.discount"
+                                                    color="success"
+                                                    size="small"
+                                                    class="ml-2"
+                                                >
+                                                    {{ plan.discount }}折
+                                                </v-chip>
+                                            </div>
+                                            <div class="text-caption text-grey">
+                                                {{ plan.description }}
+                                            </div>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-col>
+                            </template>
                         </v-row>
 
                         <v-expansion-panels class="mb-4">
@@ -123,59 +139,7 @@
 
 <script setup lang="ts">
 import { useToast } from 'primevue/usetoast'
-
-interface Plan {
-    id: string // 新增 id 字段
-    title: string
-    amount: number | string
-    months: number
-    description: string
-    originalAmount?: number | string
-    discount?: number | string
-}
-
-// 商品配置
-const plans: Plan[] = [
-    {
-        id: 'monthly',
-        title: '月度支持',
-        amount: 30,
-        months: 1,
-        description: '基础支持，获得爱发电徽章',
-    },
-    // {
-    //     id: 'quarterly',
-    //     title: '季度支持',
-    //     amount: 90,
-    //     // originalAmount: 90,
-    //     months: 3,
-    //     // discount: 8.9,
-    //     description: '专属支持，获得专属徽章',
-    // },
-    {
-        id: 'semiannually',
-        title: '半年支持',
-        amount: 169,
-        originalAmount: 180,
-        months: 6,
-        // discount: (169.2 / 180 * 10).toFixed(1),
-        description: '最受欢迎，获得所有特权',
-    },
-    {
-        id: 'yearly',
-        title: '年度支持',
-        amount: 324,
-        originalAmount: 360,
-        months: 12,
-        // discount: (324 / 360 * 10).toFixed(1),
-        description: '最优惠，获得所有特权',
-    },
-].map((plan) => ({
-    ...plan,
-    amount: Number(plan.amount),
-    originalAmount: plan.originalAmount ? Number(plan.originalAmount) : undefined,
-    discount: plan.originalAmount ? (Number(plan.amount) / Number(plan.originalAmount) * 10).toFixed(1) : undefined,
-}))
+import type { Plan } from '@/types/plan'
 
 const toast = useToast()
 const loading = ref(false)
@@ -183,6 +147,40 @@ const error = ref('')
 const isValid = ref(false)
 const selectedPlan = ref<Plan | null>(null)
 const remark = ref('')
+
+// 新增：plans相关状态
+const plans = ref<Plan[]>([])
+const plansLoading = ref(true)
+const plansError = ref('')
+
+// 获取plans
+const fetchPlans = async () => {
+    plansLoading.value = true
+    plansError.value = ''
+    try {
+        const { data, error: fetchError } = await useFetch('/api/plans')
+        if (fetchError.value) {
+            plansError.value = fetchError.value.message || '获取支持方案失败'
+            return
+        }
+        // 兼容分页返回
+        const items = data.value?.data.items || []
+        plans.value = items.map((plan: any) => ({
+            ...plan,
+            amount: Number(plan.amount),
+            showAmount: plan.showAmount ? Number(plan.showAmount) : undefined,
+            discount: plan.showAmount
+                ? (Number(plan.amount) / Number(plan.showAmount) * 10).toFixed(1)
+                : undefined,
+        }))
+    } catch (e: any) {
+        plansError.value = e.message || '获取支持方案失败'
+    } finally {
+        plansLoading.value = false
+    }
+}
+
+onMounted(fetchPlans)
 
 // 成功创建订单后跳转
 const handleOrderCreated = (orderId: string, paymentUrl: string) => {
@@ -211,7 +209,7 @@ const handleSubmit = async () => {
             method: 'POST',
             body: {
                 amount: selectedPlan.value.amount,
-                months: selectedPlan.value.months,
+                months: selectedPlan.value.month,
                 remark: remark.value,
                 channel: 'afdian',
             },

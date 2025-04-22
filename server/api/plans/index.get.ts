@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import { createError } from 'h3'
 import { getDataSource } from '@/server/utils/database'
 import { Plan } from '@/server/entities/plan'
 import { createPaginatedResponse } from '@/server/types/pagination'

@@ -3,6 +3,17 @@ const __WARN__ = process.env.NODE_ENV === 'production' ? 1 : 0
 module.exports = {
     root: true,
     globals: {
+        $fetch: true,
+        useFetch: true,
+        useRuntimeConfig: true,
+        deleteCookie: true,
+        getCookie: true,
+        setCookie: true,
+        createError: true,
+        getRequestIP: true,
+        sendRedirect: true,
+        defineEventHandler: true,
+        ref: true,
     }, // 处理 nuxt 和 vue 组件的全局变量
     extends: [
         'cmyr/vue3',

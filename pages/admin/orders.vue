@@ -152,7 +152,7 @@
                         />
                         <v-text-field
                             label="支付渠道"
-                            :model-value="selectedOrder.paymentChannel"
+                            :model-value="formatChannel(selectedOrder.paymentChannel)"
                             readonly
                             variant="outlined"
                             density="compact"

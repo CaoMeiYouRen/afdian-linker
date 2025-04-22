@@ -22,6 +22,9 @@
                             <dt>商品描述</dt>
                             <dd>{{ order.plan?.description }}</dd>
 
+                            <dt>支付渠道</dt>
+                            <dd>{{ formatChannel(order.paymentChannel) }}</dd>
+
                             <dt>金额</dt>
                             <dd>{{ formatCurrency(order.amount, order.currency) }}</dd>
 
@@ -80,7 +83,7 @@
 import { useIntervalFn } from '@vueuse/core'
 import { useToast } from 'primevue/usetoast'
 import { type Order, getStatusText, getStatusColor, type OrderStatus } from '@/types/order'
-import { formatDate, formatCurrency } from '@/utils/format'
+import { formatDate, formatCurrency, formatChannel } from '@/utils/format'
 import type { ApiResponse } from '@/server/types/api'
 
 const toast = useToast()

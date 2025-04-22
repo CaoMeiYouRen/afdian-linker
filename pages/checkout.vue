@@ -4,7 +4,6 @@
             <v-col
                 cols="12"
                 sm="8"
-                md="6"
             >
                 <v-card class="mb-4">
                     <v-card-title class="text-center text-h5">
@@ -33,6 +32,7 @@
                                     :key="plan.id"
                                     cols="12"
                                     sm="4"
+                                    md="3"
                                 >
                                     <v-card
                                         :color="selectedPlan?.id === plan.id ? 'primary' : ''"
@@ -163,7 +163,7 @@ const fetchPlans = async () => {
     try {
         const { data, error: fetchError } = await useFetch('/api/plans', {
            query: {
-            sort: 'showAmount',
+            sort: 'amount',
             order: 'ASC',
            },
         })

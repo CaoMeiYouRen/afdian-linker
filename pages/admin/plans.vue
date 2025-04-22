@@ -211,11 +211,11 @@ const planDialog = ref(false)
 const planFormRef = ref()
 const planForm = reactive<Plan>({
     title: '',
-    amount: 0,
+    amount: '',
     productType: 0,
     month: 0,
-    showAmount: 0,
-    discount: 0,
+    showAmount: '',
+    discount: '',
     description: '',
     enabled: true,
     currency: 'CNY',
@@ -338,6 +338,8 @@ const openEditDialog = (plan: Plan) => {
         id: plan.id,
         createdAt: plan.createdAt,
         updatedAt: plan.updatedAt,
+        channelPlanId: plan.channelPlanId,
+        paymentChannel: plan.paymentChannel,
     })
     planDialog.value = true
 }

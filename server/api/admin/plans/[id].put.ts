@@ -37,7 +37,12 @@ export default defineEventHandler(async (event) => {
     if (!plan) {
         throw createError({ statusCode: 404, message: '方案不存在' })
     }
-    Object.assign(plan, data)
-    await planRepository.save(plan)
+    await planRepository.save({
+        ...plan,
+        ...data,
+        amount: data.amount?.toFixed(2),
+        showAmount: data.showAmount?.toFixed(2),
+        discount: data.discount?.toFixed(2),
+    })
     return createApiResponse(plan)
 })

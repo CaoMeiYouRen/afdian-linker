@@ -15,6 +15,8 @@ const orderSchema = z.object({
     metaData: z.record(z.unknown()).optional(),
     months: z.number().int().min(1).max(36).default(1),
     remark: z.string().max(200).optional(),
+    planId: z.string(),
+    productType: z.enum(['0', '1']).default('0'),
 })
 
 export default defineEventHandler(async (event) => {
@@ -28,15 +30,16 @@ export default defineEventHandler(async (event) => {
 
         // 生成订单
         const order = orderRepository.create({
-            // id: generateOrderId(data.channel),
             paymentChannel: data.channel,
-            customOrderId: data.customId || generateOrderId(data.channel),
+            customOrderId: generateOrderId(data.channel),
             amount: data.amount.toFixed(2),
             status: OrderStatus.PENDING,
             currency: 'CNY',
             metaData: {
                 month: data.months,
                 remark: data.remark,
+                plan_id: data.planId,
+                product_type: Number(data.productType),
             },
             userId: auth.id,
         })

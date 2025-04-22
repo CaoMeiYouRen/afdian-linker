@@ -13,11 +13,7 @@ const planSchema = z.object({
     currency: z.string().min(1).max(10).default('CNY').optional(),
     productType: z.number().int().refine((v) => v === 0 || v === 1),
     month: z.number().int().min(1).max(36).optional(),
-    skuDetail: z.array(z.object({
-        skuId: z.string(),
-        skuName: z.string(),
-        quantity: z.number().int().min(1),
-    })).optional(),
+    skuDetail: z.array(z.unknown()).optional(),
     showAmount: z.number().positive().optional(),
     discount: z.number().min(0).max(10).optional(),
     description: z.string().optional(),
@@ -33,7 +29,12 @@ export default defineEventHandler(async (event) => {
     const data = await planSchema.parseAsync(body)
     const dataSource = await getDataSource()
     const planRepository = dataSource.getRepository(Plan)
-    const plan = planRepository.create(data)
+    const plan = planRepository.create({
+        ...data,
+        amount: data.amount.toFixed(2),
+        showAmount: data.showAmount?.toFixed(2),
+        discount: data.discount?.toFixed(2),
+    })
     await planRepository.save(plan)
     return createApiResponse(plan)
 })

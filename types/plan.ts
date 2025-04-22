@@ -9,7 +9,7 @@ export interface BasePlan {
     // 方案名称
     title: string
     // 实际金额
-    amount: number
+    amount: string
     // 货币类型
     currency: string
     // 0=常规方案, 1=售卖方案
@@ -17,9 +17,9 @@ export interface BasePlan {
     // 月数
     month?: number
     // 显示金额
-    showAmount?: number
+    showAmount?: string
     // 折扣，0-10
-    discount?: number
+    discount?: string
     // 备注
     description?: string
     enabled: boolean

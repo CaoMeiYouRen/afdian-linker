@@ -19,7 +19,7 @@ export class Plan extends BaseEntity implements BasePlan {
     title: string
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
-    amount: number
+    amount: string
 
     @Column({ type: 'varchar', length: 8, default: 'CNY' })
     currency: string
@@ -34,10 +34,10 @@ export class Plan extends BaseEntity implements BasePlan {
     skuDetail?: any[]
 
     @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
-    showAmount?: number
+    showAmount?: string
 
     @Column({ type: 'decimal', precision: 4, scale: 2, nullable: true })
-    discount?: number
+    discount?: string
 
     @Column({ type: 'text', nullable: true })
     description?: string

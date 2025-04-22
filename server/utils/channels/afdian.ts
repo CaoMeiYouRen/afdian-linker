@@ -37,9 +37,9 @@ export class AfdianChannel implements PaymentChannel {
     async generatePayUrl(order: Order): Promise<string> {
         const config = this.getConfig()
         const params = new URLSearchParams({
-            plan_id: config.afdianPlanId,
+            plan_id: order.metaData?.plan_id || config.afdianPlanId,
             custom_order_id: order.customOrderId,
-            product_type: config.afdianProductType || '0', // product_type 0表示常规方案 1表示售卖方案
+            product_type: order.metaData.product_type.toString() || '0', // product_type 0表示常规方案 1表示售卖方案
             month: order.metaData?.month?.toString() || '1',
             remark: encodeURIComponent(order.metaData?.remark || ''),
         })

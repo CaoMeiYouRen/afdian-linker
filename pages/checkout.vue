@@ -48,7 +48,10 @@
                                         </v-card-title>
                                         <v-card-text :class="{'text-white': selectedPlan?.id === plan.id}" class="text-center">
                                             <div class="mb-2 text-h4">
-                                                <span v-if="plan.showAmount" class="mr-2 text-body-1 text-decoration-line-through text-grey">
+                                                <span
+                                                    v-if="plan.showAmount && plan.showAmount !== plan.amount"
+                                                    class="mr-2 text-body-1 text-decoration-line-through text-grey"
+                                                >
                                                     ¥{{ plan.showAmount }}
                                                 </span>
                                                 ¥{{ plan.amount }}
@@ -56,7 +59,7 @@
                                             <div class="text-body-2">
                                                 {{ plan.month }} 个月
                                                 <v-chip
-                                                    v-if="plan.discount"
+                                                    v-if="plan.discount && plan.showAmount !== plan.amount"
                                                     color="success"
                                                     size="small"
                                                     class="ml-2"
@@ -216,7 +219,8 @@ const handleSubmit = async () => {
                 amount: selectedPlan.value.amount,
                 months: selectedPlan.value.month,
                 remark: remark.value,
-                channel: 'afdian',
+                channel: selectedPlan.value.paymentChannel,
+                planId: selectedPlan.value.channelPlanId,
             },
         })
 

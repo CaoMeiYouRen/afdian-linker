@@ -14,18 +14,29 @@ export default defineEventHandler(async (event) => {
     if (!auth) {
         throw createError({ statusCode: 401, message: '未登录' })
     }
-    const body = await readValidatedBody(event, schema.parse)
-    const email = body?.email?.trim()
+    try {
+        const body = schema.parse(await readBody(event))
+        const email = body?.email?.trim()
 
-    const dataSource = await getDataSource()
-    const repo = dataSource.getRepository(User)
-    // 检查邮箱是否已被占用
-    const exist = await repo.findOneBy({ email })
-    if (exist && exist.id !== auth.id) {
-        throw createError({ statusCode: 400, message: '邮箱已被占用' })
+        const dataSource = await getDataSource()
+        const repo = dataSource.getRepository(User)
+        // 检查邮箱是否已被占用
+        const exist = await repo.findOneBy({ email })
+        if (exist && exist.id !== auth.id) {
+            throw createError({ statusCode: 400, message: '邮箱已被占用' })
+        }
+        await repo.update({ id: auth.id }, { email, emailVerified: false })
+        // 发送验证邮件
+        await sendVerifyEmail(auth.id, email)
+        return createApiResponse(null, 200, '邮箱修改成功，请查收验证邮件')
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            throw createError({
+                statusCode: 400,
+                message: error.issues.map((e) => e.message).join(', '),
+                data: error.issues,
+            })
+        }
+        throw error
     }
-    await repo.update({ id: auth.id }, { email, emailVerified: false })
-    // 发送验证邮件
-    await sendVerifyEmail(auth.id, email)
-    return createApiResponse(null, 200, '邮箱修改成功，请查收验证邮件')
 })

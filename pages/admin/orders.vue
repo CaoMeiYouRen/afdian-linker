@@ -318,7 +318,13 @@ const handleTableUpdate = (options: any) => {
 const handleSync = async () => {
     syncLoading.value = true
     try {
-        const { data } = await useFetch('/api/afdian/sync')
+        const { data } = await useFetch('/api/afdian/sync', {
+            method: 'POST',
+            body: {
+                page: 1,
+                per_page: 100,
+            },
+        })
         if (data.value?.statusCode === 200) {
             toast.add({
                 severity: 'success',

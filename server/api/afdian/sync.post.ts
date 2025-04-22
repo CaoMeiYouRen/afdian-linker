@@ -1,4 +1,3 @@
-import type { EventHandler, H3Event } from 'h3'
 import { z } from 'zod'
 import { In } from 'typeorm'
 import { getDataSource } from '@/server/utils/database'
@@ -8,12 +7,6 @@ import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { getOrderMetaData } from '@/server/utils/order'
 import { UserRole } from '@/types/user'
 
-// 添加参数验证工具函数
-async function getValidatedQuery<T extends z.ZodType>(event: H3Event, schema: T): Promise<z.infer<T>> {
-    const query = getQuery(event)
-    return schema.parseAsync(query)
-}
-
 const querySchema = z.object({
     page: z.coerce.number().min(1).default(1),
     per_page: z.coerce.number().min(1).max(100).default(50),
@@ -21,18 +14,14 @@ const querySchema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
-        const auth = event.context.auth as Session
-        if (auth?.role !== UserRole.ADMIN) {
-            throw createError({ statusCode: 403, message: '无权限' })
-        }
-        const params = await getValidatedQuery(event, querySchema)
+        const body = querySchema.parse(await readBody(event))
         const dataSource = await getDataSource()
 
         return await dataSource.transaction(async (manager) => {
             const { client } = useAfdian()
             const orderRepository = manager.getRepository(Order)
 
-            const result = await client.queryOrder(params)
+            const result = await client.queryOrder(body)
             if (result.ec !== 200) {
                 throw createError({
                     statusCode: 500,

@@ -11,7 +11,7 @@ const schema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
-        const body = await readValidatedBody(event, schema.parse)
+        const body = schema.parse(await readBody(event))
         const userId = event.context.auth.id
 
         const dataSource = await getDataSource()
@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
         if (error instanceof z.ZodError) {
             throw createError({
                 statusCode: 400,
-                message: '密码格式不正确',
+                message: error.issues.map((e) => e.message).join(', '),
                 data: error.issues,
             })
         }

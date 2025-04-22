@@ -6,6 +6,7 @@ import { Order, OrderStatus } from '@/server/entities/order'
 import { useAfdian } from '@/server/utils/afdian'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { getOrderMetaData } from '@/server/utils/order'
+import { UserRole } from '@/types/user'
 
 // 添加参数验证工具函数
 async function getValidatedQuery<T extends z.ZodType>(event: H3Event, schema: T): Promise<z.infer<T>> {
@@ -20,6 +21,10 @@ const querySchema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
+        const auth = event.context.auth as Session
+        if (auth?.role !== UserRole.ADMIN) {
+            throw createError({ statusCode: 403, message: '无权限' })
+        }
         const params = await getValidatedQuery(event, querySchema)
         const dataSource = await getDataSource()
 

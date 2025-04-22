@@ -1,5 +1,6 @@
 import type { H3Event } from 'h3'
 import jwt from 'jsonwebtoken'
+import { UserRole } from '@/types/user'
 
 export async function requireAuth(event: H3Event) {
     const auth = event.context.auth
@@ -14,7 +15,7 @@ export async function requireAuth(event: H3Event) {
 
 export async function requireAdmin(event: H3Event) {
     const auth = await requireAuth(event)
-    if (auth.role !== 'ADMIN') {
+    if (auth?.role !== UserRole.ADMIN) {
         throw createError({
             statusCode: 403,
             message: '需要管理员权限',

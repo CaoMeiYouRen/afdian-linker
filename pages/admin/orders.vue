@@ -278,7 +278,7 @@ const handleOrderClick = (orderId: string) => {
 const fetchOrders = async (params = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/admin/orders', {
+        const { data, error } = await useFetch('/api/admin/orders', {
             query: {
                 page: pagination.value.currentPage,
                 perPage: pagination.value.perPage,
@@ -291,7 +291,7 @@ const fetchOrders = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(data.value?.message || '获取订单列表失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '获取订单列表失败')
     } catch (error: any) {
         console.error('获取订单列表失败:', error)
         toast.add({
@@ -318,7 +318,7 @@ const handleTableUpdate = (options: any) => {
 const handleSync = async () => {
     syncLoading.value = true
     try {
-        const { data } = await useFetch('/api/afdian/sync', {
+        const { data, error } = await useFetch('/api/afdian/sync', {
             method: 'POST',
             body: {
                 page: 1,
@@ -335,7 +335,7 @@ const handleSync = async () => {
           await fetchOrders()
           return
         }
-        throw new Error(data.value?.message || '同步失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '同步失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -352,18 +352,18 @@ const handleSync = async () => {
 const handleExpire = async () => {
     expireLoading.value = true
     try {
-        const { data } = await useFetch('/api/admin/orders/expire', { method: 'POST' })
+        const { data, error } = await useFetch('/api/admin/orders/expire', { method: 'POST' })
         if (data.value?.statusCode === 200) {
             toast.add({
                 severity: 'success',
                 summary: '处理完成',
-                detail: `已处理 ${data.value.data.count} 条超时订单`,
+                detail: `已处理 ${data.value.data?.count} 条超时订单`,
                 life: 3000,
             })
             await fetchOrders()
             return
         }
-        throw new Error(data.value?.message || '处理超时订单失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '处理超时订单失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

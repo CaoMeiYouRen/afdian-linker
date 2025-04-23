@@ -87,7 +87,7 @@ const headers = [
 const fetchLogs = async (params = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/admin/webhook-logs', {
+        const { data, error } = await useFetch('/api/admin/webhook-logs', {
             query: {
                 page: pagination.value.currentPage,
                 perPage: pagination.value.perPage,
@@ -100,7 +100,7 @@ const fetchLogs = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(data.value?.message || '获取Webhook日志失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '获取Webhook日志失败')
     } catch (error: any) {
         console.error(error)
         toast.add({

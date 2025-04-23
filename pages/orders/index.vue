@@ -206,7 +206,7 @@ const fetchOrders = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(error.value?.message || '获取订单列表失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '获取订单列表失败')
     } catch (error: any) {
         console.error('获取订单列表失败:', error)
         toast.add({

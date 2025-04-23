@@ -157,8 +157,7 @@ const fetchPlans = async () => {
            },
         })
         if (fetchError.value) {
-            plansError.value = fetchError.value.message || '获取支持方案失败'
-            return
+            throw new Error(fetchError.value?.data?.message || fetchError.value?.message || '获取支持方案失败')
         }
         // 兼容分页返回
         const items = data.value?.data.items || []

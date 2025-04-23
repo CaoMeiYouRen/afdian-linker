@@ -248,10 +248,13 @@ const handleUpdateNickname = async () => {
     }
     loading.value = true
     try {
-        await useFetch('/api/user/nickname', {
+        const { data, error } = await useFetch('/api/user/nickname', {
             method: 'POST',
             body: { nickname: newNickname.value },
         })
+        if (data.value?.statusCode !== 200) {
+            throw new Error(error.value?.data?.message || error.value?.message || '修改失败')
+        }
         await userStore.fetchUserInfo()
         toast.add({
             severity: 'success',
@@ -278,10 +281,13 @@ const handleUpdateEmail = async () => {
     }
     emailLoading.value = true
     try {
-        await useFetch('/api/user/email', {
+        const { data, error } = await useFetch('/api/user/email', {
             method: 'POST',
             body: { email: newEmail.value },
         })
+        if (data.value?.statusCode !== 200) {
+            throw new Error(error.value?.data?.message || error.value?.message || '邮箱修改失败')
+        }
         await userStore.fetchUserInfo()
         toast.add({
             severity: 'success',
@@ -305,7 +311,10 @@ const handleUpdateEmail = async () => {
 const handleSendVerifyEmail = async () => {
     emailVerifyLoading.value = true
     try {
-        await useFetch('/api/user/email-verify', { method: 'POST' })
+        const { data, error } = await useFetch('/api/user/email-verify', { method: 'POST' })
+        if (data.value?.statusCode !== 200) {
+            throw new Error(error.value?.data?.message || error.value?.message || '发送失败')
+        }
         toast.add({
             severity: 'success',
             summary: '成功',

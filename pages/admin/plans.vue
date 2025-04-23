@@ -268,7 +268,7 @@ const headers = [
 const fetchPlans = async (params: Record<string, any> = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/admin/plans', {
+        const { data, error } = await useFetch('/api/admin/plans', {
             query: {
                 page: pagination.value.currentPage,
                 perPage: pagination.value.perPage,
@@ -280,7 +280,7 @@ const fetchPlans = async (params: Record<string, any> = {}) => {
             pagination.value = data.value.data?.pagination
             return
         }
-        throw new Error(data.value?.message || '获取方案列表失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '获取方案列表失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -370,31 +370,33 @@ const handleSubmit = async () => {
         }
         let respData
         if (editingPlan.value && editingPlan.value.id) {
-            const { data } = await useFetch(`/api/admin/plans/${editingPlan.value.id}`, {
+            const { data, error } = await useFetch(`/api/admin/plans/${editingPlan.value.id}`, {
                 method: 'PUT',
                 body: payload,
             }) as any
             respData = data.value
+            if (respData?.statusCode !== 200) {
+                throw new Error(error.value?.data?.message || error.value?.message || '操作失败')
+            }
         } else {
-            const { data } = await useFetch('/api/admin/plans/create', {
+            const { data, error } = await useFetch('/api/admin/plans/create', {
                 method: 'POST',
                 body: payload,
             }) as any
             respData = data.value
+            if (respData?.statusCode !== 200) {
+                throw new Error(error.value?.data?.message || error.value?.message || '操作失败')
+            }
         }
-        if (respData?.statusCode === 200) {
-            toast.add({
-                severity: 'success',
-                summary: '成功',
-                detail: editingPlan.value ? '方案已更新' : '方案已创建',
-                life: 3000,
-            })
-            planDialog.value = false
-            await fetchPlans()
-            return
-        }
-        throw new Error(respData?.message || '操作失败')
-
+        toast.add({
+            severity: 'success',
+            summary: '成功',
+            detail: editingPlan.value ? '方案已更新' : '方案已创建',
+            life: 3000,
+        })
+        planDialog.value = false
+        await fetchPlans()
+        
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -412,7 +414,7 @@ const handleDelete = async (plan: Plan) => {
         return
     }
     try {
-        const { data } = await useFetch(`/api/admin/plans/${plan.id}`, { method: 'DELETE' }) as any
+        const { data, error } = await useFetch(`/api/admin/plans/${plan.id}`, { method: 'DELETE' }) as any
         const respData = data.value
         if (respData?.statusCode === 200) {
             toast.add({
@@ -424,7 +426,7 @@ const handleDelete = async (plan: Plan) => {
             await fetchPlans()
             return
         }
-        throw new Error(respData?.message || '删除失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '删除失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -438,13 +440,13 @@ const handleDelete = async (plan: Plan) => {
 const toggleEnabled = async (plan: Plan) => {
     plan._enabling = true
     try {
-        const { data } = await useFetch(`/api/admin/plans/${plan.id}`, {
+        const { data, error } = await useFetch(`/api/admin/plans/${plan.id}`, {
             method: 'PUT',
             body: { enabled: plan.enabled },
         }) as any
         const respData = data.value
         if (respData?.statusCode !== 200) {
-            throw new Error(respData?.message || '操作失败')
+            throw new Error(error.value?.data?.message || error.value?.message || '操作失败')
         }
         toast.add({
             severity: 'success',

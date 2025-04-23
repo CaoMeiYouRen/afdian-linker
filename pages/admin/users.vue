@@ -85,7 +85,7 @@ const headers = [
 const fetchUsers = async (params = {}) => {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/admin/users', {
+        const { data, error } = await useFetch('/api/admin/users', {
             query: {
                 page: pagination.value.currentPage,
                 perPage: pagination.value.perPage,
@@ -98,7 +98,7 @@ const fetchUsers = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(data.value?.message || '获取用户列表失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '获取用户列表失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

@@ -114,7 +114,7 @@ async function handleSubmit() {
             navigateTo('/')
             return
         }
-    throw new Error(error.value?.data?.message || error.value?.message || '登录失败')
+        throw new Error(error.value?.data?.message || error.value?.message || '登录失败')
     } catch (error: any) {
         console.error(error)
         toast.add({

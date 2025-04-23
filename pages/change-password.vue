@@ -94,14 +94,13 @@ async function handleSubmit() {
 
     loading.value = true
     try {
-        const { data } = await useFetch('/api/auth/change-password', {
+        const { data, error } = await useFetch('/api/auth/change-password', {
             method: 'POST',
             body: {
                 oldPassword: form.oldPassword,
                 newPassword: form.newPassword,
             },
         })
-
         if (data.value?.statusCode === 200) {
             toast.add({
                 severity: 'success',
@@ -112,12 +111,7 @@ async function handleSubmit() {
             navigateTo('/')
             return
         }
-        toast.add({
-            severity: 'error',
-            summary: '错误',
-            detail: data.value?.message || '登录失败',
-            life: 5000,
-        })
+        throw new Error(error.value?.data?.message || error.value?.message || '修改密码失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

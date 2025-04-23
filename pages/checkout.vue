@@ -104,15 +104,6 @@
                                 class="mb-4"
                             />
 
-                            <v-alert
-                                v-if="error"
-                                type="error"
-                                class="mb-4"
-                                closable
-                            >
-                                {{ error }}
-                            </v-alert>
-
                             <div class="align-center d-flex justify-space-between mb-4">
                                 <div class="text-body-1">
                                     支付金额
@@ -146,12 +137,10 @@ import type { Plan } from '@/types/plan'
 
 const toast = useToast()
 const loading = ref(false)
-const error = ref('')
 const isValid = ref(false)
 const selectedPlan = ref<Plan | null>(null)
 const remark = ref('')
 
-// 新增：plans相关状态
 const plans = ref<Plan[]>([])
 const plansLoading = ref(true)
 const plansError = ref('')
@@ -205,15 +194,19 @@ const handleOrderCreated = (orderId: string, paymentUrl: string) => {
 // 提交订单
 const handleSubmit = async () => {
     if (!selectedPlan.value) {
-        error.value = '请选择支持方案'
+        toast.add({
+            severity: 'warning',
+            summary: '错误',
+            detail: '请选择支持方案',
+            life: 5000,
+        })
         return
     }
 
     loading.value = true
-    error.value = ''
 
     try {
-        const { data } = await useFetch('/api/orders/create', {
+        const { data, error } = await useFetch('/api/orders/create', {
             method: 'POST',
             body: {
                 planId: selectedPlan.value.id,
@@ -231,13 +224,13 @@ const handleSubmit = async () => {
             handleOrderCreated(orderId, paymentUrl)
             return
         }
-        error.value = data.value?.message || '创建订单失败'
-    } catch (err: any) {
-        error.value = err.message || '创建订单失败'
+        throw new Error(error.value?.data?.message || error.value?.message || '创建订单失败')
+
+    } catch (error: any) {
         toast.add({
             severity: 'error',
             summary: '错误',
-            detail: error.value,
+            detail: error.message || '创建订单失败',
             life: 5000,
         })
     } finally {

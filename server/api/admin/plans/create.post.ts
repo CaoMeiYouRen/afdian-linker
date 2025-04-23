@@ -21,16 +21,27 @@ const planSchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event)
-    const data = await planSchema.parseAsync(body)
-    const dataSource = await getDataSource()
-    const planRepository = dataSource.getRepository(Plan)
-    const plan = planRepository.create({
-        ...data,
-        amount: data.amount.toFixed(2),
-        showAmount: data.showAmount?.toFixed(2),
-        discount: data.discount?.toFixed(2),
-    })
-    await planRepository.save(plan)
-    return createApiResponse(plan)
+    try {
+        const body = await readBody(event)
+        const data = await planSchema.parseAsync(body)
+        const dataSource = await getDataSource()
+        const planRepository = dataSource.getRepository(Plan)
+        const plan = planRepository.create({
+            ...data,
+            amount: data.amount.toFixed(2),
+            showAmount: data.showAmount?.toFixed(2),
+            discount: data.discount?.toFixed(2),
+        })
+        await planRepository.save(plan)
+        return createApiResponse(plan)
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            throw createError({
+                statusCode: 400,
+                message: error.issues.map((e) => e.message).join(', '),
+                data: error.issues,
+            })
+        }
+        throw error
+    }
 })

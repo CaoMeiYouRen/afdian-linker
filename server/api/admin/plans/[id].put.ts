@@ -24,21 +24,32 @@ const planSchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-    const planId = getRouterParam(event, 'id')
-    const body = await readBody(event)
-    const data = await planSchema.parseAsync(body)
-    const dataSource = await getDataSource()
-    const planRepository = dataSource.getRepository(Plan)
-    const plan = await planRepository.findOneBy({ id: planId })
-    if (!plan) {
-        throw createError({ statusCode: 404, message: '方案不存在' })
+    try {
+        const planId = getRouterParam(event, 'id')
+        const body = await readBody(event)
+        const data = await planSchema.parseAsync(body)
+        const dataSource = await getDataSource()
+        const planRepository = dataSource.getRepository(Plan)
+        const plan = await planRepository.findOneBy({ id: planId })
+        if (!plan) {
+            throw createError({ statusCode: 404, message: '方案不存在' })
+        }
+        await planRepository.save({
+            ...plan,
+            ...data,
+            amount: data.amount?.toFixed(2),
+            showAmount: data.showAmount?.toFixed(2),
+            discount: data.discount?.toFixed(2),
+        })
+        return createApiResponse(plan)
+    } catch (error) {
+        if (error instanceof z.ZodError) {
+            throw createError({
+                statusCode: 400,
+                message: error.issues.map((e) => e.message).join(', '),
+                data: error.issues,
+            })
+        }
+        throw error
     }
-    await planRepository.save({
-        ...plan,
-        ...data,
-        amount: data.amount?.toFixed(2),
-        showAmount: data.showAmount?.toFixed(2),
-        discount: data.discount?.toFixed(2),
-    })
-    return createApiResponse(plan)
 })

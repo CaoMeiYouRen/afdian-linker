@@ -7,8 +7,8 @@ import { createApiResponse } from '@/server/types/api'
 export default defineEventHandler(async (event) => {
     const dataSource = await getDataSource()
     const orderRepository = dataSource.getRepository(Order)
-    // 过期时间为当前时间减去1天
-    const expireDate = dayjs().subtract(1, 'day').toDate()
+    // 过期时间为当前时间减去2小时
+    const expireDate = dayjs().subtract(2, 'hours').toDate()
 
     // 查找所有超时未支付订单
     const expiredOrders = await orderRepository.find({

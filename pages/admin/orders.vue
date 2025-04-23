@@ -353,7 +353,7 @@ const handleExpire = async () => {
     expireLoading.value = true
     try {
         const { data } = await useFetch('/api/admin/orders/expire', { method: 'POST' })
-        if (data.value?.data?.count) {
+        if (data.value?.statusCode === 200) {
             toast.add({
                 severity: 'success',
                 summary: '处理完成',

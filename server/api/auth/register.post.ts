@@ -4,6 +4,7 @@ import { getDataSource } from '@/server/utils/database'
 import { User, UserRole } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
 import { createApiResponse } from '@/server/types/api'
+import { rateLimit } from '@/server/utils/rate-limit'
 
 const schema = z.object({
     username: z.string().min(1, '用户名不能为空').max(255),
@@ -14,6 +15,12 @@ const schema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
+        // 注册限流
+        await rateLimit(event, {
+            window: 60_000,
+            max: 5,
+        })
+
         const body = await readBody(event)
         const { username, nickname, email, password } = schema.parse(body)
 

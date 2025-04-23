@@ -3,12 +3,18 @@ import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
 import { createApiResponse } from '@/server/types/api'
+import { rateLimit } from '@/server/utils/rate-limit'
 
 export default defineEventHandler(async (event) => {
     const auth = event.context.auth as Session
     if (!auth) {
         throw createError({ statusCode: 401, message: '未登录' })
     }
+    // 邮箱发件限流
+    await rateLimit(event, {
+        window: 60_000,
+        max: 5,
+    })
     const dataSource = await getDataSource()
     const repo = dataSource.getRepository(User)
     const user = await repo.findOneBy({ id: auth.id })

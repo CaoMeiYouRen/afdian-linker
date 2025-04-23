@@ -4,6 +4,7 @@ import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
 import { createApiResponse } from '@/server/types/api'
+import { rateLimit } from '@/server/utils/rate-limit'
 
 const schema = z.object({
     email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空'),
@@ -14,6 +15,11 @@ export default defineEventHandler(async (event) => {
     if (!auth) {
         throw createError({ statusCode: 401, message: '未登录' })
     }
+    // 邮箱发件限流
+    await rateLimit(event, {
+        window: 60_000,
+        max: 5,
+    })
     try {
         const body = schema.parse(await readBody(event))
         const email = body?.email?.trim()

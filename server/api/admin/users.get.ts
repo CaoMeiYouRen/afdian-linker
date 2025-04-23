@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
         if (error instanceof z.ZodError) {
             throw createError({
                 statusCode: 400,
-                message: '参数验证失败',
+                message: error.issues.map((e) => e.message).join(', '),
                 data: error.issues,
             })
         }

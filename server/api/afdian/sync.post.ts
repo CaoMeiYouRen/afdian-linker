@@ -82,14 +82,15 @@ export default defineEventHandler(async (event) => {
             })
         })
     } catch (error: any) {
+        console.error('同步失败:', error)
         if (error instanceof z.ZodError) {
             throw createError({
                 statusCode: 400,
-                message: '参数验证失败',
+                message: error.issues.map((e) => e.message).join(', '),
                 data: error.issues,
             })
         }
-        console.error('同步失败:', error)
+
         throw createError({
             statusCode: 500,
             message: error?.message || '订单同步失败',

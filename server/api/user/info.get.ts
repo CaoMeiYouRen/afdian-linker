@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
 
         return createApiResponse(omit(user, ['password']), 200, '登录成功')
     } catch (error) {
+        console.error(error)
         throw createError({
             statusCode: 401,
             message: '登录已过期',

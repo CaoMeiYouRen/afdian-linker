@@ -4,11 +4,13 @@ import { UserRole, type User } from '@/types/user'
 
 export interface UserState {
     userInfo: DateToString<User> | null
+    isReady: boolean
 }
 
 export const useUserStore = defineStore('user', {
     state: (): UserState => ({
         userInfo: null,
+        isReady: false,
     }),
 
     getters: {
@@ -23,22 +25,6 @@ export const useUserStore = defineStore('user', {
 
         clearUserInfo() {
             this.userInfo = null
-        },
-        /**
-         * @deprecated 改用 fetchUserInfo
-         */
-        async verifyLogin() {
-            try {
-                const response = await $fetch('/api/auth/verify', { method: 'POST' })
-                if (response.statusCode === 200) {
-                    this.userInfo = response.data || null
-                    return true
-                }
-                return false
-            } catch (error) {
-                console.error('验证登录状态失败:', error)
-                return false
-            }
         },
         async fetchUserInfo() {
             try {
@@ -55,6 +41,8 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.error('获取用户信息失败:', error)
                 return false
+            } finally {
+                this.isReady = true
             }
         },
     },

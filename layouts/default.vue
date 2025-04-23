@@ -1,5 +1,5 @@
 <template>
-    <v-layout class="border rounded rounded-md">
+    <v-layout v-if="userStore.isReady" class="border rounded rounded-md">
         <!-- 侧边导航栏 -->
         <v-navigation-drawer
             v-model="drawer"
@@ -98,6 +98,15 @@
             <slot />
         </v-main>
     </v-layout>
+    <!-- 骨架屏 loading -->
+    <div v-else style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
+        <v-progress-circular
+            color="primary"
+            :size="128"
+            :width="7"
+            indeterminate
+        />
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -107,6 +116,11 @@ import { useUserStore } from '@/stores/user'
 const drawer = ref(false)
 const userStore = useUserStore()
 const toast = useToast()
+
+onMounted(async () => {
+    // 确保登录状态已校验，避免布局抖动
+    await userStore.fetchUserInfo()
+})
 
 const handleLogout = async () => {
   await useFetch('/api/auth/logout', { method: 'POST' })
@@ -123,10 +137,6 @@ const handleLogout = async () => {
 const handleChangePassword = () => {
     navigateTo('/change-password')
 }
-
-// onMounted(async () => {
-//     await userStore.verifyLogin()
-// })
 </script>
 
 <style scoped>

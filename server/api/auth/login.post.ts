@@ -9,8 +9,8 @@ import { User, UserRole } from '@/server/entities/user'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
 const loginSchema = z.object({
-    username: z.string().min(1),
-    password: z.string().min(1),
+    username: z.string().min(1).max(255),
+    password: z.string().min(1).max(255),
 })
 
 export default defineEventHandler(async (event) => {

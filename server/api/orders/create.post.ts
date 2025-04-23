@@ -13,7 +13,7 @@ const orderSchema = z.object({
     channel: z.string().default('afdian'),
     metaData: z.record(z.unknown()).optional(),
     month: z.number().int().min(1).max(36).default(1),
-    remark: z.string().max(200).optional(),
+    remark: z.string().max(255).optional(),
     planId: z.string(),
     channelPlanId: z.string(),
     productType: z.number().int().refine((v) => v === 0 || v === 1).default(0),

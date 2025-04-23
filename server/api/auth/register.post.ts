@@ -6,10 +6,10 @@ import { sendVerifyEmail } from '@/server/utils/email'
 import { createApiResponse } from '@/server/types/api'
 
 const schema = z.object({
-    username: z.string().min(1, '用户名不能为空'),
-    nickname: z.string().min(1, '昵称不能为空'),
-    email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空'),
-    password: z.string().min(6, '密码长度至少为6位'),
+    username: z.string().min(1, '用户名不能为空').max(255),
+    nickname: z.string().min(1, '昵称不能为空').max(255),
+    email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空').max(255),
+    password: z.string().min(6, '密码长度至少为6位').max(255),
 })
 
 export default defineEventHandler(async (event) => {

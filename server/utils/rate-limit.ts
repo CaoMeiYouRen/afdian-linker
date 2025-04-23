@@ -3,7 +3,9 @@ import { Redis } from 'ioredis'
 import { LRUCache } from 'lru-cache'
 
 interface RateLimitOptions {
+    // 窗口时间，毫秒
     window: number
+    // 最大请求次数
     max: number
 }
 

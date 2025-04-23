@@ -10,12 +10,13 @@
                     :title="'首页'"
                     prepend-icon="mdi-home"
                 />
-                <v-list-item
-                    to="/checkout"
-                    :title="'赞助'"
-                    prepend-icon="mdi-cash"
-                />
+
                 <template v-if="userStore.isLoggedIn">
+                    <v-list-item
+                        to="/checkout"
+                        :title="'赞助'"
+                        prepend-icon="mdi-cash"
+                    />
                     <v-list-item
                         to="/orders"
                         :title="'我的订单'"
@@ -26,10 +27,10 @@
                         :title="'个人中心'"
                         prepend-icon="mdi-account-circle"
                     />
+                    <v-divider />
                 </template>
                 <!-- 管理员菜单项 -->
                 <template v-if="userStore.isAdmin">
-                    <v-divider />
                     <v-list-subheader>管理功能</v-list-subheader>
                     <v-list-item
                         to="/admin/orders"
@@ -51,7 +52,14 @@
                         :title="'Webhook日志'"
                         prepend-icon="mdi-webhook"
                     />
+                    <v-divider />
                 </template>
+
+                <v-list-item
+                    to="/about"
+                    :title="'关于'"
+                    prepend-icon="mdi-information"
+                />
             </v-list>
         </v-navigation-drawer>
         <!-- 顶部导航栏 -->

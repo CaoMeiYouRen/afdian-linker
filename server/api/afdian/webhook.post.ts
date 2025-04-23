@@ -4,6 +4,7 @@ import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/server/entities/order'
 import { WebhookLog } from '@/server/entities/webhook-log'
 import { getOrderMetaData } from '@/server/utils/order'
+import { batchPushAllInOne } from '@/server/utils/push'
 
 export default defineEventHandler(async (event) => {
     try {
@@ -30,6 +31,22 @@ export default defineEventHandler(async (event) => {
         }
 
         const orderData = body.data.order
+        const desp = `
+订单号: ${orderData.custom_order_id}
+平台订单号: ${orderData.out_trade_no}
+用户ID: ${orderData.user_id}
+方案ID: ${orderData.plan_id}
+购买月数: ${orderData.month}
+金额: ${orderData.total_amount} 元
+订单状态: ${orderData.status === 2 ? '已支付' : '未支付/失败'}
+备注: ${orderData.remark || '-'}
+优惠: ${orderData.discount || '-'}
+商品类型: ${orderData.product_type}
+收货人: ${orderData.address_person || '-'}
+收货电话: ${orderData.address_phone || '-'}
+收货地址: ${orderData.addres_address || '-'}
+`.trim()
+        await batchPushAllInOne('新订单通知', desp)
 
         await dataSource.transaction(async (manager) => {
             // 保存订单

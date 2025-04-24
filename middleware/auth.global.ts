@@ -26,7 +26,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
     // 重定向到登录页面
     if (!userStore.isLoggedIn && from.path !== '/login') {
-        // return navigateTo('/login')
+        return navigateTo('/login')
     }
     // 如果访问管理界面，检查用户是否为管理员
     if (!userStore.isAdmin && to.path.startsWith('/admin')) {

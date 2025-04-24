@@ -11,6 +11,12 @@ export default defineEventHandler(async (event) => {
         '/api/auth/reset-password',
         '/api/public',
         '/api/afdian/webhook',
+
+        '/login',
+        '/about',
+        '/register',
+        '/forgot-password',
+        '/reset-password',
     ]
     if (event.path === '/') {
         return
@@ -27,9 +33,11 @@ export default defineEventHandler(async (event) => {
                 statusCode: 401,
                 message: '请先登录',
             })
-        } else {
-            // 页面请求重定向到登录页
+        } else if (event.path !== '/login') { // 页面请求重定向到登录页
             return sendRedirect(event, '/login', 302)
+        } else {
+            // 如果是登录页，直接返回
+            return
         }
     }
     event.context.auth = session
@@ -49,9 +57,11 @@ export default defineEventHandler(async (event) => {
                 statusCode: 401,
                 message: '登录已过期',
             })
-        } else {
-            // 页面请求重定向到登录页
+        } else if (event.path !== '/login') { // 页面请求重定向到登录页
             return sendRedirect(event, '/login', 302)
+        } else {
+            // 如果是登录页，直接返回
+            
         }
     }
 })

@@ -87,6 +87,15 @@ export default defineEventHandler(async (event) => {
         await userRepo.save(user)
     }
 
-    // 返回本地用户信息
-    return createApiResponse(user, 200, '登录成功')
+    const jwtToken = setSession(event, {
+        id: user.id,
+        role: user.role,
+    })
+
+    return createApiResponse({
+        requirePasswordChange: user.initialPassword,
+        requireEmailChange: user.initialEmail,
+        requireEmailVerification: user.emailVerified,
+        token: jwtToken,
+    }, 200, '登录成功')
 })

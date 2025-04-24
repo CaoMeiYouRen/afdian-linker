@@ -40,7 +40,7 @@
                     />
                 </v-card-text>
 
-                <v-card-actions class="pb-8 px-6">
+                <v-card-actions class="pb-4 px-6">
                     <v-btn
                         type="submit"
                         color="primary"
@@ -52,6 +52,21 @@
                         elevation="2"
                     >
                         <span class="text-white">登录</span>
+                    </v-btn>
+                </v-card-actions>
+                <v-card-actions class="pb-4 px-6">
+                    <v-btn
+                        color="success"
+                        variant="elevated"
+                        class="login-btn"
+                        block
+                        :loading="auth0Loading"
+                        @click="handleAuth0Login"
+                    >
+                        <v-icon left>
+                            mdi-lock-open-variant
+                        </v-icon>
+                        使用 Auth0 一键登录/注册
                     </v-btn>
                 </v-card-actions>
                 <div class="pb-6 text-center">
@@ -70,14 +85,6 @@
                     >
                         忘记密码？
                     </v-btn>
-                    <!-- <v-btn
-                        variant="text"
-                        color="secondary"
-                        class="ml-2"
-                        @click="goToReset"
-                    >
-                        重置密码？
-                    </v-btn> -->
                 </div>
             </v-form>
         </v-card>
@@ -90,6 +97,7 @@ definePageMeta({
 })
 
 import { useToast } from 'primevue/usetoast'
+import { useAuth0 } from '@auth0/auth0-vue'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
@@ -100,6 +108,49 @@ const form = reactive({
     password: '',
 })
 const loading = ref(false)
+const auth0Loading = ref(false)
+
+const { loginWithRedirect, isAuthenticated, user, getAccessTokenSilently } = useAuth0()
+
+async function handleAuth0Login() {
+    auth0Loading.value = true
+    try {
+        // 触发 Auth0 登录
+        await loginWithRedirect()
+        // 登录完成后，isAuthenticated 会变为 true
+        // 这里建议在全局导航守卫或 layout 里监听 isAuthenticated 并自动调用 handleAuth0Callback
+        // 但为简单起见，这里直接处理
+        if (isAuthenticated.value) {
+            const token = await getAccessTokenSilently()
+            // 调用后端同步用户
+            const { data, error } = await useFetch('/api/auth/auth0-login', {
+                method: 'POST',
+                body: { token },
+            })
+            if (data.value?.statusCode === 200) {
+                toast.add({
+                    severity: 'success',
+                    summary: '成功',
+                    detail: '第三方登录成功',
+                    life: 3000,
+                })
+                await userStore.fetchUserInfo()
+                navigateTo('/')
+                return
+            }
+            throw new Error(error.value?.data?.message || error.value?.message || '第三方登录失败')
+        }
+    } catch (error: any) {
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error?.message || '第三方登录失败',
+            life: 5000,
+        })
+    } finally {
+        auth0Loading.value = false
+    }
+}
 
 async function handleSubmit() {
     loading.value = true

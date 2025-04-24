@@ -20,15 +20,9 @@ FROM nodejs AS docker-minifier
 
 WORKDIR /app
 
-RUN pnpm add @vercel/nft@0.24.4 fs-extra@11.2.0 --save-prod
-
-COPY --from=builder /app /app
-
-RUN export PROJECT_ROOT=/app/ && \
-    node /app/scripts/minify-docker.cjs && \
-    rm -rf /app/node_modules /app/scripts && \
-    mv /app/app-minimal/node_modules /app/ && \
-    rm -rf /app/app-minimal
+COPY --from=docker-minifier /app/.output ./.output
+# COPY --from=docker-minifier /app/.output/public ./.output/public
+# COPY --from=docker-minifier /app/node_modules ./node_modules
 
 # 阶段三：生产阶段
 FROM runtime

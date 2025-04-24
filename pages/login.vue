@@ -62,6 +62,14 @@
                     >
                         没有账号？去注册
                     </v-btn>
+                    <v-btn
+                        variant="text"
+                        color="secondary"
+                        class="ml-2"
+                        @click="goToForgot"
+                    >
+                        忘记密码？
+                    </v-btn>
                 </div>
             </v-form>
         </v-card>
@@ -130,6 +138,10 @@ async function handleSubmit() {
 
 function goToRegister() {
     navigateTo('/register')
+}
+
+function goToForgot() {
+    navigateTo('/forgot-password')
 }
 </script>
 

@@ -57,6 +57,7 @@ export default defineEventHandler(async (event) => {
             if (existingOrder) {
                 existingOrder.channelOrderId = orderData.out_trade_no
                 existingOrder.status = orderData.status === 2 ? OrderStatus.PAID : OrderStatus.FAILED
+                existingOrder.amount = orderData.total_amount
                 existingOrder.rawData = orderData
                 existingOrder.metaData = {
                     ...existingOrder.metaData,

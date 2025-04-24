@@ -22,6 +22,19 @@
 
 > 爱发电 API 集成，提供统一订单管理和外部查询能力
 
+## ✨ 功能简介
+
+- 支持多支付渠道扩展（如爱发电等）
+- 统一订单生命周期管理
+- 安全的 API 查询接口
+- 丰富的后台管理功能（订单、用户、商品、Webhook 日志等）
+- 邮箱验证、第三方登录（Auth0）、初始密码/邮箱安全提醒
+- 支持多种推送渠道（Server酱、钉钉、企业微信、邮件等）
+
+## 📖 文档
+
+详细的功能说明、部署和使用方法请参见 [docs/README.md](./docs/README.md)。
+
 ## 🏠 主页
 
 [https://github.com/CaoMeiYouRen/afdian-linker#readme](https://github.com/CaoMeiYouRen/afdian-linker#readme)

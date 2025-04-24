@@ -15,7 +15,7 @@ services:
       AFDIAN_USER_ID: ${AFDIAN_USER_ID}
       AFDIAN_TOKEN: ${AFDIAN_TOKEN}
       # 爱发电回调的 webhook token
-      WEBHOOK_TOKEN: ${WEBHOOK_TOKEN}
+      AFDIAN_WEBHOOK_TOKEN: ${AFDIAN_WEBHOOK_TOKEN}
       # 数据库配置。
       # 目前支持 PostgreSQL
       DATABASE_URL: ${DATABASE_URL}

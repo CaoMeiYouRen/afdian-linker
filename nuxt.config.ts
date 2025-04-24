@@ -39,9 +39,9 @@ export default defineNuxtConfig({
     runtimeConfig: {
         afdianUserId: process.env.AFDIAN_USER_ID,
         afdianToken: process.env.AFDIAN_TOKEN,
+        webhookToken: process.env.AFDIAN_WEBHOOK_TOKEN || process.env.WEBHOOK_TOKEN,
         jwtSecret: process.env.JWT_SECRET,
         apiKeys: process.env.AUTH_API_KEYS,
-        webhookToken: process.env.WEBHOOK_TOKEN,
         smtpHost: process.env.SMTP_HOST,
         smtpPort: process.env.SMTP_PORT,
         smtpUser: process.env.SMTP_USER,

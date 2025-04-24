@@ -29,6 +29,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+    layout: 'blank',
+})
+
 import { useToast } from 'primevue/usetoast'
 const email = ref('')
 const loading = ref(false)
@@ -36,14 +40,26 @@ const toast = useToast()
 async function handleSubmit() {
     loading.value = true
     try {
-        const { data } = await useFetch('/api/auth/forgot-password', {
+        const { data, error } = await useFetch('/api/auth/forgot-password', {
             method: 'POST',
             body: { email: email.value },
         })
+        if (data.value?.statusCode === 200) {
+            toast.add({
+                severity: 'success',
+                summary: '提示',
+                detail: data.value?.message || '如果该邮箱已注册且已验证，将收到重置密码邮件',
+                life: 5000,
+            })
+            return
+        }
+        throw new Error(error.value?.data?.message || error.value?.message || '发送重置邮件失败')
+    } catch (error: any) {
+        console.error(error)
         toast.add({
-            severity: 'success',
-            summary: '提示',
-            detail: data.value?.message || '如果该邮箱已注册且已验证，将收到重置密码邮件',
+            severity: 'error',
+            summary: '错误',
+            detail: error.message || '发送重置邮件失败',
             life: 5000,
         })
     } finally {

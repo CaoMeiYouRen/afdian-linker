@@ -42,6 +42,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+    layout: 'blank',
+})
+
 import { useToast } from 'primevue/usetoast'
 const route = useRoute()
 const toast = useToast()

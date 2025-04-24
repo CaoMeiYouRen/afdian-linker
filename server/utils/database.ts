@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm'
 import { SnakeCaseNamingStrategy } from './naming-strategy'
+import { VerificationCode } from '@/server/entities/verification-code'
 import { Order } from '@/server/entities/order'
 import { User, UserRole } from '@/server/entities/user'
 import { WebhookLog } from '@/server/entities/webhook-log'
@@ -16,7 +17,7 @@ export const initializeDB = async () => {
             AppDataSource = new DataSource({
                 type: 'postgres',
                 url: process.env.DATABASE_URL,
-                entities: [Order, User, WebhookLog, Plan],
+                entities: [Order, User, WebhookLog, Plan, VerificationCode],
                 synchronize: process.env.NODE_ENV !== 'production',
                 logging: process.env.NODE_ENV === 'development',
                 ssl: false,

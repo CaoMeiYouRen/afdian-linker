@@ -1,23 +1,9 @@
 import jwt from 'jsonwebtoken'
 import { getSession, SESSION_KEY } from '@/server/utils/session'
 import { UserRole } from '@/types/user'
+import { publicPaths } from '@/utils/public-paths'
 
 export default defineEventHandler(async (event) => {
-    // 白名单路径
-    const publicPaths = [
-        '/api/auth/login',
-        '/api/auth/register',
-        '/api/auth/forgot-password',
-        '/api/auth/reset-password',
-        '/api/public',
-        '/api/afdian/webhook',
-
-        '/login',
-        '/about',
-        '/register',
-        '/forgot-password',
-        '/reset-password',
-    ]
     if (event.path === '/') {
         return
     }
@@ -61,7 +47,7 @@ export default defineEventHandler(async (event) => {
             return sendRedirect(event, '/login', 302)
         } else {
             // 如果是登录页，直接返回
-            
+
         }
     }
 })

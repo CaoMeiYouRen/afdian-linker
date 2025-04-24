@@ -1,3 +1,5 @@
+import { publicPaths } from '@/utils/public-paths'
+
 export default defineNuxtRouteMiddleware(async (to, from) => {
 
     // 只在客户端执行，避免SSR重复请求
@@ -6,14 +8,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
 
     // 白名单路径
-    const publicPaths = [
-        '/login',
-        '/about',
-        '/register',
-        '/forgot-password',
-        '/reset-password',
-    ]
-    // console.log(to.path, from.path)
     if (publicPaths.some((path) => to.path.startsWith(path))) {
         return true
     }

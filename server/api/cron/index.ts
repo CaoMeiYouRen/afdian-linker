@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { syncAfdianOrders } from '@/server/utils/syncAfdianOrders'
+import { syncAfdianOrders } from '@/server/utils/sync-afdian-orders'
 
 export default defineEventHandler(async (event) => {
     const authHeader = event.headers.get('authorization') || ''

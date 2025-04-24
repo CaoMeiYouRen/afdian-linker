@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { syncAfdianOrders } from '@/server/utils/syncAfdianOrders'
+import { syncAfdianOrders } from '@/server/utils/sync-afdian-orders'
 
 const querySchema = z.object({
     page: z.coerce.number().min(1).default(1),

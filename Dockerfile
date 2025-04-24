@@ -20,9 +20,9 @@ FROM nodejs AS docker-minifier
 
 WORKDIR /app
 
-COPY --from=docker-minifier /app/.output ./.output
-# COPY --from=docker-minifier /app/.output/public ./.output/public
-# COPY --from=docker-minifier /app/node_modules ./node_modules
+COPY --from=builder /app/.output ./.output
+# COPY --from=builder /app/.output/public ./.output/public
+# COPY --from=builder /app/node_modules ./node_modules
 
 # 阶段三：生产阶段
 FROM runtime

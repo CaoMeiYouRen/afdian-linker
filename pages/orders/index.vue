@@ -18,6 +18,13 @@
                             <template #item.plan="{item}">
                                 {{ item.plan?.title }}
                             </template>
+                            <template #item.id="{item}">
+                                <v-tooltip :text="item.id">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.id) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
                             <template #item.paymentChannel="{item}">
                                 <v-chip
                                     :color="getChannelColor(item.paymentChannel)"
@@ -154,6 +161,7 @@ import { type Order, getStatusText, getStatusColor } from '@/types/order'
 import { formatDate, formatCurrency, formatChannel } from '@/utils/format'
 import type { Pagination } from '@/types/pagination'
 import { getChannelColor } from '@/utils/color'
+import { shortText } from '@/utils/short-text'
 
 const toast = useToast()
 const loading = ref(false)

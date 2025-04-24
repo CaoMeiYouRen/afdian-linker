@@ -48,10 +48,16 @@
                         prepend-icon="mdi-account-group"
                     />
                     <v-list-item
+                        to="/admin/verification-codes"
+                        :title="'验证码列表'"
+                        prepend-icon="mdi-lock-check-outline"
+                    />
+                    <v-list-item
                         to="/admin/webhook-logs"
                         :title="'Webhook日志'"
                         prepend-icon="mdi-webhook"
                     />
+
                     <v-divider />
                 </template>
 

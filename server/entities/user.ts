@@ -53,13 +53,19 @@ export class User extends BaseEntity implements BaseUser {
     @Column({ type: 'boolean', default: true })
     initialPassword: boolean
 
-    // 是否是初始邮箱
+    /**
+    * @deprecated 弃用，改为判断 emailVerified
+    * @description 是否是初始邮箱
+     */
     @Column({ type: 'boolean', default: true })
     initialEmail: boolean
 
     // 是否已验证邮箱
     @Column({ type: 'boolean', default: false, nullable: true })
     emailVerified: boolean
+
+    @Column({ type: 'varchar', length: 255, unique: true, nullable: true })
+    auth0Id?: string
 
     @OneToMany(() => Order, (order) => order.user, {
         cascade: true,

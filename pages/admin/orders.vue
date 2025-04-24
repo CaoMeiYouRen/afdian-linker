@@ -61,6 +61,27 @@
                             hover
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.id="{item}">
+                                <v-tooltip :text="item.id">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.id) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
+                            <template #item.customOrderId="{item}">
+                                <v-tooltip :text="item.customOrderId">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.customOrderId) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
+                            <template #item.channelOrderId="{item}">
+                                <v-tooltip :text="item.channelOrderId">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.channelOrderId) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
                             <template #item.plan="{item}">
                                 {{ item.plan?.title }}
                             </template>
@@ -232,6 +253,7 @@ import { type Order, getStatusText, getStatusColor } from '@/types/order'
 import { formatDate, formatCurrency, formatChannel } from '@/utils/format'
 import type { Pagination } from '@/types/pagination'
 import { getChannelColor } from '@/utils/color'
+import { shortText } from '@/utils/short-text'
 
 const toast = useToast()
 const userStore = useUserStore()

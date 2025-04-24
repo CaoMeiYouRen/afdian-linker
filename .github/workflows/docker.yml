@@ -104,4 +104,4 @@ jobs:
           user: ${{ secrets.DOCKER_USERNAME }}
           pass: ${{ secrets.DOCKER_PASSWORD }}
           slug: ${{ github.repository }}
-          description: "一个基于 Nuxt 的爱发电 API 集成全栈项目，提供统一订单管理和外部查询能力"
+          description: "一个基于 Nuxt 的爱发电 API 集成全栈项目"

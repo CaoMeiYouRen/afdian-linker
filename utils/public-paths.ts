@@ -1,6 +1,7 @@
 export const publicPaths = [
     '/api/auth/login',
     '/api/auth/register',
+    '/api/auth/auth0-login',
     '/api/auth/forgot-password',
     '/api/auth/reset-password',
     '/api/public',
@@ -12,4 +13,5 @@ export const publicPaths = [
     '/register',
     '/forgot-password',
     '/reset-password',
+    '/callback',
 ]

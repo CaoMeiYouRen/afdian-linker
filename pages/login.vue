@@ -97,7 +97,8 @@ definePageMeta({
 })
 
 import { useToast } from 'primevue/usetoast'
-import { useAuth0 } from '@auth0/auth0-vue'
+import { onMounted, reactive, ref, shallowRef } from 'vue'
+import { useAuth0, type Auth0VueClient } from '@auth0/auth0-vue'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
@@ -109,38 +110,81 @@ const form = reactive({
 })
 const loading = ref(false)
 const auth0Loading = ref(false)
+const auth0 = ref<Auth0VueClient>(null as any)
 
-const { loginWithRedirect, isAuthenticated, user, getAccessTokenSilently } = useAuth0()
+onMounted(async () => {
+    // 只在客户端执行
+    if (import.meta.client) {
+        auth0.value = useAuth0()
+        // 检查是否为 Auth0 回调
+        const url = new URL(window.location.href)
+        // console.log(window.location.href)
+        if (url.searchParams.has('code') && url.searchParams.has('state') && auth0.value) {
+            auth0Loading.value = true
+            try {
+                // 处理 Auth0 回调
+                // await auth0.value.handleRedirectCallback?.(url.toString())
+                // 获取最新 id_token
+                await auth0.value.getAccessTokenSilently()
+                const token = auth0.value.idTokenClaims?.__raw
+                // console.log('token', token)
+                if (!token) {
+                    throw new Error('未获取到有效的 id_token')
+                }
+                // 调用后端同步用户
+                const { data, error } = await useFetch('/api/auth/auth0-login', {
+                    method: 'POST',
+                    body: { token },
+                })
+                if (data.value?.statusCode === 200) {
+                    toast.add({
+                        severity: 'success',
+                        summary: '成功',
+                        detail: '第三方登录成功',
+                        life: 3000,
+                    })
+                    await userStore.fetchUserInfo()
+                    if (userStore.userInfo?.initialPassword) {
+                        toast.add({
+                            severity: 'warn',
+                            summary: '警告',
+                            detail: '为了您的账户安全，请修改初始密码',
+                            life: 5000,
+                        })
+                        navigateTo('/change-password')
+                        return
+                    }
+                    navigateTo('/')
+                    return
+                }
+                throw new Error(error.value?.data?.message || error.value?.message || '第三方登录失败')
+            } catch (error: any) {
+                console.error(error)
+                toast.add({
+                    severity: 'error',
+                    summary: '错误',
+                    detail: error?.message || '第三方登录失败',
+                    life: 5000,
+                })
+            } finally {
+                auth0Loading.value = false
+            }
+        }
+    }
+})
 
 async function handleAuth0Login() {
     auth0Loading.value = true
     try {
+        if (!auth0.value) {
+            throw new Error('Auth0 未初始化，请刷新页面重试')
+        }
+        // console.log(auth0.value)
+        const { loginWithRedirect, isAuthenticated, getAccessTokenSilently } = auth0.value
         // 触发 Auth0 登录
         await loginWithRedirect()
-        // 登录完成后，isAuthenticated 会变为 true
-        // 这里建议在全局导航守卫或 layout 里监听 isAuthenticated 并自动调用 handleAuth0Callback
-        // 但为简单起见，这里直接处理
-        if (isAuthenticated.value) {
-            const token = await getAccessTokenSilently()
-            // 调用后端同步用户
-            const { data, error } = await useFetch('/api/auth/auth0-login', {
-                method: 'POST',
-                body: { token },
-            })
-            if (data.value?.statusCode === 200) {
-                toast.add({
-                    severity: 'success',
-                    summary: '成功',
-                    detail: '第三方登录成功',
-                    life: 3000,
-                })
-                await userStore.fetchUserInfo()
-                navigateTo('/')
-                return
-            }
-            throw new Error(error.value?.data?.message || error.value?.message || '第三方登录失败')
-        }
     } catch (error: any) {
+        console.error(error)
         toast.add({
             severity: 'error',
             summary: '错误',

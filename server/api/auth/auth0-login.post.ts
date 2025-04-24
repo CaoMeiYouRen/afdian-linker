@@ -7,7 +7,7 @@ import { User, UserRole } from '@/server/entities/user'
 import { createApiResponse } from '@/server/types/api'
 import { JwtPayload } from '@/server/types/auth0'
 
-const AUTH0_DOMAIN = process.env.AUTH0_DOMAIN || 'YOUR_AUTH0_DOMAIN'
+const AUTH0_DOMAIN = process.env.VITE_AUTH0_DOMAIN || 'YOUR_AUTH0_DOMAIN'
 
 const jwksClient = new JwksClient({
     jwksUri: `https://${AUTH0_DOMAIN}/.well-known/jwks.json`,

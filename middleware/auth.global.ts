@@ -1,16 +1,20 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
+
+    // 只在客户端执行，避免SSR重复请求
+    if (import.meta.server) {
+        return true
+    }
+
     // 白名单路径
     const publicPaths = [
         '/login',
         '/about',
         '/register',
+        '/forgot-password',
+        '/reset-password',
     ]
+    // console.log(to.path, from.path)
     if (publicPaths.some((path) => to.path.startsWith(path))) {
-        return true
-    }
-
-    // 只在客户端执行，避免SSR重复请求
-    if (import.meta.server) {
         return true
     }
 
@@ -22,7 +26,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
     // 重定向到登录页面
     if (!userStore.isLoggedIn && from.path !== '/login') {
-        return navigateTo('/login')
+        // return navigateTo('/login')
     }
     // 如果访问管理界面，检查用户是否为管理员
     if (!userStore.isAdmin && to.path.startsWith('/admin')) {

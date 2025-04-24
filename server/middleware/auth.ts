@@ -7,6 +7,8 @@ export default defineEventHandler(async (event) => {
     const publicPaths = [
         '/api/auth/login',
         '/api/auth/register',
+        '/api/auth/forgot-password',
+        '/api/auth/reset-password',
         '/api/public',
         '/api/afdian/webhook',
     ]

@@ -38,7 +38,7 @@ export async function sendVerifyEmail(userId: string, email: string) {
 
 export async function sendResetPasswordEmail(email: string, token: string) {
     const config = useRuntimeConfig()
-    const resetUrl = `${config.public.baseUrl}/reset-password?token=${token}`
+    const resetUrl = `${config.baseUrl}/reset-password?token=${token}`
     const transporter = nodemailer.createTransport({
         host: config.smtpHost,
         port: config.smtpPort,

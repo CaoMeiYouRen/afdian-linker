@@ -70,6 +70,14 @@
                     >
                         忘记密码？
                     </v-btn>
+                    <!-- <v-btn
+                        variant="text"
+                        color="secondary"
+                        class="ml-2"
+                        @click="goToReset"
+                    >
+                        重置密码？
+                    </v-btn> -->
                 </div>
             </v-form>
         </v-card>
@@ -142,6 +150,9 @@ function goToRegister() {
 
 function goToForgot() {
     navigateTo('/forgot-password')
+}
+function goToReset() {
+    navigateTo('/reset-password')
 }
 </script>
 

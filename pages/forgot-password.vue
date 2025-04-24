@@ -1,31 +1,58 @@
 <template>
-    <v-card class="mx-auto my-12" max-width="500">
-        <v-card-title class="pa-6 text-center text-h5">
-            找回密码
-        </v-card-title>
-        <v-form @submit.prevent="handleSubmit">
-            <v-card-text>
-                <v-text-field
-                    v-model="email"
-                    label="邮箱"
-                    required
-                    outlined
-                    prepend-inner-icon="mdi-email"
-                    :rules="[v => !!v || '请输入邮箱']"
-                />
-            </v-card-text>
-            <v-card-actions class="pb-6 px-6">
-                <v-btn
-                    type="submit"
+    <div class="forgot-container">
+        <v-card
+            class="forgot-card mx-auto my-auto"
+            max-width="800"
+            min-width="500"
+            elevation="8"
+        >
+            <v-card-title class="font-weight-bold pa-6 text-center text-h5">
+                <v-icon
+                    size="32"
                     color="primary"
-                    block
-                    :loading="loading"
+                    class="mr-2"
                 >
-                    发送重置邮件
-                </v-btn>
-            </v-card-actions>
-        </v-form>
-    </v-card>
+                    mdi-lock-reset
+                </v-icon>
+                找回密码
+            </v-card-title>
+            <v-form @submit.prevent="handleSubmit">
+                <v-card-text class="pa-6">
+                    <v-text-field
+                        v-model="email"
+                        label="邮箱"
+                        required
+                        outlined
+                        prepend-inner-icon="mdi-email"
+                        :rules="[v => !!v || '请输入邮箱']"
+                        class="mb-4"
+                    />
+                </v-card-text>
+                <v-card-actions class="pb-6 px-6">
+                    <v-btn
+                        type="submit"
+                        color="primary"
+                        block
+                        :loading="loading"
+                        class="forgot-btn text-h6"
+                        elevation="2"
+                        variant="elevated"
+                    >
+                        发送重置邮件
+                    </v-btn>
+                </v-card-actions>
+                <div class="pb-6 text-center">
+                    <v-btn
+                        variant="text"
+                        color="primary"
+                        @click="goToLogin"
+                    >
+                        返回登录
+                    </v-btn>
+                </div>
+            </v-form>
+        </v-card>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -37,9 +64,21 @@ import { useToast } from 'primevue/usetoast'
 const email = ref('')
 const loading = ref(false)
 const toast = useToast()
+function goToLogin() {
+    navigateTo('/login')
+}
 async function handleSubmit() {
     loading.value = true
     try {
+        if (!email.value) {
+            toast.add({
+                severity: 'error',
+                summary: '错误',
+                detail: '请输入邮箱',
+                life: 5000,
+            })
+            return
+        }
         const { data, error } = await useFetch('/api/auth/forgot-password', {
             method: 'POST',
             body: { email: email.value },
@@ -67,3 +106,31 @@ async function handleSubmit() {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.forgot-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1976D2  0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.forgot-card {
+    border-radius: 16px !important;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.forgot-btn {
+    letter-spacing: 2px;
+    text-transform: none;
+    border-radius: 8px;
+    height: 52px !important;
+}
+
+.v-text-field {
+    border-radius: 8px;
+}
+</style>

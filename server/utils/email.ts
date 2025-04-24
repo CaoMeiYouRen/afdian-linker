@@ -2,10 +2,14 @@ import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
 import { useRuntimeConfig } from '#imports'
 
-export async function sendVerifyEmail(userId: string, email: string) {
+export async function sendVerifyEmail(userId: string, email: string, token?: string) {
     const config = useRuntimeConfig()
-    const token = jwt.sign({ id: userId, email }, config.jwtSecret, { expiresIn: '1h' })
-    const verifyUrl = `${config.baseUrl}/api/user/email-verify-callback?token=${token}`
+    let verifyToken = token
+    if (!verifyToken) {
+        // 兼容老逻辑，若未传token则生成jwt
+        verifyToken = jwt.sign({ id: userId, email }, config.jwtSecret, { expiresIn: '1h' })
+    }
+    const verifyUrl = `${config.baseUrl}/api/user/email-verify-callback?token=${verifyToken}`
 
     const transporter = nodemailer.createTransport({
         host: config.smtpHost,

@@ -1,6 +1,9 @@
 <h1 align="center">afdian-linker </h1>
 <p>
   <img alt="Version" src="https://img.shields.io/github/package-json/v/CaoMeiYouRen/afdian-linker.svg" />
+  <a href="https://hub.docker.com/r/caomeiyouren/afdian-linker" target="_blank">
+    <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/caomeiyouren/afdian-linker">
+  </a>
   <a href="https://github.com/CaoMeiYouRen/afdian-linker/actions?query=workflow%3ARelease" target="_blank">
     <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/CaoMeiYouRen/afdian-linker/release.yml?branch=master">
   </a>

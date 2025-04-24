@@ -118,7 +118,7 @@
                                 </v-list-item-subtitle>
                             </v-list-item>
 
-                            <v-list-item>
+                            <v-list-item v-if="userStore.isAdmin">
                                 <template #prepend>
                                     <v-icon color="primary">
                                         mdi-shield-account
@@ -151,6 +151,16 @@
                             </v-icon>
                             修改密码
                         </v-btn>
+                        <!-- <v-btn
+                            color="error"
+                            variant="elevated"
+                            @click="handleForgot"
+                        >
+                            <v-icon class="ml-2">
+                                mdi-key
+                            </v-icon>
+                            忘记密码
+                        </v-btn> -->
                     </v-card-actions>
                 </v-card>
                 <!-- 修改昵称对话框 -->
@@ -335,6 +345,10 @@ const handleSendVerifyEmail = async () => {
 
 const handleChangePassword = () => {
     navigateTo('/change-password')
+}
+
+function handleForgot() {
+    navigateTo('/forgot-password')
 }
 
 onMounted(async () => {

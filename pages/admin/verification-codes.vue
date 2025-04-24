@@ -14,6 +14,25 @@
                             :loading="loading"
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.type="{item}">
+                                <v-chip :color="item.type === 'email_verify' ? 'blue' : 'green'" small>
+                                    {{ formatCodeType(item.type) }}
+                                </v-chip>
+                            </template>
+                            <template #item.code="{item}">
+                                <v-tooltip :text="item.code">
+                                    <template #activator="{props}">
+                                        <v-chip small v-bind="props">
+                                            {{ shortCode(item.code) }}
+                                        </v-chip>
+                                    </template>
+                                </v-tooltip>
+                            </template>
+                            <template #item.user="{item}">
+                                <v-chip small>
+                                    {{ item.user.nickname || item.user.email || item.user.id }}
+                                </v-chip>
+                            </template>
                             <template #item.used="{item}">
                                 <v-chip :color="item.used ? 'success' : 'warning'" small>
                                     {{ item.used ? '已用' : '未用' }}
@@ -55,8 +74,7 @@ const headers = [
     { title: 'ID', key: 'id', width: '80px' },
     { title: '类型', key: 'type', width: '120px' },
     { title: '验证码', key: 'code', width: '150px' },
-    { title: '用户ID', key: 'userId', width: '180px' },
-    { title: '用户邮箱', key: 'userEmail', width: '220px' },
+    { title: '用户', key: 'user', width: '160px' },
     { title: '是否已用', key: 'used', width: '100px' },
     { title: '过期时间', key: 'expiresAt', width: '180px' },
     { title: '创建时间', key: 'createdAt', width: '180px' },
@@ -71,6 +89,16 @@ const formatCodeType = (type: string) => {
         default:
             return '未知类型'
     }
+}
+
+const shortCode = (code: string) => {
+    if (!code) {
+        return ''
+    }
+    if (code.length <= 10) {
+        return code
+    }
+    return `${code.slice(0, 4)}...${code.slice(-4)}`
 }
 
 // 获取验证码列表
@@ -119,7 +147,7 @@ onMounted(() => {
 
 <style scoped>
 .verification-codes-page {
-  min-height: 80vh;
-  padding: 24px;
+    min-height: 80vh;
+    padding: 24px;
 }
 </style>

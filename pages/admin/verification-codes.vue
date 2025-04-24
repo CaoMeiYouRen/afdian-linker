@@ -14,6 +14,13 @@
                             :loading="loading"
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.id="{item}">
+                                <v-tooltip :text="item.id">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.id) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
                             <template #item.type="{item}">
                                 <v-chip :color="item.type === 'email_verify' ? 'blue' : 'green'" small>
                                     {{ formatCodeType(item.type) }}
@@ -23,14 +30,14 @@
                                 <v-tooltip :text="item.code">
                                     <template #activator="{props}">
                                         <v-chip small v-bind="props">
-                                            {{ shortCode(item.code) }}
+                                            {{ shortText(item.code) }}
                                         </v-chip>
                                     </template>
                                 </v-tooltip>
                             </template>
                             <template #item.user="{item}">
                                 <v-chip small>
-                                    {{ item.user.nickname || item.user.email || item.user.id }}
+                                    {{ item.user.nickname || item.user.email || shortText(item.user.id) }}
                                 </v-chip>
                             </template>
                             <template #item.used="{item}">
@@ -56,6 +63,7 @@
 import { ref, onMounted } from 'vue'
 import { useToast } from 'primevue/usetoast'
 import { formatDate } from '@/utils/format'
+import { shortText } from '@/utils/short-text'
 
 definePageMeta({
 })
@@ -89,16 +97,6 @@ const formatCodeType = (type: string) => {
         default:
             return '未知类型'
     }
-}
-
-const shortCode = (code: string) => {
-    if (!code) {
-        return ''
-    }
-    if (code.length <= 10) {
-        return code
-    }
-    return `${code.slice(0, 4)}...${code.slice(-4)}`
 }
 
 // 获取验证码列表

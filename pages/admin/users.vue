@@ -72,6 +72,7 @@ definePageMeta({
 
 import { useToast } from 'primevue/usetoast'
 import { formatDate } from '@/utils/format'
+import { shortText } from '@/utils/short-text'
 import { UserRole, type User } from '@/types/user'
 import type { Pagination } from '@/types/pagination'
 
@@ -143,16 +144,6 @@ const handleTableUpdate = (options: any) => {
 // 重置用户密码
 const handleResetPassword = async (user: User) => {
 
-}
-
-const shortText = (val?: string) => {
-    if (!val) {
-        return ''
-    }
-    if (val.length <= 12) {
-        return val
-    }
-    return `${val.slice(0, 4)}...${val.slice(-4)}`
 }
 
 onMounted(() => {

@@ -49,6 +49,28 @@
                             hover
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.paymentChannel="{item}">
+                                <v-chip
+                                    :color="getChannelColor(item.paymentChannel)"
+                                    text-color="white"
+                                >
+                                    {{ formatChannel(item.paymentChannel) }}
+                                </v-chip>
+                            </template>
+                            <template #item.id="{item}">
+                                <v-tooltip :text="item.id">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.id) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
+                            <template #item.channelPlanId="{item}">
+                                <v-tooltip :text="item.channelPlanId">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.channelPlanId) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
                             <template #item.enabled="{item}">
                                 <v-switch
                                     v-model="item.enabled"
@@ -191,9 +213,11 @@
 <script setup lang="ts">
 import { useToast } from 'primevue/usetoast'
 import { useUserStore } from '@/stores/user'
-import { formatDate, formatCurrency } from '@/utils/format'
+import { shortText } from '@/utils/short-text'
 import type { Pagination } from '@/types/pagination'
 import type { Plan } from '@/types/plan'
+import { formatDate, formatCurrency, formatChannel } from '@/utils/format'
+import { getChannelColor } from '@/utils/color'
 
 const toast = useToast()
 const userStore = useUserStore()
@@ -249,7 +273,7 @@ const productTypeOptions = [
 ]
 
 const headers = [
-    { title: '标题', key: 'title', width: '160px' },
+    { title: '标题', key: 'title', width: '200px' },
     { title: '支付渠道', key: 'paymentChannel', width: '120px' },
     { title: '渠道方案ID', key: 'channelPlanId', width: '160px' },
     { title: '币种', key: 'currency', width: '80px' },
@@ -396,7 +420,7 @@ const handleSubmit = async () => {
         })
         planDialog.value = false
         await fetchPlans()
-        
+
     } catch (error: any) {
         toast.add({
             severity: 'error',

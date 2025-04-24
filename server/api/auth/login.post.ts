@@ -16,10 +16,10 @@ const loginSchema = z.object({
 export default defineEventHandler(async (event) => {
     try {
         // 登录限流
-        // await rateLimit(event, {
-        //     window: 60_000,
-        //     max: 5,
-        // })
+        await rateLimit(event, {
+            window: 60_000,
+            max: 5,
+        })
 
         const body = loginSchema.parse(await readBody(event))
         const dataSource = await getDataSource()

@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { createApiResponse } from '@/server/types/api'
+import { rateLimit } from '@/server/utils/rate-limit'
 
 const schema = z.object({
     oldPassword: z.string().min(1).max(255),
@@ -11,6 +12,10 @@ const schema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
+        await rateLimit(event, {
+            window: 60_000,
+            max: 5,
+        })
         const body = schema.parse(await readBody(event))
         const userId = event.context.auth.id
 

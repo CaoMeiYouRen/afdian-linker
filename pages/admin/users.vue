@@ -15,11 +15,30 @@
                             hover
                             @update:options="handleTableUpdate"
                         >
+                            <template #item.id="{item}">
+                                <v-tooltip :text="item.id">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.id) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
+                            <template #item.auth0Id="{item}">
+                                <v-tooltip :text="item.auth0Id">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.auth0Id) }}</span>
+                                    </template>
+                                </v-tooltip>
+                            </template>
+                            <template #item.email="{item}">
+                                <!-- <v-tooltip :text="item.email">
+                                    <template #activator="{props}">
+                                        <span v-bind="props">{{ shortText(item.email) }}</span>
+                                    </template>
+                                </v-tooltip> -->
+                                {{ item.email }}
+                            </template>
                             <template #item.role="{item}">
-                                <v-chip
-                                    :color="item.role === UserRole.ADMIN ? 'error' : 'primary'"
-                                    text-color="white"
-                                >
+                                <v-chip :color="item.role === UserRole.ADMIN ? 'error' : 'primary'" text-color="white">
                                     {{ item.role === UserRole.ADMIN ? '管理员' : '普通用户' }}
                                 </v-chip>
                             </template>
@@ -71,7 +90,7 @@ const headers = [
     { title: 'ID', key: 'id', width: '200px' },
     { title: 'Auth0 Id', key: 'auth0Id', width: '200px' },
     { title: '用户名', key: 'username', width: '150px' },
-    { title: '昵称', key: 'nickname', width: '150px' },
+    { title: '昵称', key: 'nickname', width: '180px' },
     { title: '邮箱', key: 'email', width: '200px' },
     { title: '角色', key: 'role', width: '120px' },
     { title: '是否是初始密码', key: 'initialPassword', width: '150px' },
@@ -124,6 +143,16 @@ const handleTableUpdate = (options: any) => {
 // 重置用户密码
 const handleResetPassword = async (user: User) => {
 
+}
+
+const shortText = (val?: string) => {
+    if (!val) {
+        return ''
+    }
+    if (val.length <= 12) {
+        return val
+    }
+    return `${val.slice(0, 4)}...${val.slice(-4)}`
 }
 
 onMounted(() => {

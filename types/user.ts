@@ -15,6 +15,7 @@ export interface BaseUser {
     initialPassword: boolean
     initialEmail: boolean
     emailVerified: boolean
+    auth0Id?: string
 }
 
 export interface User extends BaseUser, DateToString<BaseFields> { }

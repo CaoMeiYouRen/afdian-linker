@@ -69,6 +69,7 @@ const pagination = ref<Pagination>({
 
 const headers = [
     { title: 'ID', key: 'id', width: '200px' },
+    { title: 'Auth0 Id', key: 'auth0Id', width: '200px' },
     { title: '用户名', key: 'username', width: '150px' },
     { title: '昵称', key: 'nickname', width: '150px' },
     { title: '邮箱', key: 'email', width: '200px' },

@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "version": "0.1.0",
+  "main": ".output/server/index.mjs",
   "scripts": {
     "lint:css": "stylelint src/**/*.{html,css,scss,sass,vue} --fix --custom-syntax postcss-html",
     "lint": "cross-env NODE_ENV=production eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
@@ -73,6 +74,7 @@
     "@types/pg": "^8.10.9",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "@vercel/nft": "^0.29.2",
     "@vue/eslint-config-typescript": "^13.0.0",
     "commitizen": "^4.2.3",
     "conventional-changelog-cmyr-config": "^2.1.2",

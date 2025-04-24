@@ -54,7 +54,7 @@ export default defineNuxtConfig({
         port: 3000,
     },
     nitro: {
-        preset: process.env.NODE_ENV === 'production' ? 'vercel' : 'node-server',
+        // preset: process.env.NODE_ENV === 'production' ? 'vercel' : 'node-server',
         esbuild: {
             options: {
                 target: 'esnext',

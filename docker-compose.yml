@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  server:
+    container_name: 'afdian-linker'
+    image: ${DOCKER_IMAGE:-caomeiyouren/afdian-linker}
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NUXT_PORT: 3000
+      TZ: "Asia/Shanghai"
+      # 爱发电配置
+      AFDIAN_USER_ID: ${AFDIAN_USER_ID}
+      AFDIAN_TOKEN: ${AFDIAN_TOKEN}
+      # 爱发电回调的 webhook token
+      WEBHOOK_TOKEN: ${WEBHOOK_TOKEN}
+      # 数据库配置。
+      # 目前支持 PostgreSQL
+      DATABASE_URL: ${DATABASE_URL}
+      # JWT 密钥
+      # 用于加密 cookie 和 session
+      JWT_SECRET: ${JWT_SECRET}
+      # Redis 配置
+      REDIS_URL: ${REDIS_URL}
+      # 公网地址
+      BASE_URL: ${BASE_URL}
+      # 邮件配置
+      # SMTP 邮件服务配置
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_FROM: ${SMTP_FROM}
+      SMTP_SECURE: ${SMTP_SECURE}
+
+
+    volumes:
+      - ./logs:/app/logs

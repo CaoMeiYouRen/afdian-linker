@@ -13,11 +13,6 @@ export default defineEventHandler(async (event) => {
     if (!auth) {
         throw createError({ statusCode: 401, message: '未登录' })
     }
-    // 邮箱发件限流
-    await rateLimit(event, {
-        window: 60_000,
-        max: 5,
-    })
     const dataSource = await getDataSource()
     const repo = dataSource.getRepository(User)
     const codeRepo = dataSource.getRepository(VerificationCode)

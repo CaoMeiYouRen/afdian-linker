@@ -18,11 +18,6 @@ export default defineEventHandler(async (event) => {
     if (!auth) {
         throw createError({ statusCode: 401, message: '未登录' })
     }
-    // 邮箱发件限流
-    await rateLimit(event, {
-        window: 60_000,
-        max: 5,
-    })
     try {
         const body = schema.parse(await readBody(event))
         const email = body?.email?.trim()

@@ -5,6 +5,9 @@ import { User } from '@/server/entities/user'
 import { SESSION_KEY } from '@/server/utils/session'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 
+/**
+ * @deprecated
+ */
 export default defineEventHandler(async (event) => {
     try {
         const token = getCookie(event, SESSION_KEY)

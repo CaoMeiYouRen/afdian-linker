@@ -15,12 +15,6 @@ const schema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
-        // 注册限流
-        await rateLimit(event, {
-            window: 60_000,
-            max: 5,
-        })
-
         const body = await readBody(event)
         const { username, nickname, email, password } = schema.parse(body)
 

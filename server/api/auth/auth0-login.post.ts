@@ -54,12 +54,6 @@ const schema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
-        // 登录限流
-        await rateLimit(event, {
-            window: 60_000,
-            max: 5,
-        })
-
         const { token } = schema.parse(await readBody(event))
         if (!token) {
             throw createError({ statusCode: 400, message: '缺少token' })

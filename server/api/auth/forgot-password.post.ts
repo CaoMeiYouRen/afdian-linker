@@ -15,10 +15,6 @@ const schema = z.object({
 
 export default defineEventHandler(async (event) => {
     try {
-        await rateLimit(event, {
-            window: 60_000,
-            max: 5,
-        })
         const body = schema.parse(await readBody(event))
         const email = body.email.trim()
         const dataSource = await getDataSource()

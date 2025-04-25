@@ -5,6 +5,7 @@ import { Order } from '@/server/entities/order'
 import { verifyApiKey } from '@/server/utils/auth'
 import { ApiResponse, createApiResponse } from '@/server/types/api'
 import { orderQuerySchema, queryOrders } from '@/server/utils/query/order'
+import { rateLimit } from '@/server/utils/rate-limit'
 
 export default defineEventHandler(async (event) => {
     const apiKey = getHeader(event, 'X-Api-Key') || ''

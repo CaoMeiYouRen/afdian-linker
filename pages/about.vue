@@ -8,10 +8,12 @@
                 <b>afdian-linker</b> 是一个基于 Nuxt 3 &amp; TypeScript 的全栈项目，集成了爱发电 API，提供统一的订单管理、赞助支付和外部查询能力。
             </p>
             <ul class="about-list mb-4">
-                <li>支持多支付渠道扩展</li>
+                <li>支持多支付渠道扩展（如爱发电等）</li>
                 <li>统一订单生命周期管理</li>
                 <li>安全的 API 查询接口</li>
-                <li>丰富的后台管理功能</li>
+                <li>丰富的后台管理功能（订单、用户、商品、Webhook 日志等）</li>
+                <li>邮箱验证、第三方登录（Auth0）、初始密码/邮箱安全提醒</li>
+                <li>支持多种推送渠道（Server酱、钉钉、企业微信、邮件等）</li>
             </ul>
             <p class="mb-4">
                 项目地址：

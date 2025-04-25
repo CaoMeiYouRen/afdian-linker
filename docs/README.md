@@ -12,7 +12,7 @@ afdian-linker 是一个基于 Nuxt 3 & TypeScript 的全栈项目，集成了爱
 - 丰富的后台管理功能（订单、用户、商品方案管理）
 - 邮箱注册、登录、第三方登录（如 Auth0）
 - API Key 机制，支持外部系统安全查询订单
-- 支持多种推送方式（Server酱、邮件、钉钉、企业微信、Telegram、Discord 等）
+- 支持多种推送方式（Server 酱、邮件、钉钉、企业微信、Telegram、Discord 等）
 - 支持 Docker 部署
 
 ## 系统架构

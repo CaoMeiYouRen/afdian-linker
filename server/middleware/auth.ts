@@ -29,27 +29,12 @@ export default defineEventHandler(async (event) => {
         }
     }
     event.context.auth = session
-    try {
-
-        // 管理员路由权限验证
-        if ((event.path.startsWith('/api/admin') || event.path.startsWith('/admin')) && session?.role !== UserRole.ADMIN) {
-            throw createError({
-                statusCode: 403,
-                message: '需要管理员权限',
-            })
-        }
-    } catch (error) {
-        // 区分 API 请求和页面请求
-        if (event.path.startsWith('/api/')) {
-            throw createError({
-                statusCode: 401,
-                message: '登录已过期',
-            })
-        } else if (event.path !== '/login') { // 页面请求重定向到登录页
-            return sendRedirect(event, '/login', 302)
-        } else {
-            // 如果是登录页，直接返回
-
-        }
+    // 管理员路由权限验证
+    if ((event.path.startsWith('/api/admin') || event.path.startsWith('/admin')) && session?.role !== UserRole.ADMIN) {
+        throw createError({
+            statusCode: 403,
+            message: '需要管理员权限',
+        })
     }
+    // 其他路由权限验证
 })

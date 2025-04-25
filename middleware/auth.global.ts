@@ -8,7 +8,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
 
     // 白名单路径
-    if (publicPaths.some((path) => to.path.startsWith(path))) {
+    if (publicPaths.some((path) => to.path === path)) {
         return true
     }
 

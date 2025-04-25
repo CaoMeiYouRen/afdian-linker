@@ -4,13 +4,15 @@ import { UserRole } from '@/types/user'
 import { publicPaths } from '@/utils/public-paths'
 
 export default defineEventHandler(async (event) => {
-    if (event.path === '/') {
+    if (event.path === '/') { // 首页路由直接放通
         return
     }
-    if (publicPaths.some((path) => event.path.startsWith(path))) {
+    if (event.path.startsWith('/api/public')) { // 公共 API 路由直接放通
         return
     }
-
+    if (publicPaths.some((path) => event.path === path)) { // 公共路由直接放通
+        return
+    }
     const session = getSession(event)
     if (!session) {
         // 区分 API 请求和页面请求

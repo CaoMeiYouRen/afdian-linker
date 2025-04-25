@@ -74,6 +74,12 @@ export default defineNuxtConfig({
                 },
             },
         },
+        vercel: {
+            functions: {
+                maxDuration: 60, // 最长持续 60 秒
+                memory: 1024, // 最大 1 GB 内存
+            },
+        },
     },
     primevue: {
         components: {

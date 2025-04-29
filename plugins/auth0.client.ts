@@ -11,3 +11,5 @@ export default defineNuxtPlugin((nuxtApp) => {
         }),
     )
 })
+
+export const enableAuth0 = Boolean(import.meta.env.VITE_AUTH0_DOMAIN && import.meta.env.VITE_AUTH0_CLIENT_ID)

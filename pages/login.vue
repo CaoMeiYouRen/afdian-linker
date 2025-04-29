@@ -56,6 +56,7 @@
                 </v-card-actions>
                 <v-card-actions class="pb-4 px-6">
                     <v-btn
+                        v-if="enableAuth0"
                         color="success"
                         variant="elevated"
                         class="login-btn"
@@ -100,6 +101,7 @@ import { useToast } from 'primevue/usetoast'
 import { onMounted, reactive, ref, shallowRef } from 'vue'
 import { useAuth0, type Auth0VueClient } from '@auth0/auth0-vue'
 import { useUserStore } from '@/stores/user'
+import { enableAuth0 } from '@/plugins/auth0.client'
 
 const userStore = useUserStore()
 const toast = useToast()

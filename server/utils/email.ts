@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
-import { useRuntimeConfig } from '#imports'
 
 export async function sendVerifyEmail(userId: string, email: string, token?: string) {
     const config = useRuntimeConfig()

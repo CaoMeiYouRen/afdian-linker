@@ -260,9 +260,7 @@ function goToRegister() {
 function goToForgot() {
     navigateTo('/forgot-password')
 }
-function goToReset() {
-    navigateTo('/reset-password')
-}
+
 </script>
 
 <style lang="scss" scoped>

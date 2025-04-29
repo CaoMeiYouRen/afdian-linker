@@ -7,7 +7,15 @@
         <v-card-title class="pa-6 text-center text-h5">
             修改密码
         </v-card-title>
-
+        <v-divider />
+        <p class="pa-4 text-center">
+            请填写当前密码和新密码，密码长度至少为6位。
+            <br>
+            密码建议包含大写字母、小写字母和数字。
+            <br>
+            <span class="text-red-darken-2">注意：通过第三方注册的用户，请通过「忘记密码」页面重置初始密码。</span>
+        </p>
+        <v-divider />
         <v-form @submit.prevent="handleSubmit">
             <v-card-text>
                 <v-text-field
@@ -57,6 +65,22 @@
                     确认修改
                 </v-btn>
             </v-card-actions>
+
+            <div class="pb-6 text-center">
+                <v-tooltip text="点击前往「忘记密码」页面重置初始密码" location="top">
+                    <template #activator="{props}">
+                        <v-btn
+                            variant="text"
+                            color="secondary"
+                            class="ml-2"
+                            v-bind="props"
+                            @click="goToForgot"
+                        >
+                            忘记密码？
+                        </v-btn>
+                    </template>
+                </v-tooltip>
+            </div>
         </v-form>
     </v-card>
 </template>
@@ -123,4 +147,9 @@ async function handleSubmit() {
         loading.value = false
     }
 }
+
+function goToForgot() {
+    navigateTo('/forgot-password')
+}
+
 </script>

@@ -6,7 +6,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             domain: import.meta.env.VITE_AUTH0_DOMAIN,
             clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
             authorizationParams: {
-                redirect_uri: `${window.location.origin}/login`,
+                redirect_uri: `${window.location.origin}/auth0-callback`,
             },
         }),
     )

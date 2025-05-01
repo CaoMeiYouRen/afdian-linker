@@ -98,7 +98,7 @@ definePageMeta({
 })
 
 import { useToast } from 'primevue/usetoast'
-import { onMounted, reactive, ref, shallowRef } from 'vue'
+import { reactive, ref } from 'vue'
 import { useAuth0, type Auth0VueClient } from '@auth0/auth0-vue'
 import { useUserStore } from '@/stores/user'
 import { enableAuth0 } from '@/plugins/auth0.client'
@@ -114,40 +114,22 @@ const loading = ref(false)
 const auth0Loading = ref(false)
 const auth0 = ref<Auth0VueClient>(null as any)
 
-async function handleAuth0Callback() {
-    // 只在客户端执行
-    if (!import.meta.client) {
-        return
-    }
-    auth0.value = useAuth0()
-    // 检查是否为 Auth0 回调
-    const url = new URL(window.location.href)
-    if (
-        url.searchParams.has('code') &&
-        url.searchParams.has('state') &&
-        auth0.value
-    ) {
-        await loginByAuth0()
-    }
-}
-
-onMounted(handleAuth0Callback)
-
 async function handleAuth0Login() {
     auth0Loading.value = true
     try {
+        auth0.value = useAuth0()
         if (!auth0.value) {
             throw new Error('Auth0 未初始化，请刷新页面重试')
         }
-        // console.log(auth0.value)
-        const { loginWithRedirect, isAuthenticated, getAccessTokenSilently } = auth0.value
+        const { loginWithRedirect, isAuthenticated } = auth0.value
 
         if (isAuthenticated) {
-            await loginByAuth0()
+            // 已登录，直接跳转到回调页面
+            navigateTo('/auth0-callback')
             return
         }
-        // 触发 Auth0 登录
-        await loginWithRedirect()
+        // 跳转到 Auth0 登录，回调到 /auth0-callback
+        await loginWithRedirect({})
     } catch (error: any) {
         console.error(error)
         toast.add({
@@ -159,55 +141,6 @@ async function handleAuth0Login() {
     } finally {
         auth0Loading.value = false
     }
-}
-
-async function loginByAuth0() {
-    auth0Loading.value = true
-        try {
-            // 处理 Auth0 回调
-            await auth0.value.getAccessTokenSilently()
-            const token = auth0.value.idTokenClaims?.__raw
-            if (!token) {
-                throw new Error('未获取到有效的 id_token')
-            }
-            // 调用后端同步用户
-            const { data, error } = await useFetch('/api/auth/auth0-login', {
-                method: 'POST',
-                body: { token },
-            })
-            if (data.value?.statusCode === 200) {
-                toast.add({
-                    severity: 'success',
-                    summary: '成功',
-                    detail: '第三方登录成功',
-                    life: 3000,
-                })
-                await userStore.fetchUserInfo()
-                if (userStore.userInfo?.initialPassword) {
-                    toast.add({
-                        severity: 'warn',
-                        summary: '警告',
-                        detail: '为了您的账户安全，请修改初始密码',
-                        life: 5000,
-                    })
-                    navigateTo('/change-password')
-                    return
-                }
-                navigateTo('/')
-                return
-            }
-            throw new Error(error.value?.data?.message || error.value?.message || '第三方登录失败')
-        } catch (error: any) {
-            console.error(error)
-            toast.add({
-                severity: 'error',
-                summary: '错误',
-                detail: error?.message || '第三方登录失败',
-                life: 5000,
-            })
-        } finally {
-            auth0Loading.value = false
-        }
 }
 
 async function handleSubmit() {

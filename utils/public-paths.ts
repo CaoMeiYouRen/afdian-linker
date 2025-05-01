@@ -6,6 +6,7 @@ export const publicPaths = [
     '/api/auth/reset-password',
     '/api/afdian/webhook',
     '/api/cron',
+    '/api/health',
 
     '/login',
     '/about',

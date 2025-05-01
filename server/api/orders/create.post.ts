@@ -10,12 +10,12 @@ import { Session } from '@/server/utils/session'
 // 创建订单参数验证
 const orderSchema = z.object({
     amount: z.number().positive(),
-    channel: z.string().default('afdian'),
+    channel: z.string().max(50).default('afdian'),
     metaData: z.record(z.unknown()).optional(),
     month: z.number().int().min(1).max(36).default(1),
     remark: z.string().max(255).optional(),
-    planId: z.string(),
-    channelPlanId: z.string(),
+    planId: z.string().max(255),
+    channelPlanId: z.string().max(255).optional(),
     productType: z.number().int().refine((v) => v === 0 || v === 1).default(0),
 })
 

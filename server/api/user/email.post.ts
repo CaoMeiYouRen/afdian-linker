@@ -10,7 +10,7 @@ import { rateLimit } from '@/server/utils/rate-limit'
 import { VerificationCode } from '@/server/entities/verification-code'
 
 const schema = z.object({
-    email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空'),
+    email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空').max(255, '邮箱长度不能超过255个字符'),
 }).strict()
 
 export default defineEventHandler(async (event) => {

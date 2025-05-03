@@ -1,5 +1,7 @@
 import { z } from 'zod'
-import { syncAfdianOrders } from '@/server/utils/sync-afdian-orders'
+import { syncAfdianOrders } from '@/server/utils/orders/sync-afdian'
+import { expirePendingOrders } from '@/server/utils/orders/expire'
+import { cleanupVerificationCodes } from '@/server/utils/verification-codes/cleanup'
 
 export default defineEventHandler(async (event) => {
     const authHeader = event.headers.get('authorization') || ''
@@ -9,9 +11,18 @@ export default defineEventHandler(async (event) => {
             message: 'Unauthorized',
         })
     }
-    // 调用同步函数
     try {
-        const result = await syncAfdianOrders({ page: 1, per_page: 100 })
+        const promises = await Promise.all([
+            cleanupVerificationCodes(),
+            expirePendingOrders(),
+            syncAfdianOrders({ page: 1, per_page: 100 }),
+        ])
+        const [cleanupResult, expireResult, syncResult] = promises
+        const result = {
+            cleanup: cleanupResult,
+            expire: expireResult,
+            sync: syncResult,
+        }
         return result
     } catch (error: any) {
         if (error instanceof z.ZodError) {

@@ -5,6 +5,19 @@
                 <v-card class="mb-4">
                     <v-card-title>验证码列表</v-card-title>
                     <v-card-text>
+                        <div class="button-group" style="margin-bottom: 16px;">
+                            <v-btn
+                                color="error"
+                                class="mr-2"
+                                :loading="cleanupLoading"
+                                @click="handleCleanup"
+                            >
+                                <v-icon left>
+                                    mdi-broom
+                                </v-icon>
+                                清理无效验证码
+                            </v-btn>
+                        </div>
                         <v-data-table
                             :headers="headers"
                             :items="codes"
@@ -136,6 +149,35 @@ const handleTableUpdate = (options: any) => {
         sort: options.sortBy?.[0]?.key,
         order: options.sortBy?.[0]?.order?.toUpperCase(),
     })
+}
+
+const cleanupLoading = ref(false)
+
+const handleCleanup = async () => {
+    cleanupLoading.value = true
+    try {
+        const { data, error } = await useFetch('/api/admin/verification-codes/cleanup', { method: 'POST' })
+        if (data.value?.statusCode === 200) {
+            toast.add({
+                severity: 'success',
+                summary: '清理完成',
+                detail: `已清理 ${data.value.data?.count || 0} 条无效验证码`,
+                life: 3000,
+            })
+            await fetchCodes()
+            return
+        }
+        throw new Error(error.value?.data?.message || error.value?.message || '清理失败')
+    } catch (error: any) {
+        toast.add({
+            severity: 'error',
+            summary: '清理失败',
+            detail: error.message || '清理失败',
+            life: 5000,
+        })
+    } finally {
+        cleanupLoading.value = false
+    }
 }
 
 onMounted(() => {

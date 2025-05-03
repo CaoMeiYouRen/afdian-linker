@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
         })
     }
     try {
-        const promises = await Promise.all([
+        const promises = await Promise.allSettled([
             cleanupVerificationCodes(),
             expirePendingOrders(),
             syncAfdianOrders({ page: 1, per_page: 100 }),

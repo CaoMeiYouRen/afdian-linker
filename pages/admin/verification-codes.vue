@@ -3,21 +3,29 @@
         <v-row>
             <v-col>
                 <v-card class="mb-4">
+                    <v-card-title>验证码管理</v-card-title>
+                    <v-card-text>
+                        <v-row align="center">
+                            <v-spacer />
+                            <div class="button-group mb-2">
+                                <v-btn
+                                    color="error"
+                                    class="mr-2"
+                                    :loading="cleanupLoading"
+                                    @click="handleCleanup"
+                                >
+                                    <v-icon left>
+                                        mdi-broom
+                                    </v-icon>
+                                    清理无效验证码
+                                </v-btn>
+                            </div>
+                        </v-row>
+                    </v-card-text>
+                </v-card>
+                <v-card class="mb-4">
                     <v-card-title>验证码列表</v-card-title>
                     <v-card-text>
-                        <div class="button-group" style="margin-bottom: 16px;">
-                            <v-btn
-                                color="error"
-                                class="mr-2"
-                                :loading="cleanupLoading"
-                                @click="handleCleanup"
-                            >
-                                <v-icon left>
-                                    mdi-broom
-                                </v-icon>
-                                清理无效验证码
-                            </v-btn>
-                        </div>
                         <v-data-table
                             :headers="headers"
                             :items="codes"

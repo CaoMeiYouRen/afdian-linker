@@ -10,10 +10,10 @@
                                 <p>欢迎 <b>{{ userStore.userInfo?.nickname || '用户' }}</b> 使用方案管理后台</p>
                             </div>
                             <v-spacer />
-                            <div class="button-group">
+                            <div class="button-group mb-2 mr-2">
                                 <v-btn
                                     color="primary"
-                                    class="mt-2"
+                                    class="mr-3 mt-2"
                                     @click="openCreateDialog"
                                 >
                                     <v-icon left>
@@ -23,7 +23,7 @@
                                 </v-btn>
                                 <v-btn
                                     color="secondary"
-                                    class="ml-2 mt-2"
+                                    class="mt-2"
                                     :loading="loading"
                                     @click="fetchPlans()"
                                 >

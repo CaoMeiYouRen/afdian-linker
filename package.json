@@ -41,6 +41,7 @@
     "mysql2": "^3.13.0",
     "nodemailer": "^6.10.1",
     "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
     "nuxt": "^3.16.0",
     "p-queue": "^8.1.0",
     "pg": "^8.11.3",

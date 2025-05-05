@@ -77,7 +77,8 @@ export const getDataSource = async () => {
 
 export const checkDBHealth = async () => {
     try {
-        await AppDataSource.query('SELECT 1')
+        const dataSource = await getDataSource()
+        await dataSource.query('SELECT 1')
         return true
     } catch (error) {
         console.error('数据库健康检查失败:', error)

@@ -118,6 +118,7 @@
             color="primary"
             :size="128"
             :width="7"
+            :value="30"
             indeterminate
         />
     </div>

@@ -28,3 +28,6 @@ prisma/migrations
 /data
 
 .vercel
+
+# Sentry Config File
+.env.sentry-build-plugin

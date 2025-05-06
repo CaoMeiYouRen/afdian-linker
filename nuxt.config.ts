@@ -18,6 +18,7 @@ export default defineNuxtConfig({
         },
         '@primevue/nuxt-module',
         '@pinia/nuxt',
+        '@sentry/nuxt/module',
     ],
     experimental: {
         componentIslands: true,
@@ -91,4 +92,13 @@ export default defineNuxtConfig({
             },
         },
     },
+    sentry: {
+        sourceMapsUploadOptions: {
+            org: process.env.SENTRY_ORG,
+            project: process.env.SENTRY_PROJECT || 'afdian-linker',
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+        },
+        // autoInjectServerSentry: 'top-level-import',
+    },
+    sourcemap: { client: 'hidden' },
 })

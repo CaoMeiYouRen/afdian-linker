@@ -59,7 +59,7 @@ export default defineEventHandler(async (event) => {
 
         // 生成支付URL
         const paymentUrl = await channel.generatePayUrl(order)
-
+        // console.log('paymentUrl', paymentUrl)
         return createApiResponse({
             orderId: order.id,
             paymentUrl,

@@ -39,7 +39,7 @@ export class AfdianChannel implements PaymentChannel {
         const params = new URLSearchParams({
             plan_id: order.metaData?.plan_id,
             custom_order_id: order.customOrderId,
-            product_type: order.metaData.product_type.toString() || '0', // product_type 0表示常规方案 1表示售卖方案
+            product_type: order.metaData.product_type?.toString() || '0', // product_type 0表示常规方案 1表示售卖方案
             month: order.metaData?.month?.toString() || '1',
             remark: encodeURIComponent(order.metaData?.remark || ''),
         })

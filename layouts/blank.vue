@@ -3,7 +3,7 @@
         <v-main v-if="userStore.isReady">
             <slot />
         </v-main>
-        <div v-else style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
+        <div v-else style="min-height:100vh;min-width: 100%;display:flex;align-items:center;justify-content:center;">
             <v-progress-circular
                 color="primary"
                 :size="128"

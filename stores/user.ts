@@ -29,9 +29,9 @@ export const useUserStore = defineStore('user', {
         async fetchUserInfo() {
             try {
                 // 只在客户端执行，避免SSR重复请求
-                if (import.meta.server) {
-                    return false
-                }
+                // if (import.meta.server) {
+                //     return false
+                // }
                 const { data } = await useFetch('/api/user/info') as any
                 if (data.value?.statusCode === 200) {
                     this.userInfo = data.value.data || null

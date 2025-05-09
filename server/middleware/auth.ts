@@ -4,7 +4,7 @@ import { UserRole } from '@/types/user'
 import { publicPaths } from '@/utils/public-paths'
 
 export default defineEventHandler(async (event) => {
-    const url = new URL(`http://${process.env.NUXT_PORT || process.env.HOST || 'localhost'}${event.node.req.url}`)
+    const url = new URL(`http://${process.env.NUXT_HOST || process.env.HOST || 'localhost'}${event.node.req.url}`)
     event.context.url = url
     event.context.path = url.pathname
     if (event.path === '/') { // 首页路由直接放通
@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const session = getSession(event)
     if (!session) {
         // 区分 API 请求和页面请求
-        if (event.path.startsWith('/api/')) {
+        if (event.path.startsWith('/api')) {
             throw createError({
                 statusCode: 401,
                 message: '请先登录',

@@ -19,12 +19,12 @@ export default defineEventHandler(async (event) => {
     const session = getSession(event)
     if (!session) {
         // 区分 API 请求和页面请求
-        if (event.context.path.startsWith('/api/')) {
+        if (event.path.startsWith('/api/')) {
             throw createError({
                 statusCode: 401,
                 message: '请先登录',
             })
-        } else if (event.context.path !== '/login') { // 页面请求重定向到登录页
+        } else if (!event.path.startsWith('/login')) { // 页面请求重定向到登录页
             return sendRedirect(event, '/login', 302)
         } else {
             // 如果是登录页，直接返回

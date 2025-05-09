@@ -4,7 +4,8 @@ import { UserRole } from '@/types/user'
 import { publicPaths } from '@/utils/public-paths'
 
 export default defineEventHandler(async (event) => {
-    const url = new URL(`http://${process.env.NUXT_HOST || process.env.HOST || 'localhost'}${event.node.req.url}`)
+    const url = new URL(`http://${process.env.NUXT_HOST || process.env.NITRO_HOST || process.env.HOST || 'localhost'}${event.node.req.url}`)
+    console.log('url', url)
     event.context.url = url
     event.context.path = url.pathname
     if (event.path === '/') { // 首页路由直接放通
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) => {
     if (event.path.startsWith('/api/public')) { // 公共 API 路由直接放通
         return
     }
-    if (publicPaths.some((path) => event.context.path === path)) { // 公共路由直接放通
+    if (publicPaths.some((path) => event.path.startsWith(path))) { // 公共路由直接放通
         return
     }
     const session = getSession(event)

@@ -5,10 +5,16 @@ import { publicPaths } from '@/utils/public-paths'
 
 export default defineEventHandler(async (event) => {
     const url = new URL(`http://${process.env.NUXT_HOST || process.env.NITRO_HOST || process.env.HOST || 'localhost'}${event.node.req.url}`)
-    console.log('url', url)
+    // console.log('url', url)
     event.context.url = url
     event.context.path = url.pathname
     if (event.path === '/') { // 首页路由直接放通
+        return
+    }
+    if (event.path.startsWith('/__nuxt')) { // nuxt 内部页面直接放通
+        return
+    }
+    if (event.path.startsWith('/_nuxt')) { // 静态资源路由直接放通
         return
     }
     if (event.path.startsWith('/api/public')) { // 公共 API 路由直接放通

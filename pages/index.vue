@@ -108,12 +108,12 @@ const handleCheckoutPage = () => {
 
 onMounted(async () => {
       // 检查用户是否登录
-      if (!userStore.isLoggedIn) {
-        await userStore.fetchUserInfo()
-    }
-    if (!userStore.isLoggedIn) {
-        return navigateTo('/login')
-    }
+    //   if (!userStore.isLoggedIn) {
+    //     await userStore.fetchUserInfo()
+    // }
+    // if (!userStore.isLoggedIn) {
+    //     return navigateTo('/login')
+    // }
 })
 
 </script>

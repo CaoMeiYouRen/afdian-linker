@@ -1,5 +1,34 @@
 # afdian-linker
 
+# [1.1.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.0.0...v1.1.0) (2025-05-10)
+
+
+### ✨ 新功能
+
+* 重构订单和验证码处理逻辑，添加过期订单和验证码清理功能 ([857414e](https://github.com/CaoMeiYouRen/afdian-linker/commit/857414e))
+* 集成 Sentry 错误监控系统 ([c28f353](https://github.com/CaoMeiYouRen/afdian-linker/commit/c28f353))
+
+
+### 🐛 Bug 修复
+
+* **auth:** 优化认证中间件路由处理逻辑 ([8157bc6](https://github.com/CaoMeiYouRen/afdian-linker/commit/8157bc6))
+* **auth:** 修复登录重定向逻辑，确保未登录用户正确跳转至登录页面 ([16bbc48](https://github.com/CaoMeiYouRen/afdian-linker/commit/16bbc48))
+* **auth:** 修复重定向逻辑以正确处理登录页面路径 ([da1fca9](https://github.com/CaoMeiYouRen/afdian-linker/commit/da1fca9))
+* **auth:** 修正 URL 构造和 API 请求路径匹配逻辑 ([8e4d6fe](https://github.com/CaoMeiYouRen/afdian-linker/commit/8e4d6fe))
+* **deps:** 固定 import-in-the-middle 版本为 1.13.1，移除不必要的 overrides ([72e1555](https://github.com/CaoMeiYouRen/afdian-linker/commit/72e1555))
+* **layout:** 添加加载状态指示器以改善用户体验 ([c293d3e](https://github.com/CaoMeiYouRen/afdian-linker/commit/c293d3e))
+* **login:** 修复登录页面容器宽度设置 ([e7a4d77](https://github.com/CaoMeiYouRen/afdian-linker/commit/e7a4d77))
+* **plans:** 将 channelPlanId 字段设为可选，并简化请求体解析逻辑 ([1035886](https://github.com/CaoMeiYouRen/afdian-linker/commit/1035886))
+* **plans:** 调整套餐创建接口的月份验证规则 ([b7c230a](https://github.com/CaoMeiYouRen/afdian-linker/commit/b7c230a))
+* **profile:** 仅当 auth0Id 存在时显示第三方账号信息 ([a76aaef](https://github.com/CaoMeiYouRen/afdian-linker/commit/a76aaef))
+* **sentry:** 注释掉 Sentry 初始化代码以避免未配置 DSN 时的错误 ([bf0f240](https://github.com/CaoMeiYouRen/afdian-linker/commit/bf0f240))
+* 优化按钮样式，调整订单和方案管理页面的按钮布局，增强用户体验 ([531f26e](https://github.com/CaoMeiYouRen/afdian-linker/commit/531f26e))
+* 修复 docker-compose 配置和环境变量问题; 优化认证中间件逻辑 ([9bb0d7c](https://github.com/CaoMeiYouRen/afdian-linker/commit/9bb0d7c))
+* 修复 Sentry 配置导出方式; 更新订单创建接口以处理产品类型的可选性 ([be4f052](https://github.com/CaoMeiYouRen/afdian-linker/commit/be4f052))
+* 修复用户认证流程问题 ([2f975db](https://github.com/CaoMeiYouRen/afdian-linker/commit/2f975db))
+* 将 Promise.all 替换为 Promise.allSettled，以处理所有异步操作的结果 ([a558617](https://github.com/CaoMeiYouRen/afdian-linker/commit/a558617))
+* 更新路径处理逻辑以使用上下文路径; 修改数据库健康检查以使用数据源实例 ([a412b9e](https://github.com/CaoMeiYouRen/afdian-linker/commit/a412b9e))
+
 # 1.0.0 (2025-05-03)
 
 

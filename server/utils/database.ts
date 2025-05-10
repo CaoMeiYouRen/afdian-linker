@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm'
+import pg from 'pg'
 import { SnakeCaseNamingStrategy } from './naming-strategy'
 import { VerificationCode } from '@/server/entities/verification-code'
 import { Order } from '@/server/entities/order'

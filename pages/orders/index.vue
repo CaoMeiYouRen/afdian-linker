@@ -231,7 +231,6 @@ const fetchOrders = async (params = {}) => {
 const handleTableUpdate = (options: any) => {
     pagination.value.currentPage = options.page
     pagination.value.perPage = options.itemsPerPage
-    console.log('options.sortBy', options.sortBy)
     if (options.sortBy[0]?.key) {
         fetchOrders({
             sort: options.sortBy[0]?.key,

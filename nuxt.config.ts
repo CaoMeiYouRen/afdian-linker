@@ -98,7 +98,7 @@ export default defineNuxtConfig({
             project: process.env.SENTRY_PROJECT || 'afdian-linker',
             authToken: process.env.SENTRY_AUTH_TOKEN,
         },
-        // autoInjectServerSentry: 'top-level-import',
+        autoInjectServerSentry: 'top-level-import',
     },
     sourcemap: { client: 'hidden' },
 })

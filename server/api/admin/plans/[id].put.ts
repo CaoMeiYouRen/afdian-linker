@@ -7,7 +7,7 @@ import { createApiResponse } from '@/server/types/api'
 
 const planSchema = z.object({
     paymentChannel: z.string().default('afdian').optional(),
-    channelPlanId: z.string(),
+    channelPlanId: z.string().optional(),
     title: z.string().min(1).optional(),
     amount: z.number().positive().optional(),
     productType: z.number().int().refine((v) => v === 0 || v === 1).optional(),
@@ -26,8 +26,7 @@ const planSchema = z.object({
 export default defineEventHandler(async (event) => {
     try {
         const planId = getRouterParam(event, 'id')
-        const body = await readBody(event)
-        const data = await planSchema.parseAsync(body)
+        const data = await planSchema.parseAsync(await readBody(event))
         const dataSource = await getDataSource()
         const planRepository = dataSource.getRepository(Plan)
         const plan = await planRepository.findOneBy({ id: planId })

@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useAuth0 } from '@auth0/auth0-vue'
+import { useAuth0, type Auth0VueClient } from '@auth0/auth0-vue'
 import { useToast } from 'primevue/usetoast'
 import { useTimeoutFn } from '@vueuse/core'
 import { useUserStore } from '@/stores/user'
@@ -49,12 +49,14 @@ const message = ref('')
 const toast = useToast()
 const userStore = useUserStore()
 
+const auth0 = ref<Auth0VueClient>(null as any)
+auth0.value = useAuth0()
+
 async function handleAuth0Callback() {
     try {
-        const auth0 = useAuth0()
         // 处理 Auth0 回调
-        await auth0.getAccessTokenSilently()
-        const token = auth0.idTokenClaims.value?.__raw
+        await auth0.value.getAccessTokenSilently()
+        const token = auth0.value.idTokenClaims.value?.__raw
         if (!token) {
             throw new Error('未获取到有效的 id_token')
         }

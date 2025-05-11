@@ -113,11 +113,11 @@ const form = reactive({
 const loading = ref(false)
 const auth0Loading = ref(false)
 const auth0 = ref<Auth0VueClient>(null as any)
-
+auth0.value = useAuth0()
 async function handleAuth0Login() {
     auth0Loading.value = true
     try {
-        auth0.value = useAuth0()
+
         if (!auth0.value) {
             throw new Error('Auth0 未初始化，请刷新页面重试')
         }

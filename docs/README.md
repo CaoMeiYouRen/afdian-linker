@@ -6,21 +6,21 @@ afdian-linker 是一个基于 Nuxt 3 & TypeScript 的全栈项目，集成了爱
 
 ## 主要功能
 
-- 多支付渠道扩展（如爱发电、可扩展其它渠道）
-- 统一订单生命周期管理（创建、支付、过期、同步等）
-- 支持 Webhook 自动同步订单
-- 丰富的后台管理功能（订单、用户、商品方案管理）
-- 邮箱注册、登录、第三方登录（如 Auth0）
-- API Key 机制，支持外部系统安全查询订单
-- 支持多种推送方式（Server 酱、邮件、钉钉、企业微信、Telegram、Discord 等）
-- 支持 Docker 部署
+-   多支付渠道扩展（如爱发电、可扩展其它渠道）
+-   统一订单生命周期管理（创建、支付、过期、同步等）
+-   支持 Webhook 自动同步订单
+-   丰富的后台管理功能（订单、用户、商品方案管理）
+-   邮箱注册、登录、第三方登录（如 Auth0）
+-   API Key 机制，支持外部系统安全查询订单
+-   支持多种推送方式（Server 酱、邮件、钉钉、企业微信、Telegram、Discord 等）
+-   支持 Docker/Vercel 等部署方式
 
 ## 系统架构
 
-- 前端：Nuxt 3 + Vue 3 + TypeScript + Vuetify
-- 后端：Node.js + TypeORM + PostgreSQL
-- 邮件/推送：支持多种推送服务
-- 部署：支持本地、Docker、云服务器等多种方式
+-   前端：Nuxt 3 + Vue 3 + TypeScript + Vuetify
+-   后端：Node.js + TypeORM + PostgreSQL
+-   邮件/推送：支持多种推送服务
+-   部署：支持本地、Docker、云函数等多种方式
 
 ## 快速开始
 
@@ -43,11 +43,11 @@ npm install
 
 复制 `.env.example` 为 `.env`，根据实际情况填写：
 
-- `DATABASE_URL`：PostgreSQL 数据库连接字符串
-- `JWT_SECRET`：JWT 密钥
-- `AFDIAN_USER_ID`、`AFDIAN_TOKEN`：爱发电 API 配置
-- `WEBHOOK_TOKEN`：Webhook 安全令牌
-- 邮件推送、第三方推送等可选配置
+-   `DATABASE_URL`：PostgreSQL 数据库连接字符串
+-   `JWT_SECRET`：JWT 密钥
+-   `AFDIAN_USER_ID`、`AFDIAN_TOKEN`：爱发电 API 配置
+-   `WEBHOOK_TOKEN`：Webhook 安全令牌
+-   邮件推送、第三方推送等可选配置
 
 ### 4. 初始化数据库
 
@@ -69,7 +69,6 @@ npm run dev
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FCaoMeiYouRen%2Fafdian-linker.git)
 
-
 ## Docker 部署
 
 ### 1. 配置环境变量
@@ -90,24 +89,24 @@ docker-compose up -d
 
 ## 常用命令
 
-- `npm run dev`：本地开发启动
-- `npm run build`：编译生产环境
-- `npm run lint`：代码检查
-- `npm run start`：生产环境启动
+-   `npm run dev`：本地开发启动
+-   `npm run build`：编译生产环境
+-   `npm run lint`：代码检查
+-   `npm run start`：生产环境启动
 
 ---
 
 ## API 简介
 
-- `/api/orders`：用户订单查询
-- `/api/admin/orders`：管理员订单管理
-- `/api/plans`：商品方案查询
-- `/api/user/info`：获取当前用户信息
-- `/api/auth/login`、`/api/auth/register`：登录/注册
-- `/api/afdian/webhook`：爱发电 Webhook 回调
-- `/api/afdian/sync`：手动同步爱发电订单
+-   `/api/orders`：用户订单查询
+-   `/api/admin/orders`：管理员订单管理
+-   `/api/plans`：商品方案查询
+-   `/api/user/info`：获取当前用户信息
+-   `/api/auth/login`、`/api/auth/register`：登录/注册
+-   `/api/afdian/webhook`：爱发电 Webhook 回调
+-   `/api/afdian/sync`：手动同步爱发电订单
 
-详细接口参数请参考源码或 Swagger 文档（如有）。
+详细接口参数请参考源码。
 
 ---
 
@@ -134,4 +133,3 @@ docker-compose up -d
 ---
 
 如需更多帮助，请查阅主项目仓库或提交 Issue。
-

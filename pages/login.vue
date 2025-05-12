@@ -129,7 +129,12 @@ async function handleAuth0Login() {
             return
         }
         // 跳转到 Auth0 登录，回调到 /auth0-callback
-        await loginWithRedirect({})
+        await loginWithRedirect({
+            authorizationParams: {
+                // connection: 'github',
+                redirect_uri: `${window.location.origin}/auth0-callback`,
+            },
+        })
     } catch (error: any) {
         console.error(error)
         toast.add({

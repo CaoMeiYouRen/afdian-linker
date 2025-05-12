@@ -14,4 +14,5 @@ export const publicPaths = [
     '/forgot-password',
     '/reset-password',
     '/callback',
+    '/auth0-callback',
 ]

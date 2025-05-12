@@ -16,18 +16,22 @@
             >
                 {{ status === 'success' ? 'mdi-check-circle' : 'mdi-close-circle' }}
             </v-icon>
-            <h2 class="mb-2 mt-4">
-                {{ status === 'success' ? '登录成功' : '登录失败' }}
-            </h2>
-            <p v-if="loading">
-                正在处理第三方登录...
-            </p>
-            <p v-else-if="status === 'success'">
-                {{ message || '正在跳转...' }}
-            </p>
-            <p v-else>
-                {{ message || '登录失败，正在跳转到登录页...' }}
-            </p>
+            <template v-if="loading">
+                <h2 class="mb-2 mt-4">
+                    正在处理第三方登录...
+                </h2>
+                <p>
+                    请稍等片刻...
+                </p>
+            </template>
+            <template v-else>
+                <h2 class="mb-2 mt-4">
+                    {{ status === 'success' ? '登录成功' : '登录失败' }}
+                </h2>
+                <p>
+                    {{ message || (status === 'success' ? '正在跳转...' : '登录失败，正在跳转到登录页...') }}
+                </p>
+            </template>
         </v-container>
     </div>
 </template>
@@ -56,7 +60,7 @@ async function handleAuth0Callback() {
     try {
         // 处理 Auth0 回调
         await auth0.value.getAccessTokenSilently()
-        const token = auth0.value.idTokenClaims.value?.__raw
+        const token = auth0.value?.idTokenClaims?.__raw
         if (!token) {
             throw new Error('未获取到有效的 id_token')
         }
@@ -87,7 +91,7 @@ async function handleAuth0Callback() {
         throw new Error(error.value?.data?.message || error.value?.message || '第三方登录失败')
     } catch (err: any) {
         status.value = 'fail'
-        message.value = err?.message || '第三方登录失败'
+        message.value = err?.message || '第三方登录失败，正在跳转到登录页...'
         toast.add({
             severity: 'error',
             summary: '错误',

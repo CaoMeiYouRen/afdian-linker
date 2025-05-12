@@ -67,7 +67,7 @@
                         <v-icon left>
                             mdi-lock-open-variant
                         </v-icon>
-                        使用 Auth0 一键登录/注册
+                        使用 {{ auth0ButtonText }} 一键登录/注册
                     </v-btn>
                 </v-card-actions>
                 <div class="pb-6 text-center">
@@ -98,7 +98,7 @@ definePageMeta({
 })
 
 import { useToast } from 'primevue/usetoast'
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useAuth0, type Auth0VueClient } from '@auth0/auth0-vue'
 import { useUserStore } from '@/stores/user'
 import { enableAuth0 } from '@/plugins/auth0.client'
@@ -114,6 +114,9 @@ const loading = ref(false)
 const auth0Loading = ref(false)
 const auth0 = ref<Auth0VueClient>(null as any)
 auth0.value = useAuth0()
+
+const auth0Connections = ref<string[]>([])
+
 async function handleAuth0Login() {
     auth0Loading.value = true
     try {
@@ -191,6 +194,38 @@ async function handleSubmit() {
     }
 }
 
+async function fetchAuth0Connections() {
+    try {
+        const { data, error } = await useFetch('/api/auth/auth0-connections')
+        if (error.value) {
+            console.error('获取 Auth0 连接失败:', error.value)
+            return
+        }
+        if (Array.isArray(data.value?.data?.connections)) {
+            auth0Connections.value = data.value?.data?.connections
+        }
+    } catch (err) {
+        console.error('调用 /api/auth/auth0-connections 失败:', err)
+    }
+}
+
+const auth0ButtonText = computed(() => {
+        if (auth0Connections.value.length === 0) {
+        return '第三方账号'
+    }
+    return auth0Connections.value
+        .map((conn) => {
+            if (conn.includes('google')) {
+                return 'Google'
+            }
+            if (conn.includes('github')) {
+                return 'GitHub'
+            }
+            return conn
+        })
+        .join('/')
+})
+
 function goToRegister() {
     navigateTo('/register')
 }
@@ -198,6 +233,10 @@ function goToRegister() {
 function goToForgot() {
     navigateTo('/forgot-password')
 }
+
+onMounted(async () => {
+    await fetchAuth0Connections()
+})
 
 </script>
 

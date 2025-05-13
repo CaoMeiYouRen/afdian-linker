@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     const enableConnections = connections.filter((connection) => (connection as any).enabled_clients?.includes(AUTH0_CLIENT_ID))
     const connectionNames = enableConnections.map((connection) => connection.name).filter((connection) => !['email', 'Username-Password-Authentication'].includes(connection as string))
     value = connectionNames as string[]
-    await store.set(CACHE_KEY, value, 60 * 60 * 24) // 增加缓存
+    await store.set(CACHE_KEY, value, 1000 * 60 * 60 * 24) // 增加缓存
     return createApiResponse({
         connections: value,
     })

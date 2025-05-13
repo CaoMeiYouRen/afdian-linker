@@ -2,14 +2,14 @@ import path from 'path'
 import { defineVitestConfig } from '@nuxt/test-utils/config'
 
 export default defineVitestConfig({
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './'),
+        },
+    },
     test: {
         globals: true,
         environment: 'nuxt',
-    },
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'src'),
-        },
     },
     root: path.resolve('./'),
     // coverage: {

@@ -255,6 +255,11 @@ onMounted(async () => {
     border-radius: 16px !important;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.95) !important;
+    width: 100%;
+    max-width: 800px;
+    min-width: 320px;
+    box-sizing: border-box;
+    // 移除原有 min-width: 500，改为响应式
 }
 
 .login-btn {
@@ -266,5 +271,40 @@ onMounted(async () => {
 
 .v-text-field {
     border-radius: 8px;
+}
+
+/* 响应式适配手机端 */
+@media (max-width: 600px) {
+    .login-container {
+        padding: 8px;
+    }
+    .login-card {
+        max-width: 100vw;
+        min-width: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+    .v-card-title,
+    .v-card-text,
+    .v-card-actions {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+    .login-btn {
+        height: 44px !important;
+        font-size: 16px !important;
+    }
+    .v-text-field {
+        font-size: 16px !important;
+    }
+    .pb-6, .pa-6, .px-6 {
+        padding-bottom: 12px !important;
+        padding-top: 12px !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
 }
 </style>

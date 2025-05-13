@@ -49,11 +49,11 @@
   /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
 }
 .about-card {
-  max-width: 520px;
+  max-width: 530px;
   width: 100%;
   background: #fff;
   box-shadow: 0 4px 24px 0 rgba(60,60,60,0.08);
-  height: 500px;
+  min-height: 500px;
   margin-top: 20px;
 }
 .about-list {

@@ -243,12 +243,13 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .login-container {
     min-height: 100vh;
-    min-width: 100vw;
+    width: 100vw; // 修改为width，避免vw包含滚动条导致溢出
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #1976D2 0%, #764ba2 100%);
     padding: 20px;
+    overflow-x: hidden; // 防止横向滚动
 }
 
 .login-card {
@@ -259,7 +260,6 @@ onMounted(async () => {
     max-width: 800px;
     min-width: 320px;
     box-sizing: border-box;
-    // 移除原有 min-width: 500，改为响应式
 }
 
 .login-btn {
@@ -277,6 +277,8 @@ onMounted(async () => {
 @media (max-width: 600px) {
     .login-container {
         padding: 8px;
+        width: 100vw;
+        overflow-x: hidden;
     }
     .login-card {
         max-width: 100vw;

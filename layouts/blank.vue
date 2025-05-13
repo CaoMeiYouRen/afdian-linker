@@ -1,11 +1,11 @@
 <template>
     <v-app>
-        <v-layout v-if="userStore.isReady" style="width: 100vw;">
+        <v-layout v-if="userStore.isReady" style="min-width: 100vw;width:100%;">
             <v-main>
                 <slot />
             </v-main>
         </v-layout>
-        <div v-else style="min-height:100vh;width: 100vw;display:flex;align-items:center;justify-content:center;">
+        <div v-else style="min-height:100vh;min-width: 100vw;width:100%;display:flex;align-items:center;justify-content:center;">
             <v-progress-circular
                 color="primary"
                 :size="128"

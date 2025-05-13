@@ -11,6 +11,14 @@ const AUTH0_MGMT_CLIENT_SECRET = process.env.AUTH0_MGMT_CLIENT_SECRET || 'YOUR_A
 const CACHE_KEY = 'AUTH0_ALL_CONNECTIONS'
 
 export default defineEventHandler(async (event) => {
+    if (process.env.NODE_ENV === 'development') { // 开发环境返回固定值
+        return createApiResponse({
+            connections: [
+                'github',
+                'google-oauth2',
+            ],
+        })
+    }
     const cache = getCacheStore()
     const cachedConnections = await cache.get<string[]>(CACHE_KEY)
     if (cachedConnections?.length) {

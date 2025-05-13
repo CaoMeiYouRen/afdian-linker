@@ -2,8 +2,6 @@
     <div class="forgot-container">
         <v-card
             class="forgot-card mx-auto my-auto"
-            max-width="800"
-            min-width="500"
             elevation="8"
         >
             <v-card-title class="font-weight-bold pa-6 text-center text-h5">
@@ -110,17 +108,23 @@ async function handleSubmit() {
 <style lang="scss" scoped>
 .forgot-container {
     min-height: 100vh;
+    width: 100vw; // 保证宽度不超出视口
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #1976D2  0%, #764ba2 100%);
     padding: 20px;
+    overflow-x: hidden; // 防止横向滚动
 }
 
 .forgot-card {
     border-radius: 16px !important;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.95) !important;
+    width: 100%;
+    max-width: 500px;
+    min-width: 320px;
+    box-sizing: border-box;
 }
 
 .forgot-btn {
@@ -132,5 +136,42 @@ async function handleSubmit() {
 
 .v-text-field {
     border-radius: 8px;
+}
+
+/* 响应式适配手机端 */
+@media (max-width: 600px) {
+    .forgot-container {
+        padding: 8px;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    .forgot-card {
+        max-width: 100vw;
+        min-width: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+    .v-card-title,
+    .v-card-text,
+    .v-card-actions {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+    .forgot-btn {
+        height: 44px !important;
+        font-size: 16px !important;
+    }
+    .v-text-field {
+        font-size: 16px !important;
+    }
+    .pb-6, .pa-6, .px-6 {
+        padding-bottom: 12px !important;
+        padding-top: 12px !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
 }
 </style>

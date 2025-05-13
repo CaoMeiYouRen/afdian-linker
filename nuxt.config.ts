@@ -36,6 +36,13 @@ export default defineNuxtConfig({
         optimizeDeps: {
             exclude: [],
         },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    silenceDeprecations: ['import', 'legacy-js-api'], // 忽略警告
+                },
+            },
+        },
     },
     runtimeConfig: {
         afdianUserId: process.env.AFDIAN_USER_ID,

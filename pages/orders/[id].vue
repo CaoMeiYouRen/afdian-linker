@@ -180,4 +180,34 @@ const handleRefresh = async () => {
 .details dd {
     margin: 0;
 }
+
+/* 响应式适配手机端 */
+@media (max-width: 600px) {
+    .details {
+        grid-template-columns: 1fr;
+        gap: 8px 0;
+    }
+    .details dt {
+        margin-top: 8px;
+        font-size: 15px;
+    }
+    .details dd {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    .v-card {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    .v-card-title,
+    .v-card-text,
+    .v-card-actions {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+}
 </style>

@@ -109,7 +109,7 @@ async function handleAuth0Callback() {
 onMounted(handleAuth0Callback)
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .verify-success-page {
   min-height: 60vh;
   display: flex;

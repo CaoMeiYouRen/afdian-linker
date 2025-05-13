@@ -30,3 +30,7 @@ onMounted(async () => {
 })
 
 </script>
+
+<style lang="scss" scoped>
+// @import "@/assets/responsive.scss";
+</style>

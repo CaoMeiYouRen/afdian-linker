@@ -411,3 +411,9 @@ const handleOrderDetailClick = (order: Order) => {
     orderDetailDialog.value = true
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/responsive.scss";
+
+/* 可根据需要添加页面特有样式 */
+</style>

@@ -166,7 +166,9 @@ const handleRefresh = async () => {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/responsive.scss";
+
 .details {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -181,7 +183,6 @@ const handleRefresh = async () => {
     margin: 0;
 }
 
-/* 响应式适配手机端 */
 @media (max-width: 600px) {
     .details {
         grid-template-columns: 1fr;
@@ -194,20 +195,6 @@ const handleRefresh = async () => {
     .details dd {
         font-size: 15px;
         margin-bottom: 8px;
-    }
-    .v-card {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-    }
-    .v-card-title,
-    .v-card-text,
-    .v-card-actions {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-        padding-top: 12px !important;
-        padding-bottom: 12px !important;
     }
 }
 </style>

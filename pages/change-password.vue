@@ -153,9 +153,11 @@ function goToForgot() {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/responsive.scss";
+
 .v-card {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     min-width: 320px;
     box-sizing: border-box;
     border-radius: 16px !important;
@@ -170,38 +172,5 @@ function goToForgot() {
 }
 .v-text-field {
     border-radius: 8px;
-}
-
-/* 响应式适配手机端 */
-@media (max-width: 600px) {
-    .v-card {
-        max-width: 100vw;
-        min-width: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-    }
-    .v-card-title,
-    .v-card-text,
-    .v-card-actions,
-    .pa-4,
-    .pa-6,
-    .px-6,
-    .pb-6,
-    .my-12 {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-        padding-top: 12px !important;
-        padding-bottom: 12px !important;
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-    .v-btn {
-        height: 44px !important;
-        font-size: 16px !important;
-    }
-    .v-text-field {
-        font-size: 16px !important;
-    }
 }
 </style>

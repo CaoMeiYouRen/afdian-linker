@@ -41,7 +41,7 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .verify-success-page {
   min-height: 60vh;
   display: flex;

@@ -1,0 +1,55 @@
+// 卡片、表单、按钮等通用响应式样式
+@media (max-width: 600px) {
+  .v-card {
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  .v-card-title,
+  .v-card-text,
+  .v-card-actions,
+  .pa-4,
+  .pa-6,
+  .px-6,
+  .pb-6,
+  .pb-8,
+  .my-12 {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .v-btn {
+    height: 44px !important;
+    font-size: 16px !important;
+    border-radius: 8px !important;
+  }
+  .v-text-field,
+  .v-select,
+  .v-textarea {
+    font-size: 16px !important;
+    border-radius: 8px !important;
+  }
+  .v-data-table {
+    font-size: 15px !important;
+    border-radius: 0 !important;
+  }
+  .v-dialog {
+    max-width: 98vw !important;
+    margin: 0 !important;
+  }
+  .order-status-field {
+    font-size: 15px !important;
+  }
+  .login-container,
+  .register-container,
+  .forgot-container {
+    padding: 8px !important;
+    width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+}

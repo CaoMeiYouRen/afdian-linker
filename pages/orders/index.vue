@@ -252,3 +252,58 @@ const handleOrderDetailClick = (order: Order) => {
     orderDetailDialog.value = true
 }
 </script>
+
+<style lang="scss" scoped>
+/* 订单表格适配手机端 */
+.v-card {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 320px;
+    box-sizing: border-box;
+    border-radius: 16px !important;
+    background: rgba(255,255,255,0.97) !important;
+}
+.v-data-table {
+    border-radius: 8px;
+}
+.v-btn {
+    border-radius: 8px;
+}
+.order-status-field {
+    min-width: 0;
+}
+
+/* 响应式适配手机端 */
+@media (max-width: 600px) {
+    .v-card {
+        max-width: 100vw;
+        min-width: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+    .v-card-title,
+    .v-card-text,
+    .v-card-actions {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+    .v-data-table {
+        font-size: 15px !important;
+        border-radius: 0 !important;
+    }
+    .v-btn {
+        font-size: 15px !important;
+        height: 40px !important;
+    }
+    .order-status-field {
+        font-size: 15px !important;
+    }
+    .v-dialog {
+        max-width: 98vw !important;
+        margin: 0 !important;
+    }
+}
+</style>

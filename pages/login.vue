@@ -243,7 +243,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .login-container {
     min-height: 100vh;
-    width: 100%;
+    min-width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;

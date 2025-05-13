@@ -2,8 +2,6 @@
     <div class="login-container">
         <v-card
             class="login-card mx-auto my-auto"
-            max-width="800"
-            min-width="500"
             elevation="8"
         >
             <v-card-title class="font-weight-bold pa-6 text-center text-h4">
@@ -64,10 +62,10 @@
                         :loading="auth0Loading"
                         @click="handleAuth0Login"
                     >
-                        <v-icon left>
+                        <!-- <v-icon left>
                             mdi-lock-open-variant
-                        </v-icon>
-                        使用 {{ auth0ButtonText }} 一键登录/注册
+                        </v-icon> -->
+                        使用 {{ auth0ButtonText }} 登录/注册
                     </v-btn>
                 </v-card-actions>
                 <div class="pb-6 text-center">
@@ -257,7 +255,7 @@ onMounted(async () => {
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.95) !important;
     width: 100%;
-    max-width: 800px;
+    max-width: 500px;
     min-width: 320px;
     box-sizing: border-box;
 }

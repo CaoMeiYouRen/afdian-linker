@@ -1,5 +1,38 @@
 # afdian-linker
 
+# [1.2.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.1.0...v1.2.0) (2025-05-17)
+
+
+### ♻ 代码重构
+
+* **auth0:** 清理无用导入，优化缓存逻辑和变量命名 ([1e9ec1a](https://github.com/CaoMeiYouRen/afdian-linker/commit/1e9ec1a))
+* 增加 nuxt 测试相关配置 ([8a36405](https://github.com/CaoMeiYouRen/afdian-linker/commit/8a36405))
+
+
+### ✨ 新功能
+
+* **auth0:** 添加 Auth0 连接获取功能，优化登录体验 ([992abb5](https://github.com/CaoMeiYouRen/afdian-linker/commit/992abb5))
+* **responsive:** 添加通用响应式样式，优化各页面适配手机端 ([634b7f0](https://github.com/CaoMeiYouRen/afdian-linker/commit/634b7f0))
+
+
+### 🐛 Bug 修复
+
+* **about:** 调整关于页面卡片最大宽度，优化样式适配 ([ee33453](https://github.com/CaoMeiYouRen/afdian-linker/commit/ee33453))
+* **auth0:** 优化 Auth0 登录流程，改善用户体验和错误提示 ([33babc7](https://github.com/CaoMeiYouRen/afdian-linker/commit/33babc7))
+* **auth0:** 修复 Auth0 初始化逻辑，确保在使用前正确设置 ([c5d0651](https://github.com/CaoMeiYouRen/afdian-linker/commit/c5d0651))
+* **auth0:** 修复缓存过期时间设置，确保连接数据有效性 ([ea61914](https://github.com/CaoMeiYouRen/afdian-linker/commit/ea61914))
+* **change-password:** 优化修改密码页面样式，增强响应式适配 ([061d986](https://github.com/CaoMeiYouRen/afdian-linker/commit/061d986))
+* **forgot-password:** 优化忘记密码页面样式，调整卡片宽度和响应式适配 ([08a3055](https://github.com/CaoMeiYouRen/afdian-linker/commit/08a3055))
+* **layout:** 修复布局样式，确保宽度适应视口 ([ab25648](https://github.com/CaoMeiYouRen/afdian-linker/commit/ab25648))
+* **layout:** 修改宽度设置，避免滚动条导致溢出，增强响应式适配 ([da4dbfe](https://github.com/CaoMeiYouRen/afdian-linker/commit/da4dbfe))
+* **login:** 优化登录页面样式，增强手机端响应式适配 ([1f84bd3](https://github.com/CaoMeiYouRen/afdian-linker/commit/1f84bd3))
+* **login:** 修复登录页面容器宽度，确保在不同状态下适配 ([f5ded21](https://github.com/CaoMeiYouRen/afdian-linker/commit/f5ded21))
+* **nuxt.config:** 忽略 SCSS 导入和遗留 JS API 的警告 ([dbcba4b](https://github.com/CaoMeiYouRen/afdian-linker/commit/dbcba4b))
+* **orders:** 优化订单表格样式，增强手机端响应式适配 ([df6f803](https://github.com/CaoMeiYouRen/afdian-linker/commit/df6f803))
+* **orders:** 优化订单详情页面样式，增强手机端响应式适配 ([b2edfbe](https://github.com/CaoMeiYouRen/afdian-linker/commit/b2edfbe))
+* **register:** 调整注册页面样式，优化响应式适配，修复宽度设置 ([0143450](https://github.com/CaoMeiYouRen/afdian-linker/commit/0143450))
+* 修复布局样式，确保在不同状态下宽度一致; 添加开发环境下的固定连接返回值 ([8559777](https://github.com/CaoMeiYouRen/afdian-linker/commit/8559777))
+
 # [1.1.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.0.0...v1.1.0) (2025-05-10)
 
 

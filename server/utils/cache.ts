@@ -7,8 +7,9 @@ export interface CacheStore {
     del(key: string): Promise<void>
 }
 
-class RedisCache implements CacheStore {
-    private redis: Redis
+// 基础 Redis Store
+export class BaseRedisStore {
+    protected redis: Redis
 
     constructor(url: string) {
         this.redis = new Redis(url)
@@ -33,8 +34,9 @@ class RedisCache implements CacheStore {
     }
 }
 
-class LRUCacheStore implements CacheStore {
-    private cache: LRUCache<string, any>
+// 基础 LRU Store
+export class BaseLRUStore {
+    protected cache: LRUCache<string, any>
 
     constructor() {
         this.cache = new LRUCache({
@@ -56,6 +58,7 @@ class LRUCacheStore implements CacheStore {
     }
 }
 
+// 直接复用基础 Store 作为 CacheStore
 let store: CacheStore = null as any
 
 export function getCacheStore() {
@@ -63,9 +66,9 @@ export function getCacheStore() {
         return store
     }
     if (process.env.REDIS_URL) {
-        store = new RedisCache(process.env.REDIS_URL)
+        store = new BaseRedisStore(process.env.REDIS_URL)
         return store
     }
-    store = new LRUCacheStore()
+    store = new BaseLRUStore()
     return store
 }

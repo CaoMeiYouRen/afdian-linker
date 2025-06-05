@@ -1,6 +1,5 @@
 import { H3Event } from 'h3'
-import { Redis } from 'ioredis'
-import { LRUCache } from 'lru-cache'
+import { BaseRedisStore, BaseLRUStore } from './cache'
 
 interface RateLimitOptions {
     // 窗口时间，毫秒
@@ -14,13 +13,8 @@ interface RateLimitStore {
     reset(key: string): Promise<void>
 }
 
-class RedisStore implements RateLimitStore {
-    private redis: Redis
-
-    constructor(url: string) {
-        this.redis = new Redis(url)
-    }
-
+// 复用 Redis Store
+class RedisRateLimitStore extends BaseRedisStore implements RateLimitStore {
     async increment(key: string, window: number): Promise<number> {
         const multi = this.redis.multi()
         multi.incr(key)
@@ -28,30 +22,20 @@ class RedisStore implements RateLimitStore {
         const results = await multi.exec()
         return results?.[0]?.[1] as number
     }
-
     async reset(key: string): Promise<void> {
-        await this.redis.del(key)
+        await this.del(key)
     }
 }
 
-class LRUStore implements RateLimitStore {
-    private cache: LRUCache<string, number>
-
-    constructor() {
-        this.cache = new LRUCache({
-            max: 5000,
-            ttl: 1000 * 60 * 60,
-        })
-    }
-
+// 复用 LRU Store
+class LRURateLimitStore extends BaseLRUStore implements RateLimitStore {
     async increment(key: string, window: number): Promise<number> {
-        const count = (this.cache.get(key) || 0) + 1
-        this.cache.set(key, count, { ttl: window })
-        return count
+        const count = await this.get<number>(key) || 0
+        await this.set(key, count + 1, window)
+        return count + 1
     }
-
     async reset(key: string): Promise<void> {
-        this.cache.delete(key)
+        await this.del(key)
     }
 }
 
@@ -62,10 +46,10 @@ export function getStore() {
         return store
     }
     if (process.env.REDIS_URL) {
-        store = new RedisStore(process.env.REDIS_URL)
+        store = new RedisRateLimitStore(process.env.REDIS_URL)
         return store
     }
-    store = new LRUStore()
+    store = new LRURateLimitStore()
     return store
 }
 

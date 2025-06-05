@@ -30,6 +30,12 @@ export default defineEventHandler(async (event) => {
         if (exist && exist.id !== auth.id) {
             throw createError({ statusCode: 400, message: '邮箱已被占用' })
         }
+
+        const user = await repo.findOneBy({ id: auth.id })
+        if (!user) {
+            throw createError({ statusCode: 404, message: '用户不存在' })
+        }
+
         await repo.update({ id: auth.id }, { email, emailVerified: false })
 
         // 生成一次性token
@@ -46,7 +52,8 @@ export default defineEventHandler(async (event) => {
         }))
 
         // 发送验证邮件
-        await sendVerifyEmail(auth.id, email, token)
+        await sendVerifyEmail(user)
+
         return createApiResponse(null, 200, '邮箱修改成功，请查收验证邮件')
     } catch (error) {
         if (error instanceof z.ZodError) {

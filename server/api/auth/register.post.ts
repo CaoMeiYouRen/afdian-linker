@@ -1,13 +1,9 @@
-import crypto from 'crypto'
 import { defineEventHandler, readBody } from 'h3'
 import { z, ZodError } from 'zod'
-import dayjs from 'dayjs'
 import { getDataSource } from '@/server/utils/database'
 import { User, UserRole } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
 import { createApiResponse } from '@/server/types/api'
-import { rateLimit } from '@/server/utils/rate-limit'
-import { VerificationCode } from '@/server/entities/verification-code'
 
 const schema = z.object({
     username: z.string().min(1, '用户名不能为空').max(255),
@@ -23,7 +19,6 @@ export default defineEventHandler(async (event) => {
 
         const dataSource = await getDataSource()
         const repo = dataSource.getRepository(User)
-        const codeRepo = dataSource.getRepository(VerificationCode)
         // 检查用户名和邮箱唯一性
         const existUser = await repo.findOneBy([{ username }, { email }])
         if (existUser) {
@@ -42,21 +37,8 @@ export default defineEventHandler(async (event) => {
         })
         await repo.save(user)
 
-        // 生成一次性token
-        const token = crypto.randomBytes(32).toString('hex')
-        const expires = dayjs().add(1, 'hour') // 1小时有效
-
-        // 保存验证码
-        await codeRepo.save(codeRepo.create({
-            code: token,
-            type: 'email_verify',
-            userId: user.id,
-            used: false,
-            expiresAt: expires.toDate(),
-        }))
-
         // 发送邮箱验证邮件
-        await sendVerifyEmail(user.id, user.email, token)
+        await sendVerifyEmail(user)
 
         return createApiResponse(null, 200, '注册成功，请查收验证邮件')
     } catch (error: any) {

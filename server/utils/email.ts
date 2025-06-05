@@ -1,14 +1,34 @@
+import crypto from 'crypto'
 import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken'
+import dayjs from 'dayjs'
+import { VerificationCode } from '@/server/entities/verification-code'
 
-export async function sendVerifyEmail(userId: string, email: string, token?: string) {
+type UserEmailInfo = {
+    id: string
+    username: string
+    email: string
+}
+
+export async function sendVerifyEmail(user: UserEmailInfo) {
     const config = useRuntimeConfig()
-    let verifyToken = token
-    if (!verifyToken) {
-        // 兼容老逻辑，若未传token则生成jwt
-        verifyToken = jwt.sign({ id: userId, email }, config.jwtSecret, { expiresIn: '1h' })
-    }
-    const verifyUrl = `${config.baseUrl}/api/user/email-verify-callback?token=${verifyToken}`
+    const { username, email, id } = user
+    const dataSource = await getDataSource()
+    const codeRepo = dataSource.getRepository(VerificationCode)
+    // 生成一次性token
+    const token = crypto.randomBytes(32).toString('hex')
+    const expires = dayjs().add(1, 'hour') // 1小时有效
+
+    // 保存验证码
+    await codeRepo.save(codeRepo.create({
+        code: token,
+        type: 'email_verify',
+        userId: id,
+        used: false,
+        expiresAt: expires.toDate(),
+    }))
+
+    const verifyUrl = `${config.baseUrl}/api/user/email-verify-callback?token=${token}`
 
     const transporter = nodemailer.createTransport({
         host: config.smtpHost,
@@ -30,8 +50,8 @@ export async function sendVerifyEmail(userId: string, email: string, token?: str
     await transporter.sendMail({
         from: config.smtpFrom,
         to: email,
-        subject: '邮箱验证',
-        html: `<p>尊敬的用户 ${email}，</p>
+        subject: '邮箱验证', // ：${username}
+        html: `<p>尊敬的用户，</p>
     <p>感谢您注册我们的服务！为了确保您的账户安全，请完成邮箱验证。</p>
     <p>请点击下方链接完成邮箱验证：</p>
     <p><a href="${verifyUrl}">${verifyUrl}</a></p>

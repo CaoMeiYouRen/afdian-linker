@@ -1,5 +1,19 @@
 # afdian-linker
 
+## [1.2.1](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.2.0...v1.2.1) (2025-06-07)
+
+
+### ♻ 代码重构
+
+* **auth:** 重构重置密码流程，简化邮件发送逻辑并添加HTML转义功能 ([aa43cfe](https://github.com/CaoMeiYouRen/afdian-linker/commit/aa43cfe))
+* **cache:** 重构缓存存储，复用基础 Redis 和 LRU 存储类 ([77831f4](https://github.com/CaoMeiYouRen/afdian-linker/commit/77831f4))
+* **email:** 优化邮箱验证流程，简化一次性token生成逻辑 ([0f978ab](https://github.com/CaoMeiYouRen/afdian-linker/commit/0f978ab))
+
+
+### 🐛 Bug 修复
+
+* **auth:** 增强用户注册流程的邮箱验证功能 ([1759de2](https://github.com/CaoMeiYouRen/afdian-linker/commit/1759de2))
+
 # [1.2.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.1.0...v1.2.0) (2025-05-17)
 
 

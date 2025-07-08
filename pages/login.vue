@@ -211,17 +211,7 @@ const auth0ButtonText = computed(() => {
         if (auth0Connections.value.length === 0) {
         return '第三方账号'
     }
-    return auth0Connections.value
-        .map((conn) => {
-            if (conn.includes('google')) {
-                return 'Google'
-            }
-            if (conn.includes('github')) {
-                return 'GitHub'
-            }
-            return conn
-        })
-        .join('/')
+    return auth0Connections.value.join('/')
 })
 
 function goToRegister() {

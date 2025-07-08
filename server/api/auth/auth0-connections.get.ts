@@ -14,8 +14,9 @@ export default defineEventHandler(async (event) => {
     if (process.env.NODE_ENV === 'development') { // 开发环境返回固定值
         return createApiResponse({
             connections: [
-                'github',
-                'google-oauth2',
+                'Google',
+                'GitHub',
+                'Microsoft',
             ],
         })
     }
@@ -40,6 +41,18 @@ export default defineEventHandler(async (event) => {
     const filteredConnectionNames = enabledConnections
         .map((conn: any) => conn.name)
         .filter((name: string) => !['email', 'Username-Password-Authentication'].includes(name))
+        .map((conn) => {
+            if (conn.includes('google')) {
+                return 'Google'
+            }
+            if (conn.includes('github')) {
+                return 'GitHub'
+            }
+            if (conn.includes('windowslive')) {
+                return 'Microsoft'
+            }
+            return conn
+        })
 
     await cache.set(CACHE_KEY, filteredConnectionNames, 1000 * 60 * 60 * 24) // 缓存24小时
     return createApiResponse({

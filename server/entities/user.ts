@@ -67,6 +67,9 @@ export class User extends BaseEntity implements BaseUser {
     @Column({ type: 'varchar', length: 255, unique: true, nullable: true })
     auth0Id?: string
 
+    @Column({ type: 'varchar', length: 255, unique: true, nullable: true })
+    oauthId?: string
+
     @OneToMany(() => Order, (order) => order.user, {
         cascade: true,
     })

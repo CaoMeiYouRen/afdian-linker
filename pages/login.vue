@@ -68,6 +68,21 @@
                         使用 {{ auth0ButtonText }} 登录/注册
                     </v-btn>
                 </v-card-actions>
+                <v-card-actions v-if="enableOAuth" class="pb-4 px-6">
+                    <v-btn
+                        color="info"
+                        variant="elevated"
+                        class="login-btn"
+                        block
+                        :loading="oauthLoading"
+                        @click="handleOAuthLogin"
+                    >
+                        <v-icon left class="mr-2">
+                            mdi-account-key
+                        </v-icon>
+                        使用 {{ oauthProviderName }} 登录/注册
+                    </v-btn>
+                </v-card-actions>
                 <div class="pb-6 text-center">
                     <v-btn
                         variant="text"
@@ -110,10 +125,13 @@ const form = reactive({
 })
 const loading = ref(false)
 const auth0Loading = ref(false)
+const oauthLoading = ref(false)
 const auth0 = ref<Auth0VueClient>(null as any)
 auth0.value = useAuth0()
 
 const auth0Connections = ref<string[]>([])
+const enableOAuth = ref(false)
+const oauthProviderName = ref('OAuth')
 
 async function handleAuth0Login() {
     auth0Loading.value = true
@@ -146,6 +164,24 @@ async function handleAuth0Login() {
         })
     } finally {
         auth0Loading.value = false
+    }
+}
+
+async function handleOAuthLogin() {
+    oauthLoading.value = true
+    try {
+        // 直接跳转到 OAuth 授权端点
+        await navigateTo('/api/auth/oauth-authorize', { external: true })
+    } catch (error: any) {
+        console.error(error)
+        toast.add({
+            severity: 'error',
+            summary: '错误',
+            detail: error?.message || 'OAuth 登录失败',
+            life: 5000,
+        })
+    } finally {
+        oauthLoading.value = false
     }
 }
 
@@ -207,6 +243,23 @@ async function fetchAuth0Connections() {
     }
 }
 
+async function fetchOAuthConfig() {
+    try {
+        const { data, error } = await useFetch('/api/auth/oauth-config')
+        if (error.value) {
+            console.error('获取 OAuth 配置失败:', error.value)
+            return
+        }
+        if (data.value && typeof data.value === 'object' && 'data' in data.value) {
+            const responseData = data.value.data as any
+            enableOAuth.value = responseData.enabled
+            oauthProviderName.value = responseData.providerName || 'OAuth'
+        }
+    } catch (err) {
+        console.error('调用 /api/auth/oauth-config 失败:', err)
+    }
+}
+
 const auth0ButtonText = computed(() => {
         if (auth0Connections.value.length === 0) {
         return '第三方账号'
@@ -223,7 +276,10 @@ function goToForgot() {
 }
 
 onMounted(async () => {
-    await fetchAuth0Connections()
+    await Promise.all([
+        fetchAuth0Connections(),
+        fetchOAuthConfig(),
+    ])
 })
 
 </script>

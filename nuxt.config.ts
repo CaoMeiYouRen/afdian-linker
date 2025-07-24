@@ -57,6 +57,15 @@ export default defineNuxtConfig({
         smtpFrom: process.env.SMTP_FROM,
         smtpSecure: process.env.SMTP_SECURE === 'true',
         baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+        // OAuth 2.0 配置
+        oauthClientId: process.env.OAUTH_CLIENT_ID,
+        oauthClientSecret: process.env.OAUTH_CLIENT_SECRET,
+        oauthAuthorizationUrl: process.env.OAUTH_AUTHORIZATION_URL,
+        oauthTokenUrl: process.env.OAUTH_TOKEN_URL,
+        oauthUserInfoUrl: process.env.OAUTH_USER_INFO_URL,
+        oauthProviderName: process.env.OAUTH_PROVIDER_NAME || 'OAuth',
+        oauthProviderId: process.env.OAUTH_PROVIDER_ID || 'oauth',
+        oauthScope: process.env.OAUTH_SCOPE,
     },
     devServer: {
         port: 3000,

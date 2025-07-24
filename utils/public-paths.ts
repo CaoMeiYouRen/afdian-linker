@@ -3,6 +3,9 @@ export const publicPaths = [
     '/api/auth/register',
     '/api/auth/auth0-login',
     '/api/auth/auth0-connections',
+    '/api/auth/oauth-authorize',
+    '/api/auth/oauth-callback',
+    '/api/auth/oauth-config',
     '/api/auth/forgot-password',
     '/api/auth/reset-password',
     '/api/afdian/webhook',
@@ -16,4 +19,5 @@ export const publicPaths = [
     '/reset-password',
     '/callback',
     '/auth0-callback',
+    '/oauth-callback',
 ]

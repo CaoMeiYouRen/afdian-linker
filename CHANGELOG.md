@@ -1,5 +1,18 @@
 # afdian-linker
 
+# [1.3.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.2.1...v1.3.0) (2025-07-26)
+
+
+### ♻ 代码重构
+
+* **app:** 调整模板结构，优化组件嵌套顺序 ([4d2c05b](https://github.com/CaoMeiYouRen/afdian-linker/commit/4d2c05b))
+* **auth:** 优化第三方登录连接处理逻辑 ([5e99bc9](https://github.com/CaoMeiYouRen/afdian-linker/commit/5e99bc9))
+
+
+### ✨ 新功能
+
+* **oauth:** 添加 OAuth 2.0 支持，包含配置、登录和回调处理 ([7fb5b5f](https://github.com/CaoMeiYouRen/afdian-linker/commit/7fb5b5f))
+
 ## [1.2.1](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.2.0...v1.2.1) (2025-06-07)
 
 

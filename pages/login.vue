@@ -111,7 +111,7 @@ definePageMeta({
 })
 
 import { useToast } from 'primevue/usetoast'
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref } from 'vue'
 import { useAuth0, type Auth0VueClient } from '@auth0/auth0-vue'
 import { useUserStore } from '@/stores/user'
 import { enableAuth0 } from '@/plugins/auth0.client'
@@ -129,9 +129,14 @@ const oauthLoading = ref(false)
 const auth0 = ref<Auth0VueClient>(null as any)
 auth0.value = useAuth0()
 
-const auth0Connections = ref<string[]>([])
-const enableOAuth = ref(false)
-const oauthProviderName = ref('OAuth')
+// 使用顶层 useFetch 进行 SSR 优化
+const { data: auth0ConnectionsData } = await useFetch('/api/auth/auth0-connections')
+const { data: oauthConfigData } = await useFetch('/api/auth/oauth-config')
+
+// 使用计算属性
+const auth0Connections = computed(() => (Array.isArray(auth0ConnectionsData.value?.data?.connections) ? auth0ConnectionsData.value.data.connections : []))
+const enableOAuth = computed(() => oauthConfigData.value?.data?.enabled || false)
+const oauthProviderName = computed(() => oauthConfigData.value?.data?.providerName || 'OAuth')
 
 async function handleAuth0Login() {
     auth0Loading.value = true
@@ -228,40 +233,8 @@ async function handleSubmit() {
     }
 }
 
-async function fetchAuth0Connections() {
-    try {
-        const { data, error } = await useFetch('/api/auth/auth0-connections')
-        if (error.value) {
-            console.error('获取 Auth0 连接失败:', error.value)
-            return
-        }
-        if (Array.isArray(data.value?.data?.connections)) {
-            auth0Connections.value = data.value?.data?.connections
-        }
-    } catch (err) {
-        console.error('调用 /api/auth/auth0-connections 失败:', err)
-    }
-}
-
-async function fetchOAuthConfig() {
-    try {
-        const { data, error } = await useFetch('/api/auth/oauth-config')
-        if (error.value) {
-            console.error('获取 OAuth 配置失败:', error.value)
-            return
-        }
-        if (data.value && typeof data.value === 'object' && 'data' in data.value) {
-            const responseData = data.value.data as any
-            enableOAuth.value = responseData.enabled
-            oauthProviderName.value = responseData.providerName || 'OAuth'
-        }
-    } catch (err) {
-        console.error('调用 /api/auth/oauth-config 失败:', err)
-    }
-}
-
 const auth0ButtonText = computed(() => {
-        if (auth0Connections.value.length === 0) {
+    if (auth0Connections.value.length === 0) {
         return '第三方账号'
     }
     return auth0Connections.value.join('/')
@@ -274,13 +247,6 @@ function goToRegister() {
 function goToForgot() {
     navigateTo('/forgot-password')
 }
-
-onMounted(async () => {
-    await Promise.all([
-        fetchAuth0Connections(),
-        fetchOAuthConfig(),
-    ])
-})
 
 </script>
 

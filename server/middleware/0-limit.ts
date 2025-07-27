@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
             // auth 路由限制为 5 次/分钟
             await rateLimit(event, {
                 window: 60_000,
-                max: 5,
+                max: 10,
             })
             return
         }
@@ -40,6 +40,6 @@ export default defineEventHandler(async (event) => {
             window: 60_000,
             max: 60,
         })
-        
+
     }
 })

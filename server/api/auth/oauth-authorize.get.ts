@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
             authorizationUrl: config.oauthAuthorizationUrl,
             clientId: config.oauthClientId,
             redirectUri,
-            scope: config.oauthScope || 'openid profile email',
+            scope: config.oauthScope,
             state,
         })
         console.log(authUrl)

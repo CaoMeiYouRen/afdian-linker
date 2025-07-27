@@ -16,19 +16,19 @@ export default defineEventHandler(async (event) => {
         // 检查是否有错误
         if (error) {
             console.error('OAuth 授权错误:', error)
-            return sendRedirect(event, '/oauth-callback?status=fail&message=授权被取消或失败', 302)
+            return sendRedirect(event, `/oauth-callback?status=fail&message=${encodeURIComponent('授权被取消或失败')}`, 302)
         }
 
         // 检查必需参数
         if (!code || !state) {
-            return sendRedirect(event, '/oauth-callback?status=fail&message=缺少必需的授权参数', 302)
+            return sendRedirect(event, `/oauth-callback?status=fail&message=${encodeURIComponent('缺少必需的授权参数')}`, 302)
         }
 
         // 验证状态值防止 CSRF 攻击
         const cache = getCacheStore()
         const storedState = await cache.get(`oauth_state_${state}`)
         if (!storedState) {
-            return sendRedirect(event, '/oauth-callback?status=fail&message=状态验证失败或已过期', 302)
+            return sendRedirect(event, `/oauth-callback?status=fail&message=${encodeURIComponent('状态验证失败或已过期')}`, 302)
         }
 
         // 删除已使用的状态值
@@ -48,7 +48,7 @@ export default defineEventHandler(async (event) => {
             userInfoUrl: config.oauthUserInfoUrl,
             accessToken: tokenResponse.access_token,
         })
-
+        console.log('userInfo:', userInfo)
         // 处理用户登录/注册
         const dataSource = await getDataSource()
         const userRepo = dataSource.getRepository(User)

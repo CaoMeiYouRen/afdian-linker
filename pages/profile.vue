@@ -42,9 +42,22 @@
                                         mdi-fingerprint
                                     </v-icon>
                                 </template>
-                                <v-list-item-title>第三方账号</v-list-item-title>
+                                <v-list-item-title>Auth0Id</v-list-item-title>
                                 <v-list-item-subtitle class="pb-1">
                                     {{ userStore.userInfo?.auth0Id }}
+                                </v-list-item-subtitle>
+                            </v-list-item>
+
+                            <!-- 仅当oauthId存在时显示 -->
+                            <v-list-item v-if="userStore.userInfo?.oauthId">
+                                <template #prepend>
+                                    <v-icon color="primary">
+                                        mdi-fingerprint
+                                    </v-icon>
+                                </template>
+                                <v-list-item-title>OAuthID</v-list-item-title>
+                                <v-list-item-subtitle class="pb-1">
+                                    {{ userStore.userInfo?.oauthId }}
                                 </v-list-item-subtitle>
                             </v-list-item>
 

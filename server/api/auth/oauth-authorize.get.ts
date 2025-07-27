@@ -1,4 +1,5 @@
 import { defineEventHandler, getQuery, sendRedirect } from 'h3'
+import ms from 'ms'
 import { generateOAuthUrl, generateState } from '@/server/utils/oauth'
 import { createApiResponse } from '@/server/types/api'
 import { getCacheStore } from '@/server/utils/cache'
@@ -24,7 +25,7 @@ export default defineEventHandler(async (event) => {
         await cache.set(`oauth_state_${state}`, {
             timestamp: Date.now(),
             redirect_uri: redirectUri,
-        }, 600) // 10 分钟
+        }, ms('10m')) // 10 分钟
 
         // 生成授权 URL
         const authUrl = generateOAuthUrl({

@@ -110,7 +110,7 @@ function normalizeUserInfo(userInfo: any): OAuthUserInfo {
 
     // 标准化用户名字段
     if (!normalized.username) {
-        normalized.username = userInfo.username || userInfo.login || userInfo.preferred_username
+        normalized.username = userInfo.username || userInfo.login || userInfo.preferred_username || userInfo.name
     }
 
     // 标准化昵称字段

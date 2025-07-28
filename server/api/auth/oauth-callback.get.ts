@@ -48,7 +48,7 @@ export default defineEventHandler(async (event) => {
             userInfoUrl: config.oauthUserInfoUrl,
             accessToken: tokenResponse.access_token,
         })
-        console.log('userInfo:', userInfo)
+        // console.log('userInfo:', userInfo)
         // 处理用户登录/注册
         const dataSource = await getDataSource()
         const userRepo = dataSource.getRepository(User)

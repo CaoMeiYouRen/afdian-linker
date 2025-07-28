@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
             scope: config.oauthScope,
             state,
         })
-        console.log(authUrl)
+        // console.log(authUrl)
         // 重定向到 OAuth 提供商
         return sendRedirect(event, authUrl, 302)
     } catch (error: any) {

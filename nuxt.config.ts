@@ -68,7 +68,7 @@ export default defineNuxtConfig({
         oauthScope: process.env.OAUTH_SCOPE,
     },
     devServer: {
-        port: 3000,
+        port: Number(process.env.PORT || 3000),
     },
     nitro: {
         // preset: process.env.NODE_ENV === 'production' ? 'vercel' : 'node-server',

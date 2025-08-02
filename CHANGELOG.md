@@ -1,5 +1,23 @@
 # afdian-linker
 
+# [1.4.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.3.0...v1.4.0) (2025-08-02)
+
+
+### ♻ 代码重构
+
+* **login:** 优化登录页面代码结构 ([e1746fb](https://github.com/CaoMeiYouRen/afdian-linker/commit/e1746fb))
+
+
+### ✨ 新功能
+
+* **profile:** 显示 OAuth ID，优化用户信息展示; 修复重定向消息编码问题 ([9be7b4b](https://github.com/CaoMeiYouRen/afdian-linker/commit/9be7b4b))
+
+
+### 🐛 Bug 修复
+
+* **dependencies:** 添加 ms 库及其类型定义，优化缓存过期时间设置 ([f7afebf](https://github.com/CaoMeiYouRen/afdian-linker/commit/f7afebf))
+* **oauth:** 修复 OAuth 用户信息标准化，增加对用户名的支持; 优化配置端口设置 ([c0b3dfb](https://github.com/CaoMeiYouRen/afdian-linker/commit/c0b3dfb))
+
 # [1.3.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.2.1...v1.3.0) (2025-07-26)
 
 

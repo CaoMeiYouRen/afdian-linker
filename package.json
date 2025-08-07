@@ -48,7 +48,7 @@
     "nuxt": "^3.16.0",
     "p-queue": "^8.1.0",
     "pg": "^8.16.3",
-    "pinia": "^3.0.2",
+    "pinia": "^3.0.3",
     "primeicons": "^7.0.0",
     "primevue": "^4.3.7",
     "push-all-in-one": "^4.4.1",

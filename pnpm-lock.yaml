@@ -78,8 +78,8 @@ importers:
         specifier: ^3.13.0
         version: 3.13.0
       nodemailer:
-        specifier: ^6.10.1
-        version: 6.10.1
+        specifier: ^7.0.5
+        version: 7.0.5
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -6775,6 +6775,10 @@ packages:
 
   nodemailer@6.10.1:
     resolution: {integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==}
+    engines: {node: '>=6.0.0'}
+
+  nodemailer@7.0.5:
+    resolution: {integrity: sha512-nsrh2lO3j4GkLLXoeEksAMgAOqxOv6QumNRVQTJwKH4nuiww6iC2y7GyANs9kRAxCexg3+lTWM3PZ91iLlVjfg==}
     engines: {node: '>=6.0.0'}
 
   nopt@5.0.0:
@@ -17144,6 +17148,8 @@ snapshots:
       '@babel/parser': 7.28.0
 
   nodemailer@6.10.1: {}
+
+  nodemailer@7.0.5: {}
 
   nopt@5.0.0:
     dependencies:

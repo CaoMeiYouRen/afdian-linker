@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     css: [
     ],
     build: {
-        transpile: ['vuetify'],
+        transpile: ['vuetify', 'pkg-types'],
     },
     modules: [
         (_options, nuxt) => {

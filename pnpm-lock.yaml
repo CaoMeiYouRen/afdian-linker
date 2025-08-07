@@ -134,7 +134,7 @@ importers:
         version: 18.6.3
       '@nuxt/test-utils':
         specifier: ^3.18.0
-        version: 3.18.0(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.52.0)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)
+        version: 3.18.0(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.54.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)
       '@primevue/nuxt-module':
         specifier: ^4.3.3
         version: 4.3.3(@babel/parser@7.26.10)(magicast@0.3.5)(vue@3.5.13(typescript@5.8.2))
@@ -217,8 +217,8 @@ importers:
         specifier: ^2.11.9
         version: 2.11.9(@netlify/blobs@8.2.0)(mysql2@3.13.0)
       playwright-core:
-        specifier: ^1.52.0
-        version: 1.52.0
+        specifier: ^1.54.2
+        version: 1.54.2
       postcss-html:
         specifier: ^1.5.0
         version: 1.8.0
@@ -7282,8 +7282,8 @@ packages:
   pkg-types@2.1.0:
     resolution: {integrity: sha512-wmJwA+8ihJixSoHKxZJRBQG1oY8Yr9pGLzRmSsNms0iNWyHHAlZCa7mmKiFR10YPZuz/2k169JiS/inOjBCZ2A==}
 
-  playwright-core@1.52.0:
-    resolution: {integrity: sha512-l2osTgLXSMeuLZOML9qYODUQoPPnUsKsb5/P6LJ2e6uPKXUdPK5WYhN4z03G+YNbWmGDY4YENauNu4ZKczreHg==}
+  playwright-core@1.54.2:
+    resolution: {integrity: sha512-n5r4HFbMmWsB4twG7tJLDN9gmBUeSPcsBZiWSE4DnYz9mJMAFqr2ID7+eGC9kpEnxExJ1epttwR59LEWCk8mtA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -10863,7 +10863,7 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@nuxt/test-utils@3.18.0(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.52.0)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)':
+  '@nuxt/test-utils@3.18.0(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.54.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)':
     dependencies:
       '@nuxt/kit': 3.17.3(magicast@0.3.5)
       '@nuxt/schema': 3.17.3
@@ -10889,12 +10889,12 @@ snapshots:
       ufo: 1.6.1
       unplugin: 2.3.2
       vite: 6.3.5(@types/node@22.13.10)(jiti@2.4.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0)
-      vitest-environment-nuxt: 1.0.1(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.52.0)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)
+      vitest-environment-nuxt: 1.0.1(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.54.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)
       vue: 3.5.13(typescript@5.8.2)
     optionalDependencies:
       '@vue/test-utils': 2.4.6
       happy-dom: 17.4.7
-      playwright-core: 1.52.0
+      playwright-core: 1.54.2
       vitest: 2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)
     transitivePeerDependencies:
       - '@types/node'
@@ -17595,7 +17595,7 @@ snapshots:
       exsolve: 1.0.4
       pathe: 2.0.3
 
-  playwright-core@1.52.0: {}
+  playwright-core@1.54.2: {}
 
   posix-character-classes@0.1.1: {}
 
@@ -19936,9 +19936,9 @@ snapshots:
       terser: 5.39.0
       yaml: 2.7.0
 
-  vitest-environment-nuxt@1.0.1(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.52.0)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0):
+  vitest-environment-nuxt@1.0.1(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.54.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0):
     dependencies:
-      '@nuxt/test-utils': 3.18.0(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.52.0)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)
+      '@nuxt/test-utils': 3.18.0(@types/node@22.13.10)(@vue/test-utils@2.4.6)(happy-dom@17.4.7)(jiti@2.4.2)(magicast@0.3.5)(playwright-core@1.54.2)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vitest@2.1.9(@edge-runtime/vm@3.2.0)(@types/node@22.13.10)(happy-dom@17.4.7)(sass@1.85.1)(sugarss@2.0.0)(terser@5.39.0))(yaml@2.7.0)
     transitivePeerDependencies:
       - '@cucumber/cucumber'
       - '@jest/globals'

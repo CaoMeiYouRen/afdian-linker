@@ -21,8 +21,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.2)(vue@3.5.18(typescript@5.8.2)))
       '@primevue/themes':
-        specifier: ^4.3.3
-        version: 4.3.3
+        specifier: ^4.3.7
+        version: 4.3.7
       '@sentry/nuxt':
         specifier: ^9.15.0
         version: 9.15.0(@opentelemetry/api@1.9.0)(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/instrumentation@0.57.2(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/semantic-conventions@1.32.0)(magicast@0.3.5)(nuxt@3.16.0(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.13.10)(db0@0.3.1(mysql2@3.13.0))(eslint@8.57.1)(ioredis@5.6.0)(magicast@0.3.5)(mysql2@3.13.0)(optionator@0.9.4)(rollup@4.40.0)(sass@1.90.0)(stylelint@14.16.1)(sugarss@2.0.0)(terser@5.39.0)(typescript@5.8.2)(vite@6.2.7(@types/node@22.13.10)(jiti@2.4.2)(sass@1.90.0)(sugarss@2.0.0)(terser@5.39.0)(yaml@2.7.0))(yaml@2.7.0))(pinia@3.0.2(typescript@5.8.2)(vue@3.5.18(typescript@5.8.2)))(rollup@4.40.0)(vue@3.5.18(typescript@5.8.2))
@@ -1979,8 +1979,8 @@ packages:
   '@primeuix/styles@1.2.3':
     resolution: {integrity: sha512-+KwmQsLTYgVAqFADmO252btz40lstPML6r4QMNjxz4gLNCKVW3kPR0/aCouQx6/21+boXG1P68tu8Zk3FAKr2w==}
 
-  '@primeuix/themes@1.0.3':
-    resolution: {integrity: sha512-f/1qadrv5TFMHfvtVv4Y9zjrkeDP2BO/cuzbHBO9DYxKL6YBIPT9BjKec2K4Kg8PcfGm6CAvxAvICadJSWejRw==}
+  '@primeuix/themes@1.2.3':
+    resolution: {integrity: sha512-GLAU2h6lhgln2w10EQalUQlgwbgQ0xZoIOLMNGfIvqU4O09L282P7rwKCKQksvAGAFt1GoO/Q1NgBSxnttr7iA==}
 
   '@primeuix/utils@0.5.3':
     resolution: {integrity: sha512-7SGh7734wcF1/uK6RzO6Z6CBjGQ97GDHfpyl2F1G/c7R0z9hkT/V72ypDo82AWcCS7Ta07oIjDpOCTkSVZuEGQ==}
@@ -2022,8 +2022,8 @@ packages:
     resolution: {integrity: sha512-81T65CTuPCD7mW1nzrY1hhBOvxhobjwLy+/mHCuHwmZYjDSpGxMaw6BtWYEk4vrAFPtQHWQGRCj1iYUtDSx5GQ==}
     engines: {node: '>=12.11.0'}
 
-  '@primevue/themes@4.3.3':
-    resolution: {integrity: sha512-LiYlSXsHeA8DFm8+yGyiDFQc3SEQwHcESTN1/rV+rrZ+UPuPisHY9fNIGRFQKA5XUQPDTQDQjtwYGx25Jikwhg==}
+  '@primevue/themes@4.3.7':
+    resolution: {integrity: sha512-Ej/3CBGpSIJFo0BJHrPa7HjyQZ8YPxQUiOuXj1tKFJkSqFxgOk52JL6aLBGdQkSnx7TjkHuHuKuk4t6SKkD5hw==}
     engines: {node: '>=12.11.0'}
 
   '@prisma/instrumentation@6.6.0':
@@ -11472,9 +11472,9 @@ snapshots:
     dependencies:
       '@primeuix/styled': 0.7.2
 
-  '@primeuix/themes@1.0.3':
+  '@primeuix/themes@1.2.3':
     dependencies:
-      '@primeuix/styled': 0.5.1
+      '@primeuix/styled': 0.7.2
 
   '@primeuix/utils@0.5.3': {}
 
@@ -11528,10 +11528,10 @@ snapshots:
       - supports-color
       - vue
 
-  '@primevue/themes@4.3.3':
+  '@primevue/themes@4.3.7':
     dependencies:
-      '@primeuix/styled': 0.5.1
-      '@primeuix/themes': 1.0.3
+      '@primeuix/styled': 0.7.2
+      '@primeuix/themes': 1.2.3
 
   '@prisma/instrumentation@6.6.0(@opentelemetry/api@1.9.0)':
     dependencies:

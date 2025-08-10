@@ -27,8 +27,8 @@ importers:
         specifier: ^10.3.0
         version: 10.3.0(magicast@0.3.5)(nuxt@3.16.0(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@24.2.0)(db0@0.3.2(mysql2@3.13.0))(eslint@8.57.1)(ioredis@5.7.0)(magicast@0.3.5)(mysql2@3.13.0)(optionator@0.9.4)(rollup@4.46.2)(sass@1.90.0)(stylelint@14.16.1)(sugarss@2.0.0)(terser@5.43.1)(typescript@5.9.2)(vite@6.2.7(@types/node@24.2.0)(jiti@2.5.1)(sass@1.90.0)(sugarss@2.0.0)(terser@5.43.1)(yaml@2.8.1))(yaml@2.8.1))(pinia@3.0.3(typescript@5.9.2)(vue@3.5.18(typescript@5.9.2)))(rollup@4.46.2)(vue@3.5.18(typescript@5.9.2))
       '@types/jsonwebtoken':
-        specifier: ^9.0.9
-        version: 9.0.9
+        specifier: ^9.0.10
+        version: 9.0.10
       '@vercel/node':
         specifier: ^5.3.11
         version: 5.3.11(rollup@4.46.2)
@@ -2504,8 +2504,8 @@ packages:
   '@types/jsonfile@6.1.4':
     resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
 
-  '@types/jsonwebtoken@9.0.9':
-    resolution: {integrity: sha512-uoe+GxEuHbvy12OUQct2X9JenKM3qAscquYymuQN4fMWG9DBQtykrQEFcAbVACF7qaLw9BePSodUL0kquqBJpQ==}
+  '@types/jsonwebtoken@9.0.10':
+    resolution: {integrity: sha512-asx5hIG9Qmf/1oStypjanR7iKTv0gXQ1Ov/jfrX6kS/EO0OFni8orbmGCn0672NHR3kXHwpAwR+B368ZGN/2rA==}
 
   '@types/katex@0.16.7':
     resolution: {integrity: sha512-HMwFiRujE5PjrgwHQ25+bsLJgowjGjm5Z8FVSf0N6PwgJrwxH0QxzHYDcKsTfV3wva0vzrpqMTJS2jXPr5BMEQ==}
@@ -12217,7 +12217,7 @@ snapshots:
     dependencies:
       '@types/node': 24.2.0
 
-  '@types/jsonwebtoken@9.0.9':
+  '@types/jsonwebtoken@9.0.10':
     dependencies:
       '@types/ms': 2.1.0
       '@types/node': 24.2.0
@@ -16115,7 +16115,7 @@ snapshots:
   jwks-rsa@3.2.0:
     dependencies:
       '@types/express': 4.17.21
-      '@types/jsonwebtoken': 9.0.9
+      '@types/jsonwebtoken': 9.0.10
       debug: 4.4.0
       jose: 4.15.9
       limiter: 1.1.5

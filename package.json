@@ -93,7 +93,7 @@
     "eslint-config-cmyr": "^1.1.33",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-vue": "^9.33.0",
-    "happy-dom": "^17.4.7",
+    "happy-dom": "^17.6.3",
     "husky": "^9.0.11",
     "lint-staged": "^16.1.5",
     "nitropack": "^2.12.4",

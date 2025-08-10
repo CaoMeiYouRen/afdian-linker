@@ -111,7 +111,7 @@
     "typescript": "^5.9.2",
     "vite": "^6.2.7",
     "vite-plugin-vuetify": "^2.1.0",
-    "vitest": "^2.1.9"
+    "vitest": "^3.2.4"
   },
   "author": "CaoMeiYouRen",
   "description": "爱发电 API 集成，提供统一订单管理和外部查询能力",

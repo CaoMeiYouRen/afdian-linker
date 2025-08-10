@@ -96,7 +96,7 @@
     "happy-dom": "^17.4.7",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "nitropack": "^2.11.9",
+    "nitropack": "^2.12.4",
     "playwright-core": "^1.54.2",
     "postcss-html": "^1.5.0",
     "sass": "^1.90.0",

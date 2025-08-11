@@ -220,6 +220,9 @@ importers:
       nitropack:
         specifier: ^2.12.4
         version: 2.12.4(@netlify/blobs@9.1.2)(mysql2@3.14.3)
+      pkg-types:
+        specifier: 2.2.0
+        version: 2.2.0
       playwright-core:
         specifier: ^1.54.2
         version: 1.54.2

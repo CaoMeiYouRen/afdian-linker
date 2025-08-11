@@ -67,7 +67,8 @@
       "esbuild"
     ],
     "overrides": {
-      "@sentry/cli": "2.50.2"
+      "@sentry/cli": "2.50.2",
+      "pkg-types": "2.2.0"
     }
   },
   "devDependencies": {

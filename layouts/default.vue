@@ -1,9 +1,7 @@
 <template>
     <v-layout v-if="userStore.isReady" class="border rounded rounded-md">
         <!-- 侧边导航栏 -->
-        <v-navigation-drawer
-            v-model="drawer"
-        >
+        <v-navigation-drawer v-model="drawer">
             <v-list>
                 <v-list-item
                     to="/"
@@ -132,21 +130,19 @@ const drawer = ref(false)
 const userStore = useUserStore()
 const toast = useToast()
 
-onMounted(async () => {
-    // 确保登录状态已校验，避免布局抖动
-    await userStore.fetchUserInfo()
-})
+// 确保登录状态已校验，避免布局抖动
+await userStore.fetchUserInfo()
 
 const handleLogout = async () => {
-  await useFetch('/api/auth/logout', { method: 'POST' })
-  userStore.clearUserInfo()
-  toast.add({
-    severity: 'success',
-    summary: '成功',
-    detail: '登出成功',
-    life: 3000,
-  })
-  navigateTo('/login')
+    await useFetch('/api/auth/logout', { method: 'POST' })
+    userStore.clearUserInfo()
+    toast.add({
+        severity: 'success',
+        summary: '成功',
+        detail: '登出成功',
+        life: 3000,
+    })
+    navigateTo('/login')
 }
 
 const handleChangePassword = () => {

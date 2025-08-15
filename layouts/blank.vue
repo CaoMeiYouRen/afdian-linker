@@ -5,7 +5,10 @@
                 <slot />
             </v-main>
         </v-layout>
-        <div v-else style="min-height:100vh;min-width: 100vw;width:100%;display:flex;align-items:center;justify-content:center;">
+        <div
+            v-else
+            style="min-height:100vh;min-width: 100vw;width:100%;display:flex;align-items:center;justify-content:center;"
+        >
             <v-progress-circular
                 color="primary"
                 :size="128"
@@ -24,13 +27,10 @@ import { useUserStore } from '@/stores/user'
 const userStore = useUserStore()
 const toast = useToast()
 
-onMounted(async () => {
-    // 确保登录状态已校验，避免布局抖动
-    await userStore.fetchUserInfo()
-})
+// 确保登录状态已校验，避免布局抖动
+await userStore.fetchUserInfo()
 
 </script>
 
 <style lang="scss" scoped>
-// @import "@/assets/responsive.scss";
-</style>
+// @import "@/assets/responsive.scss";</style>

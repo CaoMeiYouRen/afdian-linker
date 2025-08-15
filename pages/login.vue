@@ -111,7 +111,7 @@ definePageMeta({
 })
 
 import { useToast } from 'primevue/usetoast'
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useAuth0, type Auth0VueClient } from '@auth0/auth0-vue'
 import { useUserStore } from '@/stores/user'
 import { enableAuth0 } from '@/plugins/auth0.client'
@@ -126,8 +126,16 @@ const form = reactive({
 const loading = ref(false)
 const auth0Loading = ref(false)
 const oauthLoading = ref(false)
-const auth0 = ref<Auth0VueClient>(null as any)
-auth0.value = useAuth0()
+const auth0 = ref<any>(null)
+
+// 只在客户端初始化 Auth0
+if (import.meta.client) {
+    try {
+        auth0.value = useAuth0()
+    } catch (error) {
+        console.warn('Auth0 not available:', error)
+    }
+}
 
 // 使用顶层 useFetch 进行 SSR 优化
 const { data: auth0ConnectionsData } = await useFetch('/api/auth/auth0-connections')
@@ -141,13 +149,12 @@ const oauthProviderName = computed(() => oauthConfigData.value?.data?.providerNa
 async function handleAuth0Login() {
     auth0Loading.value = true
     try {
-
         if (!auth0.value) {
             throw new Error('Auth0 未初始化，请刷新页面重试')
         }
         const { loginWithRedirect, isAuthenticated } = auth0.value
 
-        if (isAuthenticated) {
+        if (isAuthenticated.value) {
             // 已登录，直接跳转到回调页面
             navigateTo('/auth0-callback')
             return

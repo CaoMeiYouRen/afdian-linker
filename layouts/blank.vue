@@ -1,23 +1,21 @@
 <template>
-    <v-app>
-        <v-layout v-if="userStore.isReady" style="min-width: 100vw;width:100%;">
-            <v-main>
-                <slot />
-            </v-main>
-        </v-layout>
-        <div
-            v-else
-            style="min-height:100vh;min-width: 100vw;width:100%;display:flex;align-items:center;justify-content:center;"
-        >
-            <v-progress-circular
-                color="primary"
-                :size="128"
-                :width="7"
-                :value="30"
-                indeterminate
-            />
-        </div>
-    </v-app>
+    <v-layout v-if="userStore.isReady" style="min-width: 100vw;width:100%;">
+        <v-main>
+            <slot />
+        </v-main>
+    </v-layout>
+    <div
+        v-else
+        style="min-height:100vh;min-width: 100vw;width:100%;display:flex;align-items:center;justify-content:center;"
+    >
+        <v-progress-circular
+            color="primary"
+            :size="128"
+            :width="7"
+            :value="30"
+            indeterminate
+        />
+    </div>
 </template>
 
 <script setup lang="ts">

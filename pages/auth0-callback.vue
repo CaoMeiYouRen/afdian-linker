@@ -54,10 +54,20 @@ const toast = useToast()
 const userStore = useUserStore()
 
 const auth0 = ref<Auth0VueClient>(null as any)
-auth0.value = useAuth0()
+// 只在客户端初始化 Auth0
+if (import.meta.client) {
+    try {
+        auth0.value = useAuth0()
+    } catch (error) {
+        console.warn('Auth0 not available:', error)
+    }
+}
 
 async function handleAuth0Callback() {
     try {
+        if (!auth0.value) {
+            throw new Error('Auth0 未初始化，请刷新页面重试')
+        }
         // 处理 Auth0 回调
         await auth0.value.getAccessTokenSilently()
         const token = auth0.value?.idTokenClaims?.__raw
@@ -111,9 +121,9 @@ onMounted(handleAuth0Callback)
 
 <style lang="scss" scoped>
 .verify-success-page {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>

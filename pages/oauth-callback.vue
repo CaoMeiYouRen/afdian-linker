@@ -93,7 +93,6 @@ async function handleOAuthCallback() {
         useTimeoutFn(() => {
             navigateTo('/login')
         }, 2000)
-
     } catch (err: any) {
         status.value = 'fail'
         message.value = err?.message || 'OAuth 登录失败，正在跳转到登录页...'

@@ -22,6 +22,7 @@ class RedisRateLimitStore extends BaseRedisStore implements RateLimitStore {
         const results = await multi.exec()
         return results?.[0]?.[1] as number
     }
+
     async reset(key: string): Promise<void> {
         await this.del(key)
     }
@@ -34,6 +35,7 @@ class LRURateLimitStore extends BaseLRUStore implements RateLimitStore {
         await this.set(key, count + 1, window)
         return count + 1
     }
+
     async reset(key: string): Promise<void> {
         await this.del(key)
     }

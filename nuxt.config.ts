@@ -19,7 +19,13 @@ export default defineNuxtConfig({
         '@primevue/nuxt-module',
         '@pinia/nuxt',
         '@sentry/nuxt/module',
+        '@nuxt/eslint',
     ],
+    eslint: {
+        config: {
+            standalone: false,
+        },
+    },
     experimental: {
         componentIslands: true,
     },

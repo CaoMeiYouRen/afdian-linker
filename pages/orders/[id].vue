@@ -97,7 +97,7 @@ const { data: order, refresh } = await useAsyncData<Order>(
     async () => {
         try {
             refreshing.value = true
-            const response = await $fetch<ApiResponse<{ order: Order } >>(`/api/orders/${route.params.id}`)
+            const response = await $fetch<ApiResponse<{ order: Order }>>(`/api/orders/${route.params.id}`)
             return response.data?.order || {} as any
         } catch (err: any) {
             error.value = err.message || '获取订单失败'

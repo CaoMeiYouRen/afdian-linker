@@ -6,11 +6,11 @@ export default defineEventHandler(async (event) => {
 
     // 检查 OAuth 配置是否完整
     const isConfigured = !!(
-        config.oauthClientId &&
-        config.oauthClientSecret &&
-        config.oauthAuthorizationUrl &&
-        config.oauthTokenUrl &&
-        config.oauthUserInfoUrl
+        config.oauthClientId
+        && config.oauthClientSecret
+        && config.oauthAuthorizationUrl
+        && config.oauthTokenUrl
+        && config.oauthUserInfoUrl
     )
 
     return createApiResponse({

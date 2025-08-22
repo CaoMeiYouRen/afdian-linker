@@ -387,17 +387,17 @@ onMounted(async () => {
     }
     loading.value = true
     userStore.fetchUserInfo()
-    .catch((error) => {
-        toast.add({
-            severity: 'error',
-            summary: '错误',
-            detail: error?.message || '获取用户信息失败',
-            life: 5000,
+        .catch((error) => {
+            toast.add({
+                severity: 'error',
+                summary: '错误',
+                detail: error?.message || '获取用户信息失败',
+                life: 5000,
+            })
+            navigateTo('/login')
+        }).finally(() => {
+            loading.value = false
         })
-        navigateTo('/login')
-    }).finally(() => {
-        loading.value = false
-    })
 })
 
 </script>

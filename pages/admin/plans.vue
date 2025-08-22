@@ -420,7 +420,6 @@ const handleSubmit = async () => {
         })
         planDialog.value = false
         await fetchPlans()
-
     } catch (error: any) {
         toast.add({
             severity: 'error',

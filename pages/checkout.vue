@@ -151,10 +151,10 @@ const fetchPlans = async () => {
     plansError.value = ''
     try {
         const { data, error: fetchError } = await useFetch('/api/plans', {
-           query: {
-            sort: 'amount',
-            order: 'ASC',
-           },
+            query: {
+                sort: 'amount',
+                order: 'ASC',
+            },
         })
         if (fetchError.value) {
             throw new Error(fetchError.value?.data?.message || fetchError.value?.message || '获取支持方案失败')
@@ -224,7 +224,6 @@ const handleSubmit = async () => {
             return
         }
         throw new Error(error.value?.data?.message || error.value?.message || '创建订单失败')
-
     } catch (error: any) {
         toast.add({
             severity: 'error',

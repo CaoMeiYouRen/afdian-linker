@@ -354,8 +354,8 @@ const handleSync = async () => {
                 detail: `同步完成，更新了 ${data.value.data?.count || 0} 条订单`,
                 life: 3000,
             })
-          await fetchOrders()
-          return
+            await fetchOrders()
+            return
         }
         throw new Error(error.value?.data?.message || error.value?.message || '同步失败')
     } catch (error: any) {

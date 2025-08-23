@@ -1,5 +1,19 @@
 # afdian-linker
 
+## [1.4.1](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.0...v1.4.1) (2025-08-23)
+
+
+### ♻ 代码重构
+
+* **auth:** 仅在客户端初始化 Auth0，优化 Auth0 使用逻辑 ([8d39294](https://github.com/CaoMeiYouRen/afdian-linker/commit/8d39294))
+* **layouts:** 优化布局组件结构和用户信息获取逻辑 ([a59bbff](https://github.com/CaoMeiYouRen/afdian-linker/commit/a59bbff))
+
+
+### 🐛 Bug 修复
+
+* **deps:** update dependency typeorm to v0.3.26 ([a5b857b](https://github.com/CaoMeiYouRen/afdian-linker/commit/a5b857b))
+* **deps:** update dependency vue to v3.5.19 ([#57](https://github.com/CaoMeiYouRen/afdian-linker/issues/57)) ([e4c9308](https://github.com/CaoMeiYouRen/afdian-linker/commit/e4c9308))
+
 # [1.4.0](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.3.0...v1.4.0) (2025-08-02)
 
 

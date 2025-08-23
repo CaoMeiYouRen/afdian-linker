@@ -174,7 +174,7 @@ importers:
         version: 8.15.5
       '@vercel/nft':
         specifier: ^0.30.0
-        version: 0.30.0(rollup@4.47.1)
+        version: 0.30.1(rollup@4.47.1)
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
@@ -3254,8 +3254,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/nft@0.30.0':
-    resolution: {integrity: sha512-xVye7Z0riD9czsMuEJYpFqm2FR33r3euYaFzuEPCoUtYuDwmus3rJfKtcFU7Df+pgj8p4zs78x5lOWYoLNr+7Q==}
+  '@vercel/nft@0.30.1':
+    resolution: {integrity: sha512-2mgJZv4AYBFkD/nJ4QmiX5Ymxi+AisPLPcS/KPXVqniyQNqKXX+wjieAbDXQP3HcogfEbpHoRMs49Cd4pfkk8g==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -13826,7 +13826,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/nft@0.30.0(rollup@4.47.1)':
+  '@vercel/nft@0.30.1(rollup@4.47.1)':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.0
       '@rollup/pluginutils': 5.2.0(rollup@4.47.1)
@@ -14166,7 +14166,7 @@ snapshots:
 
   acorn-walk@8.3.4:
     dependencies:
-      acorn: 8.15.0
+      acorn: 8.14.1
 
   acorn@8.14.1: {}
 
@@ -18479,7 +18479,7 @@ snapshots:
   normalize-package-data@6.0.2:
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.7.2
+      semver: 7.7.1
       validate-npm-package-license: 3.0.4
 
   normalize-path@2.1.1:

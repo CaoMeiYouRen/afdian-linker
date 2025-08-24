@@ -254,7 +254,7 @@ const handleOrderDetailClick = (order: Order) => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/responsive.scss";
+@import "@/assets/responsive";
 
 /* 订单表格适配手机端 */
 .v-card {
@@ -263,14 +263,17 @@ const handleOrderDetailClick = (order: Order) => {
     min-width: 320px;
     box-sizing: border-box;
     border-radius: 16px !important;
-    background: rgba(255,255,255,0.97) !important;
+    background: rgb(255,255,255,0.97) !important;
 }
+
 .v-data-table {
     border-radius: 8px;
 }
+
 .v-btn {
     border-radius: 8px;
 }
+
 .order-status-field {
     min-width: 0;
 }

@@ -135,7 +135,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/responsive.scss";
+@import "@/assets/responsive";
 
 .payload-preview {
     background: #f5f5f5;

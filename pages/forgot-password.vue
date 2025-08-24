@@ -106,7 +106,7 @@ async function handleSubmit() {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/responsive.scss";
+@import "@/assets/responsive";
 
 .forgot-container {
     min-height: 100vh;
@@ -122,7 +122,7 @@ async function handleSubmit() {
 .forgot-card {
     border-radius: 16px !important;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgb(255, 255, 255, 0.95) !important;
     width: 100%;
     max-width: 600px;
     min-width: 320px;

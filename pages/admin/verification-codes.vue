@@ -194,7 +194,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/responsive.scss";
+@import "@/assets/responsive";
 
 .verification-codes-page {
     min-height: 80vh;

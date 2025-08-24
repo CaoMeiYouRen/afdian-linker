@@ -248,6 +248,7 @@ const handleSubmit = async () => {
 .plan-card {
     transition: all 0.2s ease;
 }
+
 .plan-card:hover {
     transform: translateY(-2px);
 }

@@ -123,7 +123,7 @@ async function handleSubmit() {
 .reset-card {
     border-radius: 16px !important;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgb(255, 255, 255, 0.95) !important;
 }
 
 .reset-btn {

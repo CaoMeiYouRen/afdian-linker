@@ -152,7 +152,7 @@ const handleChangePassword = () => {
 
 <style lang="scss" scoped>
 .v-app-bar {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgb(255, 255, 255, 0.1);
 }
 
 .v-app-bar-title {

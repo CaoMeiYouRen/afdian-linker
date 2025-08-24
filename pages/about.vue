@@ -46,23 +46,27 @@
 <style lang="scss" scoped>
 .about-page {
   /* min-height: 100vh; */
+
   /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
 }
+
 .about-card {
   max-width: 530px;
   width: 100%;
   background: #fff;
-  box-shadow: 0 4px 24px 0 rgba(60,60,60,0.08);
+  box-shadow: 0 4px 24px 0 rgb(60,60,60,0.08);
   min-height: 500px;
   margin-top: 20px;
 }
+
 .about-list {
   display: inline-block;
   text-align: left;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 1.5rem;
   padding-left: 1.2em;
 }
-@media (max-width: 600px) {
+
+@media (width <= 600px) {
   .about-card {
     margin-top: 2px;
     padding: 2rem 1rem;

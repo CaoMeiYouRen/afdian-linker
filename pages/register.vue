@@ -169,7 +169,7 @@ function goToLogin() {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/responsive.scss";
+@import "@/assets/responsive";
 
 .register-container {
     min-height: 100vh;
@@ -181,21 +181,24 @@ function goToLogin() {
     padding: 20px;
     overflow-x: hidden;
 }
+
 .register-card {
     border-radius: 16px !important;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: rgb(255, 255, 255, 0.95) !important;
     width: 100%;
     max-width: 600px;
     min-width: 320px;
     box-sizing: border-box;
 }
+
 .register-btn {
     letter-spacing: 2px;
     text-transform: none;
     border-radius: 8px;
     height: 52px !important;
 }
+
 .v-text-field {
     border-radius: 8px;
 }

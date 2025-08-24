@@ -130,7 +130,7 @@ onMounted(async () => {
 
 .welcome-title {
     color: #1976D2;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.08);
+    text-shadow: 2px 2px 4px rgb(0,0,0,0.08);
     position: relative;
     letter-spacing: 1px;
 
@@ -140,12 +140,12 @@ onMounted(async () => {
     border-radius: 12px;
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255, 0.92);
+    border: 1px solid rgb(255, 255, 255, 0.1);
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+        box-shadow: 0 8px 16px rgb(0, 0, 0, 0.15) !important;
     }
 }
 
@@ -155,11 +155,12 @@ onMounted(async () => {
     text-transform: none;
 }
 
-@keyframes fadeInUp {
+@keyframes fade-in-up {
     from {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

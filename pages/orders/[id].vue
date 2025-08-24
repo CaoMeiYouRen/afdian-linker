@@ -167,7 +167,7 @@ const handleRefresh = async () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/responsive.scss";
+@import "@/assets/responsive";
 
 .details {
     display: grid;
@@ -175,23 +175,27 @@ const handleRefresh = async () => {
     gap: 12px 24px;
     align-items: center;
 }
+
 .details dt {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgb(0, 0, 0, 0.6);
     font-weight: 500;
 }
+
 .details dd {
     margin: 0;
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
     .details {
         grid-template-columns: 1fr;
         gap: 8px 0;
     }
+
     .details dt {
         margin-top: 8px;
         font-size: 15px;
     }
+
     .details dd {
         font-size: 15px;
         margin-bottom: 8px;

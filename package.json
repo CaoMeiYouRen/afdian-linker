@@ -70,7 +70,8 @@
       "@sentry/cli": "^2.52.0",
       "pkg-types": "^2.3.0",
       "path-to-regexp": "^6.3.0",
-      "undici": "^5.28.5"
+      "undici": "^5.28.5",
+      "tmp": "^0.2.4"
     }
   },
   "devDependencies": {

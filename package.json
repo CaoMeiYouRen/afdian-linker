@@ -32,7 +32,7 @@
     "auth0": "^4.28.0",
     "await-to-js": "^3.0.0",
     "bcrypt": "^6.0.0",
-    "dayjs": "^1.11.13",
+    "dayjs": "^1.11.14",
     "fs-extra": "^11.3.1",
     "ioredis": "^5.7.0",
     "isomorphic-unfetch": "^4.0.2",

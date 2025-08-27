@@ -90,7 +90,7 @@
     "@vercel/nft": "^0.30.0",
     "@vue/test-utils": "^2.4.6",
     "commitizen": "^4.2.3",
-    "commitlint-config-cmyr": "1.0.0-beta.2",
+    "commitlint-config-cmyr": "1.0.0",
     "cross-env": "^10.0.0",
     "cz-conventional-changelog-cmyr": "2.0.0-beta.1",
     "eslint": "^9.33.0",

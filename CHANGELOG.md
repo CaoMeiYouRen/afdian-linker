@@ -1,5 +1,13 @@
 # afdian-linker
 
+## [1.4.2](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.1...v1.4.2) (2025-08-30)
+
+
+### 🐛 Bug 修复
+
+* **deps:** update dependency @vueuse/core to v13.7.0 ([#65](https://github.com/CaoMeiYouRen/afdian-linker/issues/65)) ([0e9b1bc](https://github.com/CaoMeiYouRen/afdian-linker/commit/0e9b1bc))
+* **deps:** update dependency zod to v4.1.1 ([#67](https://github.com/CaoMeiYouRen/afdian-linker/issues/67)) ([558735a](https://github.com/CaoMeiYouRen/afdian-linker/commit/558735a))
+
 ## [1.4.1](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.0...v1.4.1) (2025-08-23)
 
 

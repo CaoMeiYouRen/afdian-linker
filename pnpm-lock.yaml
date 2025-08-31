@@ -38,8 +38,8 @@ importers:
         specifier: ^9.0.10
         version: 9.0.10
       '@vercel/node':
-        specifier: ^5.3.16
-        version: 5.3.16(rollup@4.46.2)
+        specifier: ^5.3.17
+        version: 5.3.17(rollup@4.46.2)
       '@vueuse/core':
         specifier: ^13.8.0
         version: 13.8.0(vue@3.5.20(typescript@5.9.2))
@@ -3081,8 +3081,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/node@5.3.16':
-    resolution: {integrity: sha512-S9lsnlWbYKGfPi66zNqs1HtEmvae92Jliie3U/6ckR9nBAVAAV9+miWjR7Sv/MsXBtdxV+l+8Z3HGw7WuGE9bw==}
+  '@vercel/node@5.3.17':
+    resolution: {integrity: sha512-quNnXO1XuMMid9MXJKPDtpwiNZUFrJgTvdcUu+AXRZg99rOw9N5pk+M0rM4+0FwVXVCIlXzjfKelEOXC8SxGQw==}
 
   '@vercel/static-config@3.1.2':
     resolution: {integrity: sha512-2d+TXr6K30w86a+WbMbGm2W91O0UzO5VeemZYBBUJbCjk/5FLLGIi8aV6RS2+WmaRvtcqNTn2pUA7nCOK3bGcQ==}
@@ -12439,7 +12439,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@5.3.16(rollup@4.46.2)':
+  '@vercel/node@5.3.17(rollup@4.46.2)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0

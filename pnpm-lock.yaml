@@ -38,8 +38,8 @@ importers:
         specifier: ^9.0.10
         version: 9.0.10
       '@vercel/node':
-        specifier: ^5.3.17
-        version: 5.3.17(rollup@4.46.2)
+        specifier: ^5.3.21
+        version: 5.3.21(rollup@4.46.2)
       '@vueuse/core':
         specifier: ^13.8.0
         version: 13.8.0(vue@3.5.20(typescript@5.9.2))
@@ -3070,8 +3070,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@vercel/build-utils@11.0.2':
-    resolution: {integrity: sha512-Y48OT9IsvAFU21LJ3m5SbrXpQaD++h4v4nQoQjCUDZORxXzPf3doVQfrQBBIX45xoSkfq/Fuq0VNF0yRbJw/aA==}
+  '@vercel/build-utils@12.1.0':
+    resolution: {integrity: sha512-yqpAh2KHm9iWUXo/aRWiLIxi8dMAwFtse2iZsg2QNEMs9W20va6L8PMFvdAa5MX9pgRwc38gbjD3V7drxSwq4g==}
 
   '@vercel/error-utils@2.0.3':
     resolution: {integrity: sha512-CqC01WZxbLUxoiVdh9B/poPbNpY9U+tO1N9oWHwTl5YAZxcqXmmWJ8KNMFItJCUUWdY3J3xv8LvAuQv2KZ5YdQ==}
@@ -3086,8 +3086,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/node@5.3.17':
-    resolution: {integrity: sha512-quNnXO1XuMMid9MXJKPDtpwiNZUFrJgTvdcUu+AXRZg99rOw9N5pk+M0rM4+0FwVXVCIlXzjfKelEOXC8SxGQw==}
+  '@vercel/node@5.3.21':
+    resolution: {integrity: sha512-rtyylPomqpMFQu5DcAqXYf+J3gvboakpBewpjWUgSrkSwtu0mqgpYFjys6VaXb55qePhH9K6HYARaYLEuo9OLw==}
 
   '@vercel/static-config@3.1.2':
     resolution: {integrity: sha512-2d+TXr6K30w86a+WbMbGm2W91O0UzO5VeemZYBBUJbCjk/5FLLGIi8aV6RS2+WmaRvtcqNTn2pUA7nCOK3bGcQ==}
@@ -12420,7 +12420,7 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vercel/build-utils@11.0.2': {}
+  '@vercel/build-utils@12.1.0': {}
 
   '@vercel/error-utils@2.0.3': {}
 
@@ -12462,13 +12462,13 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@5.3.17(rollup@4.46.2)':
+  '@vercel/node@5.3.21(rollup@4.46.2)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
       '@edge-runtime/vm': 3.2.0
       '@types/node': 16.18.11
-      '@vercel/build-utils': 11.0.2
+      '@vercel/build-utils': 12.1.0
       '@vercel/error-utils': 2.0.3
       '@vercel/nft': 0.30.1(rollup@4.46.2)
       '@vercel/static-config': 3.1.2
@@ -12478,6 +12478,7 @@ snapshots:
       es-module-lexer: 1.4.1
       esbuild: 0.25.9
       etag: 1.8.1
+      mime-types: 2.1.35
       node-fetch: 2.6.9
       path-to-regexp: 6.3.0
       path-to-regexp-updated: path-to-regexp@6.3.0

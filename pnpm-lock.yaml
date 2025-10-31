@@ -38,8 +38,8 @@ importers:
         specifier: ^9.0.10
         version: 9.0.10
       '@vercel/node':
-        specifier: ^5.3.22
-        version: 5.3.23(rollup@4.52.5)
+        specifier: ^5.5.3
+        version: 5.5.3(rollup@4.52.5)
       '@vueuse/core':
         specifier: ^13.9.0
         version: 13.9.0(vue@3.5.21(typescript@5.9.2))
@@ -3010,8 +3010,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@vercel/build-utils@12.1.0':
-    resolution: {integrity: sha512-yqpAh2KHm9iWUXo/aRWiLIxi8dMAwFtse2iZsg2QNEMs9W20va6L8PMFvdAa5MX9pgRwc38gbjD3V7drxSwq4g==}
+  '@vercel/build-utils@12.2.3':
+    resolution: {integrity: sha512-0g63aF8J7dLYW3PYenxig6gG4PuW3/Gy3PmLXjyX2KwTNrvfIwynKZpJf/naSVSpeN49VbROlxrvaVXVgjlC0A==}
 
   '@vercel/error-utils@2.0.3':
     resolution: {integrity: sha512-CqC01WZxbLUxoiVdh9B/poPbNpY9U+tO1N9oWHwTl5YAZxcqXmmWJ8KNMFItJCUUWdY3J3xv8LvAuQv2KZ5YdQ==}
@@ -3021,8 +3021,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/node@5.3.23':
-    resolution: {integrity: sha512-pmsZOiEV3D82rmQLrvZv9VgJv1oc/YX7lpRZ6vK1/GDLFrdjb0diLtkFyAoK9h5Kh4vWc2GK93DBLbcDDaIC8A==}
+  '@vercel/node@5.5.3':
+    resolution: {integrity: sha512-6nXaW5xiPL9a05N+z4mkJvPQyRZOGWi7biZ9yZa2HRUOrJwN54G0xjg3+mUe/2MeC4yrj4g0s8a6xokCATytdg==}
 
   '@vercel/static-config@3.1.2':
     resolution: {integrity: sha512-2d+TXr6K30w86a+WbMbGm2W91O0UzO5VeemZYBBUJbCjk/5FLLGIi8aV6RS2+WmaRvtcqNTn2pUA7nCOK3bGcQ==}
@@ -12009,7 +12009,7 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vercel/build-utils@12.1.0': {}
+  '@vercel/build-utils@12.2.3': {}
 
   '@vercel/error-utils@2.0.3': {}
 
@@ -12051,13 +12051,13 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@5.3.23(rollup@4.52.5)':
+  '@vercel/node@5.5.3(rollup@4.52.5)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
       '@edge-runtime/vm': 3.2.0
       '@types/node': 16.18.11
-      '@vercel/build-utils': 12.1.0
+      '@vercel/build-utils': 12.2.3
       '@vercel/error-utils': 2.0.3
       '@vercel/nft': 0.30.1(rollup@4.52.5)
       '@vercel/static-config': 3.1.2
@@ -12065,7 +12065,7 @@ snapshots:
       cjs-module-lexer: 1.2.3
       edge-runtime: 2.5.9
       es-module-lexer: 1.4.1
-      esbuild: 0.25.9
+      esbuild: 0.25.11
       etag: 1.8.1
       mime-types: 2.1.35
       node-fetch: 2.6.9

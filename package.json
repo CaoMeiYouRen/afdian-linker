@@ -86,7 +86,7 @@
     "@types/ms": "^2.1.0",
     "@types/node": "^24.10.1",
     "@types/nodemailer": "^7.0.3",
-    "@types/pg": "^8.15.5",
+    "@types/pg": "^8.15.6",
     "@vercel/nft": "^0.30.3",
     "@vue/test-utils": "^2.4.6",
     "commitizen": "^4.2.3",

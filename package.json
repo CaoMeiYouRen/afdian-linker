@@ -51,7 +51,7 @@
     "pinia": "^3.0.3",
     "primeicons": "^7.0.0",
     "primevue": "^4.3.9",
-    "push-all-in-one": "^4.4.7",
+    "push-all-in-one": "^4.5.0",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.27",
     "vue": "^3.5.22",

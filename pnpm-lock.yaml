@@ -29,8 +29,8 @@ importers:
         specifier: ^0.11.2
         version: 0.11.2(magicast@0.5.1)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))
       '@primevue/themes':
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^4.5.0
+        version: 4.5.0
       '@sentry/nuxt':
         specifier: ^10.27.0
         version: 10.27.0(magicast@0.5.1)(nuxt@4.2.1(@netlify/blobs@9.1.2)(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vue/compiler-sfc@3.5.24)(db0@0.3.4(mysql2@3.15.3))(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(meow@13.2.0)(mysql2@3.15.3)(optionator@0.9.4)(rollup@4.53.3)(sass@1.94.0)(stylelint@16.25.0(typescript@5.9.3))(terser@5.44.0)(typescript@5.9.3)(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.0)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1))(pinia@3.0.4(typescript@5.9.3)(vue@3.5.24(typescript@5.9.3)))(rollup@4.53.3)(vue@3.5.24(typescript@5.9.3))
@@ -2002,8 +2002,8 @@ packages:
   '@primeuix/styles@2.0.1':
     resolution: {integrity: sha512-/9bhdkZDP6pY2HH5KfxGEDNGESjDCdCA23God7q8PqW3Xz1Gtz/8IMAEbpNe+O3I03qylRtEjL1n98J1mp+pRQ==}
 
-  '@primeuix/themes@1.2.5':
-    resolution: {integrity: sha512-n3YkwJrHQaEESc/D/A/iD815sxp8cKnmzscA6a8Tm8YvMtYU32eCahwLLe6h5rywghVwxASWuG36XBgISYOIjQ==}
+  '@primeuix/themes@2.0.1':
+    resolution: {integrity: sha512-kw+EPdklf3g2E9saGiKVIwhYelLs0wMu3CHMOlU2XkoIA07ncmRx3k1/5qrmRMRY5wiX29MEySkj64yyJTeVbQ==}
 
   '@primeuix/utils@0.6.3':
     resolution: {integrity: sha512-/SLNQSKQ73WbBIsflKVqbpVjCfFYvQO3Sf1LMheXyxh8JqxO4M63dzP56wwm9OPGuCQ6MYOd2AHgZXz+g7PZcg==}
@@ -2035,8 +2035,8 @@ packages:
     resolution: {integrity: sha512-XTHzeJO1uc/Tp4zoqSyVEEnb+AiL0KNhrk4MmYp7YnunpxG/QHLlGWpl1te7Bb/DrWzWu8kZ/QCKLW7G2cEAjw==}
     engines: {node: '>=12.11.0'}
 
-  '@primevue/themes@4.4.1':
-    resolution: {integrity: sha512-3qofw+UhTG5rZXUU+RtYY1ea5Q84LvfHtDuzFLUSK9pL1SLS+S4CBnoMuVM9I009FdVyNGT0Bib3sLMf21SBVQ==}
+  '@primevue/themes@4.5.0':
+    resolution: {integrity: sha512-2Sxyv7CCsZmksTOqWktrRrUTTBTO1CoxZ+qcpslrN+9hekN+B926kHdyYr20pV+IzY6LvQ272urnaGe9/jtt1g==}
     engines: {node: '>=12.11.0'}
 
   '@prisma/instrumentation@6.19.0':
@@ -11071,7 +11071,7 @@ snapshots:
     dependencies:
       '@primeuix/styled': 0.7.4
 
-  '@primeuix/themes@1.2.5':
+  '@primeuix/themes@2.0.1':
     dependencies:
       '@primeuix/styled': 0.7.4
 
@@ -11121,10 +11121,10 @@ snapshots:
       - supports-color
       - vue
 
-  '@primevue/themes@4.4.1':
+  '@primevue/themes@4.5.0':
     dependencies:
       '@primeuix/styled': 0.7.4
-      '@primeuix/themes': 1.2.5
+      '@primeuix/themes': 2.0.1
 
   '@prisma/instrumentation@6.19.0(@opentelemetry/api@1.9.0)':
     dependencies:

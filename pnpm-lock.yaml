@@ -222,8 +222,8 @@ importers:
         specifier: 25.0.2
         version: 25.0.2(typescript@5.9.3)
       semantic-release-cmyr-config:
-        specifier: ^1.0.0
-        version: 1.0.0(semantic-release@25.0.2(typescript@5.9.3))
+        specifier: ^1.0.1
+        version: 1.0.1(semantic-release@25.0.2(typescript@5.9.3))
       stylelint:
         specifier: ^16.25.0
         version: 16.25.0(typescript@5.9.3)
@@ -7381,8 +7381,8 @@ packages:
   scule@1.3.0:
     resolution: {integrity: sha512-6FtHJEvt+pVMIB9IBY+IcCJ6Z5f1iQnytgyfKMhDKgmzYG+TeH/wx1y3l27rshSbLiSanrR9ffZDrEsmjlQF2g==}
 
-  semantic-release-cmyr-config@1.0.0:
-    resolution: {integrity: sha512-RCZjnZGhDz1xgVw1xsbOMJGKXHaSPZz+DlHKsgz4975fRvkkFjk7zAcappLMZohAWnJref9iQBQqEASHvfr/Sw==}
+  semantic-release-cmyr-config@1.0.1:
+    resolution: {integrity: sha512-0CnBAm8GGPQ0yRFNxaCksCF18YeyvYdLGB1uVCZ2uWsyuWT434jflvtwU+HyCZSah/jH1Urlj6eQDMp0dK6Fig==}
     engines: {node: '>=18'}
     peerDependencies:
       semantic-release: '>=24'
@@ -17440,7 +17440,7 @@ snapshots:
 
   scule@1.3.0: {}
 
-  semantic-release-cmyr-config@1.0.0(semantic-release@25.0.2(typescript@5.9.3)):
+  semantic-release-cmyr-config@1.0.1(semantic-release@25.0.2(typescript@5.9.3)):
     dependencies:
       '@semantic-release/changelog': 6.0.3(semantic-release@25.0.2(typescript@5.9.3))
       '@semantic-release/git': 10.0.1(semantic-release@25.0.2(typescript@5.9.3))

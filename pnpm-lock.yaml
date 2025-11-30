@@ -98,8 +98,8 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1(@netlify/blobs@9.1.2)(@parcel/watcher@2.5.1)(@types/node@24.10.1)(@vue/compiler-sfc@3.5.24)(db0@0.3.4(mysql2@3.15.3))(eslint@9.39.1(jiti@2.6.1))(ioredis@5.8.2)(magicast@0.5.1)(meow@13.2.0)(mysql2@3.15.3)(optionator@0.9.4)(rollup@4.53.2)(sass@1.94.0)(stylelint@16.25.0(typescript@5.9.3))(terser@5.44.0)(typescript@5.9.3)(vite@7.2.2(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.0)(terser@5.44.0)(yaml@2.8.1))(yaml@2.8.1)
       p-queue:
-        specifier: ^9.0.0
-        version: 9.0.0
+        specifier: ^9.0.1
+        version: 9.0.1
       pg:
         specifier: ^8.16.3
         version: 8.16.3
@@ -1199,8 +1199,8 @@ packages:
     resolution: {integrity: sha512-5XUvZuffe3KetyhbWwd4n2ktd7wraocCYw10tlM+/u/95iAz29GjNiuNxbCD1T6Bn1MyGc4QLVNKOWhzJkVFAw==}
     engines: {node: ^14.16.0 || >=16.0.0}
 
-  '@netlify/open-api@2.43.1':
-    resolution: {integrity: sha512-MPhzLfVVTzQCs9iIjxxgIoXv6/tE2FVHTFT2gi4leChj5o4DQ9an/6gc1q7QPRXeIuPIb+P6AaYi3TGHf8vsBA==}
+  '@netlify/open-api@2.44.0':
+    resolution: {integrity: sha512-boKEIFvXXITHTNTZgy+PebDpzhTiGYEn4jbXW9hiF/iYgIFHTdvbqiCWQpK0Pr2CUGYWeqMSUnZgfRUFDu7M6Q==}
     engines: {node: '>=14.8.0'}
 
   '@netlify/runtime-utils@1.3.1':
@@ -6601,8 +6601,8 @@ packages:
     resolution: {integrity: sha512-tkAQEw8ysMzmkhgw8k+1U/iPhWNhykKnSk4Rd5zLoPJCuJaGRPo6YposrZgaxHKzDHdDWWZvE/Sk7hsL2X/CpQ==}
     engines: {node: '>=18'}
 
-  p-queue@9.0.0:
-    resolution: {integrity: sha512-KO1RyxstL9g1mK76530TExamZC/S2Glm080Nx8PE5sTd7nlduDQsAfEl4uXX+qZjLiwvDauvzXavufy3+rJ9zQ==}
+  p-queue@9.0.1:
+    resolution: {integrity: sha512-RhBdVhSwJb7Ocn3e8ULk4NMwBEuOxe+1zcgphUy9c2e5aR/xbEsdVXxHJ3lynw6Qiqu7OINEyHlZkiblEpaq7w==}
     engines: {node: '>=20'}
 
   p-reduce@2.1.0:
@@ -10038,7 +10038,7 @@ snapshots:
       write-file-atomic: 6.0.0
     optional: true
 
-  '@netlify/open-api@2.43.1':
+  '@netlify/open-api@2.44.0':
     optional: true
 
   '@netlify/runtime-utils@1.3.1':
@@ -16071,7 +16071,7 @@ snapshots:
 
   netlify@13.3.5:
     dependencies:
-      '@netlify/open-api': 2.43.1
+      '@netlify/open-api': 2.44.0
       lodash-es: 4.17.21
       micro-api-client: 3.3.0
       node-fetch: 3.3.2
@@ -16610,7 +16610,7 @@ snapshots:
 
   p-map@7.0.4: {}
 
-  p-queue@9.0.0:
+  p-queue@9.0.1:
     dependencies:
       eventemitter3: 5.0.1
       p-timeout: 7.0.1

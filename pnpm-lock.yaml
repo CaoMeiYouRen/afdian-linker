@@ -113,8 +113,8 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0(vue@3.5.24(typescript@5.9.3))
       push-all-in-one:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^4.5.1
+        version: 4.5.1
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -4882,8 +4882,8 @@ packages:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
 
-  form-data@4.0.4:
-    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
+  form-data@4.0.5:
+    resolution: {integrity: sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==}
     engines: {node: '>= 6'}
 
   format@0.2.2:
@@ -7139,8 +7139,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  push-all-in-one@4.5.0:
-    resolution: {integrity: sha512-AMlQ2tGpYBCiQ0s9eiKoQE5yY14NnpBLlIYwg+HSNGEwFzSx1Bdw/mqgXIJsXD6Yp9bKdugnDVYx6mKX6vaIig==}
+  push-all-in-one@4.5.1:
+    resolution: {integrity: sha512-g0EME4nVmFMxhnMXAM30SpZIXjj4skUy7G0vDQVjyPTbxsiZn83EtK4V+c8Y5wyq6+grHkVW8Oemw9Q4ikVDYg==}
     engines: {node: '>=20'}
 
   qified@0.5.1:
@@ -13024,7 +13024,7 @@ snapshots:
   axios@1.13.2(debug@4.4.3):
     dependencies:
       follow-redirects: 1.15.11(debug@4.4.3)
-      form-data: 4.0.4
+      form-data: 4.0.5
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -14529,7 +14529,7 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  form-data@4.0.4:
+  form-data@4.0.5:
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
@@ -17097,7 +17097,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  push-all-in-one@4.5.0:
+  push-all-in-one@4.5.1:
     dependencies:
       '@colors/colors': 1.6.0
       axios: 1.13.2(debug@4.4.3)
@@ -18631,7 +18631,7 @@ snapshots:
   vite-node@3.2.4(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.0)(terser@5.44.0)(yaml@2.8.1):
     dependencies:
       cac: 6.7.14
-      debug: 4.4.3
+      debug: 4.4.1
       es-module-lexer: 1.7.0
       pathe: 2.0.3
       vite: 7.2.4(@types/node@24.10.1)(jiti@2.6.1)(sass@1.94.0)(terser@5.44.0)(yaml@2.8.1)

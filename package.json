@@ -57,7 +57,7 @@
     "vue": "^3.5.25",
     "vue-router": "^4.6.3",
     "vuetify": "^3.11.0",
-    "zod": "^4.1.13"
+    "zod": "^4.3.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

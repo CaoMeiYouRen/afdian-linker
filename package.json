@@ -33,7 +33,7 @@
     "await-to-js": "^3.0.0",
     "bcrypt": "^6.0.0",
     "dayjs": "^1.11.19",
-    "fs-extra": "^11.3.2",
+    "fs-extra": "^11.3.3",
     "ioredis": "^5.8.2",
     "isomorphic-unfetch": "^4.0.2",
     "jsonwebtoken": "^9.0.3",

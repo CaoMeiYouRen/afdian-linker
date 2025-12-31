@@ -53,7 +53,7 @@
     "primevue": "^4.5.0",
     "push-all-in-one": "^4.5.1",
     "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.27",
+    "typeorm": "^0.3.28",
     "vue": "^3.5.25",
     "vue-router": "^4.6.3",
     "vuetify": "^3.11.0",

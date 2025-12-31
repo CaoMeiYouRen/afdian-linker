@@ -80,7 +80,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
-    "@nuxt/eslint": "^1.11.0",
+    "@nuxt/eslint": "^1.12.1",
     "@nuxt/test-utils": "^3.21.0",
     "@primevue/nuxt-module": "^4.5.4",
     "@types/bcrypt": "^6.0.0",

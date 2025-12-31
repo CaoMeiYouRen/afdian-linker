@@ -54,7 +54,7 @@
     "push-all-in-one": "^4.5.1",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.28",
-    "vue": "^3.5.25",
+    "vue": "^3.5.26",
     "vue-router": "^4.6.3",
     "vuetify": "^3.11.6",
     "zod": "^4.3.3"

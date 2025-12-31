@@ -24,7 +24,7 @@
     "@mdi/font": "^7.4.47",
     "@pinia/nuxt": "^0.11.3",
     "@primevue/themes": "^4.5.4",
-    "@sentry/nuxt": "^10.27.0",
+    "@sentry/nuxt": "^10.32.1",
     "@types/jsonwebtoken": "^9.0.10",
     "@vercel/node": "^5.5.16",
     "@vueuse/core": "^14.1.0",

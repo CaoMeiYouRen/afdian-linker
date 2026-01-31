@@ -37,7 +37,7 @@
     "ioredis": "^5.8.2",
     "isomorphic-unfetch": "^4.0.2",
     "jsonwebtoken": "^9.0.3",
-    "jwks-rsa": "^3.2.0",
+    "jwks-rsa": "^3.2.2",
     "lodash-es": "^4.17.23",
     "lru-cache": "^11.2.4",
     "ms": "^2.1.3",

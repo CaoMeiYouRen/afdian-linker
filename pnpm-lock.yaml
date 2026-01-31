@@ -50,8 +50,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1
       auth0:
-        specifier: ^5.2.0
-        version: 5.2.0
+        specifier: ^5.3.0
+        version: 5.3.0
       await-to-js:
         specifier: ^3.0.0
         version: 3.0.0
@@ -3546,8 +3546,8 @@ packages:
     resolution: {integrity: sha512-+TqJRxh4QvbD4TQIYx1ak2vanykQkG/nIZLuR6o8LoQj425gjVG3tFuUbbOeh/nCpP1rnvU0CCV1ChZHYXLU/A==}
     engines: {node: '>=18'}
 
-  auth0@5.2.0:
-    resolution: {integrity: sha512-eRtzyldEhXC1g9quWI8daG/j2OcXFsjgkT+zi3gqpe3SOwVNkWyvzaDAHAYWD2Z1ARTNXxezoXJiWNxwfHRMhw==}
+  auth0@5.3.0:
+    resolution: {integrity: sha512-L/MwTPMEK+G9Fk3XHg/XQdUCm/VUlK6n4n2J6wAtPGfjMqi4Ia19Z7lJ3P5n59dInTa94txYNGaQL1Wcj5HvPA==}
     engines: {node: ^20.19.0 || ^22.12.0 || ^24.0.0}
 
   autoprefixer@10.4.23:
@@ -13055,7 +13055,7 @@ snapshots:
       undici-types: 6.23.0
       uuid: 9.0.1
 
-  auth0@5.2.0:
+  auth0@5.3.0:
     dependencies:
       auth0-legacy: auth0@4.37.0
       jose: 4.15.9

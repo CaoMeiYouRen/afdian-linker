@@ -27,7 +27,7 @@
     "@sentry/nuxt": "^10.38.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@vercel/node": "^5.5.28",
-    "@vueuse/core": "^14.2.0",
+    "@vueuse/core": "^14.2.1",
     "animate.css": "^4.1.1",
     "auth0": "^5.3.0",
     "await-to-js": "^3.0.0",

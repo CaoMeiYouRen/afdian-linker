@@ -4,8 +4,8 @@ export const useAfdian = () => {
     const config = useRuntimeConfig()
 
     const client = new Afdian({
-        userId: config.afdianUserId as string,
-        token: config.afdianToken as string,
+        userId: config.afdianUserId,
+        token: config.afdianToken,
     })
     const handleWebhook = async (data: any) => {
         const result = await client.webhookOrder(data)

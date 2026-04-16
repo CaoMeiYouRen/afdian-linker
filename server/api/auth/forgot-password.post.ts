@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
         const dataSource = await getDataSource()
         const userRepo = dataSource.getRepository(User)
         const user = await userRepo.findOneBy({ email })
-        if (!user || !user.emailVerified) {
+        if (!user?.emailVerified) {
             // 不泄露信息，统一返回
             return createApiResponse(null, 200, '如果该邮箱已注册且已验证，将收到重置密码邮件')
         }

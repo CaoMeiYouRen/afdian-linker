@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
             relations: ['user'],
         })
 
-        if (!code || !code.user) {
+        if (!code?.user) {
             throw createError({ statusCode: 400, message: '重置链接已失效或无效' })
         }
 

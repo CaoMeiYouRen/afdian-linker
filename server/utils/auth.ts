@@ -40,7 +40,7 @@ export async function verifyApiKey(apiKey: string | null): Promise<boolean> {
     }
 
     const config = useRuntimeConfig()
-    const validKeys = (config.apiKeys as string || '').split(',')
+    const validKeys = (config.apiKeys || '').split(',')
 
     return validKeys.some((key) => key.trim() === apiKey)
 }

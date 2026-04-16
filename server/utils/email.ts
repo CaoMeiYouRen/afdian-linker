@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { escapeHtml } from './html'
 import { VerificationCode } from '@/server/entities/verification-code'
 
-type UserEmailInfo = {
+interface UserEmailInfo {
     id: string
     username: string
     email: string

@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
             })
         }
         const dataSource = await getDataSource()
-        const body = await readBody(event) as AfdianWebhookResponse
+        const body = await readBody(event)
         // 记录 webhook 日志
         const logRepo = dataSource.getRepository(WebhookLog)
         await logRepo.save({

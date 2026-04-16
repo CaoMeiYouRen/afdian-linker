@@ -31,3 +31,5 @@ prisma/migrations
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+.copilot-temp

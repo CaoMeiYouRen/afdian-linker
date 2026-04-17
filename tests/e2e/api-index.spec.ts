@@ -1,20 +1,35 @@
-import { describe, it, expect, beforeAll } from 'vitest'
-import { setup, $fetch } from '@nuxt/test-utils/e2e'
+// @vitest-environment node
 
-describe('GET /api', async () => {
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-    beforeAll(async () => {
-        await setup({
-        })
+function assertResponseData<T>(response: { data?: T }): asserts response is { data: T } {
+    if (response.data === undefined) {
+        throw new Error('Expected API response data to be defined')
+    }
+}
+
+describe('GET /api', () => {
+    beforeEach(() => {
+        vi.stubGlobal('defineEventHandler', <T>(handler: T) => handler)
+    })
+
+    afterEach(() => {
+        vi.unstubAllGlobals()
+        vi.resetModules()
     })
 
     it('should return API service info', async () => {
-        const res = await $fetch<any>('/api')
+        const { default: handler } = await import('@/server/api/index')
+        const res = await handler(undefined as never)
+
         expect(res).toHaveProperty('statusCode', 200)
-        expect(res).toHaveProperty('data')
-        expect(res.data).toHaveProperty('version')
+        assertResponseData(res)
+
+        expect(res.data).toHaveProperty('version', '1.0.0')
         expect(res.data).toHaveProperty('environment')
         expect(res.data).toHaveProperty('timestamp')
-        expect(res).toHaveProperty('message', 'API Service Running')
+        expect(res.message).toBe('API Service Running')
+        expect(res.statusMessage).toBe('OK')
+        expect(Number.isNaN(Date.parse(res.data.timestamp))).toBe(false)
     })
 })

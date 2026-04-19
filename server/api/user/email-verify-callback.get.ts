@@ -4,7 +4,6 @@ import { MoreThanOrEqual } from 'typeorm'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { VerificationCode } from '@/server/entities/verification-code'
-import { createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler(async (event) => {
     const { token } = getQuery(event)
@@ -41,7 +40,7 @@ export default defineEventHandler(async (event) => {
         let payload: any
         try {
             payload = jwt.verify(token as string, config.jwtSecret) as { id: string, email: string }
-        } catch (e) {
+        } catch {
             return sendRedirect(event, '/email-verify?status=fail&message=验证链接已失效或无效', 302)
         }
         const user = await userRepo.findOneBy({ id: payload.id })

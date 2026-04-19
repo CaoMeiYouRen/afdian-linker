@@ -1,10 +1,8 @@
-import { z } from 'zod'
 import { createError } from 'h3'
 import { getDataSource } from '@/server/utils/database'
 import { Order } from '@/server/entities/order'
-import { verifyApiKey } from '@/server/utils/auth'
-import { ApiResponse, createApiResponse } from '@/server/types/api'
-import { Session } from '@/server/utils/session'
+import { createApiResponse } from '@/server/types/api'
+import type { Session } from '@/server/utils/session'
 import { UserRole } from '@/types/user'
 
 export default defineEventHandler(async (event) => {

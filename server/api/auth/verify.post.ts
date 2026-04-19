@@ -3,7 +3,7 @@ import { omit } from 'lodash-es'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { SESSION_KEY } from '@/server/utils/session'
-import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { createApiResponse } from '@/server/types/api'
 
 /**
  * @deprecated
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
         }
 
         return createApiResponse(omit(user, ['password']), 200, '登录成功')
-    } catch (error) {
+    } catch {
         throw createError({
             statusCode: 401,
             message: '登录已过期',

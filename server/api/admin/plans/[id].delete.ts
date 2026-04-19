@@ -1,7 +1,6 @@
 import { createError } from 'h3'
 import { getDataSource } from '@/server/utils/database'
 import { Plan } from '@/server/entities/plan'
-import { Session } from '@/server/utils/session'
 import { createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler(async (event) => {

@@ -1,7 +1,6 @@
-import { defineEventHandler, getQuery, sendRedirect } from 'h3'
+import { defineEventHandler, sendRedirect } from 'h3'
 import ms from 'ms'
 import { generateOAuthUrl, generateState } from '@/server/utils/oauth'
-import { createApiResponse } from '@/server/types/api'
 import { getCacheStore } from '@/server/utils/cache'
 
 export default defineEventHandler(async (event) => {

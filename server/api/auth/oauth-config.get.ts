@@ -1,7 +1,7 @@
 import { defineEventHandler } from 'h3'
 import { createApiResponse } from '@/server/types/api'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
     const config = useRuntimeConfig()
 
     // 检查 OAuth 配置是否完整

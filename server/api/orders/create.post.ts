@@ -4,14 +4,14 @@ import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/server/entities/order'
 import { generateOrderId } from '@/server/utils/order'
 import { paymentChannels } from '@/server/utils/channels'
-import { ApiResponse, createApiResponse } from '@/server/types/api'
-import { Session } from '@/server/utils/session'
+import { createApiResponse } from '@/server/types/api'
+import type { Session } from '@/server/utils/session'
 
 // 创建订单参数验证
 const orderSchema = z.object({
     amount: z.number().positive(),
     channel: z.string().max(50).default('afdian'),
-    metaData: z.record(z.unknown()).optional(),
+    metaData: z.record(z.string(), z.unknown()).optional(),
     month: z.number().int().min(1).max(36).default(1),
     remark: z.string().max(255).optional(),
     planId: z.string().max(255),

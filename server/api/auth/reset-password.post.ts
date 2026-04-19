@@ -6,7 +6,6 @@ import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { VerificationCode } from '@/server/entities/verification-code'
 import { createApiResponse } from '@/server/types/api'
-import { rateLimit } from '@/server/utils/rate-limit'
 
 const schema = z.object({
     token: z.string().min(1, '无效的重置链接').max(255, '重置链接长度不能超过255个字符'),

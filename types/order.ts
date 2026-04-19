@@ -1,7 +1,7 @@
-import type { BaseFields, DateToString, PartialFields } from './base'
+import type { BaseFields, DateToString } from './base'
 import type { PaymentChannelType } from './channel'
 import type { Plan } from './plan'
-import type { BaseUser, User } from './user'
+import type { User } from './user'
 
 // 订单状态枚举
 export enum OrderStatus {

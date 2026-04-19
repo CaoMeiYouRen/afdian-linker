@@ -2,7 +2,6 @@ import { createError } from 'h3'
 import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
-import { createApiResponse } from '@/server/types/api'
 import { userQuerySchema, queryUsers } from '@/server/utils/query/user'
 import { createPaginatedResponse } from '@/server/types/pagination'
 

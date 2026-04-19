@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm'
+import { Entity, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from './base-entity'
 import { Order } from './order'
-import { BasePlan } from '@/types/plan'
+import type { BasePlan } from '@/types/plan'
 
 /**
  * productType: 0=常规方案, 1=售卖方案

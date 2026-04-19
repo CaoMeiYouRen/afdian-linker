@@ -1,4 +1,4 @@
-import type { BaseFields, DateToString, PartialFields } from './base'
+import type { BaseFields, DateToString } from './base'
 import type { User } from './user'
 
 export interface BasePlan {

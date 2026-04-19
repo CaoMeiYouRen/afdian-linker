@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { checkDBHealth } from '@/server/utils/database'
-import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { createApiResponse } from '@/server/types/api'
 
 const schema = z.object({
     deep: z.enum(['true', 'false']).default('false').optional(),

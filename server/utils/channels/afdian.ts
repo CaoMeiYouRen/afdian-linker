@@ -35,7 +35,7 @@ export class AfdianChannel implements PaymentChannel {
     }
 
     async generatePayUrl(order: Order): Promise<string> {
-        const config = this.getConfig()
+        this.getConfig()
         const params = new URLSearchParams({
             plan_id: order.metaData?.plan_id,
             custom_order_id: order.customOrderId,

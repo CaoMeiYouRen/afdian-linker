@@ -2,7 +2,6 @@ import { createError } from 'h3'
 import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { WebhookLog } from '@/server/entities/webhook-log'
-import { createApiResponse } from '@/server/types/api'
 import { webhookLogQuerySchema, queryWebhookLogs } from '@/server/utils/query/webhook-log'
 import { createPaginatedResponse } from '@/server/types/pagination'
 

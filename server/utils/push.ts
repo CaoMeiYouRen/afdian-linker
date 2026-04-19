@@ -1,4 +1,4 @@
-import { SendResponse, ServerChanTurbo, ServerChanV3, CustomEmail, Dingtalk, WechatRobot, WechatApp, PushPlus, IGot, Qmsg, XiZhi, PushDeer, Discord, OneBot, Telegram, WxPusher, PushPlusTemplateType, CustomEmailType, WechatRobotMsgType, WechatAppMsgType, PushPlusChannelType } from 'push-all-in-one'
+import { ServerChanTurbo, ServerChanV3, CustomEmail, Dingtalk, WechatRobot, WechatApp, PushPlus, IGot, Qmsg, XiZhi, PushDeer, Discord, OneBot, Telegram, WxPusher, type SendResponse, type PushPlusTemplateType, type CustomEmailType, type WechatRobotMsgType, type WechatAppMsgType, type PushPlusChannelType } from 'push-all-in-one'
 
 const info = console.info
 const warn = console.warn

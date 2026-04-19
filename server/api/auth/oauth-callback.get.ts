@@ -1,9 +1,9 @@
 import crypto from 'crypto'
 import { defineEventHandler, getQuery, sendRedirect } from 'h3'
-import { exchangeCodeForToken, fetchUserInfo, validateState } from '@/server/utils/oauth'
+import { exchangeCodeForToken, fetchUserInfo } from '@/server/utils/oauth'
 import { getDataSource } from '@/server/utils/database'
 import { User, UserRole } from '@/server/entities/user'
-import { setSession } from '@/server/utils/session'
+import { setAuthSession } from '@/server/utils/session'
 import { getCacheStore } from '@/server/utils/cache'
 
 export default defineEventHandler(async (event) => {
@@ -90,7 +90,7 @@ export default defineEventHandler(async (event) => {
         }
 
         // 创建会话
-        setSession(event, {
+        setAuthSession(event, {
             id: user.id,
             role: user.role,
         })

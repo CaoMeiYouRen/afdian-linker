@@ -1,4 +1,4 @@
-import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler(async () => createApiResponse({
     version: '1.0.0',

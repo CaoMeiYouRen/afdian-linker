@@ -1,4 +1,4 @@
-import { H3Event } from 'h3'
+import type { H3Event } from 'h3'
 import jwt from 'jsonwebtoken'
 
 export const SESSION_KEY = 'auth_session'
@@ -8,7 +8,7 @@ export interface Session {
     role: string
 }
 
-export function setSession(event: H3Event, session: Session) {
+export function setAuthSession(event: H3Event, session: Session) {
     const token = sign(session)
     setCookie(event, SESSION_KEY, token, {
         httpOnly: true,
@@ -19,7 +19,7 @@ export function setSession(event: H3Event, session: Session) {
     return token
 }
 
-export function getSession(event: H3Event): Session | null {
+export function getAuthSession(event: H3Event): Session | null {
     const token = getCookie(event, SESSION_KEY)
     if (!token) {
         return null
@@ -27,7 +27,7 @@ export function getSession(event: H3Event): Session | null {
     return verify(token)
 }
 
-export async function clearSession(event: H3Event) {
+export async function clearAuthSession(event: H3Event) {
     deleteCookie(event, SESSION_KEY)
 }
 

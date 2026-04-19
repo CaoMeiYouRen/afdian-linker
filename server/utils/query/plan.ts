@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
 import { Plan } from '@/server/entities/plan'
-import { PaginatedData } from '@/server/types/pagination'
+import type { PaginatedData } from '@/server/types/pagination'
 
 export const planQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),

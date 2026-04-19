@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm'
-import pg from 'pg'
 import { SnakeCaseNamingStrategy } from './naming-strategy'
 import { VerificationCode } from '@/server/entities/verification-code'
 import { Order } from '@/server/entities/order'
@@ -34,7 +33,7 @@ export const initializeDB = async () => {
             })
             await AppDataSource.initialize()
             isInitialized = true
-            console.log('数据库连接已初始化')
+            console.info('数据库连接已初始化')
             await initAdmin()
         } catch (error) {
             console.error('数据库初始化失败:', error)
@@ -62,10 +61,10 @@ export const initAdmin = async () => {
             role: UserRole.ADMIN,
         })
         await userRepository.save(newAdminUser)
-        console.log('管理员用户已创建:', newAdminUser.id)
+        console.info('管理员用户已创建:', newAdminUser.id)
         return newAdminUser
     }
-    console.log('管理员用户已存在:', adminUser.id)
+    console.info('管理员用户已存在:', adminUser.id)
     return adminUser
 }
 

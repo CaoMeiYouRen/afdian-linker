@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import type { OAuthTokenResponse, OAuthUserInfo, OAuthState } from '@/server/types/oauth'
+import type { OAuthTokenResponse, OAuthUserInfo } from '@/server/types/oauth'
 
 /**
  * 生成 OAuth 授权 URL

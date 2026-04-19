@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { Repository } from 'typeorm'
 import { User } from '@/server/entities/user'
 import { UserRole } from '@/types/user'
-import { PaginatedData } from '@/server/types/pagination'
+import type { PaginatedData } from '@/server/types/pagination'
 
 export const userQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),

@@ -2,7 +2,6 @@ import { createError, getQuery } from 'h3'
 import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { VerificationCode } from '@/server/entities/verification-code'
-import { requireAdmin } from '@/server/utils/auth'
 import { createPaginatedResponse } from '@/server/types/pagination'
 
 // 分页参数校验

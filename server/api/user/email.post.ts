@@ -6,8 +6,8 @@ import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { sendVerifyEmail } from '@/server/utils/email'
 import { createApiResponse } from '@/server/types/api'
-import { rateLimit } from '@/server/utils/rate-limit'
 import { VerificationCode } from '@/server/entities/verification-code'
+import type { Session } from '@/server/utils/session'
 
 const schema = z.object({
     email: z.string().email('邮箱格式不正确').min(1, '邮箱不能为空').max(255, '邮箱长度不能超过255个字符'),

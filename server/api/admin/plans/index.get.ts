@@ -2,7 +2,6 @@ import { createError } from 'h3'
 import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { Plan } from '@/server/entities/plan'
-import { Session } from '@/server/utils/session'
 import { createPaginatedResponse } from '@/server/types/pagination'
 import { planQuerySchema, queryPlans } from '@/server/utils/query/plan'
 

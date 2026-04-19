@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { Repository } from 'typeorm'
 import { WebhookLog } from '@/server/entities/webhook-log'
-import { PaginatedData } from '@/server/types/pagination'
+import type { PaginatedData } from '@/server/types/pagination'
 
 export const webhookLogQuerySchema = z.object({
     page: z.coerce.number().min(1).default(1),

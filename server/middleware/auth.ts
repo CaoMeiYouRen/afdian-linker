@@ -1,5 +1,4 @@
-import jwt from 'jsonwebtoken'
-import { getSession, SESSION_KEY } from '@/server/utils/session'
+import { getAuthSession } from '@/server/utils/session'
 import { UserRole } from '@/types/user'
 import { publicPaths } from '@/utils/public-paths'
 
@@ -22,7 +21,7 @@ export default defineEventHandler(async (event) => {
     if (publicPaths.some((path) => event.path.startsWith(path))) { // 公共路由直接放通
         return
     }
-    const session = getSession(event)
+    const session = getAuthSession(event)
     if (!session) {
         // 区分 API 请求和页面请求
         if (event.path.startsWith('/api')) {

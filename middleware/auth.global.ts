@@ -1,6 +1,6 @@
 import { publicPaths } from '@/utils/public-paths'
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
+export default defineNuxtRouteMiddleware(async (to) => {
 
     // 只在客户端执行，避免SSR重复请求
     // if (import.meta.server) {

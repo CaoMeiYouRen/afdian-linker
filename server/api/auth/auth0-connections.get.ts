@@ -1,4 +1,3 @@
-import { defineEventHandler } from 'h3'
 import { ManagementClient } from 'auth0'
 import { createApiResponse } from '@/server/types/api'
 import { getCacheStore } from '@/server/utils/cache'
@@ -10,7 +9,7 @@ const AUTH0_MGMT_CLIENT_SECRET = process.env.AUTH0_MGMT_CLIENT_SECRET || 'YOUR_A
 
 const CACHE_KEY = 'AUTH0_ALL_CONNECTIONS'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async () => {
     if (process.env.NODE_ENV === 'development') { // 开发环境返回固定值
         return createApiResponse({
             connections: [
@@ -34,7 +33,10 @@ export default defineEventHandler(async (event) => {
         clientSecret: AUTH0_MGMT_CLIENT_SECRET,
     })
 
-    const allConnections = (await managementClient.connections.getAll())?.data ?? []
+    const allConnections = [] as any[]
+    for await (const connection of await managementClient.connections.list()) {
+        allConnections.push(connection)
+    }
     const enabledConnections = allConnections.filter(
         (conn: any) => Array.isArray(conn?.enabled_clients) && conn.enabled_clients.includes(AUTH0_CLIENT_ID),
     )

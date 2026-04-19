@@ -1,13 +1,13 @@
 import crypto from 'crypto'
-import { defineEventHandler, readBody } from 'h3'
+import { readBody } from 'h3'
 import jwt from 'jsonwebtoken'
 import { JwksClient } from 'jwks-rsa'
 import { z } from 'zod'
 import { getDataSource } from '@/server/utils/database'
 import { User, UserRole } from '@/server/entities/user'
 import { createApiResponse } from '@/server/types/api'
-import { JwtPayload } from '@/server/types/auth0'
-import { rateLimit } from '@/server/utils/rate-limit'
+import { setAuthSession } from '@/server/utils/session'
+import type { JwtPayload } from '@/server/types/auth0'
 
 const AUTH0_DOMAIN = process.env.VITE_AUTH0_DOMAIN || 'YOUR_AUTH0_DOMAIN'
 
@@ -94,7 +94,7 @@ export default defineEventHandler(async (event) => {
             await userRepo.save(user)
         }
 
-        const jwtToken = setSession(event, {
+        const jwtToken = setAuthSession(event, {
             id: user.id,
             role: user.role,
         })

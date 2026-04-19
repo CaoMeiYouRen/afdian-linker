@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt'
 import { getDataSource } from '@/server/utils/database'
 import { User } from '@/server/entities/user'
 import { createApiResponse } from '@/server/types/api'
-import { rateLimit } from '@/server/utils/rate-limit'
 
 const schema = z.object({
     oldPassword: z.string().min(1).max(255),

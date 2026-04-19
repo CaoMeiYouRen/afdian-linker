@@ -1,5 +1,3 @@
-import type { EventHandler } from 'h3'
-import { AfdianWebhookResponse } from '@cao-mei-you-ren/afdian'
 import { getDataSource } from '@/server/utils/database'
 import { Order, OrderStatus } from '@/server/entities/order'
 import { WebhookLog } from '@/server/entities/webhook-log'

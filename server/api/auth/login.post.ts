@@ -1,12 +1,9 @@
-import type { EventHandler } from 'h3'
 import { z } from 'zod'
 import { compare } from 'bcrypt'
-import jwt from 'jsonwebtoken'
-import { SESSION_KEY, setSession } from '@/server/utils/session'
-import { rateLimit } from '@/server/utils/rate-limit'
+import { setAuthSession } from '@/server/utils/session'
 import { getDataSource } from '@/server/utils/database'
-import { User, UserRole } from '@/server/entities/user'
-import { ApiResponse, createApiResponse } from '@/server/types/api'
+import { User } from '@/server/entities/user'
+import { createApiResponse } from '@/server/types/api'
 
 const loginSchema = z.object({
     username: z.string().min(1).max(255),
@@ -50,7 +47,7 @@ export default defineEventHandler(async (event) => {
         // }
 
         // JWT 令牌生成
-        const token = setSession(event, {
+        const token = setAuthSession(event, {
             id: user.id,
             role: user.role,
         })

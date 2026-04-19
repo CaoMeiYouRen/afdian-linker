@@ -1,6 +1,6 @@
-import { randomBytes, randomUUID } from 'crypto'
+import { randomUUID } from 'crypto'
 import { pick } from 'lodash-es'
-import { MetaData } from '@/types/order'
+import type { MetaData } from '@/types/order'
 /**
  * 生成订单ID
  * @param prefix 订单前缀

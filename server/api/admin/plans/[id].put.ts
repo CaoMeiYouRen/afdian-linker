@@ -2,7 +2,6 @@ import { z } from 'zod'
 import { createError } from 'h3'
 import { getDataSource } from '@/server/utils/database'
 import { Plan } from '@/server/entities/plan'
-import { Session } from '@/server/utils/session'
 import { createApiResponse } from '@/server/types/api'
 
 const planSchema = z.object({

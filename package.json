@@ -130,7 +130,7 @@
     "vite": "^7.3.2",
     "vite-plugin-vuetify": "^2.1.3",
     "vitest": "^3.2.4",
-    "vue-tsc": "^3.2.6"
+    "vue-tsc": "^3.2.7"
   },
   "author": "CaoMeiYouRen",
   "description": "爱发电 API 集成，提供统一订单管理和外部查询能力",

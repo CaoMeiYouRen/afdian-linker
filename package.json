@@ -105,7 +105,7 @@
     "@types/nodemailer": "^7.0.11",
     "@types/pg": "^8.20.0",
     "@vercel/nft": "^1.5.0",
-    "@vue/test-utils": "^2.4.6",
+    "@vue/test-utils": "^2.4.10",
     "commitizen": "^4.2.3",
     "commitlint-config-cmyr": "1.0.0",
     "cross-env": "^10.1.0",

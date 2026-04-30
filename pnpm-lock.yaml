@@ -63,8 +63,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1
       auth0:
-        specifier: ^5.5.0
-        version: 5.5.0
+        specifier: ^5.9.0
+        version: 5.9.0
       await-to-js:
         specifier: ^3.0.0
         version: 3.0.0
@@ -3190,8 +3190,8 @@ packages:
     resolution: {integrity: sha512-+TqJRxh4QvbD4TQIYx1ak2vanykQkG/nIZLuR6o8LoQj425gjVG3tFuUbbOeh/nCpP1rnvU0CCV1ChZHYXLU/A==}
     engines: {node: '>=18'}
 
-  auth0@5.5.0:
-    resolution: {integrity: sha512-adHl/7SZ3MDlSulSFxbkFbDe+pJldm3ovrQ67IGt/DOobkDIfVaQThGbsZL+4YHF7BJv0TzmHdUl0lcTmHKcng==}
+  auth0@5.9.0:
+    resolution: {integrity: sha512-YVUiaYCTACfyAyUz0A3Z6Fe7IlKCmv4J98KNmhIWrdazI5ctEDgAtZhpbAG2YFKJ2jZBgdG8a6NnK9GGtnyRNw==}
     engines: {node: ^20.19.0 || ^22.12.0 || ^24.0.0}
 
   autoprefixer@10.4.27:
@@ -12034,11 +12034,11 @@ snapshots:
       undici-types: 6.25.0
       uuid: 9.0.1
 
-  auth0@5.5.0:
+  auth0@5.9.0:
     dependencies:
       auth0-legacy: auth0@4.37.0
       jose: 4.15.9
-      uuid: 11.1.0
+      uuid: 11.1.1
 
   autoprefixer@10.4.27(postcss@8.5.13):
     dependencies:
@@ -17639,8 +17639,7 @@ snapshots:
 
   uuid@11.1.0: {}
 
-  uuid@11.1.1:
-    optional: true
+  uuid@11.1.1: {}
 
   uuid@9.0.1: {}
 

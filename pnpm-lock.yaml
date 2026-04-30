@@ -17,7 +17,7 @@ overrides:
   minimatch@3.1.5>brace-expansion: ^1.1.13
   editorconfig>minimatch: ^9.0.9
   lodash: ^4.18.1
-  nodemailer: ^8.0.5
+  nodemailer: ^8.0.7
   ts-node>diff: ^4.0.4
   unhead: ^2.1.13
   undici: ^6.24.0
@@ -102,8 +102,8 @@ importers:
         specifier: ^3.22.3
         version: 3.22.3(@types/node@25.6.0)
       nodemailer:
-        specifier: ^8.0.5
-        version: 8.0.5
+        specifier: ^8.0.7
+        version: 8.0.7
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -178,8 +178,8 @@ importers:
         specifier: ^25.6.0
         version: 25.6.0
       '@types/nodemailer':
-        specifier: ^7.0.11
-        version: 7.0.11
+        specifier: ^8.0.0
+        version: 8.0.0
       '@types/pg':
         specifier: ^8.20.0
         version: 8.20.0
@@ -2527,8 +2527,8 @@ packages:
   '@types/node@25.6.0':
     resolution: {integrity: sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==}
 
-  '@types/nodemailer@7.0.11':
-    resolution: {integrity: sha512-E+U4RzR2dKrx+u3N4DlsmLaDC6mMZOM/TPROxA0UAPiTgI0y4CEFBmZE+coGWTjakDriRsXG368lNk1u9Q0a2g==}
+  '@types/nodemailer@8.0.0':
+    resolution: {integrity: sha512-fyf8jWULsCo0d0BuoQ75i6IeoHs47qcqxWc7yUdUcV0pOZGjUTTOvwdG1PRXUDqN/8A64yQdQdnA2pZgcdi+cA==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -6022,8 +6022,8 @@ packages:
   node-releases@2.0.36:
     resolution: {integrity: sha512-TdC8FSgHz8Mwtw9g5L4gR/Sh9XhSP/0DEkQxfEFXOpiul5IiHgHan2VhYYb6agDSfp4KuvltmGApc8HMgUrIkA==}
 
-  nodemailer@8.0.5:
-    resolution: {integrity: sha512-0PF8Yb1yZuQfQbq+5/pZJrtF6WQcjTd5/S4JOHs9PGFxuTqoB/icwuB44pOdURHJbRKX1PPoJZtY7R4VUoCC8w==}
+  nodemailer@8.0.7:
+    resolution: {integrity: sha512-pkjE4mkBzQjdJT4/UmlKl3pX0rC9fZmjh7c6C9o7lv66Ac6w9WCnzPzhbPNxwZAzlF4mdq4CSWB5+FbK6FWCow==}
     engines: {node: '>=6.0.0'}
 
   nopt@7.2.1:
@@ -11180,7 +11180,7 @@ snapshots:
     dependencies:
       undici-types: 7.19.2
 
-  '@types/nodemailer@7.0.11':
+  '@types/nodemailer@8.0.0':
     dependencies:
       '@types/node': 25.6.0
 
@@ -15306,7 +15306,7 @@ snapshots:
 
   node-releases@2.0.36: {}
 
-  nodemailer@8.0.5: {}
+  nodemailer@8.0.7: {}
 
   nopt@7.2.1:
     dependencies:
@@ -16178,7 +16178,7 @@ snapshots:
       axios: 1.15.0(debug@4.4.3)
       debug: 4.4.3
       https-proxy-agent: 7.0.6
-      nodemailer: 8.0.5
+      nodemailer: 8.0.7
       socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
       - supports-color

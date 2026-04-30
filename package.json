@@ -117,7 +117,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^16.4.0",
     "nitropack": "^2.13.2",
-    "pkg-types": "2.3.0",
+    "pkg-types": "2.3.1",
     "playwright-core": "^1.59.1",
     "postcss": "^8.5.13",
     "sass": "^1.99.0",

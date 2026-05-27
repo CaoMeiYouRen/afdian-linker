@@ -12,7 +12,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml /app/
 
-RUN corepack enable && corepack prepare pnpm@11 --activate
+RUN npm install -g pnpm@11
 
 RUN pnpm i --frozen-lockfile
 
@@ -32,7 +32,7 @@ COPY --from=builder /app/.output ./.output
 # 阶段三：生产阶段
 FROM runtime
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 WORKDIR /app
 

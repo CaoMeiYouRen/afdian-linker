@@ -7,7 +7,12 @@ FROM nodejs AS builder
 
 WORKDIR /app
 
-COPY package.json .npmrc pnpm-lock.yaml /app/
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml /app/
+
+RUN corepack enable && corepack prepare pnpm@11 --activate
 
 RUN pnpm i --frozen-lockfile
 

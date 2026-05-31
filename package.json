@@ -88,7 +88,7 @@
     "pkg-types": "2.3.1",
     "playwright-core": "^1.59.1",
     "postcss": "^8.5.13",
-    "sass": "^1.99.0",
+    "sass": "^1.100.0",
     "semantic-release": "25.0.3",
     "semantic-release-cmyr-config": "^1.0.2",
     "stylelint": "^16.26.1",

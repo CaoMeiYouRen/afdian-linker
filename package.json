@@ -72,7 +72,7 @@
     "@types/node": "^25.6.0",
     "@types/nodemailer": "^8.0.0",
     "@types/pg": "^8.20.0",
-    "@vercel/nft": "^1.5.0",
+    "@vercel/nft": "^1.10.2",
     "@vue/test-utils": "^2.4.10",
     "commitizen": "^4.2.3",
     "commitlint-config-cmyr": "1.0.0",

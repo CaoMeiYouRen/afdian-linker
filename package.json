@@ -35,7 +35,7 @@
     "bcrypt": "^6.0.0",
     "dayjs": "^1.11.21",
     "fs-extra": "^11.3.5",
-    "ioredis": "^5.10.1",
+    "ioredis": "^5.11.0",
     "isomorphic-unfetch": "^4.0.2",
     "jsonwebtoken": "^9.0.3",
     "jwks-rsa": "^4.0.1",

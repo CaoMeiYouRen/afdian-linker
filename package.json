@@ -135,5 +135,6 @@
       "npm run lint",
       "git add"
     ]
-  }
+  },
+  "pnpm": {}
 }

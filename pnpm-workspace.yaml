@@ -1,10 +1,18 @@
 allowBuilds:
+  '@parcel/watcher': true
+  '@sentry/cli': true
   bcrypt: true
+  browser-tabs-lock: true
   esbuild: true
+  unrs-resolver: true
 
 onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@sentry/cli'
   - bcrypt
+  - browser-tabs-lock
   - esbuild
+  - unrs-resolver
 
 overrides:
   handlebars: "^4.7.9"

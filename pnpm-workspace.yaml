@@ -24,3 +24,8 @@ overrides:
   handlebars: "^4.7.9"
   flatted: "^3.4.2"
   rollup: "^4.59.0"
+  jose: ^4.15.5
+  js-yaml: ^4.1.2
+  smol-toml: ^1.6.1
+  esbuild: ^0.28.1
+  ajv@8: ^8.18.0

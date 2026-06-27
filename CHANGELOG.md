@@ -1,5 +1,18 @@
 # afdian-linker
 
+## [1.4.3](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.2...v1.4.3) (2026-06-27)
+
+
+### 🐛 Bug 修复
+
+* **deps:** add overrides for high-severity transitive deps ([9657cba](https://github.com/CaoMeiYouRen/afdian-linker/commit/9657cba)), closes [hi#severity](https://github.com/hi/issues/severity)
+
+
+### 📦 代码重构
+
+* 优化用户验证逻辑 ([015b0b5](https://github.com/CaoMeiYouRen/afdian-linker/commit/015b0b5))
+* 重构代码以提高可读性和一致性 ([a897bc0](https://github.com/CaoMeiYouRen/afdian-linker/commit/a897bc0))
+
 ## [1.4.2](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.1...v1.4.2) (2025-08-30)
 
 

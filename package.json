@@ -27,7 +27,7 @@
     "@primevue/themes": "^4.5.4",
     "@sentry/nuxt": "^10.55.0",
     "@types/jsonwebtoken": "^9.0.10",
-    "@vercel/node": "^5.8.8",
+    "@vercel/node": "^5.8.22",
     "@vueuse/core": "^14.3.0",
     "animate.css": "^4.1.1",
     "auth0": "^5.9.0",

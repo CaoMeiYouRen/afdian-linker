@@ -230,7 +230,7 @@ importers:
         version: 1.61.0
       postcss:
         specifier: ^8.5.18
-        version: 8.5.22
+        version: 8.5.24
       sass:
         specifier: ^1.100.0
         version: 1.101.0
@@ -245,7 +245,7 @@ importers:
         version: 16.26.1(typescript@5.9.3)
       stylelint-config-cmyr:
         specifier: 1.0.0
-        version: 1.0.0(postcss@8.5.22)(stylelint@16.26.1(typescript@5.9.3))
+        version: 1.0.0(postcss@8.5.24)(stylelint@16.26.1(typescript@5.9.3))
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@25.9.4)(typescript@5.9.3)
@@ -6706,8 +6706,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.22:
-    resolution: {integrity: sha512-KBDEIpLrvpv16pp3K0Fw+UCoZfopFjjgeB+0tA/aaThfEE74kKDLrgg603YvOWJyg3+WYtyq3xYsQWsIyZlPqQ==}
+  postcss@8.5.24:
+    resolution: {integrity: sha512-8RyVklq0owXUTa4xlpzu4l9AaVKIdQvAcOHZWaMh98HgySsUtxRVf/chRe3dsSLqb6i40BzGRzEUddRaI+9TSw==}
     engines: {node: ^10 || ^12 || >=14}
 
   postgres-array@2.0.0:
@@ -9812,9 +9812,9 @@ snapshots:
       '@rollup/plugin-replace': 6.0.3(rollup@4.62.2)
       '@vitejs/plugin-vue': 6.0.7(vite@7.3.5(@types/node@25.9.4)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.38(typescript@5.9.3))
       '@vitejs/plugin-vue-jsx': 5.1.5(vite@7.3.5(@types/node@25.9.4)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.38(typescript@5.9.3))
-      autoprefixer: 10.5.0(postcss@8.5.22)
+      autoprefixer: 10.5.0(postcss@8.5.24)
       consola: 3.4.2
-      cssnano: 8.0.2(postcss@8.5.22)
+      cssnano: 8.0.2(postcss@8.5.24)
       defu: 6.1.7
       escape-string-regexp: 5.0.0
       exsolve: 1.0.8
@@ -9828,7 +9828,7 @@ snapshots:
       nypm: 0.6.7
       pathe: 2.0.3
       pkg-types: 2.3.1
-      postcss: 8.5.22
+      postcss: 8.5.24
       seroval: 1.5.4
       std-env: 4.1.0
       ufo: 1.6.4
@@ -11417,7 +11417,7 @@ snapshots:
       '@vue/shared': 3.5.38
       estree-walker: 2.0.2
       magic-string: 0.30.21
-      postcss: 8.5.22
+      postcss: 8.5.24
       source-map-js: 1.2.1
 
   '@vue/compiler-ssr@3.5.38':
@@ -11763,7 +11763,7 @@ snapshots:
 
   auth0@4.37.1:
     dependencies:
-      jose: 4.15.9
+      jose: 4.15.5
       undici-types: 6.28.0
       uuid: 11.1.1
 
@@ -11773,13 +11773,13 @@ snapshots:
       jose: 4.15.9
       uuid: 11.1.1
 
-  autoprefixer@10.5.0(postcss@8.5.22):
+  autoprefixer@10.5.0(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
       caniuse-lite: 1.0.30001799
       fraction.js: 5.3.4
       picocolors: 1.1.1
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -12324,48 +12324,48 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  cssnano-preset-default@8.0.2(postcss@8.5.22):
+  cssnano-preset-default@8.0.2(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
-      cssnano-utils: 6.0.1(postcss@8.5.22)
-      postcss: 8.5.22
-      postcss-calc: 10.1.1(postcss@8.5.22)
-      postcss-colormin: 8.0.1(postcss@8.5.22)
-      postcss-convert-values: 8.0.1(postcss@8.5.22)
-      postcss-discard-comments: 8.0.1(postcss@8.5.22)
-      postcss-discard-duplicates: 8.0.1(postcss@8.5.22)
-      postcss-discard-empty: 8.0.1(postcss@8.5.22)
-      postcss-discard-overridden: 8.0.1(postcss@8.5.22)
-      postcss-merge-longhand: 8.0.1(postcss@8.5.22)
-      postcss-merge-rules: 8.0.1(postcss@8.5.22)
-      postcss-minify-font-values: 8.0.1(postcss@8.5.22)
-      postcss-minify-gradients: 8.0.1(postcss@8.5.22)
-      postcss-minify-params: 8.0.1(postcss@8.5.22)
-      postcss-minify-selectors: 8.0.2(postcss@8.5.22)
-      postcss-normalize-charset: 8.0.1(postcss@8.5.22)
-      postcss-normalize-display-values: 8.0.1(postcss@8.5.22)
-      postcss-normalize-positions: 8.0.1(postcss@8.5.22)
-      postcss-normalize-repeat-style: 8.0.1(postcss@8.5.22)
-      postcss-normalize-string: 8.0.1(postcss@8.5.22)
-      postcss-normalize-timing-functions: 8.0.1(postcss@8.5.22)
-      postcss-normalize-unicode: 8.0.1(postcss@8.5.22)
-      postcss-normalize-url: 8.0.1(postcss@8.5.22)
-      postcss-normalize-whitespace: 8.0.1(postcss@8.5.22)
-      postcss-ordered-values: 8.0.1(postcss@8.5.22)
-      postcss-reduce-initial: 8.0.1(postcss@8.5.22)
-      postcss-reduce-transforms: 8.0.1(postcss@8.5.22)
-      postcss-svgo: 8.0.1(postcss@8.5.22)
-      postcss-unique-selectors: 8.0.1(postcss@8.5.22)
+      cssnano-utils: 6.0.1(postcss@8.5.24)
+      postcss: 8.5.24
+      postcss-calc: 10.1.1(postcss@8.5.24)
+      postcss-colormin: 8.0.1(postcss@8.5.24)
+      postcss-convert-values: 8.0.1(postcss@8.5.24)
+      postcss-discard-comments: 8.0.1(postcss@8.5.24)
+      postcss-discard-duplicates: 8.0.1(postcss@8.5.24)
+      postcss-discard-empty: 8.0.1(postcss@8.5.24)
+      postcss-discard-overridden: 8.0.1(postcss@8.5.24)
+      postcss-merge-longhand: 8.0.1(postcss@8.5.24)
+      postcss-merge-rules: 8.0.1(postcss@8.5.24)
+      postcss-minify-font-values: 8.0.1(postcss@8.5.24)
+      postcss-minify-gradients: 8.0.1(postcss@8.5.24)
+      postcss-minify-params: 8.0.1(postcss@8.5.24)
+      postcss-minify-selectors: 8.0.2(postcss@8.5.24)
+      postcss-normalize-charset: 8.0.1(postcss@8.5.24)
+      postcss-normalize-display-values: 8.0.1(postcss@8.5.24)
+      postcss-normalize-positions: 8.0.1(postcss@8.5.24)
+      postcss-normalize-repeat-style: 8.0.1(postcss@8.5.24)
+      postcss-normalize-string: 8.0.1(postcss@8.5.24)
+      postcss-normalize-timing-functions: 8.0.1(postcss@8.5.24)
+      postcss-normalize-unicode: 8.0.1(postcss@8.5.24)
+      postcss-normalize-url: 8.0.1(postcss@8.5.24)
+      postcss-normalize-whitespace: 8.0.1(postcss@8.5.24)
+      postcss-ordered-values: 8.0.1(postcss@8.5.24)
+      postcss-reduce-initial: 8.0.1(postcss@8.5.24)
+      postcss-reduce-transforms: 8.0.1(postcss@8.5.24)
+      postcss-svgo: 8.0.1(postcss@8.5.24)
+      postcss-unique-selectors: 8.0.1(postcss@8.5.24)
 
-  cssnano-utils@6.0.1(postcss@8.5.22):
+  cssnano-utils@6.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  cssnano@8.0.2(postcss@8.5.22):
+  cssnano@8.0.2(postcss@8.5.24):
     dependencies:
-      cssnano-preset-default: 8.0.2(postcss@8.5.22)
+      cssnano-preset-default: 8.0.2(postcss@8.5.24)
       lilconfig: 3.1.3
-      postcss: 8.5.22
+      postcss: 8.5.24
 
   csso@5.0.5:
     dependencies:
@@ -15636,192 +15636,192 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-calc@10.1.1(postcss@8.5.22):
+  postcss-calc@10.1.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
 
-  postcss-colormin@8.0.1(postcss@8.5.22):
+  postcss-colormin@8.0.1(postcss@8.5.24):
     dependencies:
       '@colordx/core': 5.4.3
       browserslist: 4.28.2
       caniuse-api: 4.0.0
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-convert-values@8.0.1(postcss@8.5.22):
+  postcss-convert-values@8.0.1(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-discard-comments@8.0.1(postcss@8.5.22):
+  postcss-discard-comments@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-selector-parser: 7.1.4
 
-  postcss-discard-duplicates@8.0.1(postcss@8.5.22):
+  postcss-discard-duplicates@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  postcss-discard-empty@8.0.1(postcss@8.5.22):
+  postcss-discard-empty@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  postcss-discard-overridden@8.0.1(postcss@8.5.22):
+  postcss-discard-overridden@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
   postcss-html@1.8.1:
     dependencies:
       htmlparser2: 8.0.0
       js-tokens: 9.0.0
-      postcss: 8.5.22
-      postcss-safe-parser: 6.0.0(postcss@8.5.22)
+      postcss: 8.5.24
+      postcss-safe-parser: 6.0.0(postcss@8.5.24)
 
   postcss-media-query-parser@0.2.3: {}
 
-  postcss-merge-longhand@8.0.1(postcss@8.5.22):
+  postcss-merge-longhand@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
-      stylehacks: 8.0.1(postcss@8.5.22)
+      stylehacks: 8.0.1(postcss@8.5.24)
 
-  postcss-merge-rules@8.0.1(postcss@8.5.22):
+  postcss-merge-rules@8.0.1(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
       caniuse-api: 4.0.0
-      cssnano-utils: 6.0.1(postcss@8.5.22)
-      postcss: 8.5.22
+      cssnano-utils: 6.0.1(postcss@8.5.24)
+      postcss: 8.5.24
       postcss-selector-parser: 7.1.4
 
-  postcss-minify-font-values@8.0.1(postcss@8.5.22):
+  postcss-minify-font-values@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-minify-gradients@8.0.1(postcss@8.5.22):
+  postcss-minify-gradients@8.0.1(postcss@8.5.24):
     dependencies:
       '@colordx/core': 5.4.3
-      cssnano-utils: 6.0.1(postcss@8.5.22)
-      postcss: 8.5.22
+      cssnano-utils: 6.0.1(postcss@8.5.24)
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-minify-params@8.0.1(postcss@8.5.22):
+  postcss-minify-params@8.0.1(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
-      cssnano-utils: 6.0.1(postcss@8.5.22)
-      postcss: 8.5.22
+      cssnano-utils: 6.0.1(postcss@8.5.24)
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-minify-selectors@8.0.2(postcss@8.5.22):
+  postcss-minify-selectors@8.0.2(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
       caniuse-api: 4.0.0
       cssesc: 3.0.0
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-selector-parser: 7.1.4
 
-  postcss-normalize-charset@8.0.1(postcss@8.5.22):
+  postcss-normalize-charset@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  postcss-normalize-display-values@8.0.1(postcss@8.5.22):
+  postcss-normalize-display-values@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-positions@8.0.1(postcss@8.5.22):
+  postcss-normalize-positions@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-repeat-style@8.0.1(postcss@8.5.22):
+  postcss-normalize-repeat-style@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-string@8.0.1(postcss@8.5.22):
+  postcss-normalize-string@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-timing-functions@8.0.1(postcss@8.5.22):
+  postcss-normalize-timing-functions@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-unicode@8.0.1(postcss@8.5.22):
+  postcss-normalize-unicode@8.0.1(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-url@8.0.1(postcss@8.5.22):
+  postcss-normalize-url@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-whitespace@8.0.1(postcss@8.5.22):
+  postcss-normalize-whitespace@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-ordered-values@8.0.1(postcss@8.5.22):
+  postcss-ordered-values@8.0.1(postcss@8.5.24):
     dependencies:
-      cssnano-utils: 6.0.1(postcss@8.5.22)
-      postcss: 8.5.22
+      cssnano-utils: 6.0.1(postcss@8.5.24)
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
-  postcss-reduce-initial@8.0.1(postcss@8.5.22):
+  postcss-reduce-initial@8.0.1(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
       caniuse-api: 4.0.0
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  postcss-reduce-transforms@8.0.1(postcss@8.5.22):
+  postcss-reduce-transforms@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@6.0.0(postcss@8.5.22):
+  postcss-safe-parser@6.0.0(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  postcss-safe-parser@7.0.1(postcss@8.5.22):
+  postcss-safe-parser@7.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  postcss-scss@4.0.9(postcss@8.5.22):
+  postcss-scss@4.0.9(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
   postcss-selector-parser@7.1.4:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-sorting@9.1.0(postcss@8.5.22):
+  postcss-sorting@9.1.0(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
-  postcss-svgo@8.0.1(postcss@8.5.22):
+  postcss-svgo@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-value-parser: 4.2.0
       svgo: 4.0.2
 
-  postcss-unique-selectors@8.0.1(postcss@8.5.22):
+  postcss-unique-selectors@8.0.1(postcss@8.5.24):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-selector-parser: 7.1.4
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.22:
+  postcss@8.5.24:
     dependencies:
       nanoid: 3.3.16
       picocolors: 1.1.1
@@ -16772,21 +16772,21 @@ snapshots:
 
   structured-clone-es@2.0.0: {}
 
-  stylehacks@8.0.1(postcss@8.5.22):
+  stylehacks@8.0.1(postcss@8.5.24):
     dependencies:
       browserslist: 4.28.2
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-selector-parser: 7.1.4
 
-  stylelint-config-cmyr@1.0.0(postcss@8.5.22)(stylelint@16.26.1(typescript@5.9.3)):
+  stylelint-config-cmyr@1.0.0(postcss@8.5.24)(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-html: 1.8.1
-      postcss-scss: 4.0.9(postcss@8.5.22)
+      postcss-scss: 4.0.9(postcss@8.5.24)
       stylelint: 16.26.1(typescript@5.9.3)
       stylelint-config-html: 1.1.0(postcss-html@1.8.1)(stylelint@16.26.1(typescript@5.9.3))
       stylelint-config-standard: 39.0.1(stylelint@16.26.1(typescript@5.9.3))
-      stylelint-config-standard-scss: 15.0.1(postcss@8.5.22)(stylelint@16.26.1(typescript@5.9.3))
+      stylelint-config-standard-scss: 15.0.1(postcss@8.5.24)(stylelint@16.26.1(typescript@5.9.3))
       stylelint-order: 7.0.1(stylelint@16.26.1(typescript@5.9.3))
       stylelint-scss: 6.14.0(stylelint@16.26.1(typescript@5.9.3))
 
@@ -16795,14 +16795,14 @@ snapshots:
       postcss-html: 1.8.1
       stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-config-recommended-scss@15.0.1(postcss@8.5.22)(stylelint@16.26.1(typescript@5.9.3)):
+  stylelint-config-recommended-scss@15.0.1(postcss@8.5.24)(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
-      postcss-scss: 4.0.9(postcss@8.5.22)
+      postcss-scss: 4.0.9(postcss@8.5.24)
       stylelint: 16.26.1(typescript@5.9.3)
       stylelint-config-recommended: 16.0.0(stylelint@16.26.1(typescript@5.9.3))
       stylelint-scss: 6.14.0(stylelint@16.26.1(typescript@5.9.3))
     optionalDependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
   stylelint-config-recommended@16.0.0(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
@@ -16812,13 +16812,13 @@ snapshots:
     dependencies:
       stylelint: 16.26.1(typescript@5.9.3)
 
-  stylelint-config-standard-scss@15.0.1(postcss@8.5.22)(stylelint@16.26.1(typescript@5.9.3)):
+  stylelint-config-standard-scss@15.0.1(postcss@8.5.24)(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
       stylelint: 16.26.1(typescript@5.9.3)
-      stylelint-config-recommended-scss: 15.0.1(postcss@8.5.22)(stylelint@16.26.1(typescript@5.9.3))
+      stylelint-config-recommended-scss: 15.0.1(postcss@8.5.24)(stylelint@16.26.1(typescript@5.9.3))
       stylelint-config-standard: 38.0.0(stylelint@16.26.1(typescript@5.9.3))
     optionalDependencies:
-      postcss: 8.5.22
+      postcss: 8.5.24
 
   stylelint-config-standard@38.0.0(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
@@ -16832,8 +16832,8 @@ snapshots:
 
   stylelint-order@7.0.1(stylelint@16.26.1(typescript@5.9.3)):
     dependencies:
-      postcss: 8.5.22
-      postcss-sorting: 9.1.0(postcss@8.5.22)
+      postcss: 8.5.24
+      postcss-sorting: 9.1.0(postcss@8.5.24)
       stylelint: 16.26.1(typescript@5.9.3)
 
   stylelint-scss@6.14.0(stylelint@16.26.1(typescript@5.9.3)):
@@ -16878,9 +16878,9 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.22
+      postcss: 8.5.24
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 7.0.1(postcss@8.5.22)
+      postcss-safe-parser: 7.0.1(postcss@8.5.24)
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -17580,7 +17580,7 @@ snapshots:
       esbuild: 0.28.1
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
-      postcss: 8.5.22
+      postcss: 8.5.24
       rollup: 4.62.2
       tinyglobby: 0.2.17
     optionalDependencies:

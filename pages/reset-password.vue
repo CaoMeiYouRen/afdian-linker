@@ -101,7 +101,7 @@ async function handleSubmit() {
             navigateTo('/login')
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '重置失败')
+        throw new Error(getErrorMessage(error.value) || '重置失败')
     } catch (e: any) {
         toast.add({ severity: 'error', summary: '错误', detail: e.message || '重置失败', life: 5000 })
     } finally {

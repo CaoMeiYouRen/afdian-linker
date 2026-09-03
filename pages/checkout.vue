@@ -157,7 +157,7 @@ const fetchPlans = async () => {
             },
         })
         if (fetchError.value) {
-            throw new Error(fetchError.value?.data?.message || fetchError.value?.message || '获取支持方案失败')
+            throw new Error(getErrorMessage(fetchError.value) || '获取支持方案失败')
         }
         // 兼容分页返回
         const items = data.value?.data.items || []
@@ -223,7 +223,7 @@ const handleSubmit = async () => {
             handleOrderCreated(orderId, paymentUrl)
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '创建订单失败')
+        throw new Error(getErrorMessage(error.value) || '创建订单失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

@@ -98,7 +98,7 @@ async function handleAuth0Callback() {
             }, 1500)
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '第三方登录失败')
+        throw new Error(getErrorMessage(error.value) || '第三方登录失败')
     } catch (err: any) {
         status.value = 'fail'
         message.value = err?.message || '第三方登录失败，正在跳转到登录页...'

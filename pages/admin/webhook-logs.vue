@@ -100,7 +100,7 @@ const fetchLogs = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '获取Webhook日志失败')
+        throw new Error(getErrorMessage(error.value) || '获取Webhook日志失败')
     } catch (error: any) {
         console.error(error)
         toast.add({

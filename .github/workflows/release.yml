@@ -93,3 +93,7 @@ jobs:
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
           platforms: linux/amd64,linux/arm64
+          # 关闭 provenance / sbom attestation，避免 BuildKit 向 ACR 推送
+          # application/vnd.oci.empty.v1+json 空 manifest（ACR 不识别此 media type）
+          provenance: false
+          sbom: false

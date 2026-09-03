@@ -119,7 +119,7 @@ const fetchUsers = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '获取用户列表失败')
+        throw new Error(getErrorMessage(error.value) || '获取用户列表失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

@@ -313,7 +313,7 @@ const fetchOrders = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '获取订单列表失败')
+        throw new Error(getErrorMessage(error.value) || '获取订单列表失败')
     } catch (error: any) {
         console.error('获取订单列表失败:', error)
         toast.add({
@@ -357,7 +357,7 @@ const handleSync = async () => {
             await fetchOrders()
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '同步失败')
+        throw new Error(getErrorMessage(error.value) || '同步失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -385,7 +385,7 @@ const handleExpire = async () => {
             await fetchOrders()
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '处理超时订单失败')
+        throw new Error(getErrorMessage(error.value) || '处理超时订单失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

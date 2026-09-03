@@ -133,7 +133,7 @@ async function handleSubmit() {
             navigateTo('/')
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '修改密码失败')
+        throw new Error(getErrorMessage(error.value) || '修改密码失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

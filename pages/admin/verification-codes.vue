@@ -137,7 +137,7 @@ const fetchCodes = async (params = {}) => {
             pagination.value = data.value.data.pagination
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '获取失败')
+        throw new Error(getErrorMessage(error.value) || '获取失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',
@@ -175,7 +175,7 @@ const handleCleanup = async () => {
             await fetchCodes()
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '清理失败')
+        throw new Error(getErrorMessage(error.value) || '清理失败')
     } catch (error: any) {
         toast.add({
             severity: 'error',

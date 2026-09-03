@@ -90,7 +90,7 @@ async function handleSubmit() {
             })
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '发送重置邮件失败')
+        throw new Error(getErrorMessage(error.value) || '发送重置邮件失败')
     } catch (error: any) {
         console.error(error)
         toast.add({

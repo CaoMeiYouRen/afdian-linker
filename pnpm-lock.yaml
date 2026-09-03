@@ -103,7 +103,7 @@ importers:
         version: 3.23.1(@types/node@26.1.2)
       nodemailer:
         specifier: ^9.0.1
-        version: 9.0.1
+        version: 9.1.0
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -2677,11 +2677,6 @@ packages:
 
   '@volar/typescript@2.4.28':
     resolution: {integrity: sha512-Ja6yvWrbis2QtN4ClAKreeUZPVYMARDYZl9LMEv1iQ1QdepB6wn0jTRxA9MftYmYa4DQ4k/DaSZpFPUfxl8giw==}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   '@vue-macros/common@3.1.2':
     resolution: {integrity: sha512-h9t4ArDdniO9ekYHAD95t9AZcAbb19lEGK+26iAjUODOIJKmObDNBSe4+6ELQAA3vtYiFPPBtHh7+cQCKi3Dng==}
@@ -4605,7 +4600,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -5932,8 +5927,8 @@ packages:
     resolution: {integrity: sha512-YHs7BmmcsdAI5Ozuf8JZo6PT0mv2GIWC9vMfvUC3dp65M8hn7Ux8CPL+2oBI7juNuj9d0ndhTcznq2ODBps9cQ==}
     engines: {node: '>=18'}
 
-  nodemailer@9.0.1:
-    resolution: {integrity: sha512-Gwv8SQewT616ZM/URn0H54b8PWo/Wum7md3EW2aWy1lO27+WZCX+Xyak3J+NlmHUjDh5ME+uesJUDRbR3Ye8Bw==}
+  nodemailer@9.1.0:
+    resolution: {integrity: sha512-xj1Ri5Sau3qpPffHJwi2bY0oWVVWYq62Ph17l+2v1xXpxjqTls3YPc3L8dub9mcJpxj+1ucNnuYVqLlgh4pmDA==}
     engines: {node: '>=6.0.0'}
 
   nopt@7.2.1:
@@ -8717,7 +8712,7 @@ snapshots:
 
   '@auth0/auth0-auth-js@1.12.0':
     dependencies:
-      jose: 4.15.5
+      jose: 4.15.9
       openid-client: 6.8.4
 
   '@auth0/auth0-spa-js@2.24.1':
@@ -10061,7 +10056,7 @@ snapshots:
       - magicast
       - typescript
 
-  '@nuxt/vite-builder@4.5.2(76d09a2479bb0ccbe62fed32b66519d0)':
+  '@nuxt/vite-builder@4.5.2(e3922a18f7a7b0dabe7be8e2f1354673)':
     dependencies:
       '@nuxt/kit': 4.5.2(magic-string@1.2.3)(magicast@0.5.3)(rolldown@1.2.7)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.7)(rollup@4.62.2)(vite@7.3.5(@types/node@26.1.2)(jiti@2.7.0)(lightningcss@1.33.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)))
       '@vitejs/plugin-vue': 6.0.8(vite@8.2.2(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.42(typescript@5.9.3))
@@ -10089,7 +10084,6 @@ snapshots:
       std-env: 4.2.0
       ufo: 1.6.4
       unenv: 2.0.0-rc.24
-      unplugin: 3.3.0(esbuild@0.28.1)(rolldown@1.2.7)(rollup@4.62.2)(vite@8.2.2(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))
       vite: 8.2.2(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
       vite-node: 6.0.0(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
       vite-plugin-checker: 0.14.5(eslint@9.39.4(jiti@2.7.0)(supports-color@10.2.2))(meow@13.2.0)(optionator@0.9.4)(stylelint@16.26.1(supports-color@10.2.2)(typescript@5.9.3))(typescript@5.9.3)(vite@8.2.2(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))(vue-tsc@3.3.5(typescript@5.9.3))
@@ -10101,11 +10095,8 @@ snapshots:
       rollup-plugin-visualizer: 7.0.1(rolldown@1.2.7)(rollup@4.62.2)
     transitivePeerDependencies:
       - '@biomejs/biome'
-      - '@farmfe/core'
-      - '@rspack/core'
       - '@types/node'
       - '@vitejs/devtools'
-      - bun-types-no-globals
       - esbuild
       - eslint
       - less
@@ -10115,7 +10106,6 @@ snapshots:
       - optionator
       - oxc-parser
       - oxlint
-      - rollup
       - sass
       - sass-embedded
       - stylelint
@@ -10125,9 +10115,8 @@ snapshots:
       - terser
       - tsx
       - typescript
-      - unloader
+      - unplugin
       - vue-tsc
-      - webpack
       - yaml
 
   '@octokit/auth-token@6.0.0': {}
@@ -11519,13 +11508,11 @@ snapshots:
 
   '@volar/source-map@2.4.28': {}
 
-  '@volar/typescript@2.4.28(typescript@5.9.3)':
+  '@volar/typescript@2.4.28':
     dependencies:
       '@volar/language-core': 2.4.28
       path-browserify: 1.0.1
       vscode-uri: 3.1.0
-    optionalDependencies:
-      typescript: 5.9.3
 
   '@vue-macros/common@3.1.2(vue@3.5.38(typescript@5.9.3))':
     dependencies:
@@ -11784,9 +11771,13 @@ snapshots:
     dependencies:
       acorn: 8.17.0
 
-  acorn-jsx@5.3.2(acorn@8.17.0):
+  acorn-import-attributes@1.9.5(acorn@8.18.0):
     dependencies:
-      acorn: 8.17.0
+      acorn: 8.18.0
+
+  acorn-jsx@5.3.2(acorn@8.18.0):
+    dependencies:
+      acorn: 8.18.0
 
   acorn-walk@8.3.5:
     dependencies:
@@ -12015,7 +12006,7 @@ snapshots:
 
   auth0@4.37.1:
     dependencies:
-      jose: 4.15.5
+      jose: 4.15.9
       undici-types: 6.28.0
       uuid: 11.1.1
 
@@ -12491,7 +12482,7 @@ snapshots:
   conventional-commits-parser@6.4.0:
     dependencies:
       '@simple-libs/stream-utils': 1.2.0
-      meow: 13.0.0
+      meow: 13.2.0
 
   conventional-commits-parser@7.1.2:
     dependencies:
@@ -13315,14 +13306,14 @@ snapshots:
 
   espree@10.4.0:
     dependencies:
-      acorn: 8.17.0
-      acorn-jsx: 5.3.2(acorn@8.17.0)
+      acorn: 8.18.0
+      acorn-jsx: 5.3.2(acorn@8.18.0)
       eslint-visitor-keys: 4.2.1
 
   espree@11.2.0:
     dependencies:
-      acorn: 8.17.0
-      acorn-jsx: 5.3.2(acorn@8.17.0)
+      acorn: 8.18.0
+      acorn-jsx: 5.3.2(acorn@8.18.0)
       eslint-visitor-keys: 5.0.1
 
   espurify@1.8.1:
@@ -14007,8 +13998,8 @@ snapshots:
 
   import-in-the-middle@3.1.0:
     dependencies:
-      acorn: 8.17.0
-      acorn-import-attributes: 1.9.5(acorn@8.17.0)
+      acorn: 8.18.0
+      acorn-import-attributes: 1.9.5(acorn@8.18.0)
       cjs-module-lexer: 2.2.0
       module-details-from-path: 1.0.4
 
@@ -14675,8 +14666,8 @@ snapshots:
 
   magicast@0.5.4:
     dependencies:
-      '@babel/parser': 7.29.7
-      '@babel/types': 7.29.7
+      '@babel/parser': 7.29.8
+      '@babel/types': 7.29.8
       source-map-js: 1.2.1
 
   make-asynchronous@1.1.0:
@@ -15328,7 +15319,7 @@ snapshots:
 
   node-releases@2.0.54: {}
 
-  nodemailer@9.0.1: {}
+  nodemailer@9.1.0: {}
 
   nopt@7.2.1:
     dependencies:
@@ -15394,7 +15385,7 @@ snapshots:
       '@nuxt/nitro-server': 4.5.2(eba5efa297706b173c32182a3a2c66c1)
       '@nuxt/schema': 4.5.2
       '@nuxt/telemetry': 2.8.0(@nuxt/kit@4.5.2(magic-string@1.2.3)(magicast@0.5.3)(rolldown@1.2.7)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.7)(rollup@4.62.2)(vite@7.3.5(@types/node@26.1.2)(jiti@2.7.0)(lightningcss@1.33.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))))
-      '@nuxt/vite-builder': 4.5.2(76d09a2479bb0ccbe62fed32b66519d0)
+      '@nuxt/vite-builder': 4.5.2(e3922a18f7a7b0dabe7be8e2f1354673)
       '@unhead/vue': 3.4.0(@oxc-project/types@0.148.0)(esbuild@0.28.1)(lightningcss@1.33.0)(rolldown@1.2.7)(rollup@4.62.2)(vite@7.3.5(@types/node@26.1.2)(jiti@2.7.0)(lightningcss@1.33.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.42(typescript@5.9.3))
       '@vue/shared': 3.5.42
       chokidar: 5.0.0
@@ -15634,7 +15625,7 @@ snapshots:
 
   openid-client@6.8.4:
     dependencies:
-      jose: 4.15.5
+      jose: 4.15.9
       oauth4webapi: 3.8.6
 
   optionator@0.9.4:
@@ -16264,7 +16255,7 @@ snapshots:
       axios: 1.18.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       debug: 4.4.3(supports-color@10.2.2)
       https-proxy-agent: 7.0.6(supports-color@10.2.2)
-      nodemailer: 9.0.1
+      nodemailer: 9.1.0
       socks-proxy-agent: 8.0.4(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
@@ -17267,7 +17258,7 @@ snapshots:
   terser@5.48.0:
     dependencies:
       '@jridgewell/source-map': 0.3.11
-      acorn: 8.17.0
+      acorn: 8.18.0
       commander: 2.20.0
       source-map-support: 0.5.21
 
@@ -17724,17 +17715,6 @@ snapshots:
       rollup: 4.62.2
       vite: 7.3.5(@types/node@26.1.2)(jiti@2.7.0)(lightningcss@1.33.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
 
-  unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.7)(rollup@4.62.2)(vite@8.2.2(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)):
-    dependencies:
-      '@jridgewell/remapping': 2.3.5
-      picomatch: 4.0.5
-      webpack-virtual-modules: 0.6.2
-    optionalDependencies:
-      esbuild: 0.28.1
-      rolldown: 1.2.7
-      rollup: 4.62.2
-      vite: 8.2.2(@types/node@26.1.2)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.48.0)(tsx@4.21.0)(yaml@2.9.0)
-
   unrouting@0.2.3:
     dependencies:
       escape-string-regexp: 5.0.0
@@ -18114,7 +18094,7 @@ snapshots:
 
   vue-tsc@3.3.5(typescript@5.9.3):
     dependencies:
-      '@volar/typescript': 2.4.28(typescript@5.9.3)
+      '@volar/typescript': 2.4.28
       '@vue/language-core': 3.3.5
       typescript: 5.9.3
 

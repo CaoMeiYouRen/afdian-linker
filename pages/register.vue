@@ -149,7 +149,7 @@ async function handleSubmit() {
             navigateTo('/login')
             return
         }
-        throw new Error(error.value?.data?.message || error.value?.message || '注册失败')
+        throw new Error(getErrorMessage(error.value) || '注册失败')
     } catch (error: any) {
         console.error(error)
         toast.add({

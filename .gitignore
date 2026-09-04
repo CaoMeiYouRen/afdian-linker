@@ -33,3 +33,5 @@ prisma/migrations
 .env.sentry-build-plugin
 
 .copilot-temp
+# dependfix
+dependfix-reports/

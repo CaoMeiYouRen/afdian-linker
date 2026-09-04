@@ -1,19 +1,17 @@
 allowBuilds:
-  '@parcel/watcher': true
-  '@sentry/cli': true
+  "@parcel/watcher": true
+  "@sentry/cli": true
   bcrypt: true
   browser-tabs-lock: true
   esbuild: true
   unrs-resolver: true
-
 onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@sentry/cli'
+  - "@parcel/watcher"
+  - "@sentry/cli"
   - bcrypt
   - browser-tabs-lock
   - esbuild
   - unrs-resolver
-
 overrides:
   path-to-regexp: ^6.3.0
   ini: ^1.3.6
@@ -21,11 +19,11 @@ overrides:
   nodemailer: ^9.0.1
   tar: ^7.5.21
   undici: ^6.27.0
-  handlebars: "^4.7.9"
-  flatted: "^3.4.2"
-  rollup: "^4.59.0"
+  handlebars: ^4.7.9
+  flatted: ^3.4.2
+  rollup: ^4.59.0
   jose: ^4.15.5
-  js-yaml: ^4.3.0
+  js-yaml: ^4.3.1
   smol-toml: ^1.6.1
   esbuild: ^0.28.1
   ajv@8: ^8.18.0
@@ -37,3 +35,7 @@ overrides:
   fast-uri: ^3.1.4
   postcss: ^8.5.18
   shell-quote: ^1.9.0
+  brace-expansion: ^5.0.9
+  browserslist: ^4.28.7
+  ip-address: ^10.3.1
+  nanoid: ^3.3.18

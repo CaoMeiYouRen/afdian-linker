@@ -7,6 +7,7 @@ FROM nodejs AS builder
 
 WORKDIR /app
 
+ENV CI=true
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 

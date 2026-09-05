@@ -1,5 +1,14 @@
 # afdian-linker
 
+## [1.4.4](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.3...v1.4.4) (2026-09-05)
+
+
+### 🐛 Bug 修复
+
+* **ci:** disable buildx provenance/sbom to unblock ACR push ([712d86d](https://github.com/CaoMeiYouRen/afdian-linker/commit/712d86d))
+* **deps:** bump brace-expansion, browserslist, ip-address, js-yaml, nanoid ([5f9cec7](https://github.com/CaoMeiYouRen/afdian-linker/commit/5f9cec7))
+* **pages:** adapt nuxt 4.5 useFetch error type narrowing ([909e071](https://github.com/CaoMeiYouRen/afdian-linker/commit/909e071))
+
 ## [1.4.3](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.2...v1.4.3) (2026-06-27)
 
 

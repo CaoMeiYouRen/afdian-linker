@@ -107,7 +107,7 @@ importers:
         version: 3.23.1(@types/node@26.1.2)
       nodemailer:
         specifier: ^9.0.1
-        version: 9.1.0
+        version: 9.1.1
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -4993,7 +4993,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -6309,8 +6309,8 @@ packages:
     resolution: {integrity: sha512-YHs7BmmcsdAI5Ozuf8JZo6PT0mv2GIWC9vMfvUC3dp65M8hn7Ux8CPL+2oBI7juNuj9d0ndhTcznq2ODBps9cQ==}
     engines: {node: '>=18'}
 
-  nodemailer@9.1.0:
-    resolution: {integrity: sha512-xj1Ri5Sau3qpPffHJwi2bY0oWVVWYq62Ph17l+2v1xXpxjqTls3YPc3L8dub9mcJpxj+1ucNnuYVqLlgh4pmDA==}
+  nodemailer@9.1.1:
+    resolution: {integrity: sha512-izw9mVKFix6YSnC9eLgV6g1opl9DUlRio9ZNcq+Wu9Ujn2UwF+8Nl0B8nz22kEC+CTZCvinkxwJ0DeFbb6NwcQ==}
     engines: {node: '>=6.0.0'}
 
   nopt@7.2.1:
@@ -9020,7 +9020,7 @@ snapshots:
 
   '@auth0/auth0-auth-js@1.12.0':
     dependencies:
-      jose: 4.15.5
+      jose: 4.15.9
       openid-client: 6.8.4
 
   '@auth0/auth0-spa-js@2.24.1':
@@ -9832,7 +9832,7 @@ snapshots:
 
   '@jridgewell/source-map@0.3.11':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.12
+      '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
   '@jridgewell/sourcemap-codec@1.4.10': {}
@@ -12570,7 +12570,7 @@ snapshots:
 
   auth0@4.37.1:
     dependencies:
-      jose: 4.15.5
+      jose: 4.15.9
       undici-types: 6.28.0
       uuid: 11.1.1
 
@@ -15926,7 +15926,7 @@ snapshots:
 
   node-releases@2.0.54: {}
 
-  nodemailer@9.1.0: {}
+  nodemailer@9.1.1: {}
 
   nopt@7.2.1:
     dependencies:
@@ -16240,7 +16240,7 @@ snapshots:
 
   openid-client@6.8.4:
     dependencies:
-      jose: 4.15.5
+      jose: 4.15.9
       oauth4webapi: 3.8.6
 
   optionator@0.9.4:
@@ -16907,7 +16907,7 @@ snapshots:
       axios: 1.18.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       debug: 4.4.3(supports-color@10.2.2)
       https-proxy-agent: 7.0.6(supports-color@10.2.2)
-      nodemailer: 9.1.0
+      nodemailer: 9.1.1
       socks-proxy-agent: 8.0.4(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color

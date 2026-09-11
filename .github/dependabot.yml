@@ -7,6 +7,13 @@ updates:
       interval: monthly
       time: "06:00"
       timezone: Asia/Shanghai
+    ignore:
+      - dependency-name: primevue
+        update-types:
+          - version-update:semver-major
+      - dependency-name: "@primevue/*"
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: github-actions
     directory: /
     open-pull-requests-limit: 20

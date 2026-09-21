@@ -23,7 +23,7 @@ overrides:
   brace-expansion@^2: ^2.0.3
   brace-expansion@^5: ^5.0.7
   immutable: ^5.1.8
-  svgo: ^4.0.2
+  svgo: ^4.1.0
   fast-uri: ^3.1.4
   postcss: ^8.5.18
   shell-quote: ^1.9.0
@@ -31,6 +31,7 @@ overrides:
   browserslist: ^4.28.7
   ip-address: ^10.3.1
   nanoid: ^3.3.18
+  colord: ^2.9.4
 
 importers:
 
@@ -3474,6 +3475,7 @@ packages:
   auth0@6.1.0:
     resolution: {integrity: sha512-I/PJLoG6HecJk2j62J83zV9bKS3v5f2xKdDL5uYFmjmhBfmnu9rg1z3SDcpASSYUuJvuRd5uF3vmsKfzn2OCgw==}
     engines: {node: ^20.19.0 || ^22.12.0 || ^24.0.0 || ^26.0.0}
+    deprecated: 'auth0 v6 is deprecated and no longer receives updates. v7 is Management-API-only with no breaking changes for Management API usage; the authentication layer moved to @auth0/auth0-auth-js and @auth0/auth0-server-js, which receive all new features. Migration guide: https://github.com/auth0/node-auth0/blob/master/v7_MIGRATION_GUIDE.md'
 
   autoprefixer@10.5.4:
     resolution: {integrity: sha512-MaU0U/za7N3r6brxD4YB/l4NSrFzLPlANv6wEuQVaIPlD3L4W9rFcQPbL/EilY9BHhHvhfcz3gInDLrEtWT4EA==}
@@ -3828,8 +3830,8 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
-  colord@2.9.3:
-    resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
+  colord@2.10.0:
+    resolution: {integrity: sha512-AidJptpBJmjTclAp9BkLwJi0T93fo5epJnbaZslpg6QVzpHjAiveF55mE9AcUJiGMqRHgMDY8soMsQtuNYMHfw==}
 
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
@@ -4030,8 +4032,8 @@ packages:
     resolution: {integrity: sha512-8HFEBPKhOpJPEPu70wJJetjKta86Gw9+CCyCnB3sui2qQfOvRyqBy4IKLKKAwdMpWb2lHXWk9Wb4Z6AmaUT1Pg==}
     engines: {node: '>=12'}
 
-  css-select@5.1.0:
-    resolution: {integrity: sha512-nwoRF1rvRRnnCqqY7updORDsuqKzqYJ28+oSMaJMMgOauh3fvwHqMS7EZpIPqK8GL+g9mKxF1vP/ZjSeNjEVHg==}
+  css-select@6.0.0:
+    resolution: {integrity: sha512-rZZVSLle8v0+EY8QAkDWrKhpgt6SA5OtHsgBnsj6ZaLb5dmDVOWUDtQitd9ydxxvEjhewNudS6eTVU7uOyzvXw==}
 
   css-tree@2.2.0:
     resolution: {integrity: sha512-7y32czN0VBL8WkevhC/mrHnoHOmQaJ1Wvp8sjRuTz6/n9cjL83jQaUru2MvP7kzjpGVwrSy5CE4XyQObWGIHQQ==}
@@ -4041,8 +4043,8 @@ packages:
     resolution: {integrity: sha512-X7sjQzceUhu1u7Y/ylrRZFU2FS6LRiFVp6rKLPg23y3x3c3DOKAwuXGDp+PAGjh6CSnCjYeAul8pcT8bAl+lSA==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
-  css-what@6.1.0:
-    resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
+  css-what@7.0.0:
+    resolution: {integrity: sha512-wD5oz5xibMOPHzy13CyGmogB3phdvcDaB5t0W/Nr5Z2O/agcB8YwOz6e2Lsp10pNDzBoDO9nVa3RGs/2BttpHQ==}
     engines: {node: '>= 6'}
 
   cssesc@3.0.0:
@@ -4274,8 +4276,15 @@ packages:
     resolution: {integrity: sha512-pr8ToPIuwBonzUy42STpc5Cf0m69zsQ7gtCLLvKrTbhVRnRohT2pLiJmGp3PAh16nDVWpYpcRpdjuk1vFmnQUg==}
     engines: {node: '>= 4'}
 
+  domhandler@5.0.3:
+    resolution: {integrity: sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==}
+    engines: {node: '>= 4'}
+
   domutils@3.0.1:
     resolution: {integrity: sha512-z08c1l761iKhDFtfXO04C7kTdPBLi41zwOZl00WS8b5eiaebNpY00HKbztwBq+e3vyqWNwWF3mP9YLUeqIrF+Q==}
+
+  domutils@3.2.2:
+    resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
 
   dot-prop@10.1.0:
     resolution: {integrity: sha512-MVUtAugQMOff5RnBy2d9N31iG0lNwg1qAoAOn7pOK5wf94WIaE3My2p3uwTQuvS2AcqchkcR3bHByjaM0mmi7Q==}
@@ -7452,8 +7461,8 @@ packages:
     engines: {node: '>=20.19.0'}
     hasBin: true
 
-  sax@1.6.0:
-    resolution: {integrity: sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA==}
+  sax@1.6.1:
+    resolution: {integrity: sha512-42tBVwLWnaQvW5zc4HbZrTuWccECCZfBi92FDuwtqxasH+JbPB3/FOKb1m222K42R4WxuxzzMsTswfzgtSu64Q==}
     engines: {node: '>=11.0.0'}
 
   scslre@0.3.0:
@@ -7927,8 +7936,8 @@ packages:
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
 
-  svgo@4.0.2:
-    resolution: {integrity: sha512-ekx94z1rRc5LDi6oSUaeRnYhd0UOJxdtQCL2rF8xpWxD3TPAsISWOrxezqGovqS38GRZOdpDfvQe3ts6F7nsng==}
+  svgo@4.1.0:
+    resolution: {integrity: sha512-bkxnTg1kSU0guhIBmibA6UUhrQmPVA1XsQLN+ylCd+UWzbnLkySOcXpyk1mrl05f+pcaCx2eHb+sp6BgMZWX+Q==}
     engines: {node: '>=16'}
     hasBin: true
 
@@ -12937,7 +12946,7 @@ snapshots:
 
   color-name@1.1.4: {}
 
-  colord@2.9.3: {}
+  colord@2.10.0: {}
 
   combined-stream@1.0.8:
     dependencies:
@@ -13130,12 +13139,12 @@ snapshots:
 
   css-functions-list@3.3.3: {}
 
-  css-select@5.1.0:
+  css-select@6.0.0:
     dependencies:
       boolbase: 1.0.0
-      css-what: 6.1.0
-      domhandler: 5.0.2
-      domutils: 3.0.1
+      css-what: 7.0.0
+      domhandler: 5.0.3
+      domutils: 3.2.2
       nth-check: 2.1.1
 
   css-tree@2.2.0:
@@ -13148,7 +13157,7 @@ snapshots:
       mdn-data: 2.27.1
       source-map-js: 1.2.1
 
-  css-what@6.1.0: {}
+  css-what@7.0.0: {}
 
   cssesc@3.0.0: {}
 
@@ -13383,11 +13392,21 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
+  domhandler@5.0.3:
+    dependencies:
+      domelementtype: 2.3.0
+
   domutils@3.0.1:
     dependencies:
       dom-serializer: 2.0.0
       domelementtype: 2.3.0
       domhandler: 5.0.2
+
+  domutils@3.2.2:
+    dependencies:
+      dom-serializer: 2.0.0
+      domelementtype: 2.3.0
+      domhandler: 5.0.3
 
   dot-prop@10.1.0:
     dependencies:
@@ -16740,7 +16759,7 @@ snapshots:
     dependencies:
       postcss: 8.5.26
       postcss-value-parser: 4.2.0
-      svgo: 4.0.2
+      svgo: 4.1.0
 
   postcss-unique-selectors@8.0.1(postcss@8.5.26):
     dependencies:
@@ -17294,7 +17313,7 @@ snapshots:
     optionalDependencies:
       '@parcel/watcher': 2.5.6
 
-  sax@1.6.0: {}
+  sax@1.6.1: {}
 
   scslre@0.3.0:
     dependencies:
@@ -17802,7 +17821,7 @@ snapshots:
       '@csstools/selector-specificity': 5.0.0(postcss-selector-parser@7.1.4)
       '@dual-bundle/import-meta-resolve': 4.2.1
       balanced-match: 2.0.0
-      colord: 2.9.3
+      colord: 2.10.0
       cosmiconfig: 9.0.2(typescript@5.9.3)
       css-functions-list: 3.3.3
       css-tree: 3.2.1
@@ -17867,15 +17886,15 @@ snapshots:
 
   svg-tags@1.0.0: {}
 
-  svgo@4.0.2:
+  svgo@4.1.0:
     dependencies:
       commander: 11.1.0
-      css-select: 5.1.0
+      css-select: 6.0.0
       css-tree: 3.2.1
-      css-what: 6.1.0
+      css-what: 7.0.0
       csso: 5.0.5
       picocolors: 1.1.1
-      sax: 1.6.0
+      sax: 1.6.1
 
   table@6.9.0:
     dependencies:

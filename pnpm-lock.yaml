@@ -59,8 +59,8 @@ importers:
         specifier: ^9.0.10
         version: 9.0.10
       '@vercel/node':
-        specifier: ^10.0.0
-        version: 10.0.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.7.0)(rollup@4.62.2)(supports-color@10.2.2)
+        specifier: ^16.0.1
+        version: 16.0.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.13.1)(rollup@4.62.2)(supports-color@10.2.2)
       '@vueuse/core':
         specifier: ^14.3.0
         version: 14.3.0(vue@3.5.42(typescript@5.9.3))
@@ -3032,8 +3032,8 @@ packages:
     peerDependencies:
       valibot: ^1.4.0
 
-  '@vercel/build-utils@14.7.0':
-    resolution: {integrity: sha512-Raz4NkE5sO83/QKt4pLN6C3vLt50vkOY7cPzxBr2jLI17FPRRpHPuMfjqwGL67s/G4PA3qFG0IxiYHTEUcLEdA==}
+  '@vercel/build-utils@14.13.1':
+    resolution: {integrity: sha512-O2wh5N/8mWLTc8oKuoCQKU4h8EHAL1dZDw11YHmu25pT0b54txEkLhkIFyW5h1lXD6gNMW4YpCSrtVw9QUNfxw==}
 
   '@vercel/error-utils@2.2.1':
     resolution: {integrity: sha512-9DhP8jP7raLML4hGsBemxX5fXuQnu5xxMV+HjGygGbzEmVK/+KyJ3QP2Cw7PdF0uXdb9N0Qa4c3tRGH34ZX6vw==}
@@ -3048,10 +3048,10 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vercel/node@10.0.0':
-    resolution: {integrity: sha512-YmeBOFd9wZ3aNrBZ0Qo68+cW8jug4JWMI4TiF0bkjwW0EcUxpGYT4tleLLgdDuja0THZt6slgfWbmvxxpe/HEg==}
+  '@vercel/node@16.0.1':
+    resolution: {integrity: sha512-jWNlamCPNCv1USW1oMGujpRX3VAmiBUi0zfqA3grYt8H3KCzrm3gKRyzH6NmztfEdtYbTgEAaGJYvuQiCUKDuQ==}
     peerDependencies:
-      '@vercel/build-utils': 14.7.0
+      '@vercel/build-utils': 14.13.1
 
   '@vercel/static-config@3.4.3':
     resolution: {integrity: sha512-BY1sL8rNJvIm3TK/8TQ+Q6jIx7NpO5xckQzv7s6c1ypHvRnTl+vf6rmgY5WFXmoYDeGm3tMy4jiy/5M/5jGr/g==}
@@ -11996,7 +11996,7 @@ snapshots:
     dependencies:
       valibot: 1.4.1(typescript@5.9.3)
 
-  '@vercel/build-utils@14.7.0':
+  '@vercel/build-utils@14.13.1':
     dependencies:
       cjs-module-lexer: 1.2.3
       es-module-lexer: 1.5.0
@@ -12041,13 +12041,13 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@10.0.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.7.0)(rollup@4.62.2)(supports-color@10.2.2)':
+  '@vercel/node@16.0.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.13.1)(rollup@4.62.2)(supports-color@10.2.2)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
       '@edge-runtime/vm': 3.2.0
       '@types/node': 20.11.0
-      '@vercel/build-utils': 14.7.0
+      '@vercel/build-utils': 14.13.1
       '@vercel/error-utils': 2.2.1
       '@vercel/nft': 1.10.0(rollup@4.62.2)(supports-color@10.2.2)
       '@vercel/static-config': 3.4.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)

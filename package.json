@@ -63,7 +63,7 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",
     "@nuxt/eslint": "^1.15.2",
-    "@nuxt/test-utils": "^4.2.0",
+    "@nuxt/test-utils": "^4.3.2",
     "@primevue/nuxt-module": "^5.0.1",
     "@types/bcrypt": "^6.0.0",
     "@types/fs-extra": "^11.0.4",

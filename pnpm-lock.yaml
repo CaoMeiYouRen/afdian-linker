@@ -122,8 +122,8 @@ importers:
         specifier: ^9.3.3
         version: 9.3.3
       pg:
-        specifier: ^8.21.0
-        version: 8.22.0
+        specifier: ^8.23.0
+        version: 8.23.0
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@5.9.3)(vue@3.5.42(typescript@5.9.3))
@@ -141,7 +141,7 @@ importers:
         version: 0.2.2
       typeorm:
         specifier: ^0.3.31
-        version: 0.3.31(ioredis@5.11.1(supports-color@10.2.2))(mysql2@3.24.4(@types/node@26.1.2))(pg@8.22.0)(supports-color@10.2.2)(ts-node@10.9.2(@types/node@26.1.2)(typescript@5.9.3))
+        version: 0.3.31(ioredis@5.11.1(supports-color@10.2.2))(mysql2@3.24.4(@types/node@26.1.2))(pg@8.23.0)(supports-color@10.2.2)(ts-node@10.9.2(@types/node@26.1.2)(typescript@5.9.3))
       vue:
         specifier: ^3.5.42
         version: 3.5.42(typescript@5.9.3)
@@ -186,8 +186,8 @@ importers:
         specifier: ^8.0.0
         version: 8.0.1
       '@types/pg':
-        specifier: ^8.20.0
-        version: 8.20.0
+        specifier: ^8.23.1
+        version: 8.23.1
       '@vercel/nft':
         specifier: ^1.11.0
         version: 1.11.0(rollup@4.62.2)(supports-color@10.2.2)
@@ -2582,8 +2582,8 @@ packages:
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
-  '@types/pg@8.20.0':
-    resolution: {integrity: sha512-bEPFOaMAHTEP1EzpvHTbmwR8UsFyHSKsRisLIHVMXnpNefSbGA1bD6CVy+qKjGSqmZqNqBDV2azOBo8TgkcVow==}
+  '@types/pg@8.23.1':
+    resolution: {integrity: sha512-fKVHpikPdg4GKks3JuLEhvwSyvwzF23hnabPy6DD8ljVbC7+6J5dQzdv4arV6jqq57djnMgs1HKBxX4P8aBI3A==}
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -6604,12 +6604,15 @@ packages:
   pg-protocol@1.15.0:
     resolution: {integrity: sha512-cq9sECI5s0+uPUXjbz8ioyPJni6RzsRib0US67i5IoTZKw8fNeYlVE7u8F4dG7vEJJtc5wdD1K189lCCUwqWTQ==}
 
+  pg-protocol@1.16.0:
+    resolution: {integrity: sha512-sILXutLVjCLjcDuOmvhX5e2Z4cS5qG/6Bu3VkpFwdf/633ElGLpEh9bgmuI5I4sqKqkifQiGyiCcx1HdtrK7tg==}
+
   pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
 
-  pg@8.22.0:
-    resolution: {integrity: sha512-8wih1vVIBMxoUM2oB4soJsD9tDnDpLv4OXBJ+EJzFsvycD+lfyIreC2gGHq78f8jbLLt+bvlPTFdFZfJkOuzAA==}
+  pg@8.23.0:
+    resolution: {integrity: sha512-Ip2EQCngowJLGOfCwkFhPXU7/ljlhn6Rxlmy4XYfL2Y+vyRM59+8uR2xqRWKdYmbXmxCFOAmKxBuSUCdF34qLg==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -11319,7 +11322,7 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
-  '@types/pg@8.20.0':
+  '@types/pg@8.23.1':
     dependencies:
       '@types/node': 26.1.2
       pg-protocol: 1.15.0
@@ -16105,11 +16108,13 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
-  pg-pool@3.14.0(pg@8.22.0):
+  pg-pool@3.14.0(pg@8.23.0):
     dependencies:
-      pg: 8.22.0
+      pg: 8.23.0
 
   pg-protocol@1.15.0: {}
+
+  pg-protocol@1.16.0: {}
 
   pg-types@2.2.0:
     dependencies:
@@ -16119,11 +16124,11 @@ snapshots:
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
 
-  pg@8.22.0:
+  pg@8.23.0:
     dependencies:
       pg-connection-string: 2.14.0
-      pg-pool: 3.14.0(pg@8.22.0)
-      pg-protocol: 1.15.0
+      pg-pool: 3.14.0(pg@8.23.0)
+      pg-protocol: 1.16.0
       pg-types: 2.2.0
       pgpass: 1.0.5
     optionalDependencies:
@@ -17696,7 +17701,7 @@ snapshots:
       typed-array-buffer: 1.0.3
       typed-array-byte-offset: 1.0.4
 
-  typeorm@0.3.31(ioredis@5.11.1(supports-color@10.2.2))(mysql2@3.24.4(@types/node@26.1.2))(pg@8.22.0)(supports-color@10.2.2)(ts-node@10.9.2(@types/node@26.1.2)(typescript@5.9.3)):
+  typeorm@0.3.31(ioredis@5.11.1(supports-color@10.2.2))(mysql2@3.24.4(@types/node@26.1.2))(pg@8.23.0)(supports-color@10.2.2)(ts-node@10.9.2(@types/node@26.1.2)(typescript@5.9.3)):
     dependencies:
       '@sqltools/formatter': 1.2.5
       ansis: 4.3.1
@@ -17716,7 +17721,7 @@ snapshots:
     optionalDependencies:
       ioredis: 5.11.1(supports-color@10.2.2)
       mysql2: 3.24.4(@types/node@26.1.2)
-      pg: 8.22.0
+      pg: 8.23.0
       ts-node: 10.9.2(@types/node@26.1.2)(typescript@5.9.3)
     transitivePeerDependencies:
       - babel-plugin-macros

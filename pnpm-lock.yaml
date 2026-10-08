@@ -6894,8 +6894,8 @@ packages:
     peerDependencies:
       postcss: ^8.5.18
 
-  postcss-selector-parser@7.1.4:
-    resolution: {integrity: sha512-HeP7D2wyhkR+XaK6v4W8oRF62Dsz4flyuczALJp61GckGm42u1saSSJ/0auvcBqxs3jMRFEcPK34At/0JBKdOg==}
+  postcss-selector-parser@7.1.6:
+    resolution: {integrity: sha512-7qASPzhKF2l2KLboRZux8CCTRMdGiV08vWmyKzPz22qZ7ZjQBOeY7rNzNoCLSUiftJ7HUq0GERHmxw/t0dCdMw==}
     engines: {node: '>=4'}
 
   postcss-sorting@9.1.0:
@@ -9252,9 +9252,9 @@ snapshots:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
 
-  '@csstools/selector-specificity@5.0.0(postcss-selector-parser@7.1.4)':
+  '@csstools/selector-specificity@5.0.0(postcss-selector-parser@7.1.6)':
     dependencies:
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
@@ -13499,7 +13499,7 @@ snapshots:
       eslint: 9.39.4(jiti@2.7.0)(supports-color@10.2.2)
       natural-compare: 1.4.0
       nth-check: 2.1.1
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
       semver: 7.8.5
       vue-eslint-parser: 10.4.1(eslint@9.39.4(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       xml-name-validator: 5.0.0
@@ -13513,7 +13513,7 @@ snapshots:
       eslint: 9.39.4(jiti@2.7.0)(supports-color@10.2.2)
       natural-compare: 1.4.0
       nth-check: 2.1.1
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
       semver: 7.8.5
       vue-eslint-parser: 10.4.1(eslint@9.39.4(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       xml-name-validator: 5.0.0
@@ -16230,7 +16230,7 @@ snapshots:
   postcss-calc@10.1.1(postcss@8.5.28):
     dependencies:
       postcss: 8.5.28
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
       postcss-value-parser: 4.2.0
 
   postcss-colormin@8.0.1(postcss@8.5.28):
@@ -16250,7 +16250,7 @@ snapshots:
   postcss-discard-comments@8.0.1(postcss@8.5.28):
     dependencies:
       postcss: 8.5.28
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
 
   postcss-discard-duplicates@8.0.1(postcss@8.5.28):
     dependencies:
@@ -16285,7 +16285,7 @@ snapshots:
       caniuse-api: 4.0.0
       cssnano-utils: 6.0.1(postcss@8.5.28)
       postcss: 8.5.28
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
 
   postcss-minify-font-values@8.0.1(postcss@8.5.28):
     dependencies:
@@ -16312,7 +16312,7 @@ snapshots:
       caniuse-api: 4.0.0
       cssesc: 3.0.0
       postcss: 8.5.28
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
 
   postcss-normalize-charset@8.0.1(postcss@8.5.28):
     dependencies:
@@ -16390,7 +16390,7 @@ snapshots:
     dependencies:
       postcss: 8.5.28
 
-  postcss-selector-parser@7.1.4:
+  postcss-selector-parser@7.1.6:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
@@ -16408,7 +16408,7 @@ snapshots:
   postcss-unique-selectors@8.0.1(postcss@8.5.28):
     dependencies:
       postcss: 8.5.28
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
 
   postcss-value-parser@4.2.0: {}
 
@@ -17348,7 +17348,7 @@ snapshots:
     dependencies:
       browserslist: 4.28.8
       postcss: 8.5.28
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
 
   stylelint-config-cmyr@1.0.0(postcss@8.5.28)(stylelint@16.26.1(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
@@ -17416,7 +17416,7 @@ snapshots:
       mdn-data: 2.28.1
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
       postcss-value-parser: 4.2.0
       stylelint: 16.26.1(supports-color@10.2.2)(typescript@5.9.3)
 
@@ -17426,7 +17426,7 @@ snapshots:
       '@csstools/css-syntax-patches-for-csstree': 1.1.5(css-tree@3.2.1)
       '@csstools/css-tokenizer': 3.0.4
       '@csstools/media-query-list-parser': 4.0.3(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
-      '@csstools/selector-specificity': 5.0.0(postcss-selector-parser@7.1.4)
+      '@csstools/selector-specificity': 5.0.0(postcss-selector-parser@7.1.6)
       '@dual-bundle/import-meta-resolve': 4.2.1
       balanced-match: 2.0.0
       colord: 2.10.0
@@ -17453,7 +17453,7 @@ snapshots:
       postcss: 8.5.28
       postcss-resolve-nested-selector: 0.1.6
       postcss-safe-parser: 7.0.1(postcss@8.5.28)
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.6
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       string-width: 4.2.3

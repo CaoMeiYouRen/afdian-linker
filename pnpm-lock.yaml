@@ -60,8 +60,8 @@ importers:
         specifier: ^9.0.10
         version: 9.0.10
       '@vercel/node':
-        specifier: ^16.0.1
-        version: 16.0.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.13.1)(rollup@4.62.2)(supports-color@10.2.2)
+        specifier: ^22.0.0
+        version: 22.0.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.19.0)(rollup@4.62.2)(supports-color@10.2.2)
       '@vueuse/core':
         specifier: ^15.0.0
         version: 15.0.0(vue@3.5.43(typescript@5.9.3))
@@ -2850,8 +2850,8 @@ packages:
     peerDependencies:
       valibot: ^1.4.0
 
-  '@vercel/build-utils@14.13.1':
-    resolution: {integrity: sha512-O2wh5N/8mWLTc8oKuoCQKU4h8EHAL1dZDw11YHmu25pT0b54txEkLhkIFyW5h1lXD6gNMW4YpCSrtVw9QUNfxw==}
+  '@vercel/build-utils@14.19.0':
+    resolution: {integrity: sha512-clOs3ZTsmxlOvSv0kMm+xkvrGhOmbg3yUH5pNYBG1ZY5e1MX2r0DoM+LOe8VnjyJJ9M93QoOSI7FmAmDu7APxw==}
 
   '@vercel/error-utils@2.2.1':
     resolution: {integrity: sha512-9DhP8jP7raLML4hGsBemxX5fXuQnu5xxMV+HjGygGbzEmVK/+KyJ3QP2Cw7PdF0uXdb9N0Qa4c3tRGH34ZX6vw==}
@@ -2866,13 +2866,13 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vercel/node@16.0.1':
-    resolution: {integrity: sha512-jWNlamCPNCv1USW1oMGujpRX3VAmiBUi0zfqA3grYt8H3KCzrm3gKRyzH6NmztfEdtYbTgEAaGJYvuQiCUKDuQ==}
+  '@vercel/node@22.0.0':
+    resolution: {integrity: sha512-Yuh/GblX4M+SjQYUD8Ye6QCuXlDMk5zxWuZ5M9ejMigT+Lkv560P4vbLt5QvuP9HJiSTiTmmG23j6ghKKA+tNA==}
     peerDependencies:
-      '@vercel/build-utils': 14.13.1
+      '@vercel/build-utils': 14.19.0
 
-  '@vercel/static-config@3.4.3':
-    resolution: {integrity: sha512-BY1sL8rNJvIm3TK/8TQ+Q6jIx7NpO5xckQzv7s6c1ypHvRnTl+vf6rmgY5WFXmoYDeGm3tMy4jiy/5M/5jGr/g==}
+  '@vercel/static-config@3.4.4':
+    resolution: {integrity: sha512-WppaPyEKQhO8qo5gVee3mSo1QSCgDZaUcUDHrqICSlt90oYeC/SHTmKCPWY1x1NB9hU+kR2oDzJwAeRKKv5NIw==}
 
   '@vitejs/plugin-vue-jsx@5.1.6':
     resolution: {integrity: sha512-YXvi4as2clxt6DFw5+a0tTA97ntiQXm/raR8ofNj3aNwwdlVGTiG2gp7EvfZW17P50acL/9bP0ccF4XnqNmlgA==}
@@ -11560,7 +11560,7 @@ snapshots:
     dependencies:
       valibot: 1.4.1(typescript@5.9.3)
 
-  '@vercel/build-utils@14.13.1':
+  '@vercel/build-utils@14.19.0':
     dependencies:
       cjs-module-lexer: 1.2.3
       es-module-lexer: 1.5.0
@@ -11605,16 +11605,16 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@16.0.1(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.13.1)(rollup@4.62.2)(supports-color@10.2.2)':
+  '@vercel/node@22.0.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@vercel/build-utils@14.19.0)(rollup@4.62.2)(supports-color@10.2.2)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
       '@edge-runtime/vm': 3.2.0
       '@types/node': 20.11.0
-      '@vercel/build-utils': 14.13.1
+      '@vercel/build-utils': 14.19.0
       '@vercel/error-utils': 2.2.1
       '@vercel/nft': 1.10.0(rollup@4.62.2)(supports-color@10.2.2)
-      '@vercel/static-config': 3.4.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@vercel/static-config': 3.4.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
       async-listen: 3.0.0
       cjs-module-lexer: 1.2.3
       edge-runtime: 2.5.9
@@ -11636,7 +11636,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/static-config@3.4.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
+  '@vercel/static-config@3.4.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
       ajv: 8.20.0
       json-schema-to-ts: 1.6.4
@@ -17534,7 +17534,7 @@ snapshots:
 
   tsx@4.21.0:
     dependencies:
-      esbuild: 0.28.1
+      esbuild: 0.28.2
       get-tsconfig: 4.14.0
     optionalDependencies:
       fsevents: 2.3.3

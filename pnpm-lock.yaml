@@ -34,6 +34,8 @@ overrides:
   colord: ^2.9.4
   source-map-js: ^1.2.2
 
+packageExtensionsChecksum: sha256-2StFjYUFHnGYNCJilPW9eOzRVwuDLRl5shnCozVS+2E=
+
 importers:
 
   .:
@@ -10665,6 +10667,7 @@ snapshots:
   '@primevue/core@4.5.5(vue@3.5.43(typescript@5.9.3))':
     dependencies:
       '@primeuix/styled': 0.7.4
+      '@primeuix/styles': 2.0.3
       '@primeuix/utils': 0.6.4
       vue: 3.5.43(typescript@5.9.3)
 

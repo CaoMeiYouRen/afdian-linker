@@ -41,3 +41,9 @@ overrides:
   nanoid: ^3.3.18
   colord: ^2.9.4
   source-map-js: ^1.2.2
+packageExtensions:
+  # primevue@4.5.5 依赖 @primeuix/styles，但 @primevue/core@4.5.5 未声明却直接引用，
+  # 补全后避免仅靠提升（hoist）解析导致构建失败。
+  "@primevue/core@4.5.5":
+    dependencies:
+      "@primeuix/styles": ^2.0.3

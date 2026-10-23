@@ -37,10 +37,15 @@ overrides:
   shell-quote: ^1.9.0
   brace-expansion: ^5.0.12
   browserslist: ^4.28.7
-  ip-address: ^10.3.1
+  ip-address: ^10.7.4
   nanoid: ^3.3.18
   colord: ^2.9.4
   source-map-js: ^1.2.2
+  follow-redirects: ^1.16.1
+  launch-editor: ^2.14.2
+  vite: ^8.3.5
+  valibot: ^1.4.2
+  katex: ^0.18.2
 packageExtensions:
   # primevue@4.5.5 依赖 @primeuix/styles，但 @primevue/core@4.5.5 未声明却直接引用，
   # 补全后避免仅靠提升（hoist）解析导致构建失败。

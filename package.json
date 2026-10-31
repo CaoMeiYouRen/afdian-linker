@@ -46,7 +46,7 @@
     "nodemailer": "^10.0.11",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
-    "nuxt": "^4.6.2",
+    "nuxt": "^4.6.3",
     "p-queue": "^10.0.0",
     "pg": "^8.23.1",
     "pinia": "^4.1.0",

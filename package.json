@@ -30,7 +30,7 @@
     "@vercel/node": "^22.0.0",
     "@vueuse/core": "^15.0.0",
     "animate.css": "^4.1.1",
-    "auth0": "^6.1.0",
+    "auth0": "^7.6.0",
     "await-to-js": "^3.0.0",
     "bcrypt": "^6.0.0",
     "dayjs": "^1.11.23",

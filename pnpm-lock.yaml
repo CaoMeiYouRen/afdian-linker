@@ -142,8 +142,8 @@ importers:
         specifier: ~4.5.5
         version: 4.5.5(vue@3.5.43(typescript@5.9.3))
       push-all-in-one:
-        specifier: ^4.5.4
-        version: 4.5.4(supports-color@10.2.2)
+        specifier: ^4.7.0
+        version: 4.7.0(supports-color@10.2.2)
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -6596,9 +6596,9 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  push-all-in-one@4.5.4:
-    resolution: {integrity: sha512-oKZ21LFbM8vxDfpMgPstgpdoSu8DPH0q8qPiqBzh1kIs6h8nqTBxbZiAniX5k8iNacqaIA/pVRkcZ5gpePb8mA==}
-    engines: {node: '>=20'}
+  push-all-in-one@4.7.0:
+    resolution: {integrity: sha512-dM9mHz2+Mtmw3JH8H7BRc1LHktHb0utgKyyE/nGpkbXkHUCfZQl7uksLuazi5RAs4pCK9ZGet2bPghXPyGf4Vw==}
+    engines: {node: ^22.23.4 || ^24.22.1 || >=26.12.1}
 
   qified@0.10.1:
     resolution: {integrity: sha512-+Owyggi9IxT1ePKGafcI87ubSmxol6smwJ+RAHDQlx9+9cPwFWDiKFFCPuWhr9ignlGpZ9vDQLw67N4dcTVFEA==}
@@ -15387,7 +15387,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  push-all-in-one@4.5.4(supports-color@10.2.2):
+  push-all-in-one@4.7.0(supports-color@10.2.2):
     dependencies:
       '@colors/colors': 1.6.0
       axios: 1.20.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)

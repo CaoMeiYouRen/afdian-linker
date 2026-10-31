@@ -76,8 +76,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1
       auth0:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^7.6.0
+        version: 7.6.0
       await-to-js:
         specifier: ^3.0.0
         version: 3.0.0
@@ -3373,10 +3373,9 @@ packages:
     resolution: {integrity: sha512-o9ca0P+hHSUbiwOSFW+DS2GmCA5c6T6E1UJZhWcgKmjAI2Aid16wLzY4/y+XNFb7Im1rM+wQc5YkkNZuTy5FOw==}
     engines: {node: '>=18'}
 
-  auth0@6.1.0:
-    resolution: {integrity: sha512-I/PJLoG6HecJk2j62J83zV9bKS3v5f2xKdDL5uYFmjmhBfmnu9rg1z3SDcpASSYUuJvuRd5uF3vmsKfzn2OCgw==}
+  auth0@7.6.0:
+    resolution: {integrity: sha512-EBkk9LgFF1d5KlpL6Zy4J13g6DJcXJgw4FOOFwMeK/EFpFOiq1ALlbVKJSg/xHbTikaxDG+htzJzwCXbrkae4Q==}
     engines: {node: ^20.19.0 || ^22.12.0 || ^24.0.0 || ^26.0.0}
-    deprecated: 'auth0 v6 is deprecated and no longer receives updates. v7 is Management-API-only with no breaking changes for Management API usage; the authentication layer moved to @auth0/auth0-auth-js and @auth0/auth0-server-js, which receive all new features. Migration guide: https://github.com/auth0/node-auth0/blob/master/v7_MIGRATION_GUIDE.md'
 
   autoprefixer@10.6.1:
     resolution: {integrity: sha512-cL1Qz6ADZhcEbny/8HPfe99J6HhNoYtpX2LFLIbhgGE7Q1hlQVkYFdetDN7Id3KiQxhDrHwzlHr/YQCnZ8+xSA==}
@@ -11910,7 +11909,7 @@ snapshots:
       undici-types: 6.28.0
       uuid: 11.1.1
 
-  auth0@6.1.0:
+  auth0@7.6.0:
     dependencies:
       auth0-legacy: auth0@4.37.1
       jose: 4.15.9

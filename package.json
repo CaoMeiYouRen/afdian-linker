@@ -61,7 +61,7 @@
     "zod": "^4.6.6"
   },
   "devDependencies": {
-    "@commitlint/cli": "^21.2.3",
+    "@commitlint/cli": "^21.2.4",
     "@nuxt/eslint": "^1.15.2",
     "@nuxt/test-utils": "^4.3.3",
     "@primevue/nuxt-module": "~4.5.5",

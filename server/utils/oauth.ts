@@ -103,6 +103,11 @@ function normalizeUserInfo(userInfo: any): OAuthUserInfo {
         normalized.email = userInfo.email || userInfo.mail
     }
 
+    // 标准化邮箱验证状态字段
+    if (normalized.email_verified === undefined) {
+        normalized.email_verified = userInfo.email_verified ?? userInfo.emailVerified ?? userInfo.verified_email ?? userInfo.verified
+    }
+
     // 标准化名称字段
     if (!normalized.name) {
         normalized.name = userInfo.name || userInfo.full_name || userInfo.display_name
@@ -124,6 +129,54 @@ function normalizeUserInfo(userInfo: any): OAuthUserInfo {
     }
 
     return normalized
+}
+
+export interface OAuthEmailClaims {
+    email?: unknown
+    email_verified?: unknown
+    emailVerified?: unknown
+    verified_email?: unknown
+    verified?: unknown
+}
+
+/**
+ * 判断 OAuth 提供商是否明确验证了邮箱
+ * 只接受布尔 true 或字符串 "true"，其余一律视为未验证
+ */
+export function isOAuthEmailVerified(claims: OAuthEmailClaims): boolean {
+    const value = claims.email_verified ?? claims.emailVerified ?? claims.verified_email ?? claims.verified
+    return value === true || value === 'true'
+}
+
+/**
+ * 获取规范化后的邮箱，缺失或非字符串时返回 undefined
+ */
+export function getOAuthEmail(claims: OAuthEmailClaims): string | undefined {
+    if (typeof claims.email !== 'string') {
+        return undefined
+    }
+    const email = claims.email.trim()
+    return email || undefined
+}
+
+/**
+ * 仅返回已验证邮箱；未验证邮箱不能用于匹配或绑定已有账号
+ */
+export function getVerifiedOAuthEmail(claims: OAuthEmailClaims): string | undefined {
+    if (!isOAuthEmailVerified(claims)) {
+        return undefined
+    }
+    return getOAuthEmail(claims)
+}
+
+/**
+ * 生成不会与真实邮箱冲突的占位邮箱
+ * 用于提供商未返回或未验证邮箱的场景，避免占用/冒用他人邮箱
+ */
+export function createSyntheticEmail(prefix: string, subject: string, domain = 'oauth.local'): string {
+    const safePrefix = prefix.replace(/[^a-zA-Z0-9_-]/g, '') || 'oauth'
+    const hash = crypto.createHash('sha256').update(subject).digest('hex').slice(0, 16)
+    return `${safePrefix}_${hash}@${domain}`
 }
 
 /**

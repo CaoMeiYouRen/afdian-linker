@@ -1,7 +1,7 @@
-import { defineEventHandler, sendRedirect } from 'h3'
-import ms from 'ms'
+import { defineEventHandler, sendRedirect, setCookie } from 'h3'
 import { generateOAuthUrl, generateState } from '@/server/utils/oauth'
 import { getCacheStore } from '@/server/utils/cache'
+import { OAUTH_STATE_COOKIE, OAUTH_STATE_TTL } from '@/server/types/oauth'
 
 export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
@@ -24,7 +24,17 @@ export default defineEventHandler(async (event) => {
         await cache.set(`oauth_state_${state}`, {
             timestamp: Date.now(),
             redirect_uri: redirectUri,
-        }, ms('10m')) // 10 分钟
+        }, OAUTH_STATE_TTL) // 10 分钟
+
+        // 同时写入浏览器 Cookie，回调时校验 state 是否来自同一个浏览器
+        // 防止攻击者把自己的授权回调链接发给受害者（登录 CSRF）
+        setCookie(event, OAUTH_STATE_COOKIE, state, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/',
+            maxAge: Math.floor(OAUTH_STATE_TTL / 1000),
+        })
 
         // 生成授权 URL
         const authUrl = generateOAuthUrl({

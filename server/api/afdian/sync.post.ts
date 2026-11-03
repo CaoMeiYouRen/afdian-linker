@@ -7,6 +7,7 @@ const querySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const body = querySchema.parse(await readBody(event))
         // 传递分页参数

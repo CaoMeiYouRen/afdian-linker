@@ -20,6 +20,7 @@ const planSchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const body = await readBody(event)
         const data = await planSchema.parseAsync(body)

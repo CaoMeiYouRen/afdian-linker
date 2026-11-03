@@ -13,6 +13,7 @@ const verificationCodeQuerySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const query = await verificationCodeQuerySchema.parseAsync(getQuery(event))
         const { page, perPage, sort, order } = query

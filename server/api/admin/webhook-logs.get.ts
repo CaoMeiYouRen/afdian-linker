@@ -6,6 +6,7 @@ import { webhookLogQuerySchema, queryWebhookLogs } from '@/server/utils/query/we
 import { createPaginatedResponse } from '@/server/types/pagination'
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const query = await webhookLogQuerySchema.parseAsync(getQuery(event))
         const dataSource = await getDataSource()

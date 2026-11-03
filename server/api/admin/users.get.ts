@@ -6,6 +6,7 @@ import { userQuerySchema, queryUsers } from '@/server/utils/query/user'
 import { createPaginatedResponse } from '@/server/types/pagination'
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const query = await userQuerySchema.parseAsync(getQuery(event))
         const dataSource = await getDataSource()

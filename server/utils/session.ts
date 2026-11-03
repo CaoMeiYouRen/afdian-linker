@@ -24,7 +24,12 @@ export function getAuthSession(event: H3Event): Session | null {
     if (!token) {
         return null
     }
-    return verify(token)
+    try {
+        return verify(token)
+    } catch {
+        // 无效或过期的 token 视为未登录
+        return null
+    }
 }
 
 export async function clearAuthSession(event: H3Event) {

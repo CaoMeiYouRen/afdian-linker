@@ -22,8 +22,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
     if (!userStore.isLoggedIn && !to.path.startsWith('/login')) {
         return navigateTo('/login')
     }
-    // 如果访问管理界面，检查用户是否为管理员
-    if (!userStore.isAdmin && to.path.startsWith('/admin')) {
+    // 如果访问管理界面，检查用户是否为管理员（大小写不敏感）
+    if (!userStore.isAdmin && /^\/admin(?:\/|$)/i.test(to.path)) {
         // 如果不是管理员，拒绝访问
         return false
     }

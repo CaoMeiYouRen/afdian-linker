@@ -4,6 +4,7 @@ import { Plan } from '@/server/entities/plan'
 import { createApiResponse } from '@/server/types/api'
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     const planId = getRouterParam(event, 'id')
     const dataSource = await getDataSource()
     const planRepository = dataSource.getRepository(Plan)

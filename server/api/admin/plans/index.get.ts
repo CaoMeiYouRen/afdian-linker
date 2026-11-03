@@ -6,6 +6,7 @@ import { createPaginatedResponse } from '@/server/types/pagination'
 import { planQuerySchema, queryPlans } from '@/server/utils/query/plan'
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const query = await planQuerySchema.parseAsync(getQuery(event))
         const dataSource = await getDataSource()

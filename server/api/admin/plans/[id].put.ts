@@ -23,6 +23,7 @@ const planSchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const planId = getRouterParam(event, 'id')
         const data = await planSchema.parseAsync(await readBody(event))

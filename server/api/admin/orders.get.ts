@@ -7,6 +7,7 @@ import { orderQuerySchema, queryOrders } from '@/server/utils/query/order'
 import { createPaginatedResponse } from '@/server/types/pagination'
 
 export default defineEventHandler(async (event) => {
+    await requireAdmin(event)
     try {
         const query = await orderQuerySchema.parseAsync(getQuery(event))
         const dataSource = await getDataSource()

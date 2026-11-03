@@ -1,15 +1,19 @@
 import type { H3Event } from 'h3'
 import jwt from 'jsonwebtoken'
+import { getAuthSession } from '@/server/utils/session'
 import { UserRole } from '@/types/user'
 
 export async function requireAuth(event: H3Event) {
-    const auth = event.context.auth
+    // 优先使用全局中间件写入的会话；缺失时兜底自行校验，
+    // 保证 handler 级鉴权不依赖中间件是否被执行
+    const auth = event.context.auth || getAuthSession(event)
     if (!auth) {
         throw createError({
             statusCode: 401,
             message: '请先登录',
         })
     }
+    event.context.auth = auth
     return auth
 }
 

@@ -1,5 +1,13 @@
 # afdian-linker
 
+## [1.4.5](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.4...v1.4.5) (2026-11-07)
+
+
+### 🐛 Bug 修复
+
+* **auth:** 修复路径归一化绕过并补充管理员接口鉴权 ([6b554e1](https://github.com/CaoMeiYouRen/afdian-linker/commit/6b554e1))
+* **auth:** 加固 OAuth 账号绑定与 state 校验 ([1ae317f](https://github.com/CaoMeiYouRen/afdian-linker/commit/1ae317f))
+
 ## [1.4.4](https://github.com/CaoMeiYouRen/afdian-linker/compare/v1.4.3...v1.4.4) (2026-09-05)
 
 
